@@ -1,26 +1,34 @@
-import { Nav } from "react-bootstrap"
+import { Nav, NavItem } from "react-bootstrap"
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const Navbar = () => {
+const Navbar = props => {
+
+    const { location } = props;
+
+    console.log(location.pathname);
+    
     return(
         <div>
-            <Nav className="navbar navbar-expand-sm bg-dark navbar-dark">
+            <Nav className="navbar navbar-expand-sm bg-dark navbar-dark" activeKey = {location.pathname}>
                 <a className = 'navbar-brand ' href = '/'><strong>Art</strong> Port</a> 
-                <ul className="navbar-nav ml-auto">
-                    <li className="nav-item">
-                        <a className = "nav-link" href="/comics">Comics</a>
-                    </li>
-                    <li className="nav-item">
-                        <a className = "nav-link" href="/blogs">Blogs</a>
-                    </li>
-                    <li class="nav-item">
-                        <a className = "nav-link" href="/manga">Manga</a>
-                    </li>
-                    <li class="nav-item">
-                        <a className = "nav-link" href="/about">About</a>
-                    </li>
-                </ul>
+                <span className = "navbar-nav ml-auto">
+                    <NavItem >
+                        <Nav.Link href="/comics">Comics</Nav.Link>
+                    </NavItem>
+                    <NavItem>
+                        <Nav.Link href="/blogs">Blogs</Nav.Link>
+                    </NavItem>
+                    <NavItem>
+                        <Nav.Link href="/manga">Manga</Nav.Link>
+                    </NavItem>
+                    <NavItem>
+                        <Nav.Link href="/about">About</Nav.Link>
+                    </NavItem>
+                    <NavItem>
+                        <Nav.Link href="/signIn">SignIn</Nav.Link>
+                    </NavItem>
+                </span>
             </Nav>
         </div>
     )
