@@ -1,12 +1,11 @@
-import { Nav, NavItem } from "react-bootstrap"
+import { Nav, NavItem, Button } from "react-bootstrap"
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+
 const Navbar = props => {
 
-    const { location } = props;
-
-    console.log(location.pathname);
+    const { location, onClick } = props
     
     return(
         <div>
@@ -25,9 +24,9 @@ const Navbar = props => {
                     <NavItem>
                         <Nav.Link href="/about">About</Nav.Link>
                     </NavItem>
-                    <NavItem>
-                        <Nav.Link href="/signIn">SignIn</Nav.Link>
-                    </NavItem>
+                    <Button className = 'btn btn-sm btn-danger' id = 'sign_in_btn' onClick = {() => {onClick()}}>
+                        Sign in
+                    </Button>
                 </span>
             </Nav>
         </div>
