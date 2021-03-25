@@ -24,9 +24,7 @@ const Navbar = props => {
                     <NavItem>
                         <Nav.Link href="/about">About</Nav.Link>
                     </NavItem>
-                    <Button className = 'btn btn-sm btn-danger' id = 'sign_in_btn' onClick = {() => {onClick()}}>
-                        Sign in
-                    </Button>
+                    <Button  className = 'btn' onClick = {() => onClick()}>Sign In </Button>
                 </span>
             </Nav>
         </div>

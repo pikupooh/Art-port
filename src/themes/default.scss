@@ -1,0 +1,40 @@
+$body-bg: rgb(32, 31, 31) !important;
+$body-color: white;
+
+$custom_color_1: rgb(238, 129, 39);
+
+@mixin btn_color {
+    background-color: $custom_color_1 !important;
+    border-color: $custom_color_1 !important;
+    box-shadow: none !important;
+}
+
+.btn-primary{
+
+    @include btn_color(); 
+
+    &:hover {
+        background-color: lighten($color: $custom_color_1, $amount: 10)  !important;
+    }
+
+    &:active:focus,
+    &.active,
+    &:active:focus{
+        @include btn_color();
+    }
+
+    &:focus {
+        @include btn_color();
+    }
+}
+
+.modal-content{
+    color: $custom_color_1;
+    background-color: $body-bg;
+
+    &.a{
+        color: lighten($color: $custom_color_1, $amount: 60);
+    }
+}
+
+@import '~bootstrap/scss/bootstrap.scss';
