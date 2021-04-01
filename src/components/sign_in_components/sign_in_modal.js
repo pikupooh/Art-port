@@ -5,32 +5,13 @@ import SignInForm from './sign_in_form'
 import RegisterForm from './register_form'
 
 class SignInModal extends React.Component{
-
-  constructor(props){
-    super(props);
-
-    this.state = {
-      isRegisterForm: false,
-    };
-  }
-
-  Sign_in_to_register = () => {
-    this.setState({
-      isRegisterForm: true
-    });
-  }
-
-  Register_to_sign_in = () => {
-    this.setState({
-      isRegisterForm: false
-    });
-  }
-
     render(){
       // TODO: Better ui
-      if(this.state.isRegisterForm == false){
+      console.log(this.props.isRegisterForm);
+      if(this.props.isRegisterForm == false){
+        
         return(
-            <Modal show = {this.props.show} onHide = {this.props.handleModalClose} >
+            <Modal show = {this.props.show} onHide ={this.props.handleModalClose}>
               <Modal.Body>
                 <h3 className = 'text-center'>Sign in</h3>
                 <SignInForm />
@@ -38,7 +19,7 @@ class SignInModal extends React.Component{
                   <a  className='alert-link'> Forgot password</a>
                 </div>
                 <div className = 'mt-3 text-center' >
-                  <a onClick =  {() => this.Sign_in_to_register()} >
+                  <a onClick =  {() => this.props.Sign_in_to_register()} >
                     Don't have an account? Register
                   </a>
                 </div>
@@ -55,7 +36,7 @@ class SignInModal extends React.Component{
               <div className = 'mt-2'>
                 <a href='/' className='alert-link'> Forgot password</a>
               </div>
-              <div className = 'mt-3 text-center' onClick = {() => {this.Register_to_sign_in()}}>Already have an account. Sign In</div>
+              <div className = 'mt-3 text-center' onClick = {() => {this.props.Register_to_sign_in()}}>Already have an account. Sign In</div>
             </Modal.Body>
           </Modal>
         )

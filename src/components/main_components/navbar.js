@@ -1,6 +1,8 @@
 import { Nav, NavItem, Button } from "react-bootstrap"
+import {Link} from 'react-router-dom'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 
 const Navbar = props => {
@@ -13,18 +15,18 @@ const Navbar = props => {
                 <a className = 'navbar-brand ' href = '/'><strong>Art</strong> Port</a> 
                 <span className = "navbar-nav ml-auto">
                     <NavItem >
-                        <Nav.Link href="/comics">Comics</Nav.Link>
+                        <Link to ="/comics" className = "nav-link">Comics</Link>
                     </NavItem>
                     <NavItem>
-                        <Nav.Link href="/blogs">Blogs</Nav.Link>
+                        <Link to ="/blogs" className = "nav-link">Blogs</Link>
                     </NavItem>
                     <NavItem>
-                        <Nav.Link href="/manga">Manga</Nav.Link>
+                        <Link to="/manga" className = "nav-link">Manga</Link>
                     </NavItem>
                     <NavItem>
-                        <Nav.Link href="/about">About</Nav.Link>
+                        <Link to = "/about" className = "nav-link">About</Link>
                     </NavItem>
-                    <Button  className = 'btn' onClick = {() => onClick()}>Sign In </Button>
+                    <Button  className = 'btn btn-sm' onClick = {() => onClick()}>Sign In </Button>
                 </span>
             </Nav>
         </div>

@@ -23,6 +23,7 @@ class App extends React.Component {
 
 		this.state = {
 			show: false,
+      isRegisterForm: false,
 		};
 	}
 
@@ -31,8 +32,22 @@ class App extends React.Component {
 	}
 
 	handleShow() {
+    if(this.state.isRegisterForm)
+      this.Register_to_sign_in();
 		this.setState({ show: true });
 	}
+
+  Sign_in_to_register = () => {
+    this.setState({
+      isRegisterForm: true
+    });
+  }
+
+  Register_to_sign_in = () => {
+    this.setState({
+      isRegisterForm: false
+    });
+  }
 
   render() {
     return (
@@ -44,7 +59,8 @@ class App extends React.Component {
           <Route  path = '/blogs' component = {Blogs} />
           <Route  path = '/manga' component = {Manga} />
           <Route  path = '/about' component = {About} />
-          <SignInModal show = {this.state.show} handleModalClose = {this.handleModalClose} />
+          <SignInModal show = {this.state.show} isRegisterForm = {this.state.isRegisterForm} handleModalClose = {this.handleModalClose}
+                         Sign_in_to_register = {this.Sign_in_to_register} Register_to_sign_in = {this.Register_to_sign_in}/>
         </div>    
       </BrowserRouter>
     );
