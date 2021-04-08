@@ -19,9 +19,9 @@ class SignInModal extends React.Component{
                   <a  className='alert-link'> Forgot password</a>
                 </div>
                 <div className = 'mt-3 text-center' >
-                  <a onClick =  {() => this.props.Sign_in_to_register()} >
+                  <p onClick =  {() => this.props.Sign_in_to_register()} >
                     Don't have an account? Register
-                  </a>
+                  </p>
                 </div>
               </Modal.Body>
             </Modal>

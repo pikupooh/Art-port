@@ -3,7 +3,7 @@ $body-color: white;
 
 $custom_color_1: rgb(238, 129, 39);
 
-@mixin btn_color {
+@mixin btn_primary_primitive {
     background-color: $custom_color_1 !important;
     border-color: $custom_color_1 !important;
     box-shadow: none !important;
@@ -11,7 +11,7 @@ $custom_color_1: rgb(238, 129, 39);
 
 .btn-primary{
 
-    @include btn_color(); 
+    @include btn_primary_primitive(); 
 
     &:hover {
         background-color: lighten($color: $custom_color_1, $amount: 10)  !important;
@@ -20,11 +20,11 @@ $custom_color_1: rgb(238, 129, 39);
     &:active:focus,
     &.active,
     &:active:focus{
-        @include btn_color();
+        @include btn_primary_primitive();
     }
 
     &:focus {
-        @include btn_color();
+        @include btn_primary_primitive();
     }
 }
 
@@ -35,6 +35,10 @@ $custom_color_1: rgb(238, 129, 39);
     &.a{
         color: lighten($color: $custom_color_1, $amount: 60);
     }
+}
+
+.search-icon{
+    color: $custom_color_1;
 }
 
 @import '~bootstrap/scss/bootstrap.scss';

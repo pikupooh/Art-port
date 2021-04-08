@@ -13,7 +13,7 @@ const Navbar = props => {
         <div>
             <Nav className="navbar navbar-expand-sm bg-dark navbar-dark" activeKey = {location.pathname}>
                 <a className = 'navbar-brand ' href = '/'><strong>Art</strong> Port</a> 
-                <span className = "navbar-nav ml-auto">
+                <span className = "navbar-nav ml-auto mr-4">
                     <NavItem >
                         <Link to ="/comics" className = "nav-link">Comics</Link>
                     </NavItem>
@@ -26,8 +26,11 @@ const Navbar = props => {
                     <NavItem>
                         <Link to = "/about" className = "nav-link">About</Link>
                     </NavItem>
+                </span>
+                <span className = "navbar-nav">
                     <Button  className = 'btn btn-sm' onClick = {() => onClick()}>Sign In </Button>
                 </span>
+                
             </Nav>
         </div>
     )
