@@ -37,4 +37,8 @@ $custom_color_1: rgb(238, 129, 39);
     }
 }
 
+.search-icon{
+    color: $custom_color_1;
+}
+
 @import '~bootstrap/scss/bootstrap.scss';
