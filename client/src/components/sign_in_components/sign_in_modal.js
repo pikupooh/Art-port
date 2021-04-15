@@ -8,7 +8,7 @@ class SignInModal extends React.Component{
     render(){
       // TODO: Better ui
       console.log(this.props.isRegisterForm);
-      if(this.props.isRegisterForm == false){
+      if(this.props.isRegisterForm === false){
         
         return(
             <Modal show = {this.props.show} onHide ={this.props.handleModalClose}>

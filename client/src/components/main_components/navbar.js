@@ -2,6 +2,7 @@ import { Nav, NavItem, Button } from "react-bootstrap"
 import {Link} from 'react-router-dom'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import ProfileCircle from '../small_components/profileCircle'
 
 
 
@@ -26,7 +27,9 @@ const Navbar = props => {
                     <NavItem>
                         <Link to = "/about" className = "nav-link">About</Link>
                     </NavItem>
-                    <Button  className = 'btn btn-sm' onClick = {() => onClick()}>Sign In </Button>
+                    <div className = "nav_profile">
+                        <ProfileCircle />
+                    </div>
                 </span>
             </Nav>
         </div>

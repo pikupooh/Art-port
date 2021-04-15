@@ -8,7 +8,7 @@ import Blogs from './components/main_components/blogs'
 import Manga from './components/main_components/manga'
 import About from './components/main_components/about'
 import SignInModal from './components/sign_in_components/sign_in_modal'
-import { Button } from 'react-bootstrap'
+
 
 
 const NavbarwithRouter = withRouter(Navbar);

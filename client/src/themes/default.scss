@@ -41,4 +41,15 @@ $custom_color_1: rgb(238, 129, 39);
     color: $custom_color_1;
 }
 
+.nav_profile{
+    width: 100px;
+}
+
+.nav_profile_img{
+    margin-top: 4px;
+    margin-left: 40px;
+    width: 35px;
+    height: 35px;
+}
+
 @import '~bootstrap/scss/bootstrap.scss';
