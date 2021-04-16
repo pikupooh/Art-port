@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Route, withRouter } from 'react-router-dom'
+import { BrowserRouter, Route, withRouter, Switch } from 'react-router-dom'
 
 import Navbar from './components/main_components/navbar'
 import Home from './components/main_components/home'
@@ -8,7 +8,7 @@ import Blogs from './components/main_components/blogs'
 import Manga from './components/main_components/manga'
 import About from './components/main_components/about'
 import SignInModal from './components/sign_in_components/sign_in_modal'
-
+import UserProfile from './components/main_components/userProfile'
 
 
 const NavbarwithRouter = withRouter(Navbar);
@@ -52,15 +52,18 @@ class App extends React.Component {
   render() {
     return (
       <BrowserRouter>
-        <div>
+        <div>  
           <NavbarwithRouter onClick = {this.handleModalShow}/>
-          <Route  path = '/' exact component = {Home}/> 
-          <Route  path = '/comics' component = {Comics} />
-          <Route  path = '/blogs' component = {Blogs} />
-          <Route  path = '/manga' component = {Manga} />
-          <Route  path = '/about' component = {About} />
-          <SignInModal show = {this.state.show} isRegisterForm = {this.state.isRegisterForm} handleModalClose = {this.handleModalClose}
-                         Sign_in_to_register = {this.Sign_in_to_register} Register_to_sign_in = {this.Register_to_sign_in}/>
+            <Switch>
+            <Route  path = '/' exact component = {Home}/> 
+            <Route  path = '/comics' component = {Comics} />
+            <Route  path = '/blogs' component = {Blogs} />
+            <Route  path = '/manga' component = {Manga} />
+            <Route  path = '/about' component = {About} />
+            <Route path = '/:post_id' component = {UserProfile} />
+            <SignInModal show = {this.state.show} isRegisterForm = {this.state.isRegisterForm} handleModalClose = {this.handleModalClose}
+                          Sign_in_to_register = {this.Sign_in_to_register} Register_to_sign_in = {this.Register_to_sign_in}/>
+          </Switch>
         </div>    
       </BrowserRouter>
     );

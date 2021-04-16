@@ -9,7 +9,7 @@ export const homeGridReducer = (state = initState, action) => {
         case ActionTypes.FETCH_POST_LIST:
             return {
                 ...state,
-                postList: action.action.postList
+                postList: action.payload.postList
             }
         default:
             return state

@@ -1,4 +1,3 @@
-import { ConeStriped } from 'react-bootstrap-icons';
 import { fetchPostListAction } from '../actions/fetchPostListAction'
 
 function fetchPostList() {

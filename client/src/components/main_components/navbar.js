@@ -1,4 +1,4 @@
-import { Nav, NavItem, Button } from "react-bootstrap"
+import { Nav, NavItem } from "react-bootstrap"
 import {Link} from 'react-router-dom'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -7,9 +7,9 @@ import ProfileCircle from '../small_components/profileCircle'
 
 
 const Navbar = props => {
-
-    const { location, onClick } = props
     
+    const { location } = props
+
     return(
         <div>
             <Nav className="navbar navbar-expand-sm bg-dark navbar-dark" activeKey = {location.pathname}>

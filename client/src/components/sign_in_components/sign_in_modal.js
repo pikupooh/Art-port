@@ -1,4 +1,3 @@
-import { Button, Form } from "react-bootstrap";
 import React from "react"
 import Modal from "react-bootstrap/Modal"
 import SignInForm from './sign_in_form'
@@ -16,10 +15,10 @@ class SignInModal extends React.Component{
                 <h3 className = 'text-center'>Sign in</h3>
                 <SignInForm />
                 <div className = 'mt-2 '>
-                  <a  className='alert-link'> Forgot password</a>
+                  <a  className='alert-link' href = '/'> Forgot password</a>
                 </div>
                 <div className = 'mt-3 text-center' >
-                  <a onClick =  {() => this.props.Sign_in_to_register()} >
+                  <a onClick =  {() => this.props.Sign_in_to_register()} href='/'>
                     Don't have an account? Register
                   </a>
                 </div>

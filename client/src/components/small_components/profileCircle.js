@@ -1,6 +1,8 @@
 import  React  from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+
 import { signInUserAction } from '../../redux/actions/logActions'
 import { updateUserInfoAction } from '../../redux/actions/userInfoUpdateAction'
 
@@ -8,14 +10,17 @@ class ProfileCircle extends React.Component{
 
     handleSignIn = () => {
         this.props.signInUser();
-        this.props.updateUserInfo();
     }
 
     render(){
         if(this.props.isAuthenticated){
             return(
                 <div>
-                    <img className = "rounded-circle nav_profile_img" alt = "user_photo" src = "https://mdbootstrap.com/img/Photos/Avatars/img%20(30).jpg"></img>
+                    <Link to = {'/' + this.props.userId}>
+                        <img className = "rounded-circle nav_profile_img" alt = "user_photo" 
+                            src = "https://mdbootstrap.com/img/Photos/Avatars/img%20(30).jpg">
+                        </img>
+                    </Link>
                 </div>
             )
         }
