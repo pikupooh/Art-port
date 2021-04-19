@@ -3,15 +3,7 @@ import { connect } from 'react-redux';
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-import { signInUserAction } from '../../redux/actions/logActions'
-import { updateUserInfoAction } from '../../redux/actions/userInfoUpdateAction'
-
 class ProfileCircle extends React.Component{
-
-    handleSignIn = () => {
-        this.props.signInUser();
-    }
-
     render(){
         if(this.props.isAuthenticated){
             return(
@@ -26,7 +18,7 @@ class ProfileCircle extends React.Component{
         }
         else{
             return(
-                <Button className = "ml-3" onClick = {this.handleSignIn}>Sign In</Button>
+                <Button className = "ml-3" onClick = {this.props.onShowModal}>Sign In</Button>
             )
         }
     };
@@ -40,11 +32,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        signInUser: () => {dispatch(signInUserAction())},
-        updateUserInfo: () => {dispatch(updateUserInfoAction())},
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ProfileCircle)
+export default connect(mapStateToProps)(ProfileCircle)

@@ -1,4 +1,4 @@
-import { Nav, NavItem } from "react-bootstrap"
+import { Nav, NavItem, Button } from "react-bootstrap"
 import {Link} from 'react-router-dom'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -8,7 +8,7 @@ import ProfileCircle from '../small_components/profileCircle'
 
 const Navbar = props => {
     
-    const { location } = props
+    const { location, onShowModal } = props
 
     return(
         <div>
@@ -28,7 +28,7 @@ const Navbar = props => {
                         <Link to = "/about" className = "nav-link">About</Link>
                     </NavItem>
                     <div className = "nav_profile">
-                        <ProfileCircle />
+                        <ProfileCircle onShowModal = {onShowModal} />
                     </div>
                 </span>
             </Nav>

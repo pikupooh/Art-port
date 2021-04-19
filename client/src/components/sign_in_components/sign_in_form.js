@@ -1,7 +1,15 @@
-import React from 'react'
+import React from 'react';
+import { connect } from 'react-redux';
+
+import { signInUserAction } from '../../redux/actions/logActions';
 import {Form, Button} from 'react-bootstrap'
 
 class SignInForm extends React.Component {
+
+    handleSignIn = (event) => {
+        event.preventDefault();
+        this.props.signInUser();
+    }
     render(){
         return(
             <Form>
@@ -15,7 +23,7 @@ class SignInForm extends React.Component {
                     <Form.Control type="password" placeholder="Password" />
                 </Form.Group>
     
-                <Button variant="primary" type="submit">
+                <Button variant="primary" type="submit" onClick = {this.handleSignIn}>
                     Sign In
                 </Button>
             </Form>
@@ -23,4 +31,9 @@ class SignInForm extends React.Component {
     }
 }
 
-export default SignInForm
+const mapDispatchToProps = (dispatch) => {
+    return {
+        signInUser: () => {dispatch(signInUserAction())},
+    }
+}
+export default connect(null, mapDispatchToProps)(SignInForm)

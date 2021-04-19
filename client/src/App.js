@@ -51,21 +51,23 @@ class App extends React.Component {
 
   render() {
     return (
-      <BrowserRouter>
-        <div>  
-          <NavbarwithRouter onClick = {this.handleModalShow}/>
-            <Switch>
-            <Route  path = '/' exact component = {Home}/> 
-            <Route  path = '/comics' component = {Comics} />
-            <Route  path = '/blogs' component = {Blogs} />
-            <Route  path = '/manga' component = {Manga} />
-            <Route  path = '/about' component = {About} />
-            <Route path = '/:post_id' component = {UserProfile} />
-            <SignInModal show = {this.state.show} isRegisterForm = {this.state.isRegisterForm} handleModalClose = {this.handleModalClose}
+      <div>
+        <BrowserRouter>
+          <div>  
+            <NavbarwithRouter onShowModal = {this.handleModalShow}/>
+              <Switch>
+              <Route  path = '/' exact component = {Home}/> 
+              <Route  path = '/comics' component = {Comics} />
+              <Route  path = '/blogs' component = {Blogs} />
+              <Route  path = '/manga' component = {Manga} />
+              <Route  path = '/about' component = {About} />
+              <Route path = '/:post_id' component = {UserProfile} />
+            </Switch>
+          </div>    
+        </BrowserRouter>
+        <SignInModal show = {this.state.show} isRegisterForm = {this.state.isRegisterForm} handleModalClose = {this.handleModalClose}
                           Sign_in_to_register = {this.Sign_in_to_register} Register_to_sign_in = {this.Register_to_sign_in}/>
-          </Switch>
-        </div>    
-      </BrowserRouter>
+      </div>
     );
   }
 }
