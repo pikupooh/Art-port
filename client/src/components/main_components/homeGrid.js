@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from  'react-redux';
 import { bindActionCreators } from 'redux';
+import { Link } from 'react-router-dom';
 
 import fetchPostListAction from '../../redux/thunk/fetchPostsList'
 
@@ -14,8 +15,10 @@ class HomeGrid extends React.Component{
         return(
             <div>
                 {this.props.postList.map((post) => 
-                    <div key={post.postid}>
+                    <div>
+                    <Link to = {'/post/' + post.postid} key={post.postid}>
                         {post.postid}
+                    </Link>
                     </div>
                 )}
             </div>

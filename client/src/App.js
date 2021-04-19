@@ -9,7 +9,7 @@ import Manga from './components/main_components/manga'
 import About from './components/main_components/about'
 import SignInModal from './components/sign_in_components/sign_in_modal'
 import UserProfile from './components/main_components/userProfile'
-
+import Post from './components/main_components/post'
 
 const NavbarwithRouter = withRouter(Navbar);
 
@@ -61,7 +61,8 @@ class App extends React.Component {
               <Route  path = '/blogs' component = {Blogs} />
               <Route  path = '/manga' component = {Manga} />
               <Route  path = '/about' component = {About} />
-              <Route path = '/:post_id' component = {UserProfile} />
+              <Route path = '/user/:user_id' component = {UserProfile} />
+              <Route path = '/post/:post_id' component = {Post} />
             </Switch>
           </div>    
         </BrowserRouter>

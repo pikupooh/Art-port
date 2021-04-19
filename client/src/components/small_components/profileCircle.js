@@ -8,7 +8,7 @@ class ProfileCircle extends React.Component{
         if(this.props.isAuthenticated){
             return(
                 <div>
-                    <Link to = {'/' + this.props.userId}>
+                    <Link to = {'/user/' + this.props.userId}>
                         <img className = "rounded-circle nav_profile_img" alt = "user_photo" 
                             src = "https://mdbootstrap.com/img/Photos/Avatars/img%20(30).jpg">
                         </img>
