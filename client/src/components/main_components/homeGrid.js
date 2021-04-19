@@ -15,8 +15,8 @@ class HomeGrid extends React.Component{
         return(
             <div>
                 {this.props.postList.map((post) => 
-                    <div>
-                    <Link to = {'/post/' + post.postid} key={post.postid}>
+                    <div key={post.postid}>
+                    <Link to = {'/post/' + post.postid} >
                         {post.postid}
                     </Link>
                     </div>

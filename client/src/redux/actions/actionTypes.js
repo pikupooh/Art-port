@@ -13,3 +13,5 @@ export const UPDATE_USER_INFO = "UPDATE_USER_INFO";
 export const FETCH_POST_LIST = "FETCH_POST_LIST";
 
 export const FETCH_USER_DATA = "FETCH_USER_DATA";
+
+export const FETCH_POST_DATA = "FETCH_POST_DATA";
