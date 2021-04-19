@@ -1,10 +1,10 @@
 import { FETCH_POST_DATA } from "./actionTypes";
 
-export const fetchPostDatatAction = (postData) => {
+export const fetchPostDataAction = (postData) => {
   return {
     type: FETCH_POST_DATA,
     payload: {
-      postData,
-    },
+      postData
+    }
   };
 };

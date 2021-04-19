@@ -6,13 +6,16 @@ import fetchPostDataAction from "../../redux/thunk/fetchPostData";
 
 class Post extends React.Component {
   componentDidMount() {
-    let x = this.props.location.pathname;
-    let y = x.slice(6);
-    this.props.fetchPostData(y);
+    let postId = this.props.location.pathname.slice(6);
+    this.props.fetchPostData(postId)
   }
 
   render() {
-    return <div>{this.props.postId}</div>;
+    return(
+      <div>
+        Post of {this.props.postId} and uploadDate {this.props.uploadDate}
+      </div>
+    )
   }
 }
 
@@ -26,13 +29,8 @@ const mapDispatchToProps = (dispatch) =>
 
 const mapStateToProps = (state) => {
   return {
-    postId: state.post.postid,
-   /* uploadDate: state.post.uploaddate,
-    likes: state.post.likes,
-    userId: state.post.userid,
-    photoDoc: state.post.photo_doc,
-    commentDoc: state.post.comment_doc,
-    category: state.post.category,*/
+    postId: state.post.postId,
+    uploadDate: state.post.uploadDate
   };
 };
 

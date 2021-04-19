@@ -1,15 +1,15 @@
-import { fetchPostDatatAction } from "../actions/fetchPostDataAction";
+import { fetchPostDataAction } from '../actions/fetchPostDataAction'
 
 function fetchPostData(postId) {
     return dispatch => {
-        fetch('dummy/posts.json')
+        fetch('http://localhost:3000/dummy/posts.json')
         .then(res => res.json())
         .then(res => {
             if(res.error) {
                 throw(res.error);
             }
-            console.log(res);
-            //dispatch(fetchPostDataAction(res))
+            res = res.filter(post => post.postid == postId)
+            dispatch(fetchPostDataAction(res[0]))
             return res;
         })
         .catch(error => {

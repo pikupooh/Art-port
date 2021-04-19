@@ -1,7 +1,8 @@
 import * as ActionTypes from "../actions/actionTypes";
 
 const initState = {
-  postData: [],
+  postId: null,
+  uploadDate: null,
 };
 
 export const PostReducer = (state = initState, action) => {
@@ -9,7 +10,8 @@ export const PostReducer = (state = initState, action) => {
     case ActionTypes.FETCH_POST_DATA:
       return {
         ...state,
-        postData: action.payload.postData,
+        postId: action.payload.postData.postid,
+        uploadDate: action.payload.postData.uploaddate
       };
     default:
       return state;
