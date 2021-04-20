@@ -15,3 +15,5 @@ export const FETCH_POST_LIST = "FETCH_POST_LIST";
 export const FETCH_USER_DATA = "FETCH_USER_DATA";
 
 export const FETCH_POST_DATA = "FETCH_POST_DATA";
+export const FETCH_BLOG_LIST = "FETCH_BLOG_LIST";
+export const FETCH_BLOG_DATA = "FETCH_BLOG_DATA";

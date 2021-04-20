@@ -8,7 +8,7 @@ function fetchPostData(postId) {
             if(res.error) {
                 throw(res.error);
             }
-            res = res.filter(post => post.postid == postId)
+            res = res.filter(post => post.postid === postId)
             dispatch(fetchPostDataAction(res[0]))
             return res;
         })
