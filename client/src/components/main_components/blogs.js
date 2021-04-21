@@ -15,9 +15,9 @@ class blogs extends React.Component{
             <div>
                 <SearchBar />
               {this.props.blogList.map((blog) => 
-                    <div key ={blog.blogid}>
-                        <Link to = {'/blog/' + blog.blogid}>
-                        {blog.blogid}
+                    <div key ={blog.id}>
+                        <Link to = {'/blog/' + blog.id}>
+                        {blog.title}
                     </Link>
                     </div>
                 )}

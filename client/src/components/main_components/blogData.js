@@ -13,7 +13,7 @@ class blogData extends React.Component {
     render() {
       return(
         <div>
-          Post of {this.props.blogId} and uploadDate {this.props.uploadTime}
+          Post of {this.props.id} and title {this.props.title}
         </div>
       )
     }
@@ -27,10 +27,9 @@ class blogData extends React.Component {
   );
 
 const mapStateToProps = (state) => {
-    console.log(state.blogData);
   return {
-    blogId: state.blogData.blogId,
-    uploadTime: state.blogData.uploadTime,
+    id: state.blogData.id,
+    title: state.blogData.title,
   };
 };
 
