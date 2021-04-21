@@ -6,7 +6,7 @@ import RegisterForm from './register_form'
 class SignInModal extends React.Component{
     render(){
       // TODO: Better ui
-      console.log(this.props.isRegisterForm);
+
       if(this.props.isRegisterForm === false){
         
         return(

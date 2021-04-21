@@ -10,7 +10,7 @@ import About from './components/main_components/about'
 import SignInModal from './components/sign_in_components/sign_in_modal'
 import UserProfile from './components/main_components/userProfile'
 import Post from './components/main_components/post'
-
+import blogData from './components/main_components/blogData'
 const NavbarwithRouter = withRouter(Navbar);
 
 class App extends React.Component {
@@ -63,6 +63,7 @@ class App extends React.Component {
               <Route  path = '/about' component = {About} />
               <Route path = '/user/:user_id' component = {UserProfile} />
               <Route path = '/post/:post_id' component = {Post} />
+              <Route path = '/blog/:blog_id' component = {blogData} />
             </Switch>
           </div>    
         </BrowserRouter>
