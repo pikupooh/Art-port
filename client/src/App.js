@@ -11,6 +11,8 @@ import SignInModal from './components/sign_in_components/sign_in_modal'
 import UserProfile from './components/main_components/userProfile'
 import Post from './components/main_components/post'
 import blogData from './components/main_components/blogData'
+import ComicData from './components/main_components/comicData'
+import MangaData from './components/main_components/mangaData'
 const NavbarwithRouter = withRouter(Navbar);
 
 class App extends React.Component {
@@ -64,6 +66,8 @@ class App extends React.Component {
               <Route path = '/user/:user_id' component = {UserProfile} />
               <Route path = '/post/:post_id' component = {Post} />
               <Route path = '/blog/:blog_id' component = {blogData} />
+              <Route path = '/comic/:comic_id' component = {ComicData} />
+              <Route path = '/mangas/:manga_id' component = {MangaData} />
             </Switch>
           </div>    
         </BrowserRouter>
