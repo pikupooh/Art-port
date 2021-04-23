@@ -1,7 +1,11 @@
 package com.example.demo.entities;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Document(collection = "users")
 public class User {
@@ -14,14 +18,15 @@ public class User {
     private String email;
     private Role role = Role.USER;
     private String password;
+
+    @DBRef
+    private List<Post> userPosts;
+    private List<Post> favorites;
     public User() {
+        userPosts = new ArrayList<>();
     }
 
-    public User(String username, String email, String password){
-        this.username = username;
-        this.email = email;
-        this.password = password;
-    }
+
 
     public User(String id, String username, String firstName, String lastName, String email, Role role, String password) {
         this.id = id;
@@ -31,6 +36,15 @@ public class User {
         this.email = email;
         this.role = role;
         this.password = password;
+        this.userPosts = new ArrayList<>();
+    }
+
+    public User(String username, String email, String password) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.userPosts = new ArrayList<>();
+
     }
 
     public String getId() {
@@ -89,6 +103,18 @@ public class User {
         this.password = password;
     }
 
+    public List<Post> getUserPosts() {
+        return userPosts;
+    }
+
+    public void setUserPosts(List<Post> userPosts) {
+        this.userPosts = userPosts;
+    }
+
+    public void addPost(Post post){
+
+        userPosts.add(post);
+    }
     @Override
     public String toString() {
         return "User{" +
