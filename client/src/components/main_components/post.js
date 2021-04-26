@@ -13,7 +13,22 @@ class Post extends React.Component {
   render() {
     return(
       <div>
-        Post of {this.props.postId} and uploadDate {this.props.uploadDate}
+        <div>{this.props.postId}</div>
+        <div>{this.props.uploadDate}</div>
+        <div>
+          {this.props.tags.map(tag => 
+            <div key = {tag}>
+              {tag}
+            </div>  
+          )}
+        </div>
+        <div>
+          {this.props.likes.map(like => 
+            <div key = {like.UserId}>
+              {like.Username}
+            </div>  
+          )}
+        </div>
       </div>
     )
   }
@@ -30,7 +45,12 @@ const mapDispatchToProps = (dispatch) =>
 const mapStateToProps = (state) => {
   return {
     postId: state.post.postId,
-    uploadDate: state.post.uploadDate
+    uploadDate: state.post.uploadDate,
+    likes: state.post.likes,
+    photosDoc: state.post.photosDoc,
+    tags: state.post.tags,
+    type: state.post.type,
+    userInfo: state.post.userInfo
   };
 };
 

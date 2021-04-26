@@ -6,8 +6,7 @@ class Home extends React.Component {
   render(){
     return(
       <div>
-        <SearchBar />
-        <HomeGrid />
+      <HomeGrid />
       </div>
     )
   };

@@ -1,7 +1,7 @@
 import * as ActionTypes from '../actions/actionTypes'
 
 const initState = {
-    userId: "607593dfd20d7954a45a502e",
+    userId: "6086af69ad639088a6d75136",
     isAuthenticated: localStorage.getItem("isAuthenticated") ? true : false
 }
 

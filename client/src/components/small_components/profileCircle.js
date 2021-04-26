@@ -25,7 +25,7 @@ class ProfileCircle extends React.Component{
         }
         else{
             return(
-                <Button className = "ml-3" onClick = {this.props.onShowModal}>Sign In</Button>
+                <Button className = "ml-3 my-auto" onClick = {this.props.onShowModal}>Sign In</Button>
             )
         }
     };

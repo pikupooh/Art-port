@@ -1,10 +1,9 @@
-import { Nav, NavItem, Button } from "react-bootstrap"
-import {Link} from 'react-router-dom'
-
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ProfileCircle from '../small_components/profileCircle'
 
-
+import { Nav, NavItem, Button } from "react-bootstrap"
+import { Link } from 'react-router-dom'
+import  SearchBar from '../small_components/search_bar'
 
 const Navbar = props => {
     
@@ -13,7 +12,8 @@ const Navbar = props => {
     return(
         <div>
             <Nav className="navbar navbar-expand-sm bg-dark navbar-dark" activeKey = {location.pathname}>
-                <a className = 'navbar-brand ' href = '/'><strong>Art</strong> Port</a> 
+                <a className = 'navbar-brand ' href = '/'><strong>Art</strong> Port</a>
+                 <SearchBar />
                 <span className = "navbar-nav ml-auto">
                     <NavItem >
                         <Link to ="/comics" className = "nav-link">Comics</Link>

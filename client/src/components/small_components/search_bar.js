@@ -26,24 +26,16 @@ class SearchBar extends React.Component{
 
     render(){
         return(
-            <Container>
-                <Form className = "mt-5">
-                    <Form.Group className = "mx-auto row">
-                        <div className = "col-sm-11">
-                            <FormControl size = "lg"
-                                        placeholder = "Search"
-                                        onChange = {e => this.handleOnChange(e)}
-                                        value = {this.state.val}
-                                        ></FormControl>
-                        </div>
-                        <div className = "col-sm-1">
-                            <Button variant = "dark" onClick = {() => this.handleOnSearch()}>
-                                <Icon.Search size = {35} className = "search-icon"/>
-                            </Button>
-                        </div>    
+                <Form className = "search_bar"  >
+                    <Form.Group>
+                        <FormControl  size = "sm"
+                            placeholder = "Search"
+                            onChange = {e => this.handleOnChange(e)}
+                            value = {this.state.val}
+                        ></FormControl>
                     </Form.Group>
                 </Form>
-            </Container>     
+   
         )
     }
 }

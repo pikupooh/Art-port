@@ -2,7 +2,7 @@ import { fetchPostListAction } from '../actions/fetchPostListAction'
 
 function fetchPostList() {
     return dispatch => {
-        fetch('dummy/posts.json')
+        fetch('dummy2/posts.json')
         .then(res => res.json())
         .then(res => {
             if(res.error) {

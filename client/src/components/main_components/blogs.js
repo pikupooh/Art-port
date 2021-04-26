@@ -13,7 +13,6 @@ class blogs extends React.Component{
     render(){
         return(
             <div>
-                <SearchBar />
               {this.props.blogList.map((blog) => 
                     <div key ={blog.id}>
                         <Link to = {'/blog/' + blog.id}>

@@ -12,7 +12,6 @@ class Manga extends React.Component{
     render(){
         return(
             <div>
-                <SearchBar />
               {this.props.mangaList.map((manga) => 
                     <div key ={manga.mangaid}>
                         <Link to = {'/mangas/' + manga.mangaid}>

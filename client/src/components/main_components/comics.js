@@ -13,7 +13,6 @@ class Comics extends React.Component{
     render(){
         return(
             <div>
-                <SearchBar />
               {this.props.comicList.map((comic) => 
                     <div key ={comic.comicid}>
                         <Link to = {'/comic/' + comic.comicid}>
