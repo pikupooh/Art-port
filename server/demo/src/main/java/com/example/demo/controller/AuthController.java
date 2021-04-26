@@ -58,7 +58,7 @@ public class AuthController {
         System.out.println("REached here");
         userRepository.save(user);
         System.out.println("here");
-        profileService.createProfile(userRepository.findByUsername(signUpRequest.getUsername()).get().getId());
+        profileService.createProfile(userRepository.findByUsername(signUpRequest.getUsername()).get());
         return ResponseEntity.ok("User registered successfully");
     }
 

@@ -1,24 +1,35 @@
 package com.example.demo.entities;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+
+
+import java.util.Date;
+
 @Document(collection = "blogs")
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class Blog {
 	@Id
 	private String id;
-	private String user_id;
+	private Date uploadDate;
+	@DBRef
+	private Profile author;
 	private String title;
 	private String description;
-	private String imglink;
+	@DBRef
+	private Image img;
 	private String content;
 	
 	
-	public Blog(String user_id, String title, String imglink, String description, String content) {
-		this.user_id = user_id;
+	public Blog(Date uploadDate, Profile author, String title, String description, Image img, String content) {
 		this.title = title;
 		this.description = description;
-		this.imglink = imglink;
 		this.content = content;
 	}
 	public String getId() {
@@ -27,11 +38,18 @@ public class Blog {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getUser() {
-		return user_id;
+
+	public Profile getAuthor() {
+		return author;
 	}
-	public void setUser(String user_id) {
-		this.user_id = user_id;
+	public void setAuthor(Profile author) {
+		this.author = author;
+	}
+	public Image getImg() {
+		return img;
+	}
+	public void setImg(Image img) {
+		this.img = img;
 	}
 	public String getTitle() {
 		return title;
@@ -45,27 +63,30 @@ public class Blog {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getImglink() {
-		return imglink;
-	}
-	public void setImglink(String imglink) {
-		this.imglink = imglink;
-	}
+
 	public String getContent() {
 		return content;
 	}
 	public void setContent(String content) {
 		this.content = content;
 	}
+	public Date getUploadDate() {
+		return uploadDate;
+	}
+	public void setUploadDate(Date uploadDate) {
+		this.uploadDate = uploadDate;
+	}
 	@Override
     public String toString() {
         return "Blog{" +
                 "id='" + id + '\'' +
-                ", user_id='" + user_id + '\'' +
+                ", date='" + uploadDate + '\'' +
+                ", author='" + author + '\'' +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
-                ", imglink='" + imglink + '\'' +
+                ", img='" + img + '\'' +
                 ", content='" + content + '\'' +
                 '}';
     }
 }
+

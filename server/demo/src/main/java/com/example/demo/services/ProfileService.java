@@ -5,11 +5,9 @@ import com.example.demo.entities.Post;
 import com.example.demo.entities.Profile;
 import com.example.demo.entities.User;
 import com.example.demo.repositories.ProfileRepository;
-import com.example.demo.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,14 +20,12 @@ public class ProfileService {
     ProfileRepository profileRepository;
 
     @Autowired
-    UserRepository userRepository;
-
-    @Autowired
     MongoOperations mongoOperations;
 
-    public void createProfile(String id){
+    public void createProfile(User user){
         Profile profile = new Profile();
-        profile.setId(id);
+        profile.setId(user.getId());
+        profile.setUsername(user.getUsername());
         profileRepository.save(profile);
     }
 
@@ -53,13 +49,13 @@ public class ProfileService {
         return profileRepository.findUserBlogsById(id).getUserBlogs();
     }
 
-    public List<User> getFollowers(String id){
+    public List<Profile> getFollowers(String id){
 
 
         return profileRepository.findFollowersById(id).getFollowers();
     }
 
-    public List<User> getFollowing(String id){
+    public List<Profile> getFollowing(String id){
 
         return profileRepository.findFollowingById(id).getFollowing();
     }
@@ -76,30 +72,29 @@ public class ProfileService {
 
     public void addFollower(String userId, String followerId){
 
-        Optional<User> user = userRepository.findById(userId);
-        Optional<User> follower = userRepository.findById(followerId);
+        Optional<Profile> user = profileRepository.findById(userId);
+        Optional<Profile> follower = profileRepository.findById(followerId);
 
-        Profile profile = profileRepository.findById(userId).get();
+        Profile profile = user.get();
         profile.addFollowing(follower.get());
         profileRepository.save(profile);
 
-        Profile profile1 = profileRepository.findById(followerId).get();
+        Profile profile1 = follower.get();
         profile1.addFollower(user.get());
         profileRepository.save(profile1);
     }
 
     public void deleteFollower(String userId, String followerId){
 
-        Optional<User> user = userRepository.findById(userId);
-        Optional<User> follower = userRepository.findById(followerId);
+    	Optional<Profile> user = profileRepository.findById(userId);
+        Optional<Profile> follower = profileRepository.findById(followerId);
 
-
-        Profile profile = profileRepository.findById(userId).get();
-        profile.removeFollowing(follower.get());
+        Profile profile = user.get();
+        profile.removeFollower(follower.get());
         profileRepository.save(profile);
 
-        Profile profile1 = profileRepository.findById(followerId).get();
-        profile1.removeFollower(user.get());
+        Profile profile1 = follower.get();
+        profile1.removeFollowing(user.get());
         profileRepository.save(profile1);
 
     }
