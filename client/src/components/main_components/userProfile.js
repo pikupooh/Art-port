@@ -1,46 +1,64 @@
 import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { Image, Button } from 'react-bootstrap';
 
 import fetchUserDataAction from "../../redux/thunk/fetchUserData";
-
+import { signOutUserAction } from "../../redux//actions/logActions"
 class UserProfile extends React.Component {
+
   componentDidMount() {
-    this.props.fetchUserData(this.props.userId);
+    this.props.fetchUserData();
+  }
+
+  signOut = () => {
+    const { history } = this.props;
+    history.replace('/');
+    this.props.signOutUser();
   }
 
   render() {
     return (
       <div>
-        <div>{this.props.email}</div>
-        <div>{this.props.username}</div>
-        <div>{this.props.followers}</div>
-        <div>{this.props.following}</div>
+        <div className = "text-center profile_page_header">
+          <div className = "text-center profile_photo">
+            <Image src = {this.props.profilePhoto} roundedCircle 
+                      className = "profile_page_photo"></Image>
+          </div>
+          <div className = "profile_page_user_name">
+            <div>
+              {this.props.firstName}  {this.props.lastName}
+            </div>
+          </div>
+        </div>
         <div>
-          <img src={this.props.user_photo}></img>
+          <Button onClick = {this.signOut}>
+            Sign Out
+          </Button>
         </div>
       </div>
     );
   }
 }
 
-const mapDispatchToProps = (dispatch) =>
-  bindActionCreators(
-    {
-      fetchUserData: fetchUserDataAction,
-    },
-    dispatch
-  );
+const mapDispatchToProps = (dispatch) => bindActionCreators(
+  {
+    fetchUserData: fetchUserDataAction,
+    signOutUser: () => dispatch(signOutUserAction),
+  },
+  dispatch
+);
+  
 
 const mapStateToProps = (state) => {
   return {
     userId: state.user.userId,
     email: state.user.email,
-    username: state.user.username,
-    followers: state.user.followers,
-    following: state.user.following,
-    user_photo: state.user.user_photo,
-    postList: state.user.posts,
+    userName: state.user.userName,
+    firstName: state.user.firstName,
+    lastName: state.user.lastName,
+    profilePhoto: state.user.profilePhoto,
+    dob: state.user.dob,
   };
 };
 

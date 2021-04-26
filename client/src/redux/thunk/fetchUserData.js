@@ -1,15 +1,13 @@
 import { fetchUserDataAction } from '../actions/fetchUserDataAction'
 
-function fetchUserData(userId) {
+function fetchUserData() {
     return dispatch => {
-        fetch('dummy/user.json')
+        fetch("http://localhost:3000/dummy2/user.json")
         .then(res => res.json())
         .then(res => {
             if(res.error) {
                 throw(res.error);
             }
-            
-            res = res.filter(user => user.userid === userId)
             dispatch(fetchUserDataAction(res))
             return res;
         })

@@ -3,14 +3,39 @@ import Modal from "react-bootstrap/Modal"
 import SignInForm from './sign_in_form'
 import RegisterForm from './register_form'
 
+import { Button } from 'react-bootstrap'
+
 class SignInModal extends React.Component{
+
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      isRegisterForm: false,
+    }
+  }
+
+  Sign_in_to_register = () => {
+    this.setState({
+      isRegisterForm: true
+    });
+  }
+
+  Register_to_sign_in = () => {
+    this.setState({
+      isRegisterForm: false
+    });
+  }
+
+
+
     render(){
       // TODO: Better ui
 
-      if(this.props.isRegisterForm === false){
+      if(this.state.isRegisterForm === false){
         
         return(
-            <Modal show = {this.props.show} onHide ={this.props.handleModalClose}>
+            <Modal show = {this.props.show} onHide = {this.props.handleModalClose}>
               <Modal.Body>
                 <h3 className = 'text-center'>Sign in</h3>
                 <SignInForm />
@@ -18,9 +43,9 @@ class SignInModal extends React.Component{
                   <a  className='alert-link' href = '/'> Forgot password</a>
                 </div>
                 <div className = 'mt-3 text-center' >
-                  <a onClick =  {() => this.props.Sign_in_to_register()} href='/'>
+                  <Button onClick =  {this.Sign_in_to_register}>
                     Don't have an account? Register
-                  </a>
+                  </Button>
                 </div>
               </Modal.Body>
             </Modal>
@@ -28,14 +53,18 @@ class SignInModal extends React.Component{
       }
       else{
         return(
-          <Modal show = {this.props.show} onHide = {this.props.handleModalClose} >
+          <Modal show = {this.props.show} onHide = {() => {
+                          setTimeout(() => {this.Register_to_sign_in() }, 250);
+                          this.props.handleModalClose();
+                          
+                          }} >
             <Modal.Body>
               <h3 className = 'text-center'>Register to Art Port</h3>
               <RegisterForm />
               <div className = 'mt-2'>
                 <a href='/' className='alert-link'> Forgot password</a>
               </div>
-              <div className = 'mt-3 text-center' onClick = {() => {this.props.Register_to_sign_in()}}>Already have an account. Sign In</div>
+              <div className = 'mt-3 text-center' onClick = {this.Register_to_sign_in}>Already have an account. Sign In</div>
             </Modal.Body>
           </Modal>
         )
