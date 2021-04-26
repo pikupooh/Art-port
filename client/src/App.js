@@ -11,6 +11,10 @@ import SignInModal from './components/sign_in_components/sign_in_modal'
 import UserProfile from './components/main_components/userProfile'
 import Post from './components/main_components/post'
 import blogData from './components/main_components/blogData'
+import ComicData from './components/main_components/comicData'
+import MangaData from './components/main_components/mangaData'
+
+
 const NavbarwithRouter = withRouter(Navbar);
 
 class App extends React.Component {
@@ -18,45 +22,27 @@ class App extends React.Component {
   constructor(props) {
 		super(props);
 
-		this.handleModalShow = this.handleShow.bind(this);
-		this.handleModalClose = this.handleModalClose.bind(this);
-
 		this.state = {
 			show: false,
-      isRegisterForm: false,
 		};
 	}
 
-  handleModalClose() {
+  handleModalClose = () => {
 		this.setState({ show: false });
 	}
 
-	handleShow() {
-    if(this.state.isRegisterForm)
-      this.Register_to_sign_in();
+	handleModalShow = () => {
 		this.setState({ show: true });
 	}
 
-  Sign_in_to_register = () => {
-    this.setState({
-      isRegisterForm: true
-    });
-  }
-
-  Register_to_sign_in = () => {
-    this.setState({
-      isRegisterForm: false
-    });
-  }
-
+  
   render() {
     return (
       <div>
         <BrowserRouter>
           <div>  
             <NavbarwithRouter onShowModal = {this.handleModalShow}/>
-              <Switch>
-              <Route  path = '/' exact component = {Home}/> 
+              <Route  exact path = '/' component = {Home}/> 
               <Route  path = '/comics' component = {Comics} />
               <Route  path = '/blogs' component = {Blogs} />
               <Route  path = '/manga' component = {Manga} />
@@ -64,11 +50,14 @@ class App extends React.Component {
               <Route path = '/user/:user_id' component = {UserProfile} />
               <Route path = '/post/:post_id' component = {Post} />
               <Route path = '/blog/:blog_id' component = {blogData} />
-            </Switch>
+              <Route path = '/comic/:comic_id' component = {ComicData} />
+              <Route path = '/mangas/:manga_id' component = {MangaData} />
+              <SignInModal show = {this.state.show} handleModalClose = {this.handleModalClose}
+                handleModalShow = {this.handleModalShow}
+              />
           </div>    
         </BrowserRouter>
-        <SignInModal show = {this.state.show} isRegisterForm = {this.state.isRegisterForm} handleModalClose = {this.handleModalClose}
-                          Sign_in_to_register = {this.Sign_in_to_register} Register_to_sign_in = {this.Register_to_sign_in}/>
+        
       </div>
     );
   }

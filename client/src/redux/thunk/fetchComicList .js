@@ -1,14 +1,15 @@
-import { fetchUserDataAction } from '../actions/fetchUserDataAction'
+import { fetchComicListAction } from '../actions/fetchComicListAction'
 
-function fetchUserData() {
+function fetchComicList() {
+    
     return dispatch => {
-        fetch("http://localhost:3000/dummy2/user.json")
+        fetch('dummy/comics.json')
         .then(res => res.json())
         .then(res => {
             if(res.error) {
                 throw(res.error);
             }
-            dispatch(fetchUserDataAction(res))
+            dispatch(fetchComicListAction(res))
             return res;
         })
         .catch(error => {
@@ -17,4 +18,4 @@ function fetchUserData() {
     }
 }
 
-export default fetchUserData;
+export default fetchComicList;

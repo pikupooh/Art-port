@@ -1,14 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux'
 
-import { signInUserAction } from '../../redux/actions/logActions';
+import fetchUserDataAction from "../../redux/thunk/fetchUserData";
+import signInUser  from '../../redux/thunk/loging';
 import {Form, Button} from 'react-bootstrap'
 
 class SignInForm extends React.Component {
 
-    handleSignIn = (event) => {
-        event.preventDefault();
-        this.props.signInUser();
+    handleSignIn = () => {
+        this.props.fetchUserData();
+        this.props.signIn();
     }
     render(){
         return(
@@ -31,9 +33,13 @@ class SignInForm extends React.Component {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        signInUser: () => {dispatch(signInUserAction())},
-    }
-}
+const mapDispatchToProps = (dispatch) => bindActionCreators(
+    {
+      fetchUserData: fetchUserDataAction,
+      signIn: signInUser,
+    },
+    dispatch
+  );
+
+
 export default connect(null, mapDispatchToProps)(SignInForm)

@@ -1,7 +1,10 @@
 package com.example.demo.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.time.LocalDate;
 
 @Document(collection = "users")
 public class User {
@@ -14,13 +17,12 @@ public class User {
     private String email;
     private Role role = Role.USER;
     private String password;
-    public User() {
-    }
+    private String profilePhoto;
+    @JsonFormat(pattern = "dd-mm-yyyy")
+    private LocalDate dateOfBirth;
 
-    public User(String username, String email, String password){
-        this.username = username;
-        this.email = email;
-        this.password = password;
+    public User() {
+
     }
 
     public User(String id, String username, String firstName, String lastName, String email, Role role, String password) {
@@ -31,6 +33,13 @@ public class User {
         this.email = email;
         this.role = role;
         this.password = password;
+    }
+
+    public User(String username, String email, String password) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+
     }
 
     public String getId() {

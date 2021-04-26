@@ -52,4 +52,19 @@ $custom_color_1: rgb(238, 129, 39);
     height: 35px;
 }
 
+
+.profile_page_header{
+    margin: 20px;
+}
+
+.profile_page_photo{
+    height: 150px;
+    width: 150px;
+}
+
+.profile_page_user_name{
+    margin-top: 20px;
+    size: 20px;
+}
+
 @import '~bootstrap/scss/bootstrap.scss';

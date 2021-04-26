@@ -2,7 +2,7 @@ import * as ActionTypes from '../actions/actionTypes'
 
 const initState = {
     userId: "607593dfd20d7954a45a502e",
-    isAuthenticated: false,
+    isAuthenticated: localStorage.getItem("isAuthenticated") ? true : false
 }
 
 export const authReducer = (state = initState, action) => {
@@ -10,24 +10,26 @@ export const authReducer = (state = initState, action) => {
         case ActionTypes.LOGIN_REQUEST:
             return {
                 ...state,
-                isAuthenticated: false,
+                isAuthenticated: localStorage.getItem("isAuthenticated"),
             };
         case ActionTypes.LOGIN_SUCCESS:
+            localStorage.setItem("isAuthenticated", true);
             return {
                 ...state,
-                isAuthenticated: true,
+                isAuthenticated: localStorage.getItem("isAuthenticated"),
             };
         case ActionTypes.LOGIN_FAILURE:
             return {
                 ...state,
-                isAuthenticated: false,
+                isAuthenticated: localStorage.getItem("isAuthenticated"),
             };
         case ActionTypes.LOGOUT_REQUEST:
             return {
                 ...state,
-                isAuthenticated: true
+                isAuthenticated: localStorage.getItem("isAuthenticated")
             };
         case ActionTypes.LOGOUT_SUCCESS:
+            localStorage.removeItem("isAuthenticated")
             return {
                 ...state,
                 isAuthenticated: false,

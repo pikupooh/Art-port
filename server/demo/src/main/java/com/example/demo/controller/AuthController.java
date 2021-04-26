@@ -7,6 +7,7 @@ import com.example.demo.payload.response.JwtResponse;
 import com.example.demo.repositories.UserRepository;
 import com.example.demo.security.jwt.JwtConfig;
 import com.example.demo.security.services.UserDetailsImpl;
+import com.example.demo.services.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -27,6 +28,9 @@ public class AuthController {
 
     @Autowired
      UserRepository userRepository;
+
+    @Autowired
+    ProfileService profileService;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -54,6 +58,7 @@ public class AuthController {
         System.out.println("REached here");
         userRepository.save(user);
         System.out.println("here");
+        profileService.createProfile(userRepository.findByUsername(signUpRequest.getUsername()).get().getId());
         return ResponseEntity.ok("User registered successfully");
     }
 
