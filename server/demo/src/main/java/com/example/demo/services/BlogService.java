@@ -16,7 +16,7 @@ public class BlogService {
     BlogRepository blogRepository;
     
     @Autowired
-    ProfileService profileService;
+    UserService userService;
 
     public List<Blog> getAllBlogs(){
 
@@ -33,7 +33,7 @@ public class BlogService {
     public Blog createBlog(Blog blog, String userId){
 
         blog.setUploadDate(new Date());
-        blog.setAuthor(profileService.getUserProfile(userId));
+        blog.setAuthor(userService.getUser(userId));
         blogRepository.save(blog);
         return blog;
     }

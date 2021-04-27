@@ -19,7 +19,7 @@ public class Blog {
 	private String id;
 	private Date uploadDate;
 	@DBRef
-	private Profile author;
+	private User author;
 	private String title;
 	private String description;
 	@DBRef
@@ -27,7 +27,7 @@ public class Blog {
 	private String content;
 	
 	
-	public Blog(Date uploadDate, Profile author, String title, String description, Image img, String content) {
+	public Blog(Date uploadDate, User author, String title, String description, Image img, String content) {
 		this.title = title;
 		this.description = description;
 		this.content = content;
@@ -39,10 +39,10 @@ public class Blog {
 		this.id = id;
 	}
 
-	public Profile getAuthor() {
+	public User getAuthor() {
 		return author;
 	}
-	public void setAuthor(Profile author) {
+	public void setAuthor(User author) {
 		this.author = author;
 	}
 	public Image getImg() {
