@@ -22,10 +22,13 @@ public class Post {
     private Date uploadDate;
     @DBRef
     private List<Image> images;
-
+    @DBRef
+    private List<Comment> comments;
 
     public Post(){
+
         images = new ArrayList<>();
+        comments = new ArrayList<>();
     }
 
     public Post(String id, Date uploadDate) {
@@ -49,6 +52,15 @@ public class Post {
         this.images.remove(image);
     }
 
+    public void addComment(Comment comment){
+
+        this.comments.add(comment);
+    }
+
+    public void removeComment(Comment comment){
+
+        this.comments.remove(comment);
+    }
     public void removeAllImages(Image image){
 
         this.images.clear();
@@ -76,6 +88,14 @@ public class Post {
 
     public void setImages(List<Image> images) {
         this.images = images;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 
     @Override

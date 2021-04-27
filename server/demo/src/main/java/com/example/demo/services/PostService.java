@@ -23,8 +23,7 @@ public class PostService {
     public Post getPost(String id) {
 
         Optional<Post> post = postRepository.findById(id);
-
-        return post.get();
+        return post.orElse(null);
     }
 
     public Post createPost(Post post){
