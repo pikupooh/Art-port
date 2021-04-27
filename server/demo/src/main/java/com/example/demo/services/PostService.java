@@ -1,10 +1,16 @@
 package com.example.demo.services;
 
 import com.example.demo.entities.Post;
+import com.example.demo.entities.Type;
+import com.example.demo.entities.User;
+import com.example.demo.payload.response.UserDTO;
 import com.example.demo.repositories.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -15,9 +21,25 @@ public class PostService {
     @Autowired
     PostRepository postRepository;
 
+    @Autowired
+    CommentService commentService;
+
+    @Autowired
+    ImageService imageService;
+
     public List<Post> getAllPosts(){
 
-        return postRepository.findAll();
+        return postRepository.findPostByType(Type.valueOf("POST"));
+    }
+
+    public List<Post> getAllComics(){
+
+        return postRepository.findPostByType(Type.valueOf("COMIC"));
+    }
+
+    public List<Post> getAllManga(){
+
+        return postRepository.findPostByType(Type.valueOf("MANGA"));
     }
 
     public Post getPost(String id) {
@@ -26,9 +48,35 @@ public class PostService {
         return post.orElse(null);
     }
 
-    public Post createPost(Post post){
+    public Post createPost(Post post, User user){
 
-        post.setUploadDate(new Date());
+        UserDTO userDTO = new UserDTO(user.getId(), user.getUsername(), user.getProfilePhoto());
+
+        post.setType(Type.valueOf("POST"));
+        post.setUploadDate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")));
+        post.setUserDTO(userDTO);
+        postRepository.save(post);
+        return post;
+    }
+
+    public Post createComic(Post post, User user){
+
+        UserDTO userDTO = new UserDTO(user.getId(), user.getUsername(), user.getProfilePhoto());
+
+        post.setType(Type.valueOf("COMIC"));
+        post.setUploadDate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")));
+        post.setUserDTO(userDTO);
+        postRepository.save(post);
+        return post;
+    }
+
+    public Post createManga(Post post, User user){
+
+        UserDTO userDTO = new UserDTO(user.getId(), user.getUsername(), user.getProfilePhoto());
+
+        post.setType(Type.valueOf("MANGA"));
+        post.setUploadDate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")));
+        post.setUserDTO(userDTO);
         postRepository.save(post);
         return post;
     }
@@ -43,8 +91,19 @@ public class PostService {
         Optional<Post> post = postRepository.findById(id);
         if(!post.isPresent())
             return null;
+
+        Post post1 = post.get();
+
+        post1.getComments().forEach((comment) ->{
+            commentService.deleteComment(comment.getId());
+        });
+
+        post1.getImages().forEach((image) ->{
+            imageService.deleteimage(image.getId());
+        });
+
         postRepository.deleteById(id);
-        return post.get();
+        return post1;
     }
 
     public Post updatePost(Post post, String id){
@@ -53,9 +112,17 @@ public class PostService {
         if(!post1.isPresent())
             return null;
 
-        post.setId(id);
-        postRepository.save(post);
+        Post newPost = post1.get();
+        newPost.setUploadDate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")));
+        newPost.setTitle(post.getTitle());
+        newPost.setDescription(post.getDescription());
+        postRepository.save(newPost);
 
-        return post;
+        return newPost;
+    }
+
+    public void save(Post post){
+
+        postRepository.save(post);
     }
 }

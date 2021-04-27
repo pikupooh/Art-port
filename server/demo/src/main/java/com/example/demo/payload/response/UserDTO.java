@@ -1,6 +1,10 @@
 package com.example.demo.payload.response;
 
+<<<<<<< HEAD
 import com.example.demo.entities.Image;
+=======
+import java.util.Objects;
+>>>>>>> d050b00e1323082e292388dcd058cd32b4d2b61f
 
 public class UserDTO {
 
@@ -53,5 +57,18 @@ public class UserDTO {
                 ", username='" + username + '\'' +
                 ", profilePhoto='" + profilePhoto + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserDTO userDTO = (UserDTO) o;
+        return userId.equals(userDTO.userId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(userId);
     }
 }
