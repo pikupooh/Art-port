@@ -42,7 +42,7 @@ public class BlogController {
     }
 	
 	@PostMapping("/users/{userId}/blog")
-    public ResponseEntity<?> createPost(@PathVariable String userId, @RequestBody Blog blog, Principal principal) {
+    public ResponseEntity<?> createBlog(@PathVariable String userId, @RequestBody Blog blog, Principal principal) {
 
         String name = principal.getName();
         User user = userService.getUserByName(name);

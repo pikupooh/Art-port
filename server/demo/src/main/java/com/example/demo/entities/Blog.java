@@ -7,8 +7,10 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 
-
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Objects;
 
 @Document(collection = "blogs")
 @JsonIdentityInfo(
@@ -25,6 +27,12 @@ public class Blog {
 	@DBRef
 	private Image img;
 	private String content;
+	@DBRef
+	private List<Comment> comments;
+
+	public Blog(){
+		comments = new ArrayList<>();
+	}
 	
 	
 	public Blog(Date uploadDate, User author, String title, String description, Image img, String content) {
@@ -76,6 +84,23 @@ public class Blog {
 	public void setUploadDate(Date uploadDate) {
 		this.uploadDate = uploadDate;
 	}
+
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+
+	public void addComment(Comment comment){
+		this.comments.add(comment);
+	}
+
+	public void removeComment(Comment comment){
+		this.comments.remove(comment);
+	}
+
 	@Override
     public String toString() {
         return "Blog{" +
@@ -88,5 +113,18 @@ public class Blog {
                 ", content='" + content + '\'' +
                 '}';
     }
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Blog blog = (Blog) o;
+		return id.equals(blog.id);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
 }
 
