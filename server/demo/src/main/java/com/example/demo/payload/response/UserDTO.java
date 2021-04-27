@@ -1,5 +1,7 @@
 package com.example.demo.payload.response;
 
+import java.util.Objects;
+
 public class UserDTO {
 
     private String userId;
@@ -51,5 +53,18 @@ public class UserDTO {
                 ", username='" + username + '\'' +
                 ", profilePhoto='" + profilePhoto + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserDTO userDTO = (UserDTO) o;
+        return userId.equals(userDTO.userId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(userId);
     }
 }
