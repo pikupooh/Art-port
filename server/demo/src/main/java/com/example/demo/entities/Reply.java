@@ -1,5 +1,6 @@
 package com.example.demo.entities;
 
+import com.example.demo.payload.response.UserDTO;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -9,6 +10,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.Objects;
 
 @Document(collection = "replies")
 @JsonIdentityInfo(
@@ -19,10 +21,8 @@ public class Reply {
     @Id
     private String id;
     private String content;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime createdDate;
-    @DBRef
-    private User user;
+    private String createdDate;
+    private UserDTO userDTO;
     @DBRef
     private Comment comment;
 
@@ -45,22 +45,13 @@ public class Reply {
         this.content = content;
     }
 
-    public LocalDateTime getCreatedDate() {
+    public String getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(LocalDateTime createdDate) {
+    public void setCreatedDate(String createdDate) {
         this.createdDate = createdDate;
     }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
     public Comment getComment() {
         return comment;
     }
@@ -69,13 +60,35 @@ public class Reply {
         this.comment = comment;
     }
 
+    public UserDTO getUserDTO() {
+        return userDTO;
+    }
+
+    public void setUserDTO(UserDTO userDTO) {
+        this.userDTO = userDTO;
+    }
+
     @Override
     public String toString() {
         return "Reply{" +
                 "id='" + id + '\'' +
                 ", content='" + content + '\'' +
                 ", createdDate=" + createdDate +
-                ", user=" + user +
+                ", userDTO=" + userDTO +
+                ", comment=" + comment +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Reply reply = (Reply) o;
+        return id.equals(reply.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

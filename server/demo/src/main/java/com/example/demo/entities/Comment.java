@@ -1,5 +1,6 @@
 package com.example.demo.entities;
 
+import com.example.demo.payload.response.UserDTO;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -11,6 +12,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 @Document(collection = "comments")
 @JsonIdentityInfo(
@@ -20,15 +22,11 @@ public class Comment {
 
     @Id
     private String id;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime createdDate;
-    @DBRef
-    private User user;
+    private String createdDate;
     private String content;
-    @DBRef
-    private Post post;
-    @DBRef
-    private Blog blog;
+    private Type type;
+    private UserDTO userDTO;
+    private String typeId;
     @DBRef
     private List<Reply> replies;
 
@@ -46,21 +44,14 @@ public class Comment {
         this.id = id;
     }
 
-    public LocalDateTime getCreatedDate() {
+    public String getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(LocalDateTime createdDate) {
+    public void setCreatedDate(String createdDate) {
         this.createdDate = createdDate;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 
     public String getContent() {
         return content;
@@ -70,24 +61,71 @@ public class Comment {
         this.content = content;
     }
 
-    public Post getPost() {
-        return post;
+    public Type getType() {
+        return type;
     }
 
-    public void setPost(Post post) {
-        this.post = post;
+    public void setType(Type type) {
+        this.type = type;
     }
 
-    public Blog getBlog() {
-        return blog;
+    public UserDTO getUserDTO() {
+        return userDTO;
     }
 
-    public void setBlog(Blog blog) {
-        this.blog = blog;
+    public void setUserDTO(UserDTO userDTO) {
+        this.userDTO = userDTO;
+    }
+
+    public String getTypeId() {
+        return typeId;
+    }
+
+    public void setTypeId(String typeId) {
+        this.typeId = typeId;
+    }
+
+    public List<Reply> getReplies() {
+        return replies;
+    }
+
+    public void setReplies(List<Reply> replies) {
+        this.replies = replies;
     }
 
     public void addReply(Reply reply){
 
         this.replies.add(reply);
+    }
+
+    public void removeReply(Reply reply){
+
+        this.replies.remove(reply);
+    }
+
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "id='" + id + '\'' +
+                ", createdDate=" + createdDate +
+                ", content='" + content + '\'' +
+                ", type=" + type +
+                ", userDTO=" + userDTO +
+                ", typeId='" + typeId + '\'' +
+                ", replies=" + replies +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Comment comment = (Comment) o;
+        return Objects.equals(id, comment.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }
