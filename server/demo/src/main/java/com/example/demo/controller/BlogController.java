@@ -42,7 +42,7 @@ public class BlogController {
     }
 	
 	@PostMapping("/users/{userId}/blog")
-    public ResponseEntity<?> createPost(@PathVariable String userId, @RequestBody Blog blog, Principal principal) {
+    public ResponseEntity<?> createBlog(@PathVariable String userId, @RequestBody Blog blog, Principal principal) {
 
         String name = principal.getName();
         User user = userService.getUserByName(name);
@@ -73,7 +73,7 @@ public class BlogController {
 	}
 	
 	@DeleteMapping("/blog/{id}")
-	public ResponseEntity<?> deleteEmployee(@PathVariable String id, Principal principal){
+	public ResponseEntity<?> deleteBlog(@PathVariable String id, Principal principal){
 		Blog blog = blogRepository.findById(id)
 				.orElseThrow(); //TODO: manage exception
 		if(!(principal.getName().equals(blog.getAuthor().getUsername())))

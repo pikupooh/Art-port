@@ -19,7 +19,7 @@ public class User {
     private Role role = Role.USER;
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
-    private String profilePhoto;
+    private Image profilePhoto;
     @JsonFormat(pattern = "dd-mm-yyyy")
     private LocalDate dateOfBirth;
 
@@ -100,11 +100,11 @@ public class User {
         this.password = password;
     }
 
-    public String getProfilePhoto() {
+    public Image getProfilePhoto() {
         return profilePhoto;
     }
 
-    public void setProfilePhoto(String profilePhoto) {
+    public void setProfilePhoto(Image profilePhoto) {
         this.profilePhoto = profilePhoto;
     }
 

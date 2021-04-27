@@ -1,10 +1,12 @@
 package com.example.demo.payload.response;
 
+import com.example.demo.entities.Image;
+
 public class UserDTO {
 
     private String userId;
     private String username;
-    private String profilePhoto;
+    private Image profilePhoto;
 
     public UserDTO() {
     }
@@ -14,7 +16,7 @@ public class UserDTO {
         this.username = username;
     }
 
-    public UserDTO(String userId, String username, String profilePhoto) {
+    public UserDTO(String userId, String username, Image profilePhoto) {
         this.userId = userId;
         this.username = username;
         this.profilePhoto = profilePhoto;
@@ -36,11 +38,11 @@ public class UserDTO {
         this.username = username;
     }
 
-    public String getProfilePhoto() {
+    public Image getProfilePhoto() {
         return profilePhoto;
     }
 
-    public void setProfilePhoto(String profilePhoto) {
+    public void setProfilePhoto(Image profilePhoto) {
         this.profilePhoto = profilePhoto;
     }
 
