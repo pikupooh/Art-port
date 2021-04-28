@@ -1,7 +1,10 @@
 package com.example.demo.services;
 
 import com.example.demo.entities.Blog;
+import com.example.demo.entities.User;
+import com.example.demo.payload.response.UserDTO;
 import com.example.demo.repositories.BlogRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,7 +35,8 @@ public class BlogService {
     public Blog createBlog(Blog blog, String userId){
 
         blog.setUploadDate(new Date());
-        blog.setAuthor(userService.getUser(userId));
+        User user = userService.getUser(userId);
+        blog.setAuthor(new UserDTO(user.getUsername(), user.getUsername(), user.getProfilePhoto()));
         blogRepository.save(blog);
         return blog;
     }
@@ -61,5 +65,10 @@ public class BlogService {
         blogRepository.save(blog);
 
         return blog;
+    }
+    
+    public void save(Blog blog){
+
+        blogRepository.save(blog);
     }
 }

@@ -1,7 +1,9 @@
 package com.example.demo.controller;
 
 
+import com.example.demo.entities.Blog;
 import com.example.demo.entities.Post;
+import com.example.demo.services.BlogService;
 import com.example.demo.services.FileService;
 import com.example.demo.services.ImageService;
 import com.example.demo.services.PostService;
@@ -25,6 +27,9 @@ public class FileUploadController {
 
     @Autowired
     PostService postService;
+    
+    @Autowired
+    BlogService blogService;
 
     @Autowired
     ImageService imageService;
@@ -52,6 +57,25 @@ public class FileUploadController {
 
     }
 
+    @PostMapping("/blogs/{blogId}/images/upload")
+    String uploadBlogImage(@PathVariable String blogId, @RequestParam("files") MultipartFile[] multipartFile, Principal principal) throws Exception {
+
+
+        Arrays.asList(multipartFile).stream().forEach(file -> {
+            String imageId = null;
+            try {
+                imageId = fileService.save(blogId, file.getBytes(), file.getOriginalFilename(), principal.getName());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            Blog blog = blogService.getBlog(blogId);
+            blog.setImg(imageService.getimage(imageId));
+            blogService.updateBlog(blog, blogId);
+        });
+        return "Image uploaded successfully";
+
+
+    }
 
     @GetMapping("/image/{imageId}")
     String getImageLink(@PathVariable String imageId){

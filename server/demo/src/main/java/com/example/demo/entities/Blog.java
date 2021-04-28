@@ -1,5 +1,6 @@
 package com.example.demo.entities;
 
+import com.example.demo.payload.response.UserDTO;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.springframework.data.annotation.Id;
@@ -8,6 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -21,7 +23,7 @@ public class Blog {
 	private String id;
 	private Date uploadDate;
 	@DBRef
-	private User author;
+	private UserDTO author;
 	private String title;
 	private String description;
 	@DBRef
@@ -29,6 +31,7 @@ public class Blog {
 	private String content;
 	@DBRef
 	private List<Comment> comments;
+	private List<UserDTO> likes = Collections.emptyList();
 
 	public Blog(){
 		comments = new ArrayList<>();
@@ -47,10 +50,10 @@ public class Blog {
 		this.id = id;
 	}
 
-	public User getAuthor() {
+	public UserDTO getAuthor() {
 		return author;
 	}
-	public void setAuthor(User author) {
+	public void setAuthor(UserDTO author) {
 		this.author = author;
 	}
 	public Image getImg() {
@@ -126,5 +129,24 @@ public class Blog {
 	public int hashCode() {
 		return Objects.hash(id);
 	}
+
+
+	public List<UserDTO> getLikes() {
+		return likes;
+	}
+
+
+	public void setLikes(List<UserDTO> likes) {
+		this.likes = likes;
+	}
+	public void addLike(UserDTO userDTO){
+
+        this.likes.add(userDTO);
+    }
+
+    public void removeLike(UserDTO userDTO){
+
+        this.likes.remove(userDTO);
+    }
 }
 

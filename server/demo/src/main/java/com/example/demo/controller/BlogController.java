@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import com.example.demo.repositories.BlogRepository;
 import com.example.demo.entities.Blog;
 import com.example.demo.entities.User;
-
+import com.example.demo.payload.response.UserDTO;
 import com.example.demo.services.BlogService;
 import com.example.demo.services.ProfileService;
 import com.example.demo.services.UserService;
@@ -81,4 +81,42 @@ public class BlogController {
 		blogRepository.delete(blog);
 		return ResponseEntity.ok("DELETED:"+blog.getId());
 	}
+	
+	@PutMapping("/blog/{blogId}/likes")
+    public ResponseEntity<?> addLike(@PathVariable String blogId, Principal principal){
+
+        Blog blog = blogService.getBlog(blogId);
+
+        if(blog== null)
+            return new ResponseEntity<String>("Post not found", HttpStatus.NOT_FOUND);
+
+        User user = userService.getUserByName(principal.getName());
+
+        UserDTO userDTO = new UserDTO(user.getId(), user.getUsername(), user.getProfilePhoto());
+        if(blog.getLikes().contains(userDTO))
+            return new ResponseEntity<String>("Already liked", HttpStatus.UNAUTHORIZED);
+
+        blog.addLike(userDTO);
+        blogService.save(blog);
+
+        return ResponseEntity.ok("Like added.");
+
+    }
+
+    @DeleteMapping("/blog/{blogId}/likes")
+    public ResponseEntity<?> removeLike(@PathVariable String blogId, Principal principal){
+
+        Blog blog = blogService.getBlog(blogId);
+
+        if(blog== null)
+            return new ResponseEntity<String>("Post not found", HttpStatus.NOT_FOUND);
+
+        User user = userService.getUserByName(principal.getName());
+
+        blog.removeLike(new UserDTO(user.getId(), user.getUsername(), user.getProfilePhoto()));
+        blogService.save(blog);
+
+        return ResponseEntity.ok("Like removed.");
+
+    }
 }
