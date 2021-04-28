@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ProfileCircle from '../small_components/profileCircle'
 
-import { Nav, NavItem, Button } from "react-bootstrap"
+import { Nav, NavItem } from "react-bootstrap"
 import { Link } from 'react-router-dom'
 import  SearchBar from '../small_components/search_bar'
 

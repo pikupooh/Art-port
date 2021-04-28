@@ -5,7 +5,8 @@ import { Col, Row } from 'react-bootstrap';
 
 
 import fetchPostDataAction from "../../redux/thunk/fetchPostData";
-import PostedUserDetails from "../small_components/postedUserDetails"
+import PostedUserDetails from "../small_components/postComponents/postedUserDetails";
+import PostImage from "../small_components/postComponents/postImage"
 
 class Post extends React.Component {
   componentDidMount() {
@@ -14,21 +15,18 @@ class Post extends React.Component {
   }
 
   render() {
-    console.log(this.props.userInfo)
     return(
       <div className = "container-fluid">
       <Row >
         <Col className = "post_photos_section text-center" sm = {9}>
           {this.props.photosDoc.map((doc) => 
-            <div>
-              <img className = "post_page_image" src = {doc.url}></img>
-            </div>
+
+            <PostImage imageDoc = {doc}/>
+            
           )}
         </Col>
         <Col className = "post_details_section" sm = {3} >
-          <PostedUserDetails userInfo = {this.props.userInfo} />
-          
-
+          <PostedUserDetails info = {this.props}/>
         </Col>    
       </Row>
       </div>
@@ -53,6 +51,8 @@ const mapStateToProps = (state) => {
     tags: state.post.tags,
     type: state.post.type,
     userInfo: state.post.userInfo,
+    categories: state.post.categories,
+    comments: state.post.comments,
   };
 };
 

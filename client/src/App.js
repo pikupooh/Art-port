@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Route, withRouter, Switch } from 'react-router-dom'
+import { BrowserRouter, Route, withRouter } from 'react-router-dom'
 
 import Navbar from './components/main_components/navbar'
 import Home from './components/main_components/home'
@@ -13,6 +13,7 @@ import Post from './components/main_components/post'
 import blogData from './components/main_components/blogData'
 import ComicData from './components/main_components/comicData'
 import MangaData from './components/main_components/mangaData'
+import ArtistProfile from './components/main_components/artistProfile'
 
 
 const NavbarwithRouter = withRouter(Navbar);
@@ -53,6 +54,7 @@ class App extends React.Component {
               <Route path = '/blog/:blog_id' component = {blogData} />
               <Route path = '/comic/:comic_id' component = {ComicData} />
               <Route path = '/mangas/:manga_id' component = {MangaData} />
+              <Route path = '/artist/:user_id' component = {ArtistProfile} />
               <SignInModal show = {this.state.show} handleModalClose = {this.handleModalClose}
                 handleModalShow = {this.handleModalShow}
               />

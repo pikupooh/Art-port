@@ -9,7 +9,6 @@ function fetchPostData(postId) {
                 throw(res.error);
             }
             res = res.filter(post => post.PostId === postId)
-            console.log(res[0]);
             dispatch(fetchPostDataAction(res[0]))
             return res;
         })

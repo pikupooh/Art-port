@@ -1,6 +1,6 @@
 import React from 'react'
-import {Form, Button, FormControl, Container} from 'react-bootstrap'
-import * as Icon from 'react-bootstrap-icons'
+import {Form, FormControl} from 'react-bootstrap'
+
 
 class SearchBar extends React.Component{
 

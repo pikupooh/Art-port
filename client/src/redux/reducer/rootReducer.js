@@ -8,7 +8,8 @@ import { blogDataReducer } from "./blogDataReducer";
 import { comicReducer } from "./comicReducer";
 import {mangaReducer} from "./mangaReducer"
 import { comicDataReducer } from "./comicDataReducer";
-import { mangaDataReducer } from "./mangaDataReducer"
+import { mangaDataReducer } from "./mangaDataReducer";
+import { artistUserDataReducer } from "./artistUserDataReducer"
 
 export default combineReducers({
   auth: authReducer,
@@ -21,4 +22,5 @@ export default combineReducers({
   manga : mangaReducer,
   comicData :comicDataReducer,
   mangaData : mangaDataReducer,
+  artistUserData: artistUserDataReducer,
 });

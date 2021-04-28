@@ -1,5 +1,4 @@
 import React from 'react'
-import SearchBar from '../small_components/search_bar'
 import { connect } from  'react-redux';
 import { bindActionCreators } from 'redux';
 import {Link} from 'react-router-dom';
