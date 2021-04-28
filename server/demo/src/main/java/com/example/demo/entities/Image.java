@@ -9,6 +9,8 @@ import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Objects;
+
 @Document(collection = "images")
 @JsonIdentityInfo(
       generator = ObjectIdGenerators.PropertyGenerator.class,
@@ -19,8 +21,7 @@ public class Image {
     @Id
     private String id;
     private String name;
-    @DBRef
-    private Post post;
+    private String link;
 
     public Image(){}
 
@@ -29,15 +30,10 @@ public class Image {
         this.name = name;
     }
 
-    public Image(String name, Post post) {
-        this.name = name;
-        this.post = post;
-    }
-
-    public Image(String id, String name, Post post) {
+    public Image(String id, String name, String link) {
         this.id = id;
         this.name = name;
-        this.post = post;
+        this.link = link;
     }
 
     public String getId() {
@@ -56,12 +52,12 @@ public class Image {
         this.name = name;
     }
 
-    public Post getPost() {
-        return post;
+    public String getLink() {
+        return link;
     }
 
-    public void setPost(Post post) {
-        this.post = post;
+    public void setLink(String link) {
+        this.link = link;
     }
 
     @Override
@@ -70,5 +66,18 @@ public class Image {
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Image image = (Image) o;
+        return Objects.equals(id, image.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

@@ -12,13 +12,12 @@ public class Profile {
 
     @Id
     private String id;
-    private String username;
     @DBRef
     private List<Post> userPosts;
     @DBRef
-    private List<Profile> followers;
+    private List<User> followers;
     @DBRef
-    private List<Profile> following;
+    private List<User> following;
     @DBRef
     private List<Post> favoritePosts;
     @DBRef
@@ -27,8 +26,7 @@ public class Profile {
     private List<Blog> favoriteBlogs;
 
     public Profile() {
-    	
-    	this.username = "";
+
         this.userPosts = new ArrayList<>();
         this.followers = new ArrayList<>();
         this.following = new ArrayList<>();
@@ -54,19 +52,19 @@ public class Profile {
         this.userPosts = userPosts;
     }
 
-    public List<Profile> getFollowers() {
+    public List<User> getFollowers() {
         return followers;
     }
 
-    public void setFollowers(List<Profile> followers) {
+    public void setFollowers(List<User> followers) {
         this.followers = followers;
     }
 
-    public List<Profile> getFollowing() {
+    public List<User> getFollowing() {
         return following;
     }
 
-    public void setFollowing(List<Profile> following) {
+    public void setFollowing(List<User> following) {
         this.following = following;
     }
 
@@ -135,40 +133,30 @@ public class Profile {
         this.favoriteBlogs.remove(blog);
     }
 
-    public void addFollower(Profile user){
+    public void addFollower(User user){
 
         this.followers.add(user);
     }
 
-    public void addFollowing(Profile user){
+    public void addFollowing(User user){
 
         this.following.add(user);
     }
 
-    public void removeFollower(Profile user){
+    public void removeFollower(User user){
 
         this.followers.remove(user);
     }
 
-    public void removeFollowing(Profile user){
+    public void removeFollowing(User user){
 
         this.following.remove(user);
     }
 
- 
 
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-	
 	@Override
     public String toString() {
         return "Profile{" +
-        		"username=" + username +
                 "userPosts=" + userPosts +
                 ", followers=" + followers +
                 ", following=" + following +

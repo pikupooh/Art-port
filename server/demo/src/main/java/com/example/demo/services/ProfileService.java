@@ -4,12 +4,15 @@ import com.example.demo.entities.Blog;
 import com.example.demo.entities.Post;
 import com.example.demo.entities.Profile;
 import com.example.demo.entities.User;
+import com.example.demo.payload.response.UserDTO;
 import com.example.demo.repositories.ProfileRepository;
+import com.example.demo.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
 
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,12 +23,11 @@ public class ProfileService {
     ProfileRepository profileRepository;
 
     @Autowired
-    MongoOperations mongoOperations;
+    UserRepository userRepository;
 
     public void createProfile(User user){
         Profile profile = new Profile();
         profile.setId(user.getId());
-        profile.setUsername(user.getUsername());
         profileRepository.save(profile);
     }
 
@@ -49,15 +51,31 @@ public class ProfileService {
         return profileRepository.findUserBlogsById(id).getUserBlogs();
     }
 
-    public List<Profile> getFollowers(String id){
+    public List<UserDTO> getFollowers(String id){
 
 
-        return profileRepository.findFollowersById(id).getFollowers();
+        List<UserDTO> userDTOList = new ArrayList<>();
+        List<User> followers = profileRepository.findFollowersById(id).getFollowers();
+        followers.forEach((user) -> {
+            UserDTO userDTO = new UserDTO(user.getId(), user.getUsername(), user.getProfilePhoto());
+            userDTOList.add(userDTO);
+        });
+
+        return userDTOList;
     }
 
-    public List<Profile> getFollowing(String id){
+    public List<UserDTO> getFollowing(String id){
 
-        return profileRepository.findFollowingById(id).getFollowing();
+        List<UserDTO> userDTOList = new ArrayList<>();
+        List<User> following = profileRepository.findFollowingById(id).getFollowing();
+        following.forEach((user) -> {
+            UserDTO userDTO = new UserDTO(user.getId(), user.getUsername(), user.getProfilePhoto());
+            userDTOList.add(userDTO);
+            System.out.println(userDTOList);
+        });
+
+        System.out.println(userDTOList);
+        return userDTOList;
     }
 
     public List<Post> getFavoritePosts(String id){
@@ -72,30 +90,33 @@ public class ProfileService {
 
     public void addFollower(String userId, String followerId){
 
-        Optional<Profile> user = profileRepository.findById(userId);
-        Optional<Profile> follower = profileRepository.findById(followerId);
 
-        Profile profile = user.get();
+        Optional<User> user = userRepository.findById(userId);
+        Optional<User> follower = userRepository.findById(followerId);
+
+        Profile profile = profileRepository.findById(userId).get();
         profile.addFollowing(follower.get());
         profileRepository.save(profile);
 
-        Profile profile1 = follower.get();
+        Profile profile1 = profileRepository.findById(followerId).get();
         profile1.addFollower(user.get());
         profileRepository.save(profile1);
     }
 
     public void deleteFollower(String userId, String followerId){
 
-    	Optional<Profile> user = profileRepository.findById(userId);
-        Optional<Profile> follower = profileRepository.findById(followerId);
+        Optional<User> user = userRepository.findById(userId);
+        Optional<User> follower = userRepository.findById(followerId);
 
-        Profile profile = user.get();
-        profile.removeFollower(follower.get());
+
+        Profile profile = profileRepository.findById(userId).get();
+        profile.removeFollowing(follower.get());
         profileRepository.save(profile);
 
-        Profile profile1 = follower.get();
-        profile1.removeFollowing(user.get());
+        Profile profile1 = profileRepository.findById(followerId).get();
+        profile1.removeFollower(user.get());
         profileRepository.save(profile1);
+
 
     }
 

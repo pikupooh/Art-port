@@ -16,7 +16,7 @@ public class BlogService {
     BlogRepository blogRepository;
     
     @Autowired
-    ProfileService profileService;
+    UserService userService;
 
     public List<Blog> getAllBlogs(){
 
@@ -25,15 +25,14 @@ public class BlogService {
 
     public Blog getBlog(String id) {
 
-        Optional<Blog> Blog = blogRepository.findById(id);
-
-        return Blog.get();
+        Optional<Blog> blog = blogRepository.findById(id);
+        return blog.orElse(null);
     }
 
     public Blog createBlog(Blog blog, String userId){
 
         blog.setUploadDate(new Date());
-        blog.setAuthor(profileService.getUserProfile(userId));
+        blog.setAuthor(userService.getUser(userId));
         blogRepository.save(blog);
         return blog;
     }

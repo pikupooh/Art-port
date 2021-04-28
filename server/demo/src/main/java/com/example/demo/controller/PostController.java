@@ -3,6 +3,7 @@ package com.example.demo.controller;
 
 import com.example.demo.entities.Post;
 import com.example.demo.entities.User;
+import com.example.demo.payload.response.UserDTO;
 import com.example.demo.services.PostService;
 import com.example.demo.services.ProfileService;
 import com.example.demo.services.UserService;
@@ -19,8 +20,10 @@ public class PostController {
 
     @Autowired
     PostService postService;
+
     @Autowired
     ProfileService profileService;
+
     @Autowired
     UserService userService;
 
@@ -30,11 +33,24 @@ public class PostController {
         return postService.getAllPosts();
     }
 
+    @GetMapping("/comic")
+    public List<Post> getAllComics() {
+
+        return postService.getAllComics();
+    }
+
+    @GetMapping("/manga")
+    public List<Post> getAllManga() {
+
+        return postService.getAllManga();
+    }
+
     @GetMapping("/post/{id}")
     public Post getPost(@PathVariable String id) {
 
         return postService.getPost(id);
     }
+
 
     @PostMapping("/users/{userId}/post")
     public ResponseEntity<?> createPost(@PathVariable String userId, @RequestBody Post post, Principal principal) {
@@ -46,7 +62,39 @@ public class PostController {
         if (!user.getId().equals(userId))
             return new ResponseEntity<String>("User invalid.", HttpStatus.UNAUTHORIZED);
 
-        Post post1 = postService.createPost(post);
+        Post post1 = postService.createPost(post, user);
+        profileService.addPost(userId, post);
+
+        return ResponseEntity.ok(post1);
+    }
+
+    @PostMapping("/users/{userId}/comic")
+    public ResponseEntity<?> createComic(@PathVariable String userId, @RequestBody Post post, Principal principal) {
+
+        String name = principal.getName();
+        User user = userService.getUserByName(name);
+        if (user == null)
+            return new ResponseEntity<String>("User not present.", HttpStatus.UNAUTHORIZED);
+        if (!user.getId().equals(userId))
+            return new ResponseEntity<String>("User invalid.", HttpStatus.UNAUTHORIZED);
+
+        Post post1 = postService.createComic(post, user);
+        profileService.addPost(userId, post);
+
+        return ResponseEntity.ok(post1);
+    }
+
+    @PostMapping("/users/{userId}/manga")
+    public ResponseEntity<?> createManga(@PathVariable String userId, @RequestBody Post post, Principal principal) {
+
+        String name = principal.getName();
+        User user = userService.getUserByName(name);
+        if (user == null)
+            return new ResponseEntity<String>("User not present.", HttpStatus.UNAUTHORIZED);
+        if (!user.getId().equals(userId))
+            return new ResponseEntity<String>("User invalid.", HttpStatus.UNAUTHORIZED);
+
+        Post post1 = postService.createManga(post, user);
         profileService.addPost(userId, post);
 
         return ResponseEntity.ok(post1);
@@ -69,7 +117,6 @@ public class PostController {
         return ResponseEntity.ok(post);
     }
 
-    /*
     @PutMapping("/users/{id}/post/{postId}")
     public ResponseEntity<?> updatePost(@RequestBody Post post, @PathVariable String id, @PathVariable String postId, Principal principal){
 
@@ -88,7 +135,45 @@ public class PostController {
         return ResponseEntity.ok(post1);
     }
 
+    @PutMapping("/post/{postId}/likes")
+    public ResponseEntity<?> addLike(@PathVariable String postId, Principal principal){
 
+        Post post = postService.getPost(postId);
+
+        if(post== null)
+            return new ResponseEntity<String>("Post not found", HttpStatus.NOT_FOUND);
+
+        User user = userService.getUserByName(principal.getName());
+
+        UserDTO userDTO = new UserDTO(user.getId(), user.getUsername(), user.getProfilePhoto());
+        if(post.getLikes().contains(userDTO))
+            return new ResponseEntity<String>("Already liked", HttpStatus.UNAUTHORIZED);
+
+        post.addLike(userDTO);
+        postService.save(post);
+
+        return ResponseEntity.ok("Like added.");
+
+    }
+
+    @DeleteMapping("/post/{postId}/likes")
+    public ResponseEntity<?> removeLike(@PathVariable String postId, Principal principal){
+
+        Post post = postService.getPost(postId);
+
+        if(post== null)
+            return new ResponseEntity<String>("Post not found", HttpStatus.NOT_FOUND);
+
+        User user = userService.getUserByName(principal.getName());
+
+        post.removeLike(new UserDTO(user.getId(), user.getUsername(), user.getProfilePhoto()));
+        postService.save(post);
+
+        return ResponseEntity.ok("Like removed.");
+
+    }
+
+    /*
     @DeleteMapping("/users/{id}/post")
     public ResponseEntity<?> deleteAllPosts(@PathVariable String id, Principal principal){
 
@@ -102,7 +187,7 @@ public class PostController {
         postService.deleteAllPosts();
         return ResponseEntity.ok("All posts deleted.");
     }
-     */
+    */
 
 
 }

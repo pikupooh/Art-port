@@ -1,15 +1,15 @@
 package com.example.demo.entities;
 
+import com.example.demo.payload.response.UserDTO;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
+import javax.validation.constraints.NotBlank;
+import java.time.LocalDate;
+import java.util.*;
 
 @Document(collection = "posts")
 @JsonIdentityInfo(
@@ -19,22 +19,29 @@ public class Post {
 
     @Id
     private String id;
-    private Date uploadDate;
+    private String uploadDate;
     @DBRef
-    private List<Image> images;
-
+    private List<Image> images = Collections.emptyList();
+    @DBRef
+    private List<Comment> comments = Collections.emptyList();
+    private UserDTO userDTO;
+    private List<UserDTO> likes = Collections.emptyList();
+    @NotBlank
+    private String title;
+    @NotBlank
+    private String description;
+    private Type type;
 
     public Post(){
-        images = new ArrayList<>();
     }
 
-    public Post(String id, Date uploadDate) {
+    public Post(String id, String uploadDate) {
         this.id = id;
         this.uploadDate = uploadDate;
         this.images = new ArrayList<Image>();
     }
 
-    public Post(Date uploadDate, List<Image> images) {
+    public Post(String uploadDate, List<Image> images) {
         this.uploadDate = uploadDate;
         this.images = images;
     }
@@ -47,6 +54,26 @@ public class Post {
     public void removeImage(Image image){
 
         this.images.remove(image);
+    }
+
+    public void addComment(Comment comment){
+
+        this.comments.add(comment);
+    }
+
+    public void removeComment(Comment comment){
+
+        this.comments.remove(comment);
+    }
+
+    public void addLike(UserDTO userDTO){
+
+        this.likes.add(userDTO);
+    }
+
+    public void removeLike(UserDTO userDTO){
+
+        this.likes.remove(userDTO);
     }
 
     public void removeAllImages(Image image){
@@ -62,11 +89,11 @@ public class Post {
         this.id = id;
     }
 
-    public Date getUploadDate() {
+    public String getUploadDate() {
         return uploadDate;
     }
 
-    public void setUploadDate(Date uploadDate) {
+    public void setUploadDate(String uploadDate) {
         this.uploadDate = uploadDate;
     }
 
@@ -78,12 +105,65 @@ public class Post {
         this.images = images;
     }
 
+    public UserDTO getUserDTO() {
+        return userDTO;
+    }
+
+    public void setUserDTO(UserDTO userDTO) {
+        this.userDTO = userDTO;
+    }
+
+    public List<UserDTO> getLikes() {
+        return likes;
+    }
+
+    public void setLikes(List<UserDTO> likes) {
+        this.likes = likes;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
+    }
+
     @Override
     public String toString() {
         return "Post{" +
                 "id='" + id + '\'' +
                 ", uploadDate='" + uploadDate + '\'' +
                 ", images=" + images +
+                ", comments=" + comments +
+                ", userDTO=" + userDTO +
+                ", likes=" + likes +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
                 '}';
     }
 

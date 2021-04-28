@@ -52,8 +52,9 @@ public class FileUploadController {
 
     }
 
-    @GetMapping(value = "/image/{imageId}", produces = MediaType.IMAGE_JPEG_VALUE)
-    FileSystemResource downloadImage(@PathVariable String imageId){
+
+    @GetMapping("/image/{imageId}")
+    String getImageLink(@PathVariable String imageId){
 
         return fileService.find(imageId);
     }
