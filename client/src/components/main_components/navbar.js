@@ -11,8 +11,8 @@ const Navbar = props => {
 
     return(
         <div>
-            <Nav className="navbar navbar-expand-sm bg-dark navbar-dark" activeKey = {location.pathname}>
-                <a className = 'navbar-brand ' href = '/'><strong>Art</strong> Port</a>
+            <Nav className="navbar navbar-expand-sm bg-dark navbar-dark fixed-top" activeKey = {location.pathname}>
+                <Link to ="/" className = 'navbar-brand '><strong>Art</strong> Port</Link>
                  <SearchBar />
                 <span className = "navbar-nav ml-auto">
                     <NavItem >

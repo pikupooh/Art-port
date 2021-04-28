@@ -1,13 +1,46 @@
-{
-    "Illustration": "Illustration",
-    "GameArt": "Game Art",
-    "ConceptArt": "Concept Art",
-    "ComicArt": "Comic Art",
-    "AnimeandManga": "Animeand Manga", 
-    "CharacterDesign": "Character Design",
-    "EnvironmentalConcept": "Environmental Concept",
-    "GraphicDesign": "Graphic Design",
-    "Horror": "Horror",
-    "Portraits": "Portraits",
-    "Realism": "Realism"
-}
+[
+    {
+        "name": "Illustration",
+        "url": "1"
+    },
+    {
+        "name": "Game Art",
+        "url": "2"
+    },
+    {
+        "name": "Concept Art",
+        "url": "3"
+    },
+    {
+        "name": "Comic Art",
+        "url": "4"
+    },
+    {
+        "name": "Animeand Manga",
+        "url": "5"
+    },
+    {
+        "name": "Character Design",
+        "url": "6"
+    },
+    {
+        "name": "Environmental Concept",
+        "url": "7"
+    },
+    {
+        "name": "Graphic Design",
+        "url": "8"
+    },
+    {
+        "name": "Horror",
+        "url": "9"
+    },
+    {
+        "name": "Portraits",
+        "url": "10"
+    },
+    {
+        "name": "Realism",
+        "url": "11"
+    }
+]

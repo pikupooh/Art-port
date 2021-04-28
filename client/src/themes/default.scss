@@ -1,4 +1,6 @@
-$body-bg: rgb(32, 31, 31) !important;
+$background_color: rgb(32, 31, 31);
+
+$body-bg:  $background_color!important;
 $body-color: white;
 
 $custom_color_1: rgb(238, 129, 39);
@@ -75,5 +77,39 @@ $custom_color_1: rgb(238, 129, 39);
     margin-right: 30px;
     margin-left: 10px
 }
+
+.post_details_section{
+    background-color: lighten($color: $background_color, $amount: 30);
+    height: calc(100vh - 56px);
+    overflow-y: scroll;
+    top: 56px;
+    position: sticky !important;
+}
+
+.post_photos_section{
+    background-color: lighten($color: $background_color, $amount: 10);
+    
+}
+
+.post_profile_photo{
+    width: 60px;
+    height: 60px;
+}
+
+
+.post_page_image{
+    width: 800px;
+    height: 500px;
+}
+
+.post_page_uploader_info{
+    margin-top: 20px;
+}
+
+.space_for_navbar{
+    height: 56px;
+    width:100%
+}
+
 
 @import '~bootstrap/scss/bootstrap.scss';

@@ -8,6 +8,7 @@ const initState = {
     lastName: "",
     profilePhoto: "",
     dob: "",
+    about: "",
 }
 
 export const userReducer = (state = initState, action) => {
@@ -22,6 +23,7 @@ export const userReducer = (state = initState, action) => {
                 lastName: action.payload.userData.lastname,
                 profilePhoto: action.payload.userData.ProfilePhoto,
                 dob: action.payload.userData.DOB,
+                about: action.payload.userData.about,
             }
         default:
             return state

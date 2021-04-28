@@ -1,8 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { Col, Row } from 'react-bootstrap';
+
 
 import fetchPostDataAction from "../../redux/thunk/fetchPostData";
+import PostedUserDetails from "../small_components/postedUserDetails"
 
 class Post extends React.Component {
   componentDidMount() {
@@ -11,24 +14,23 @@ class Post extends React.Component {
   }
 
   render() {
+    console.log(this.props.userInfo)
     return(
-      <div>
-        <div>{this.props.postId}</div>
-        <div>{this.props.uploadDate}</div>
-        <div>
-          {this.props.tags.map(tag => 
-            <div key = {tag}>
-              {tag}
-            </div>  
+      <div className = "container-fluid">
+      <Row >
+        <Col className = "post_photos_section text-center" sm = {9}>
+          {this.props.photosDoc.map((doc) => 
+            <div>
+              <img className = "post_page_image" src = {doc.url}></img>
+            </div>
           )}
-        </div>
-        <div>
-          {this.props.likes.map(like => 
-            <div key = {like.UserId}>
-              {like.Username}
-            </div>  
-          )}
-        </div>
+        </Col>
+        <Col className = "post_details_section" sm = {3} >
+          <PostedUserDetails userInfo = {this.props.userInfo} />
+          
+
+        </Col>    
+      </Row>
       </div>
     )
   }
@@ -50,7 +52,7 @@ const mapStateToProps = (state) => {
     photosDoc: state.post.photosDoc,
     tags: state.post.tags,
     type: state.post.type,
-    userInfo: state.post.userInfo
+    userInfo: state.post.userInfo,
   };
 };
 
