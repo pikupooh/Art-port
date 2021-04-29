@@ -3,7 +3,7 @@ import { fetchBlogListAction } from '../actions/fetchBlogListAction'
 function fetchBlogList() {
     
     return dispatch => {
-        fetch('http://localhost:8080/api/blogs')
+        fetch('http://localhost:3000/dummy2/blogs.json')
         .then(res => res.json())
         .then(res => {
             if(res.error) {

@@ -1,7 +1,6 @@
 import { Image, Row, Col } from 'react-bootstrap'
 
 function PostLikedModal(props){
-    console.log(props);
     return(
         <div className = "m-4">
             <a href = {"http://localhost:3000/artist/" + props.like.UserId}>

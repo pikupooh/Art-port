@@ -127,8 +127,62 @@ $custom_color_1: rgb(238, 129, 39);
     width:100%;
 }
 
-.a {
-    color: white !important;
+#profile_navbar{
+    position: sticky !important;
+    top: 54px;
+    color: darken($color: $background_color, $amount: 50)
+}
+
+.blog_list_carousel_image{
+    width: 400px;
+    height: 300px;
+    object-fit: cover;
+}
+
+.blog_list_carousel_item{
+    background-color: lighten($color: $background_color, $amount: 10);
+}
+
+.blog_list_carousel{
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.carousel-indicators li {
+    background-color: $custom_color_1 !important;
+    width: 5px !important;
+    height: 5px !important;
+}
+
+
+.blog_list_blog_uploader_photo{
+    max-width: 30px;
+    max-height: 30px;
+}
+
+.blog_page_image{
+    width: 100%;
+    height: 90vh !important;
+    overflow: hidden;
+}
+
+.blog_page_img_box{
+    width: 100%;
+    
+}
+
+.blog_page_title{
+    position: absolute;
+    bottom: 10em;
+    background-color: lighten($color: $background_color, $amount: 20);
+    margin: 10px;
+}
+
+.blog_page_description{
+    position: absolute;
+    bottom: 5em;
+    background-color: lighten($color: $background_color, $amount: 20);
+    margin: 10px;
 }
 
 @import '~bootstrap/scss/bootstrap.scss';

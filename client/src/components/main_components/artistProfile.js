@@ -4,6 +4,8 @@ import { bindActionCreators } from "redux";
 import { Image } from 'react-bootstrap';
 
 import fetchArtistUserDataAction from "../../redux/thunk/fetchArtistUserData";
+import UserProfileNavbar from '../small_components/userProfileComponents/userProfileNavbar'
+import UserProfileExtras from '../small_components/userProfileComponents/userProfileExtras'
 
 class ArtistProfile extends React.Component {
 
@@ -21,14 +23,22 @@ class ArtistProfile extends React.Component {
             <Image src = {this.props.profilePhoto} roundedCircle 
                       className = "profile_page_photo"></Image>
           </div>
-          <div className = "profile_page_user_name">
+          <div className = "profile_page_full_name">
             <div>
               {this.props.firstName}  {this.props.lastName}
             </div>
           </div>
+          <div className = "profile_page_email">
+            <div>
+              {this.props.email}
+            </div>
+          </div>
+          <div>
+            {this.props.userName}
+          </div>
         </div>
-        <div>
-        </div>
+        <UserProfileNavbar match = {this.props.match}/>
+        <UserProfileExtras match = {this.props.match}/>
       </div>
     );
   }

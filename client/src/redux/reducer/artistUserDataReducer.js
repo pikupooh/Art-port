@@ -17,8 +17,8 @@ export const artistUserDataReducer = (state = initState, action) => {
             return {
                 ...state,
                 userId: action.payload.userData.UserId,
-                email: action.payload.userData.Email,
-                username: action.payload.userData.Username,
+                email: action.payload.userData.email,
+                userName: action.payload.userData.Username,
                 firstName: action.payload.userData.firstname,
                 lastName: action.payload.userData.lastname,
                 profilePhoto: action.payload.userData.ProfilePhoto,

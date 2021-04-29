@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Route, withRouter } from 'react-router-dom'
+import { BrowserRouter, Route, Switch, withRouter } from 'react-router-dom'
 
 import Navbar from './components/main_components/navbar'
 import Home from './components/main_components/home'
@@ -41,6 +41,7 @@ class App extends React.Component {
     return (
       <div>
         <BrowserRouter>
+        <Switch>
           <div>  
             <NavbarwithRouter onShowModal = {this.handleModalShow}/>
               <div className = "space_for_navbar"></div>
@@ -58,7 +59,8 @@ class App extends React.Component {
               <SignInModal show = {this.state.show} handleModalClose = {this.handleModalClose}
                 handleModalShow = {this.handleModalShow}
               />
-          </div>    
+          </div>
+          </Switch>    
         </BrowserRouter>
         
       </div>

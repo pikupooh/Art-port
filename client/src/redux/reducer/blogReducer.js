@@ -1,7 +1,8 @@
 import * as ActionTypes from '../actions/actionTypes'
 
 const initState = {
-    blogList : []
+    blogList : [],
+    carouselBlogList: [],
 }
 
 export const blogReducer = (state = initState, action) => {
@@ -9,7 +10,8 @@ export const blogReducer = (state = initState, action) => {
         case ActionTypes.FETCH_BLOG_LIST:
             return {
                 ...state,
-                blogList: action.payload.blogList
+                blogList: action.payload.blogList,
+                carouselBlogList: action.payload.blogList.slice(0, 3)
             }
         default:
             return state;

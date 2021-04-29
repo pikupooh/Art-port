@@ -5,6 +5,10 @@ import { Image, Button } from 'react-bootstrap';
 
 import fetchUserDataAction from "../../redux/thunk/fetchUserData";
 import { signOutUserAction } from "../../redux//actions/logActions"
+import UserProfileNavbar from '../small_components/userProfileComponents/userProfileNavbar'
+import UserProfileExtras from '../small_components/userProfileComponents/userProfileExtras'
+
+
 class UserProfile extends React.Component {
 
   componentDidMount() {
@@ -13,6 +17,7 @@ class UserProfile extends React.Component {
 
   signOut = () => {
     const { history } = this.props;
+    
     history.replace('/');
     this.props.signOutUser();
   }
@@ -25,17 +30,28 @@ class UserProfile extends React.Component {
             <Image src = {this.props.profilePhoto} roundedCircle 
                       className = "profile_page_photo"></Image>
           </div>
-          <div className = "profile_page_user_name">
+          <div className = "profile_page_full_name">
             <div>
               {this.props.firstName}  {this.props.lastName}
             </div>
           </div>
+          <div className = "profile_page_email">
+            <div>
+              {this.props.email}
+            </div>
+          </div>
+          <div>
+            {this.props.userName}
+          </div>
         </div>
+        <UserProfileNavbar match = {this.props.match}/>
+        <UserProfileExtras match = {this.props.match}/>
         <div>
           <Button onClick = {this.signOut}>
             Sign Out
           </Button>
         </div>
+        
       </div>
     );
   }
