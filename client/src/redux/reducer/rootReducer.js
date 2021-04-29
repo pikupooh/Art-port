@@ -10,7 +10,7 @@ import {mangaReducer} from "./mangaReducer"
 import { comicDataReducer } from "./comicDataReducer";
 import { mangaDataReducer } from "./mangaDataReducer";
 import { artistUserDataReducer } from "./artistUserDataReducer"
-
+import {categoryListReducer} from "./categoryListReducer"
 export default combineReducers({
   auth: authReducer,
   user: userReducer,
@@ -23,4 +23,5 @@ export default combineReducers({
   comicData :comicDataReducer,
   mangaData : mangaDataReducer,
   artistUserData: artistUserDataReducer,
+  category : categoryListReducer
 });
