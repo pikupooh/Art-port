@@ -184,6 +184,19 @@ $custom_color_1: rgb(238, 129, 39);
     background-color: lighten($color: $background_color, $amount: 20);
     margin: 10px;
 }
+.carousel-inner{
+    padding-top: 20px;
+    padding-bottom: 20px; 
+}
+.category_buttons {
+    width:200px;
+   margin-right :70px;
+}
+
+.photos{
+    height: 200px;
+    width: 200px;
+}
 
 .blog_page_uploader{
     width: 50px;
