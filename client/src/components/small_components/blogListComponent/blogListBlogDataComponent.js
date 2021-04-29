@@ -1,10 +1,8 @@
 import { Col, Image, Row, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-function BlogDataComponent(props){
-    console.log(props.blog);
+function BlogListBlogDataComponent(props){
     return(
-        
         <Container>
         <div className = "mx-auto mb-5 blog_list_blog">
                 <Image src = {props.blog.photo.url} fluid></Image>
@@ -36,4 +34,4 @@ function BlogDataComponent(props){
     )
 }
 
-export default BlogDataComponent
+export default BlogListBlogDataComponent

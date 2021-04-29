@@ -1,11 +1,12 @@
 import React from 'react'
 import { connect } from  'react-redux';
 import { bindActionCreators } from 'redux';
-import BlogDataComponent from '../small_components/blogListComponent/blogDataComponent'
+
+import BlogListBlogDataComponent from '../small_components/blogListComponent/blogListBlogDataComponent'
 
 import fetchBlogListAction from '../../redux/thunk/fetchBlogList'
 import BlogListCarousel from '../small_components/blogListComponent/blogListCarousel'
-import { Col, Container, Row } from 'react-bootstrap';
+import { Col, Row } from 'react-bootstrap';
 class blogs extends React.Component{
 
     componentDidMount() {
@@ -18,7 +19,7 @@ class blogs extends React.Component{
                 <Row>
                     {this.props.blogList.map((blog) => 
                         <Col sm = {6} md = {4}>
-                            <BlogDataComponent blog = {blog} />
+                            <BlogListBlogDataComponent blog = {blog} />
                         </Col>
                     )}
                 </Row>

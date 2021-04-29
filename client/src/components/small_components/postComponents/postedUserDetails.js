@@ -1,9 +1,10 @@
 import React from 'react'
-import { Image, Row, Col, Button, Form } from 'react-bootstrap'
+import { Image, Row, Col, Button } from 'react-bootstrap'
 
 
 import PostComments from './postComments'
-import PostLikesModal from './postLikesModal'
+import PostLikesModal from '../postLikesModal'
+import PostCommentSection from './postCommentSection'
 
 class PostedUserDetails extends React.Component{
 
@@ -55,6 +56,9 @@ class PostedUserDetails extends React.Component{
                     <Button onClick = {this.showLikesModal}>Likes {this.props.info.likes.length}</Button>
                 </Row>
             </div>
+            <Button>
+                Liked this post?
+            </Button>
             <div className = "my-4">
                 Posted in {this.props.info.uploadDate}
             </div>
@@ -89,25 +93,7 @@ class PostedUserDetails extends React.Component{
                 <PostComments comments = {this.props.info.comments}/>
                 <PostComments comments = {this.props.info.comments} />
             </div>
-            <div className = "my-4 post_comment_textarea">
-                <Form>
-                    <Form.Group>
-                        <Form.Control as="textarea" rows = {3} placeholder = "Enter comment here">
-                        </Form.Control>
-                        <Row>
-                            <Col className = "add_background_color">
-                                <Button className = "btn-sm ml-auto">
-                                    Comment
-                                </Button>
-                            </Col>
-                            <Col className = "add_background_color">
-                                
-                            </Col>
-                        </Row>
-                    </Form.Group>
-                </Form>
-
-            </div>
+            <PostCommentSection />
         </div>
     )}
 }
