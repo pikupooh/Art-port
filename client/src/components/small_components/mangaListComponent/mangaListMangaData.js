@@ -1,12 +1,16 @@
 import { Fragment } from 'react'
 import { Row } from 'react-bootstrap'
+import {Link} from 'react-router-dom'
 
 function MangaListMangaData(props){
     console.log(props.manga.author);
     return(
         <Fragment>
             <Row>
+                <Link to = {'/mangas/' + props.manga.id}>
                 {props.manga.title}
+                </Link>
+               
             </Row>
             <Row>
                 Ratings {props.manga.rating}

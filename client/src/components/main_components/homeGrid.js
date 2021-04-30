@@ -89,11 +89,11 @@ class HomeGrid extends React.Component{
                         </Carousel> 
                      
                     
-                    <Row>
+                    <Row className = "px-1 mb-3">
                         {
                          this.props.postList.map((post) => 
                    
-                   <Col sm = {6} md = {4}>
+                   <Col className = "px-1 mb-3" sm = {6} md ={3}  >
                     <HomeGridLayout post = {post}/>
                    </Col>
                     )}

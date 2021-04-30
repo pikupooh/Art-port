@@ -7,12 +7,14 @@ import fetchUserDataAction from "../../redux/thunk/fetchUserData";
 import { signOutUserAction } from "../../redux//actions/logActions"
 import UserProfileNavbar from '../small_components/userProfileComponents/userProfileNavbar'
 import UserProfileExtras from '../small_components/userProfileComponents/userProfileExtras'
-
+import fetchProfileDataAction from "../../redux/thunk/fetchProfileData";
 
 class UserProfile extends React.Component {
 
   componentDidMount() {
-    this.props.fetchUserData();
+    this.props.fetchUserData()
+    let userid = this.props.location.pathname.slice(6)
+    this.props.fetchProfileData(userid);
   }
 
   signOut = () => {
@@ -23,6 +25,7 @@ class UserProfile extends React.Component {
   }
 
   render() {
+    console.log(this.props);
     return (
       <div>
         <div className = "text-center profile_page_header">
@@ -61,12 +64,14 @@ const mapDispatchToProps = (dispatch) => bindActionCreators(
   {
     fetchUserData: fetchUserDataAction,
     signOutUser: () => dispatch(signOutUserAction),
+    fetchProfileData :fetchProfileDataAction
   },
   dispatch
 );
   
 
 const mapStateToProps = (state) => {
+
   return {
     userId: state.user.userId,
     email: state.user.email,
@@ -75,6 +80,18 @@ const mapStateToProps = (state) => {
     lastName: state.user.lastName,
     profilePhoto: state.user.profilePhoto,
     dob: state.user.dob,
+    id: state.profile.id,
+    userPosts: state.profile.userPosts,
+    user: state.profile.user,
+    userBlogs: state.profile.userBlogs,
+    userComics: state.profile.userComics,
+    userMangas: state.profile.userMangas,
+    followers: state.profile.followers,
+    following: state.profile.following,
+    favouritePosts: state.profile.favouritePosts,
+    favouriteBlogs: state.profile.favouriteBlogs,
+    favouriteComics: state.profile.favouriteComics,
+    favouriteMangas: state.profile.favouriteMangas,
   };
 };
 
