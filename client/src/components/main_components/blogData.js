@@ -44,17 +44,19 @@ class blogData extends React.Component {
                           hideLikesModal = {this.hideLikesModal}
                           likes = {this.props.likes}/>
         <div className = "blog_page_header">
-          <figure className="position-relative">
-            <Image src = {this.props.photo.url} fluid className = "blog_page_image"></Image>
-            <div className = "blog_page_text_over_image">
-              <figcaption className = "blog_page_title">
-                {this.props.title}
-              </figcaption>
-              <figcaption className = "blog_page_description">
-                {this.props.description}
-              </figcaption>
+          <div >
+            <div className = "blog_header_image_container">
+              <Image src = {this.props.photo.url} fluid className = "blog_header_image"></Image>
             </div>
-          </figure>
+            <div className = "blog_page_text_over_image">
+              <p className = "blog_page_title">
+                {this.props.title}
+              </p>
+              <p className = "blog_page_description">
+                {this.props.description}
+              </p>
+            </div>
+          </div>
         </div>
         <Container>
           <Row className = "my-5">

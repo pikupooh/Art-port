@@ -36,12 +36,12 @@ class PostedUserDetails extends React.Component{
             <div className = "post_page_uploader_info">
                 <Row>
                     <Col xs = {3}>
-                        <a href = {'http://localhost:3000/artist/' + this.props.info.userInfo.UserId}>
+                        <a href = {'/user/' + this.props.info.userInfo.UserId}>
                             <Image className = "post_profile_photo" src = {this.props.info.userInfo.ProfilePhoto} roundedCircle></Image>
                         </a>
                     </Col>
                     <Col>
-                        <a href = {'http://localhost:3000/artist/' + this.props.info.userInfo.UserId}>
+                        <a href = {'/user/' + this.props.info.userInfo.UserId}>
                             <Row>
                                 {this.props.info.userInfo.Username}
                             </Row>

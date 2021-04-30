@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter, Route, Switch, withRouter } from 'react-router-dom'
 
-import Navbar from './components/main_components/navbar'
+import NavbarComponent from './components/main_components/navbarComponent'
 import Home from './components/main_components/home'
 import Comics from './components/main_components/comics'
 import Blogs from './components/main_components/blogs'
@@ -16,7 +16,7 @@ import MangaData from './components/main_components/mangaData'
 import ArtistProfile from './components/main_components/artistProfile'
 
 
-const NavbarwithRouter = withRouter(Navbar);
+const NavbarwithRouter = withRouter(NavbarComponent);
 
 class App extends React.Component {
 

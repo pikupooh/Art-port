@@ -14,15 +14,15 @@ class blogs extends React.Component{
     }
     render(){
         return(
-            <div className = "container-fluid">
+            <div>
                 <BlogListCarousel bloglist = {this.props.carouselBlogList} />
-                <Row>
-                    {this.props.blogList.map((blog) => 
-                        <Col sm = {6} md = {4}>
+                <div className = "blog_list_blogs_container ">
+                    <Row className = "container-fluid  container-fluid blog_list_container">
+                        {this.props.blogList.map((blog) => 
                             <BlogListBlogDataComponent blog = {blog} />
-                        </Col>
-                    )}
-                </Row>
+                        )}
+                    </Row>
+                </div>
             </div>
         )
     }
