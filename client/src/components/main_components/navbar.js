@@ -14,7 +14,7 @@ const Navbar = props => {
             <Nav className="navbar navbar-expand-sm bg-dark navbar-dark fixed-top" activeKey = {location.pathname}>
                 <Link to ="/" className = 'navbar-brand '><strong>Art</strong> Port</Link>
                  <SearchBar />
-                <span className = "navbar-nav ml-auto">
+                <div className = "navbar-nav ml-auto">
                     <NavItem >
                         <Link to ="/comics" className = "nav-link">Comics</Link>
                     </NavItem>
@@ -30,7 +30,7 @@ const Navbar = props => {
                     <div className = "nav_profile">
                         <ProfileCircle onShowModal = {onShowModal} />
                     </div>
-                </span>
+                </div>
             </Nav>
         </div>
     )

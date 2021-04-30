@@ -203,4 +203,17 @@ $custom_color_1: rgb(238, 129, 39);
     height: 50px;
 }
 
+.manga_list_manga_container{
+    height: 40vh;
+}
+
+.manga_list_manga_image{
+    object-fit: fill;
+    height: 40vh;
+}
+
+.manga_list_manga_image_container{
+    overflow: hidden;
+}
+
 @import '~bootstrap/scss/bootstrap.scss';
