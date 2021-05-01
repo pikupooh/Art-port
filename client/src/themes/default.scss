@@ -212,10 +212,10 @@ a{
     padding: 10px !important;
 }
 
-.carousel-inner{
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
-}
+/*.carousel-inner{
+  // padding-top: 0 !important;
+   // padding-bottom: 0 !important;
+}*/
 .carousel-indicators li {
     width: 5px !important;
     height: 5px !important;
@@ -304,5 +304,49 @@ a{
 .manga_list_manga_image_container{
     overflow: hidden;
 }
+.footer_nav {
+    list-style: none;
+    float: left;
+}
+.social_links {
+    list-style: none;
+    float: right;
+  }
+  .footer_nav li,
+  .social_links li {
+    display: inline-block;
+    margin-right: 20px;
+  }
+  .footer_nav li a:link,
+  .footer_nav li a:visited,
+  .social_links li a:link,
+  .social_links li a:visited {
+    text-decoration: none;
+    border: 0;
+    color: #888;
+    transition: color 0.2s;
+  }
+  
+  .footer_nav li a:hover,
+  .footer_nav li a:active {
+    color: #ddd;
+  }
+  footer {
+    background-color: rgb(26, 25, 25);
+    padding: 70px;
+    font-size: 20px;
+    height: 250px;
+    border-top: 1px solid rgb(70, 68, 68);
+  }
+  .copyright_statement {
+      width:70%;
+    color: #888;
+    text-align: right;
+    margin-top: 20px;
+  }
+  .footer_content{
+      width :80%;
+  }
+  
 
 @import '~bootstrap/scss/bootstrap.scss';

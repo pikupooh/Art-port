@@ -14,6 +14,7 @@ import blogData from './components/main_components/blogData'
 import ComicData from './components/main_components/comicData'
 import MangaData from './components/main_components/mangaData'
 import ArtistProfile from './components/main_components/artistProfile'
+import FooterComponent from './components/small_components/footerComponent'
 
 
 const NavbarwithRouter = withRouter(NavbarComponent);
@@ -62,6 +63,7 @@ class App extends React.Component {
           </div>
           </Switch>    
         </BrowserRouter>
+        <FooterComponent/>
         
       </div>
     );
