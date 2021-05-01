@@ -7,7 +7,6 @@ import fetchComicDataAction from "../../redux/thunk/fetchComicData";
 class ComicData extends React.Component {
     componentDidMount() {
       let comicId = this.props.location.pathname.slice(7);
-      console.log(comicId);
       this.props.fetchComicData(comicId)
     }
   

@@ -6,14 +6,11 @@ import fetchMangaDataAction from "../../redux/thunk/fetchMangaData";
 
 class MangaData extends React.Component {
     componentDidMount() {
-   //   console.log(this.props);
       let mangaId = this.props.location.pathname.slice(8);
-  //    console.log(mangaId);
       this.props.fetchMangaData(mangaId)
     }
   
     render() {
-     // console.log(this.props);
       return(
         <div>
           Post of {this.props.comicId} and uploadDate {this.props.uploadTime}
@@ -40,7 +37,6 @@ const mapStateToProps = (state) => {
     about: state.mangaData.about,
     type: state.mangaData.type,
     coverPhoto: state.mangaData.coverPhoto,
-   
   };
 };
 

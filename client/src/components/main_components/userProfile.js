@@ -8,24 +8,23 @@ import { signOutUserAction } from "../../redux//actions/logActions"
 import UserProfileNavbar from '../small_components/userProfileComponents/userProfileNavbar'
 import UserProfileExtras from '../small_components/userProfileComponents/userProfileExtras'
 import fetchProfileDataAction from "../../redux/thunk/fetchProfileData";
+import SignOutButton from "../small_components/userProfileComponents/signOutButton";
 
 class UserProfile extends React.Component {
 
   componentDidMount() {
     this.props.fetchUserData()
-    let userid = this.props.location.pathname.slice(6)
-    this.props.fetchProfileData(userid);
+    let id = this.props.location.pathname.slice(6)
+    this.props.fetchProfileData(id);
   }
 
   signOut = () => {
     const { history } = this.props;
-    
     history.replace('/');
     this.props.signOutUser();
   }
 
   render() {
-    console.log(this.props);
     return (
       <div>
         <div className = "text-center profile_page_header">
@@ -49,12 +48,7 @@ class UserProfile extends React.Component {
         </div>
         <UserProfileNavbar match = {this.props.match}/>
         <UserProfileExtras match = {this.props.match}/>
-        <div>
-          <Button onClick = {this.signOut}>
-            Sign Out
-          </Button>
-        </div>
-        
+        <SignOutButton userId = {this.props.userId} artistId = {this.props.location.pathname.slice(6)} signOut = {this.signOut}/>
       </div>
     );
   }

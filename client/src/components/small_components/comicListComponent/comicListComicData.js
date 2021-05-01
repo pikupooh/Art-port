@@ -2,11 +2,11 @@ import { Fragment } from 'react'
 import { Row } from 'react-bootstrap'
 import {Link} from 'react-router-dom'
 
-function MangaListMangaData(props){
+function ComicListComicData(props){
     
     var chapter = ""
 
-    if(props.manga.chapters.length < 2){
+    if(props.comic.chapters.length < 2){
         chapter = ' chapter'
     }
     else{
@@ -16,15 +16,15 @@ function MangaListMangaData(props){
     return(
         <Fragment>
             <Row>
-                {props.manga.title}
+                {props.comic.title}
             </Row>
             <Row>
-                Ratings {props.manga.rating}
+                Ratings {props.comic.rating}
             </Row>
             <Row>
                 Authors
             </Row>
-                {props.manga.author.map((user) => 
+                {props.comic.author.map((user) => 
                     <Link to = {'/user/' + user.UserId}>
                         <div> 
                         {user.firstname} {user.lastname + ' '}
@@ -32,7 +32,7 @@ function MangaListMangaData(props){
                     </Link>
                 )}
             <Row>
-                {props.manga.chapters.length + chapter} 
+                {props.comic.chapters.length + chapter} 
             </Row>
             <Row>
                 Genre
@@ -41,4 +41,4 @@ function MangaListMangaData(props){
     )
 }
 
-export default MangaListMangaData
+export default ComicListComicData

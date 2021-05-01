@@ -16,7 +16,6 @@ const initState = {
 }
 
 export const profileDataReducer = (state = initState, action) => {
-    console.log(action);
     switch(action.type){
         case ActionTypes.FETCH_PROFILE_DATA:
         //console.log(action);

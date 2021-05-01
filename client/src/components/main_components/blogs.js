@@ -17,7 +17,7 @@ class blogs extends React.Component{
             <div>
                 <BlogListCarousel bloglist = {this.props.carouselBlogList} />
                 <div className = "blog_list_blogs_container ">
-                    <Row className = "container-fluid  container-fluid blog_list_container">
+                    <Row className = "container-fluid blog_list_container">
                         {this.props.blogList.map((blog) => 
                             <BlogListBlogDataComponent blog = {blog} />
                         )}

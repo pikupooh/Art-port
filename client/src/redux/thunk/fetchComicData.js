@@ -2,7 +2,7 @@ import { fetchComicDataAction } from '../actions/fetchComicDataAction'
 
 function fetchComicData(comicId) {
     return dispatch => {
-        fetch('http://localhost:3000/dummy/comics.json')
+        fetch('http://localhost:3000/dummy2/comics.json')
         .then(res =>  res.json())
         .then(res => {
             if(res.error) {

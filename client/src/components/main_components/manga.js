@@ -1,5 +1,4 @@
 import React from 'react'
-import SearchBar from '../small_components/search_bar'
 import { connect } from  'react-redux';
 import { bindActionCreators } from 'redux';
 import {Link} from 'react-router-dom';
@@ -12,13 +11,14 @@ class Manga extends React.Component{
         this.props.fetchMangaList()
     }
     render(){
-        console.log(this.props.mangaList);
         return(
             <div className = "container-fluid">
                 <Row>
                     {this.props.mangaList.map((manga) => 
-                        <Col sm = {6} key ={manga.mangaid}>
-                            <MangaDataComponent manga = {manga} />
+                        <Col sm = {6} xl = {4} key ={manga.id}>
+                            <Link to = {'/mangas/' + manga.id}>
+                                <MangaDataComponent manga = {manga} />
+                            </Link>
                         </Col>
                     )}
                 </Row>
