@@ -1,7 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-
+import {Row,Col,Container} from "react-bootstrap"
+import MangaDataDisplay from "../small_components/mangaDataDisplayComponents/mangaDataDisplay";
+import MangaDescriptionDisplay from "../small_components/mangaDataDisplayComponents/mangaDescriptionDisplay"
 import fetchMangaDataAction from "../../redux/thunk/fetchMangaData";
 
 class MangaData extends React.Component {
@@ -12,9 +14,24 @@ class MangaData extends React.Component {
   
     render() {
       return(
-        <div>
-          Post of {this.props.comicId} and uploadDate {this.props.uploadTime}
-        </div>
+        
+            <div>
+
+           <Container>
+             
+          <MangaDataDisplay photo={this.props.coverPhoto} 
+                             rating ={this.props.rating}
+                             noOfRating={this.props.noOfRating}
+                             type ={this.props.type} 
+                             author= {this.props.author}
+                             title = {this.props.title}/>
+
+          <MangaDescriptionDisplay about = {this.props.about}/>
+             </Container>
+            
+        
+         
+          </div>
       )
     }
   }
@@ -37,6 +54,7 @@ const mapStateToProps = (state) => {
     about: state.mangaData.about,
     type: state.mangaData.type,
     coverPhoto: state.mangaData.coverPhoto,
+    author : state.mangaData.author
   };
 };
 

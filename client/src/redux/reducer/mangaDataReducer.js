@@ -9,6 +9,7 @@ const initState = {
   about:'',
   type:'',
   coverPhoto:'',
+  author:[],
 };
 
 export const mangaDataReducer = (state = initState, action) => {
@@ -24,6 +25,8 @@ export const mangaDataReducer = (state = initState, action) => {
         about: action.payload.mangaData.about,
         type: action.payload.mangaData.type,
         coverPhoto: action.payload.mangaData.coverPhoto,
+        author : action.payload.mangaData.author
+        
       };
     default:
       return state;
