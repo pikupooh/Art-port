@@ -11,30 +11,9 @@ $custom_color_1: rgb(238, 129, 39);
     box-shadow: none !important;
 }
 
-a{
-    color: white !important;
-    text-decoration: none !important
-}
 
 
-.btn-primary{
 
-    @include btn_color(); 
-
-    &:hover {
-        background-color: lighten($color: $custom_color_1, $amount: 10)  !important;
-    }
-
-    &:active:focus,
-    &.active,
-    &:active:focus{
-        @include btn_color();
-    }
-
-    &:focus {
-        @include btn_color();
-    }
-}
 
 .modal-content{
     color: $custom_color_1;
@@ -348,5 +327,12 @@ a{
       width :80%;
   }
   
+  .blog_page_comment_section{
+    position: sticky;
+    bottom: 1px;
+    background-color: $background_color;
+}
+  
 
 @import '~bootstrap/scss/bootstrap.scss';
+@import "custom1"

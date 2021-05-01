@@ -88,20 +88,22 @@ class blogData extends React.Component {
               </Button>
             </Col>
           </Row>
-          <div>
+          <Row>
+            Tags
+          </Row>
+          <Row>
+            <div> 
+              {this.props.tags.map((tag, index) =>
+                <Fragment key = {index}>
+                  {tag + ' '}
+                </Fragment>
+              )}
+            </div>
+          </Row>
+          <div className = "mt-5">
             {this.props.content}
           </div>
           <BlogDataComments comments = {this.props.comments}/>
-          <div>
-            Tags
-          </div>
-          <div>
-            {this.props.tags.map((tag, index) =>
-              <Fragment key = {index}>
-                {tag + ' '}
-              </Fragment>
-            )}
-          </div>
         </Container>
       </div>
       )

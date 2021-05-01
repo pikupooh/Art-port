@@ -3,8 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {Container,Row,Col} from "react-bootstrap"
 import { faFacebook,faGooglePlay,faInstagram,faTwitter, } from '@fortawesome/free-brands-svg-icons'
 import { faCopyright } from '@fortawesome/free-solid-svg-icons'
-import { render } from '@testing-library/react'
-
 
 
 

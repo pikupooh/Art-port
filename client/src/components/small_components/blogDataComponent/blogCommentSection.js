@@ -3,7 +3,7 @@ import { Form, Col, Row, Button } from 'react-bootstrap'
 function BlogCommentSection(){
 
     return(
-        <div className = "my-4">
+        <div className = "my-4 blog_page_comment_section">
                 <Form>
                     <Form.Group>
                         <Form.Control as="textarea" rows = {3} placeholder = "Enter comment here">

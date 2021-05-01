@@ -1,0 +1,23 @@
+a{
+    color: white !important;
+    text-decoration: none !important
+}
+
+.btn-primary{
+
+    @include btn_color(); 
+
+    &:hover {
+        background-color: lighten($color: $custom_color_1, $amount: 10)  !important;
+    }
+
+    &:active:focus,
+    &.active,
+    &:active:focus{
+        @include btn_color();
+    }
+
+    &:focus {
+        @include btn_color();
+    }
+}
