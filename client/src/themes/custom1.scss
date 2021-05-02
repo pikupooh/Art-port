@@ -28,3 +28,7 @@ a{
 manga_data_container{
     width:100%;
 }
+.chapters{
+    max-height : 20px;
+    overflow-y: scroll;
+}

@@ -3,10 +3,12 @@ function MangaDescriptionDisplay (props) {
     return ( 
         
         <div>
-            <div>
+            <div className ="pb-2">
                 DESCRIPTION
             </div>
-        {props.about}
+            <div className ="pb-2">
+            {props.about}
+            </div>
         </div>
      );
 }

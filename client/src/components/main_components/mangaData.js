@@ -5,7 +5,9 @@ import {Row,Col,Container} from "react-bootstrap"
 import MangaDataDisplay from "../small_components/mangaDataDisplayComponents/mangaDataDisplay";
 import MangaDescriptionDisplay from "../small_components/mangaDataDisplayComponents/mangaDescriptionDisplay"
 import fetchMangaDataAction from "../../redux/thunk/fetchMangaData";
-
+import MangaChaptersDisplay from "../small_components/mangaDataDisplayComponents/mangaChaptersDisplay"
+import BlogCommentSection from '../small_components/blogDataComponent/blogCommentSection'
+import BlogDataComments from '../small_components/blogDataComponent/blogDataComments'
 class MangaData extends React.Component {
     componentDidMount() {
       let mangaId = this.props.location.pathname.slice(8);
@@ -27,7 +29,9 @@ class MangaData extends React.Component {
                              title = {this.props.title}/>
 
           <MangaDescriptionDisplay about = {this.props.about}/>
-             </Container>
+          <MangaChaptersDisplay chapters ={this.props.chapters}/>
+          <BlogDataComments comments = {this.props.Comments}/>
+           </Container>
             
         
          
@@ -54,7 +58,8 @@ const mapStateToProps = (state) => {
     about: state.mangaData.about,
     type: state.mangaData.type,
     coverPhoto: state.mangaData.coverPhoto,
-    author : state.mangaData.author
+    author : state.mangaData.author,
+    Comments : state.mangaData.Comments
   };
 };
 

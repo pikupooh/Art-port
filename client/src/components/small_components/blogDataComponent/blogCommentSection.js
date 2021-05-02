@@ -20,7 +20,6 @@ function BlogCommentSection(){
                         </Row>
                     </Form.Group>
                 </Form>
-
             </div>
     )
 }

@@ -10,6 +10,7 @@ const initState = {
   type:'',
   coverPhoto:'',
   author:[],
+  Comments:[],
 };
 
 export const mangaDataReducer = (state = initState, action) => {
@@ -25,7 +26,8 @@ export const mangaDataReducer = (state = initState, action) => {
         about: action.payload.mangaData.about,
         type: action.payload.mangaData.type,
         coverPhoto: action.payload.mangaData.coverPhoto,
-        author : action.payload.mangaData.author
+        author : action.payload.mangaData.author,
+        Comments : action.payload.mangaData.Comments
         
       };
     default:
