@@ -3,6 +3,7 @@ package com.example.demo.controller;
 
 import com.example.demo.entities.Blog;
 import com.example.demo.entities.Post;
+import com.example.demo.entities.User;
 import com.example.demo.services.BlogService;
 import com.example.demo.services.FileService;
 import com.example.demo.services.ImageService;
@@ -44,7 +45,7 @@ public class FileUploadController {
         Arrays.asList(multipartFile).stream().forEach(file -> {
             String imageId = null;
             try {
-                imageId = fileService.save(postId, file.getBytes(), file.getOriginalFilename(), principal.getName());
+                imageId = fileService.save(file.getBytes(), file.getOriginalFilename(), principal.getName());
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -64,7 +65,7 @@ public class FileUploadController {
         Arrays.asList(multipartFile).stream().forEach(file -> {
             String imageId = null;
             try {
-                imageId = fileService.save(blogId, file.getBytes(), file.getOriginalFilename(), principal.getName());
+                imageId = fileService.save(file.getBytes(), file.getOriginalFilename(), principal.getName());
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -77,6 +78,26 @@ public class FileUploadController {
 
     }
 
+    @PostMapping("/user/{userId}/upload")
+    String profilePhoto(@PathVariable String userId, @RequestParam("files") MultipartFile[] multipartFile, Principal principal) throws Exception {
+
+
+        Arrays.asList(multipartFile).stream().forEach(file -> {
+            String imageId = null;
+            try {
+                imageId = fileService.save(file.getBytes(), file.getOriginalFilename(), principal.getName());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            User user = userService.getUser(userId);
+            user.setProfilePhoto(imageService.getimage(imageId));
+            userService.updateUser(user, userId);
+        });
+        return "Image uploaded successfully";
+
+
+    }
+    
     @GetMapping("/image/{imageId}")
     String getImageLink(@PathVariable String imageId){
 

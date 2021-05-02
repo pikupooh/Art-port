@@ -52,7 +52,7 @@ class HomeGrid extends React.Component{
         return(
          
                 <div>
-          
+                    <div className="my-3">
                         <Carousel indicators= {false}>
                      
                               <Carousel.Item>
@@ -88,7 +88,7 @@ class HomeGrid extends React.Component{
                             
                         </Carousel> 
                      
-                    
+                    </div>
                     <Row className = "px-1 mb-3">
                         {
                          this.props.postList.map((post) => 

@@ -1,15 +1,18 @@
 package com.example.demo.services;
 
 import com.example.demo.entities.Image;
+import com.example.demo.payload.response.ImgBBRes;
 import com.example.demo.payload.response.ImgurRes;
 import com.example.demo.repositories.FileRepository;
 import com.example.demo.repositories.ImageRepository;
 import com.example.demo.repositories.PostRepository;
 
 import java.io.IOException;
+import java.util.Base64;
 
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
@@ -38,8 +41,11 @@ public class FileService {
 
     @Autowired
     PostRepository postRepository;
+    
+    @Value("${demo.app.clientID}")
+    String clientID;
 
-    public String save(String postId, byte[] bytes, String fileName, String username) throws Exception {
+    public String save(byte[] bytes, String fileName, String username) throws Exception {
 
         String newName = uploadToImgur(bytes);
 
@@ -59,14 +65,13 @@ public class FileService {
     }
 
     public String uploadToImgur(byte[] file) {
-    	String clientId="${demo.app.clientID}";
 		final String uri = "https://api.imgur.com/3/image";
 
 		MultiValueMap<String, Object> bodyMap = new LinkedMultiValueMap<>();
 		bodyMap.add("image", new ByteArrayResource(file));
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.MULTIPART_FORM_DATA);
-		headers.add("Authorization", "Client-ID "+clientId);
+		headers.add("Authorization", "Client-ID "+clientID);
 		HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(bodyMap, headers);
 
 		RestTemplate restTemplate = new RestTemplate();
@@ -75,7 +80,21 @@ public class FileService {
 		System.out.println("response body: " + response.getBody().getData().getLink()); // it should return link of your uploaded image
 		
 		return response.getBody().getData().getLink();
+    	
+//    	String url = "https://api.imgbb.com/1/upload?key=ea599885273b467df62aa25bbc4805b8";
+//    	MultiValueMap<String, Object> bodyMap = new LinkedMultiValueMap<>();
+//    	bodyMap.add("image", Base64.getEncoder().encode(file));
+//    	HttpHeaders headers = new HttpHeaders();
+//    	headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+//    	HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(bodyMap, headers);
+//
+//    	RestTemplate restTemplate = new RestTemplate();
+//    	ResponseEntity<ImgBBRes> response = restTemplate.exchange(url, HttpMethod.POST, requestEntity, ImgBBRes.class);
+//    	System.out.println(response.getBody().getData());
+//    	return response.getBody().getData().getUrl();
     }
+    
+    
 }
 
 
