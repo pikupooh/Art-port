@@ -15,6 +15,7 @@ import ComicData from './components/main_components/comicData'
 import MangaData from './components/main_components/mangaData'
 import ArtistProfile from './components/main_components/artistProfile'
 import FooterComponent from './components/small_components/footerComponent'
+import MangaIndividualChapter from './components/small_components/mangaDataDisplayComponents/mangaIndividualChapter'
 
 
 const NavbarwithRouter = withRouter(NavbarComponent);
@@ -57,6 +58,7 @@ class App extends React.Component {
               <Route path = '/comic/:comic_id' component = {ComicData} />
               <Route path = '/mangas/:manga_id' component = {MangaData} />
               <Route path = '/artist/:user_id' component = {ArtistProfile} />
+              <Route path = '/chapter/:chapters_id' component = {MangaIndividualChapter} />
               <SignInModal show = {this.state.show} handleModalClose = {this.handleModalClose}
                 handleModalShow = {this.handleModalShow}
               />
