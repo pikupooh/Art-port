@@ -10,7 +10,7 @@ function PostCommentSection(){
                         </Form.Control>
                         <Row>
                             <Col className = "add_background_color">
-                                <Button className = "btn-sm ml-auto">
+                                <Button className = "btn-sm mt-2">
                                     Comment
                                 </Button>
                             </Col>

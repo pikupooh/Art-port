@@ -1,6 +1,6 @@
 import React from 'react'
 import { Image, Row, Col, Button } from 'react-bootstrap'
-
+import { Link } from 'react-router-dom'
 
 import PostComments from './postComments'
 import PostLikesModal from '../postLikesModal'
@@ -35,30 +35,36 @@ class PostedUserDetails extends React.Component{
                             likes = {this.props.info.likes}/>
             <div className = "post_page_uploader_info">
                 <Row>
-                    <Col xs = {3}>
-                        <a href = {'/user/' + this.props.info.userInfo.UserId}>
-                            <Image className = "post_profile_photo" src = {this.props.info.userInfo.ProfilePhoto} roundedCircle></Image>
-                        </a>
+                    <Col lg = {4} xl = {3} >
+                        <Link to = {'/user/' + this.props.info.userInfo.UserId}>
+                            <Image fluid className = "post_profile_photo" src = {this.props.info.userInfo.ProfilePhoto} roundedCircle></Image>
+                        </Link>
                     </Col>
-                    <Col>
-                        <a href = {'/user/' + this.props.info.userInfo.UserId}>
+                    <Col className = "text-left ml-1">
+                        <Link to = {'/user/' + this.props.info.userInfo.UserId}>
                             <Row>
                                 {this.props.info.userInfo.Username}
                             </Row>
-                        </a>
+                        </Link>
                         <Row>
                         {this.props.info.userInfo.about}
                         </Row>
                     </Col>
                 </Row>
-                <Row className = "my-3 ml-5">
-                    <Button className = "ml-2 mr-5">Follow</Button>
-                    <Button onClick = {this.showLikesModal}>Likes {this.props.info.likes.length}</Button>
+                <Row >
+                    <Col md = {6} className = "mt-3">
+                        <Button>Follow</Button>
+                    </Col>
+                    <Col>
+                        <Button className = "mt-3">
+                            Like
+                        </Button>
+                    </Col>
                 </Row>
+                <p onClick = {this.showLikesModal}
+                    className = "mt-3"
+                    >Likes {this.props.info.likes.length}</p>
             </div>
-            <Button>
-                Liked this post?
-            </Button>
             <div className = "my-4">
                 Posted in {this.props.info.uploadDate}
             </div>
@@ -88,10 +94,9 @@ class PostedUserDetails extends React.Component{
             </div>
             <div>
                 <div>
-                    Comments
+                    Comments {this.props.info.comments.length}
                 </div>
                 <PostComments comments = {this.props.info.comments}/>
-                <PostComments comments = {this.props.info.comments} />
             </div>
             <PostCommentSection />
         </div>

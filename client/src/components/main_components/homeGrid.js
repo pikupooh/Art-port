@@ -21,39 +21,39 @@ class HomeGrid extends React.Component{
 
     render(){
 
-        let i =0;
-        //Stored the firstfour categories in firstfourcategories array
-        let firstFourCategories = []; 
-         this.props.categoryList.map(firstFour => {
-            if(i<4){
-                firstFourCategories[i] = firstFour;
-                i++;
-            }
+        // let i =0;
+        // //Stored the firstfour categories in firstfourcategories array
+        // let firstFourCategories = []; 
+        //  this.props.categoryList.map(firstFour => {
+        //     if(i<4){
+        //         firstFourCategories[i] = firstFour;
+        //         i++;
+        //     }
         
-        })
-        i=0;
-         //Stored the secondfour categories in secondfourcategories array
-        let secondFourCategories =[];
-        this.props.categoryList.map(secondFour => {
-            if(i>=4 && i<8){
-                secondFourCategories[i] = secondFour;
-            }
-            i++;
-        })
-        i=0;
-          //Stored the lastTHree categories in lastThreecategories array
-        let lastThreeCategories =[];
-        this.props.categoryList.map(lastThree => {
-            if(i>=8 ){
-                lastThreeCategories[i] = lastThree;
-            }
-            i++;
-        })
+        // })
+        // i=0;
+        //  //Stored the secondfour categories in secondfourcategories array
+        // let secondFourCategories =[];
+        // this.props.categoryList.map(secondFour => {
+        //     if(i>=4 && i<8){
+        //         secondFourCategories[i] = secondFour;
+        //     }
+        //     i++;
+        // })
+        // i=0;
+        //   //Stored the lastTHree categories in lastThreecategories array
+        // let lastThreeCategories =[];
+        // this.props.categoryList.map(lastThree => {
+        //     if(i>=8 ){
+        //         lastThreeCategories[i] = lastThree;
+        //     }
+        //     i++;
+        // })
         return(
          
                 <div>
                     <div className="my-3">
-                        <Carousel indicators= {false}>
+                        {/* <Carousel indicators= {false}>
                      
                               <Carousel.Item>
                               <Container>
@@ -86,17 +86,15 @@ class HomeGrid extends React.Component{
                              </Container>
                             </Carousel.Item>
                             
-                        </Carousel> 
+                        </Carousel>  */}
                      
                     </div>
-                    <Row className = "px-1 mb-3">
-                        {
-                         this.props.postList.map((post) => 
-                   
-                   <Col className = "px-1 mb-3" sm = {6} md ={3}  >
-                    <HomeGridLayout post = {post}/>
-                   </Col>
-                    )}
+                    <Row className = "home_grid_container">
+                        {this.props.postList.map((post) => 
+                        <Col sm = {6} md = {4} lg = {2} className = "home_grid_posts_container">
+                            <HomeGridLayout post = {post}/>
+                        </Col>
+                        )}
                     </Row>
             </div>
         )

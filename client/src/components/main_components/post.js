@@ -12,18 +12,19 @@ class Post extends React.Component {
   componentDidMount() {
     let postId = this.props.location.pathname.slice(6);
     this.props.fetchPostData(postId)
+    window.scrollTo(0, 0);
   }
 
   render() {
     return(
       <div className = "container-fluid">
       <Row >
-        <Col className = "post_photos_section text-center" sm = {9}>
-          {this.props.photosDoc.map((doc) => 
-
-            <PostImage imageDoc = {doc}/>
-            
-          )}
+        <Col sm = {9} >
+          <div>
+            {this.props.photosDoc.map((doc) => 
+              <PostImage imageDoc = {doc}/>
+            )}
+          </div>
         </Col>
         <Col className = "post_details_section" sm = {3} >
           <PostedUserDetails info = {this.props}/>

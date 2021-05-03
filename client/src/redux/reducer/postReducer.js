@@ -8,7 +8,8 @@ const initState = {
   tags: [],
   type: null,
   userInfo: {},
-  categories: []
+  categories: [],
+  comments: []
 };
 
 export const PostReducer = (state = initState, action) => {
