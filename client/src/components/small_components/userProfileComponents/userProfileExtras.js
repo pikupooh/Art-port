@@ -13,7 +13,6 @@ import UserProfileAbout from './userProfileAbout'
 class UserProfileExtras extends React.Component {
     
     render(){
-      console.log(this.props.match.url);
         return(
           <switch>
             <Route exact path = {this.props.match.url} component = {UserPortfolio}></Route>

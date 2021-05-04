@@ -18,7 +18,6 @@ const initState = {
 export const profileDataReducer = (state = initState, action) => {
     switch(action.type){
         case ActionTypes.FETCH_PROFILE_DATA:
-        //console.log(action);
             return {
                 ...state,
                 id: action.payload.profileData.id,

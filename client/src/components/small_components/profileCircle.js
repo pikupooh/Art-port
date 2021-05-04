@@ -26,10 +26,8 @@ class ProfileCircle extends React.Component{
                     </Image>
                     <NavDropdown title="" id="nav-dropdown" variant = "tabs"
                         >
-                        <NavDropdown.Item >
-                            <Link to = {"/user/" + this.props.userId}>
-                                Profile
-                            </Link>
+                        <NavDropdown.Item href = {"/user/" + this.props.userId}>
+                            Profile
                         </NavDropdown.Item>    
                         <NavDropdown.Item >Add Post</NavDropdown.Item>
                         <NavDropdown.Item >Add Blog</NavDropdown.Item>

@@ -2,8 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {Container} from "react-bootstrap"
-import { Menu, MenuItem, Button } from '@material-ui/core'
-
 
 import MangaDataDisplay from "../small_components/mangaDataDisplayComponents/mangaDataDisplay";
 import MangaDescriptionDisplay from "../small_components/mangaDataDisplayComponents/mangaDescriptionDisplay"

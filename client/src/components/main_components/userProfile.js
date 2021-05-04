@@ -10,34 +10,37 @@ import fetchProfileDataAction from "../../redux/thunk/fetchProfileData";
 
 class UserProfile extends React.Component {
 
+  constructor(props){
+    super(props)
+  }
+
   componentDidMount() {
+    console.log("mounted");
     this.props.fetchUserData()
     let id = this.props.location.pathname.slice(6)
     this.props.fetchProfileData(id);
   }
-
-  
 
   render() {
     return (
       <div>
         <div className = "text-center profile_page_header">
           <div className = "text-center profile_photo">
-            <Image src = {this.props.profilePhoto} roundedCircle 
+            <Image src = {this.props.user.ProfilePhoto} roundedCircle 
                       className = "profile_page_photo"></Image>
           </div>
           <div className = "profile_page_full_name">
             <div>
-              {this.props.firstName}  {this.props.lastName}
+              {this.props.user.firstname}  {this.props.user.lastname}
             </div>
           </div>
           <div className = "profile_page_email">
             <div>
-              {this.props.email}
+              {this.props.user.email}
             </div>
           </div>
           <div>
-            {this.props.userName}
+            {this.props.user.Username}
           </div>
         </div>
         <UserProfileNavbar match = {this.props.match}/>
@@ -57,15 +60,9 @@ const mapDispatchToProps = (dispatch) => bindActionCreators(
   
 
 const mapStateToProps = (state) => {
-
   return {
     userId: state.user.userId,
-    email: state.user.email,
-    userName: state.user.userName,
-    firstName: state.user.firstName,
-    lastName: state.user.lastName,
-    profilePhoto: state.user.profilePhoto,
-    dob: state.user.dob,
+    dob: state.profile.user.dob,
     id: state.profile.id,
     userPosts: state.profile.userPosts,
     user: state.profile.user,
