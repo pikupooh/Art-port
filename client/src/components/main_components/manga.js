@@ -12,10 +12,10 @@ class Manga extends React.Component{
     }
     render(){
         return(
-            <div className = "container-fluid">
+            <div className = "container-fluid m-3">
                 <Row>
                     {this.props.mangaList.map((manga) => 
-                        <Col sm = {6} xl = {4} key ={manga.id}>
+                        <Col sm = {6} xl = {4} key ={manga.id} className = "manga_list_manga">
                             <Link to = {'/mangas/' + manga.id}>
                                 <MangaDataComponent manga = {manga} />
                             </Link>

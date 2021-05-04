@@ -1,0 +1,81 @@
+.manga_list_manga{
+    &:hover{
+        background-color: lighten($color: $background-color, $amount: 10);
+    }
+
+    &:active{
+        background-color: lighten($color: $background-color, $amount: 20);
+    }
+}
+
+.manga_list_manga_container{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
+.manga-list_manga_data{
+    width: 100%;
+}
+
+.manga_list_manga_image_container{
+    width: 100%;
+    height: 40vh;
+    
+}
+
+.manga_list_manga_image{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.manga_list_manga_data_title{
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: rgb(235, 154, 33);
+    height: 85px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical; 
+}
+
+.manga_list_manga_data_rating{
+    font-size: 20px;
+}
+
+.manga_list_manga_data_rating_star{
+    color: rgb(255, 196, 0);
+}
+
+.manga_list_manga_data_author_container{
+    position: absolute;
+    bottom: 0px;
+}
+
+@media (max-width: 763px)
+{
+    .manga_list_manga_data_author_container{
+        position:  relative;
+    }
+}
+
+.manga_list_manga_data_middle_container{
+    margin-top: 10%;
+}
+
+.manga_list_manga_data_authors{
+    border-radius: 20px;
+    border: 2px solid #3c82d1;
+    color: lighten($color: #3c82d1, $amount: 35) !important;
+    margin: 3px;
+    padding: 2px;
+    font-size: 0.8rem;
+
+    &:hover{
+        background-color: #3c82d1;
+        color: white !important;
+    }
+}

@@ -12,6 +12,7 @@ class MangaData extends React.Component {
     componentDidMount() {
       let mangaId = this.props.location.pathname.slice(8);
       this.props.fetchMangaData(mangaId)
+      window.scrollTo(0, 0);
     }
 
     render() {
@@ -23,7 +24,9 @@ class MangaData extends React.Component {
                              noOfRating={this.props.noOfRating}
                              type ={this.props.type} 
                              author= {this.props.author}
-                             title = {this.props.title}/>
+                             title = {this.props.title}
+                            chaptersLength = {this.props.chapters.length}
+                             />
 
             <MangaDescriptionDisplay about = {this.props.about}/>
             <MangaChaptersDisplay chapters ={this.props.chapters}/> 

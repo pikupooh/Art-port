@@ -16,11 +16,6 @@ function BlogDataComments(props){
                         <BlogDataComment comment = {comment}/>
                     </div>
                 )}
-                {props.comments.map((comment) => 
-                    <div key = {comment.CommentId}>
-                        <BlogDataComment comment = {comment}/>
-                    </div>
-                )}
                 <BlogCommentSection />
                 
             </div>

@@ -42,12 +42,12 @@ class PostedUserDetails extends React.Component{
                     </Col>
                     <Col className = "text-left ml-1">
                         <Link to = {'/user/' + this.props.info.userInfo.UserId}>
-                            <Row>
+                            <Row className = "username">
                                 {this.props.info.userInfo.Username}
                             </Row>
                         </Link>
                         <Row>
-                        {this.props.info.userInfo.about}
+                            {this.props.info.userInfo.about}
                         </Row>
                     </Col>
                 </Row>

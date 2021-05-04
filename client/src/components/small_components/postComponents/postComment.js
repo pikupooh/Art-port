@@ -12,7 +12,7 @@ function PostComment(props){
                 </Link>
                 <Col>
                 <Link to = {'/user/' + props.info.User.UserId}>
-                    <Row>
+                    <Row className = "username">
                         {props.info.User.Username}
                     </Row>
                     </Link>

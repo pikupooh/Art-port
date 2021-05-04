@@ -57,7 +57,6 @@ class App extends React.Component {
               <Route path = '/blog/:blog_id' component = {blogData} />
               <Route path = '/comic/:comic_id' component = {ComicData} />
               <Route path = '/mangas/:manga_id' component = {MangaData} />
-              <Route path = '/artist/:user_id' component = {ArtistProfile} />
               <Route path = '/chapter/:chapters_id' component = {MangaIndividualChapter} />
               <SignInModal show = {this.state.show} handleModalClose = {this.handleModalClose}
                 handleModalShow = {this.handleModalShow}
