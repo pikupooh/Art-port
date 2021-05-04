@@ -6,7 +6,7 @@ class RegisterForm extends React.Component{
         return(
             <Form>
                 <Form.Group>
-                    <Form.Label>Email address</Form.Label>
+                    <Form.Label >Email address</Form.Label>
                     <Form.Control type="email" placeholder="Enter email" />
                 </Form.Group>
 
@@ -16,11 +16,9 @@ class RegisterForm extends React.Component{
                 </Form.Group>
 
                 <Form.Group>
-                    <Form.Label>Confirm Password</Form.Label>
+                    <Form.Label >Confirm Password</Form.Label>
                     <Form.Control type="password" placeholder="Password" />
                 </Form.Group>
-
-
                 <Button variant="primary" type="submit">
                     Register
                 </Button>

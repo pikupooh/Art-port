@@ -16,6 +16,9 @@ import MangaData from './components/main_components/mangaData'
 import ArtistProfile from './components/main_components/artistProfile'
 import FooterComponent from './components/small_components/footerComponent'
 import MangaIndividualChapter from './components/small_components/mangaDataDisplayComponents/mangaIndividualChapter'
+import RegistrationForm from './components/sign_in_components/registrationForm'
+import UploadPostForm from "./components/sign_in_components/uploadPostForm";
+import UploadBlogForm from "./components/sign_in_components/uploadBlogForm"
 
 
 const NavbarwithRouter = withRouter(NavbarComponent);
@@ -58,6 +61,9 @@ class App extends React.Component {
               <Route path = '/comic/:comic_id' component = {ComicData} />
               <Route path = '/mangas/:manga_id' component = {MangaData} />
               <Route path = '/chapter/:chapters_id' component = {MangaIndividualChapter} />
+              <Route path = '/registration' component ={RegistrationForm}/>
+              <Route path ='/postuploadform/' component ={UploadPostForm}/>
+              <Route path ='/bloguploadform/' component ={UploadBlogForm}/>
               <SignInModal show = {this.state.show} handleModalClose = {this.handleModalClose}
                 handleModalShow = {this.handleModalShow}
               />
