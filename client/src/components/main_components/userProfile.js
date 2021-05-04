@@ -1,14 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Image, Button } from 'react-bootstrap';
+import { Image } from 'react-bootstrap';
 
 import fetchUserDataAction from "../../redux/thunk/fetchUserData";
-import { signOutUserAction } from "../../redux//actions/logActions"
 import UserProfileNavbar from '../small_components/userProfileComponents/userProfileNavbar'
 import UserProfileExtras from '../small_components/userProfileComponents/userProfileExtras'
 import fetchProfileDataAction from "../../redux/thunk/fetchProfileData";
-import SignOutButton from "../small_components/userProfileComponents/signOutButton";
 
 class UserProfile extends React.Component {
 
@@ -18,11 +16,7 @@ class UserProfile extends React.Component {
     this.props.fetchProfileData(id);
   }
 
-  signOut = () => {
-    const { history } = this.props;
-    history.replace('/');
-    this.props.signOutUser();
-  }
+  
 
   render() {
     return (
@@ -48,7 +42,6 @@ class UserProfile extends React.Component {
         </div>
         <UserProfileNavbar match = {this.props.match}/>
         <UserProfileExtras match = {this.props.match}/>
-        <SignOutButton userId = {this.props.userId} artistId = {this.props.location.pathname.slice(6)} signOut = {this.signOut}/>
       </div>
     );
   }
@@ -57,7 +50,6 @@ class UserProfile extends React.Component {
 const mapDispatchToProps = (dispatch) => bindActionCreators(
   {
     fetchUserData: fetchUserDataAction,
-    signOutUser: () => dispatch(signOutUserAction),
     fetchProfileData :fetchProfileDataAction
   },
   dispatch

@@ -12,9 +12,6 @@ $custom_color_1: rgb(238, 129, 39);
 }
 
 
-
-
-
 .modal-content{
     color: $custom_color_1;
     background-color: $body-bg;
@@ -34,11 +31,30 @@ $custom_color_1: rgb(238, 129, 39);
 
 .nav_profile_img{
     margin-top: 4px;
-    margin-left: 40px;
     width: 35px;
     height: 35px;
 }
 
+#nav-dropdown{
+    position: absolute;
+    bottom: 2px;
+    left: 35px;
+    opacity: 0;
+}
+
+.dropdown-menu{
+    background-color: lighten($color: $background-color, $amount: 10) !important;
+    left: -20px !important;
+}
+
+.dropdown-item{
+    &:hover{
+        background-color: lighten($color: $background-color, $amount: 20) !important;
+    }
+    &:active{
+        background-color: lighten($color: $background-color, $amount: 30) !important;
+    }
+}
 
 .profile_page_header{
     margin: 20px;
@@ -320,7 +336,7 @@ $custom_color_1: rgb(238, 129, 39);
     bottom: 1px;
     background-color: $background_color;
 }
-  
+
 
 @import '~bootstrap/scss/bootstrap.scss';
 @import "custom1";
