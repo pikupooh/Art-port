@@ -2,9 +2,10 @@
 package com.example.demo.controller;
 
 import com.example.demo.entities.Chapter;
+import com.example.demo.entities.Manga;
 import com.example.demo.entities.User;
-import com.example.demo.payload.response.UserDTO;
 import com.example.demo.services.ChapterService;
+import com.example.demo.services.MangaService;
 import com.example.demo.services.ProfileService;
 import com.example.demo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,9 @@ public class ChapterController {
     @Autowired
     UserService userService;
     
+    @Autowired
+    MangaService mangaService;
+    
     @GetMapping("/chapter")
     public List<Chapter> getAllPosts() {
 
@@ -40,16 +44,21 @@ public class ChapterController {
     }
 
 
-    @PostMapping("/users/{userId}/chapter")
-    public ResponseEntity<?> createChapter(@PathVariable String userId, @RequestBody Chapter chapter, Principal principal) {
+    @PostMapping("/mangas/{mangaId}/chapter")
+    public ResponseEntity<?> createChapter(@PathVariable String mangaId, @RequestBody Chapter chapter, Principal principal) {
 
         String name = principal.getName();
         User user = userService.getUserByName(name);
         if (user == null)
             return new ResponseEntity<String>("User not present.", HttpStatus.UNAUTHORIZED);
-        if (!user.getId().equals(userId))
-            return new ResponseEntity<String>("User invalid.", HttpStatus.UNAUTHORIZED);
-
+        Manga manga = mangaService.getManga(mangaId);
+        if (manga == null)
+            return new ResponseEntity<String>("Manga not present.", HttpStatus.UNAUTHORIZED);
+        
+        if (!user.getId().equals(manga.getUserDTO().getUserId()))
+            return new ResponseEntity<String>("Owner Invalid", HttpStatus.UNAUTHORIZED);
+        
+        chapter.setMangaId(mangaId);
         Chapter chapter1 = chapterService.createChapter(chapter, user);
         
         return ResponseEntity.ok(chapter1);
@@ -64,7 +73,14 @@ public class ChapterController {
             return new ResponseEntity<String>("User not present.", HttpStatus.UNAUTHORIZED);
         if (!user.getId().equals(userId))
             return new ResponseEntity<String>("User invalid.", HttpStatus.UNAUTHORIZED);
-
+        
+        Chapter chap = chapterService.getChapter(chapterId);
+        
+        if(chap == null)
+            return new ResponseEntity<String>("Chapter not present.", HttpStatus.UNAUTHORIZED);
+        
+        if(!isChapterUsers(chap, user))
+        	return new ResponseEntity<String>("Chapter owner invalid.", HttpStatus.UNAUTHORIZED);
         Chapter chapter = chapterService.deleteChapter(chapterId);
         if (chapter == null)
             return new ResponseEntity<String>("Chapterdoes not exist.", HttpStatus.NOT_FOUND);
@@ -80,7 +96,13 @@ public class ChapterController {
             return new ResponseEntity<String>("User not present.", HttpStatus.UNAUTHORIZED);
         if(!user.getId().equals(id))
             return new ResponseEntity<String>("User invalid.", HttpStatus.UNAUTHORIZED);
-
+        Chapter chap = chapterService.getChapter(chapterId);
+        
+        if(chap == null)
+            return new ResponseEntity<String>("Chapter not present.", HttpStatus.UNAUTHORIZED);
+        
+        if(!isChapterUsers(chap, user))
+        	return new ResponseEntity<String>("Chapter owner invalid.", HttpStatus.UNAUTHORIZED);
         Chapter chapter1 = chapterService.updateChapter(chapter, chapterId);
 
         if(chapter1 == null)
@@ -89,6 +111,14 @@ public class ChapterController {
         return ResponseEntity.ok(chapter1);
     }
 
+    private boolean isChapterUsers(Chapter chapter, User user) {
+    	Manga manga = mangaService.getManga(chapter.getMangaId());
+    	if(manga == null)
+    		return false;
+    	if(manga.getUserDTO().getUsername() == user.getUsername())
+    		return true;
+    	return false;
+    }
     /*
     @DeleteMapping("/users/{id}/chapter")
     public ResponseEntity<?> deleteAllPosts(@PathVariable String id, Principal principal){

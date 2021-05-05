@@ -1,6 +1,7 @@
 package com.example.demo.services;
 
 import com.example.demo.entities.Chapter;
+import com.example.demo.entities.Manga;
 import com.example.demo.entities.User;
 import com.example.demo.repositories.ChapterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,9 @@ public class ChapterService {
 
     @Autowired
     ImageService imageService;
+    
+    @Autowired
+    MangaService mangaService;
 
     public List<Chapter> getAll(){
 
@@ -33,7 +37,9 @@ public class ChapterService {
     }
 
     public Chapter createChapter(Chapter chapter, User user){
-        chapterRepository.save(chapter);
+        chapter = chapterRepository.save(chapter);
+        Manga manga = mangaService.getManga(chapter.getMangaId());
+        manga.addChapter(chapter);;
         return chapter;
     }
 
@@ -57,7 +63,9 @@ public class ChapterService {
         chapter1.getImages().forEach((image) ->{
             imageService.deleteimage(image.getId());
         });
-
+        
+        Manga manga = mangaService.getManga(chapter1.getMangaId());
+        manga.removeChapter(chapter1);
         chapterRepository.deleteById(id);
         return chapter1;
     }

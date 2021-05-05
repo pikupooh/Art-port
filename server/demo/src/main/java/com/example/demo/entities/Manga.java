@@ -149,6 +149,16 @@ public class Manga {
     public void removeComment(Comment comment){
 
         this.comments.remove(comment);
-    }   
+    }
+    
+    public void addChapter(Chapter chapter){
+
+        this.chapters.add(chapter);
+    }
+
+    public void removeChapter(Chapter chapter){
+
+        this.chapters.remove(chapter);
+    } 
    
 }

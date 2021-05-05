@@ -25,8 +25,18 @@ public class Chapter {
     private String name;
     @NotBlank
     private int no;
+    @NotBlank
+    private String mangaId;
 
-    public Chapter(){
+    public String getMangaId() {
+		return mangaId;
+	}
+
+	public void setMangaId(String mangaId) {
+		this.mangaId = mangaId;
+	}
+
+	public Chapter(){
     }
 
     public Chapter(String id, List<Image> images, List<Comment> comments, @NotBlank String name, @NotBlank int no) {
