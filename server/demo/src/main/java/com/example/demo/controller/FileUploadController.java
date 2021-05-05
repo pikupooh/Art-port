@@ -2,12 +2,16 @@ package com.example.demo.controller;
 
 
 import com.example.demo.entities.Blog;
+import com.example.demo.entities.Chapter;
 import com.example.demo.entities.Image;
+import com.example.demo.entities.Manga;
 import com.example.demo.entities.Post;
 import com.example.demo.entities.User;
 import com.example.demo.services.BlogService;
+import com.example.demo.services.ChapterService;
 import com.example.demo.services.FileService;
 import com.example.demo.services.ImageService;
+import com.example.demo.services.MangaService;
 import com.example.demo.services.PostService;
 import com.example.demo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +39,12 @@ public class FileUploadController {
 
     @Autowired
     UserService userService;
+    
+    @Autowired
+    MangaService mangaService;
+    
+    @Autowired
+    ChapterService chapterService;
 
     @PostMapping("/post/{postId}/images/upload")
     String uploadImage(@PathVariable String postId, @RequestParam("files") MultipartFile[] multipartFile, Principal principal) throws Exception {
@@ -70,6 +80,46 @@ public class FileUploadController {
             Blog blog = blogService.getBlog(blogId);
             blog.setImg(imageService.getimage(imageId));
             blogService.updateBlog(blog, blogId);
+        });
+        return "Image uploaded successfully";
+
+
+    }
+    
+    @PostMapping("/mangas/{mangaId}/images/upload")
+    String uploadMangaImage(@PathVariable String mangaId, @RequestParam("files") MultipartFile[] multipartFile, Principal principal) throws Exception {
+
+
+        Arrays.asList(multipartFile).stream().forEach(file -> {
+            String imageId = null;
+            try {
+                imageId = fileService.save(file.getBytes(), file.getOriginalFilename(), principal.getName());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            Manga manga = mangaService.getManga(mangaId);
+            manga.setCoverPhoto(imageService.getimage(imageId));
+            mangaService.updateManga(manga, mangaId);
+        });
+        return "Image uploaded successfully";
+
+
+    }
+    
+    @PostMapping("/chapters/{chapId}/images/upload")
+    String uploadChapterImage(@PathVariable String chapId, @RequestParam("files") MultipartFile[] multipartFile, Principal principal) throws Exception {
+
+
+        Arrays.asList(multipartFile).stream().forEach(file -> {
+            String imageId = null;
+            try {
+                imageId = fileService.save(file.getBytes(), file.getOriginalFilename(), principal.getName());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            Chapter chap = chapterService.getChapter(chapId);
+            chap.addImage(imageService.getimage(imageId));
+            chapterService.updateChapter(chap, chapId);
         });
         return "Image uploaded successfully";
 
