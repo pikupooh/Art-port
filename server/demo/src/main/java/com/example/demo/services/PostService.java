@@ -1,7 +1,6 @@
 package com.example.demo.services;
 
 import com.example.demo.entities.Post;
-import com.example.demo.entities.Type;
 import com.example.demo.entities.User;
 import com.example.demo.payload.response.UserDTO;
 import com.example.demo.repositories.PostRepository;
@@ -27,18 +26,9 @@ public class PostService {
 
     public List<Post> getAllPosts(){
 
-        return postRepository.findPostByType(Type.valueOf("POST"));
+        return postRepository.findAll();
     }
 
-    public List<Post> getAllComics(){
-
-        return postRepository.findPostByType(Type.valueOf("COMIC"));
-    }
-
-    public List<Post> getAllManga(){
-
-        return postRepository.findPostByType(Type.valueOf("MANGA"));
-    }
 
     public Post getPost(String id) {
 
@@ -50,29 +40,6 @@ public class PostService {
 
         UserDTO userDTO = new UserDTO(user.getId(), user.getUsername(), user.getFirstName(), user.getLastName(), user.getProfilePhoto());
 
-        post.setType(Type.valueOf("POST"));
-        post.setUploadDate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")));
-        post.setUserDTO(userDTO);
-        postRepository.save(post);
-        return post;
-    }
-
-    public Post createComic(Post post, User user){
-
-        UserDTO userDTO = new UserDTO(user.getId(), user.getUsername(), user.getFirstName(), user.getLastName(), user.getProfilePhoto());
-
-        post.setType(Type.valueOf("COMIC"));
-        post.setUploadDate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")));
-        post.setUserDTO(userDTO);
-        postRepository.save(post);
-        return post;
-    }
-
-    public Post createManga(Post post, User user){
-
-        UserDTO userDTO = new UserDTO(user.getId(), user.getUsername(), user.getFirstName(), user.getLastName(), user.getProfilePhoto());
-
-        post.setType(Type.valueOf("MANGA"));
         post.setUploadDate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")));
         post.setUserDTO(userDTO);
         postRepository.save(post);

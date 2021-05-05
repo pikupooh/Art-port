@@ -29,7 +29,6 @@ public class Post {
     private String title;
     @NotBlank
     private String description;
-    private Type type;
 
     public Post(){
     }
@@ -142,14 +141,6 @@ public class Post {
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
-    }
-
-    public Type getType() {
-        return type;
-    }
-
-    public void setType(Type type) {
-        this.type = type;
     }
 
     @Override
