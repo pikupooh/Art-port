@@ -8,10 +8,8 @@ import com.example.demo.repositories.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -50,7 +48,7 @@ public class PostService {
 
     public Post createPost(Post post, User user){
 
-        UserDTO userDTO = new UserDTO(user.getId(), user.getUsername(), user.getProfilePhoto());
+        UserDTO userDTO = new UserDTO(user.getId(), user.getUsername(), user.getFirstName(), user.getLastName(), user.getProfilePhoto());
 
         post.setType(Type.valueOf("POST"));
         post.setUploadDate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")));
@@ -61,7 +59,7 @@ public class PostService {
 
     public Post createComic(Post post, User user){
 
-        UserDTO userDTO = new UserDTO(user.getId(), user.getUsername(), user.getProfilePhoto());
+        UserDTO userDTO = new UserDTO(user.getId(), user.getUsername(), user.getFirstName(), user.getLastName(), user.getProfilePhoto());
 
         post.setType(Type.valueOf("COMIC"));
         post.setUploadDate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")));
@@ -72,7 +70,7 @@ public class PostService {
 
     public Post createManga(Post post, User user){
 
-        UserDTO userDTO = new UserDTO(user.getId(), user.getUsername(), user.getProfilePhoto());
+        UserDTO userDTO = new UserDTO(user.getId(), user.getUsername(), user.getFirstName(), user.getLastName(), user.getProfilePhoto());
 
         post.setType(Type.valueOf("MANGA"));
         post.setUploadDate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")));

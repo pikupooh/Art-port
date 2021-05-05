@@ -67,7 +67,7 @@ public class AuthController {
                     .body("Email is already in use");
         }
 
-        User user = new User(signUpRequest.getUsername(), signUpRequest.getEmail(), passwordEncoder.encode(signUpRequest.getPassword()));
+        User user = new User(signUpRequest.getUsername(), signUpRequest.getFirstName(), signUpRequest.getLastName(), signUpRequest.getEmail(), passwordEncoder.encode(signUpRequest.getPassword()), signUpRequest.getDateOfBirth());
         System.out.println("REached here");
         userRepository.save(user);
         System.out.println("here");

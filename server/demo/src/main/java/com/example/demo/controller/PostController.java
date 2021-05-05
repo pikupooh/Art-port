@@ -26,23 +26,11 @@ public class PostController {
 
     @Autowired
     UserService userService;
-
+    
     @GetMapping("/post")
     public List<Post> getAllPosts() {
 
         return postService.getAllPosts();
-    }
-
-    @GetMapping("/comic")
-    public List<Post> getAllComics() {
-
-        return postService.getAllComics();
-    }
-
-    @GetMapping("/manga")
-    public List<Post> getAllManga() {
-
-        return postService.getAllManga();
     }
 
     @GetMapping("/post/{id}")
@@ -67,39 +55,7 @@ public class PostController {
 
         return ResponseEntity.ok(post1);
     }
-
-    @PostMapping("/users/{userId}/comic")
-    public ResponseEntity<?> createComic(@PathVariable String userId, @RequestBody Post post, Principal principal) {
-
-        String name = principal.getName();
-        User user = userService.getUserByName(name);
-        if (user == null)
-            return new ResponseEntity<String>("User not present.", HttpStatus.UNAUTHORIZED);
-        if (!user.getId().equals(userId))
-            return new ResponseEntity<String>("User invalid.", HttpStatus.UNAUTHORIZED);
-
-        Post post1 = postService.createComic(post, user);
-        profileService.addPost(userId, post);
-
-        return ResponseEntity.ok(post1);
-    }
-
-    @PostMapping("/users/{userId}/manga")
-    public ResponseEntity<?> createManga(@PathVariable String userId, @RequestBody Post post, Principal principal) {
-
-        String name = principal.getName();
-        User user = userService.getUserByName(name);
-        if (user == null)
-            return new ResponseEntity<String>("User not present.", HttpStatus.UNAUTHORIZED);
-        if (!user.getId().equals(userId))
-            return new ResponseEntity<String>("User invalid.", HttpStatus.UNAUTHORIZED);
-
-        Post post1 = postService.createManga(post, user);
-        profileService.addPost(userId, post);
-
-        return ResponseEntity.ok(post1);
-    }
-
+  
     @DeleteMapping("users/{userId}/posts/{postId}")
     public ResponseEntity<?> deletePost(@PathVariable String userId, @PathVariable String postId, Principal principal) {
 
@@ -145,7 +101,7 @@ public class PostController {
 
         User user = userService.getUserByName(principal.getName());
 
-        UserDTO userDTO = new UserDTO(user.getId(), user.getUsername(), user.getProfilePhoto());
+        UserDTO userDTO = new UserDTO(user.getId(), user.getUsername(), user.getFirstName(), user.getLastName(), user.getProfilePhoto());
         if(post.getLikes().contains(userDTO))
             return new ResponseEntity<String>("Already liked", HttpStatus.UNAUTHORIZED);
 
@@ -166,7 +122,7 @@ public class PostController {
 
         User user = userService.getUserByName(principal.getName());
 
-        post.removeLike(new UserDTO(user.getId(), user.getUsername(), user.getProfilePhoto()));
+        post.removeLike(new UserDTO(user.getId(), user.getUsername(), user.getFirstName(), user.getLastName(), user.getProfilePhoto()));
         postService.save(post);
 
         return ResponseEntity.ok("Like removed.");

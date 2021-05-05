@@ -38,7 +38,7 @@ public class CommentService {
         comment.setTypeId(typeId);
         User user = userRepository.findByUsername(username).get();
 
-        UserDTO userDTO = new UserDTO(user.getId(), user.getUsername(), user.getProfilePhoto());
+        UserDTO userDTO = new UserDTO(user.getId(), user.getUsername(), user.getFirstName(), user.getLastName(), user.getProfilePhoto());
         comment.setUserDTO(userDTO);
 
         commentRepository.save(comment);
@@ -58,7 +58,7 @@ public class CommentService {
         reply.setComment(comment);
 
         User user = userRepository.findByUsername(username).get();
-        UserDTO userDTO = new UserDTO(user.getId(), user.getUsername(), user.getProfilePhoto());
+        UserDTO userDTO = new UserDTO(user.getId(), user.getUsername(), user.getFirstName(), user.getLastName(), user.getProfilePhoto());
         reply.setUserDTO(userDTO);
 
         replyRepository.save(reply);

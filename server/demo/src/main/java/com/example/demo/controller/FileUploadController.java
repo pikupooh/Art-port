@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 
 import com.example.demo.entities.Blog;
+import com.example.demo.entities.Image;
 import com.example.demo.entities.Post;
 import com.example.demo.entities.User;
 import com.example.demo.services.BlogService;
@@ -10,16 +11,13 @@ import com.example.demo.services.ImageService;
 import com.example.demo.services.PostService;
 import com.example.demo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.FileSystemResource;
-import org.springframework.core.io.Resource;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 import java.security.Principal;
 import java.util.Arrays;
 
+@CrossOrigin
 @RestController
 public class FileUploadController {
 
@@ -78,20 +76,33 @@ public class FileUploadController {
 
     }
 
-    @PostMapping("/user/{userId}/upload")
+    @PostMapping("/users/{userId}/upload")
     String profilePhoto(@PathVariable String userId, @RequestParam("files") MultipartFile[] multipartFile, Principal principal) throws Exception {
+    	User user = userService.getUser(userId);
+    	if(user.getProfilePhoto() == null) {
 
-
-        Arrays.asList(multipartFile).stream().forEach(file -> {
-            String imageId = null;
+	        Arrays.asList(multipartFile).stream().forEach(file -> {
+	            String imageId = null;
+	            try {
+	                imageId = fileService.save(file.getBytes(), file.getOriginalFilename(), principal.getName());
+	            } catch (Exception e) {
+	                e.printStackTrace();
+	            }
+	            user.setProfilePhoto(imageService.getimage(imageId));
+	            userService.updateUser(user, userId);
+	        });
+	        return "Image uploaded successfully";
+    	}
+    	
+    	Arrays.asList(multipartFile).stream().forEach(file -> {
+            String link = null;
             try {
-                imageId = fileService.save(file.getBytes(), file.getOriginalFilename(), principal.getName());
+                link = fileService.uploadToImgur(file.getBytes());
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            User user = userService.getUser(userId);
-            user.setProfilePhoto(imageService.getimage(imageId));
-            userService.updateUser(user, userId);
+            Image img = user.getProfilePhoto();
+            img.setLink(link);
         });
         return "Image uploaded successfully";
 

@@ -1,15 +1,12 @@
 package com.example.demo.entities;
 
 import com.example.demo.payload.response.UserDTO;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.Objects;
 
 @Document(collection = "replies")

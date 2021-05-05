@@ -5,5 +5,6 @@ public enum Type {
     POST,
     BLOG,
     MANGA,
-    COMIC
+    COMIC,
+    CHAPTER
 }

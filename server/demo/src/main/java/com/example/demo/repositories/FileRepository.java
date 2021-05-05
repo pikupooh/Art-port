@@ -1,6 +1,5 @@
 package com.example.demo.repositories;
 
-import com.example.demo.services.ImageService;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.stereotype.Repository;
 

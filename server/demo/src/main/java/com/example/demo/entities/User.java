@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
@@ -16,11 +17,13 @@ public class User {
     private String firstName;
     private String lastName;
     private String email;
+    private String about;
     private Role role = Role.USER;
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
     private Image profilePhoto;
-    @JsonFormat(pattern = "dd-mm-yyyy")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateOfBirth;
     private boolean isEnabled = false;
 
@@ -28,7 +31,7 @@ public class User {
 
     }
 
-    public User(String id, String username, String firstName, String lastName, String email, Role role, String password) {
+    public User(String id, String username, String firstName, String lastName, String email, Role role, String password, LocalDate dateOfBirth, String about) {
         this.id = id;
         this.username = username;
         this.firstName = firstName;
@@ -36,13 +39,18 @@ public class User {
         this.email = email;
         this.role = role;
         this.password = password;
+        this.dateOfBirth = dateOfBirth;
+        this.about = about;
     }
 
-    public User(String username, String email, String password) {
+    public User(String username, String firstName, String lastName, String email, String password, LocalDate dateOfBirth) {
         this.username = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
         this.password = password;
-
+        this.dateOfBirth = dateOfBirth;
+        this.about = "";
     }
 
     public String getId() {
@@ -136,4 +144,12 @@ public class User {
                 ", role=" + role +
                 '}';
     }
+
+	public String getAbout() {
+		return about;
+	}
+
+	public void setAbout(String about) {
+		this.about = about;
+	}
 }

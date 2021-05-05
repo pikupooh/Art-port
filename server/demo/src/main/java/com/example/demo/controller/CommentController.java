@@ -3,7 +3,9 @@ package com.example.demo.controller;
 import com.example.demo.entities.*;
 import com.example.demo.payload.request.CommentBody;
 import com.example.demo.services.BlogService;
+import com.example.demo.services.ChapterService;
 import com.example.demo.services.CommentService;
+import com.example.demo.services.MangaService;
 import com.example.demo.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,6 +26,12 @@ public class CommentController {
 
     @Autowired
     BlogService blogService;
+    
+    @Autowired
+    MangaService mangaService;
+    
+    @Autowired
+    ChapterService chapterService;
 
     @GetMapping("/post/{postId}/comment")
     public ResponseEntity<?> getCommentPost(@PathVariable String postId){
@@ -75,6 +83,38 @@ public class CommentController {
 
         blog.addComment(comment);
         blogService.updateBlog(blog, blogId);
+
+        return ResponseEntity.ok("Comment added");
+    }
+    
+    @PostMapping("/manga/{mangaId}/comment")
+    public ResponseEntity<?> addCommentManga(@PathVariable String mangaId, @Valid @RequestBody CommentBody commentBody, Principal principal){
+        Manga manga = mangaService.getManga(mangaId);
+
+        if(manga == null){
+            return new ResponseEntity<String>("Manga not found.", HttpStatus.NOT_FOUND);
+        }
+
+        Comment comment = commentService.createComment(principal.getName(), commentBody.getContent(), "MANGA", mangaId);
+
+        manga.addComment(comment);
+        mangaService.updateManga(manga, mangaId);
+
+        return ResponseEntity.ok("Comment added");
+    }
+    
+    @PostMapping("/manga/{mangaId}/chapter/{chapId}/comment")
+    public ResponseEntity<?> addCommentChapter(@PathVariable String mangaId, @PathVariable String chapId, @Valid @RequestBody CommentBody commentBody, Principal principal){
+        Chapter chap = chapterService.getChapter(chapId);
+
+        if(chap == null){
+            return new ResponseEntity<String>("Manga not found.", HttpStatus.NOT_FOUND);
+        }
+
+        Comment comment = commentService.createComment(principal.getName(), commentBody.getContent(), "CHAPTER", mangaId);
+
+        chap.addComment(comment);
+        chapterService.updateChapter(chap, chapId);
 
         return ResponseEntity.ok("Comment added");
     }
@@ -141,6 +181,18 @@ public class CommentController {
             Blog blog = blogService.getBlog(blogId);
             blog.removeComment(comment);
             blogService.updateBlog(blog, blogId);
+        }
+        else if(comment.getType() == Type.MANGA){
+            String mangaId = comment.getTypeId();
+            Manga manga = mangaService.getManga(mangaId);
+            manga.removeComment(comment);
+            mangaService.updateManga(manga, mangaId);
+        }
+        else if(comment.getType() == Type.CHAPTER){
+            String chapId = comment.getTypeId();
+            Chapter chap = chapterService.getChapter(chapId);
+            chap.removeComment(comment);
+            chapterService.updateChapter(chap, chapId);
         }
         return ResponseEntity.ok("Comment Deleted.");
 

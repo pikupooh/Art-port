@@ -92,7 +92,7 @@ public class BlogController {
 
         User user = userService.getUserByName(principal.getName());
 
-        UserDTO userDTO = new UserDTO(user.getId(), user.getUsername(), user.getProfilePhoto());
+        UserDTO userDTO = new UserDTO(user.getId(), user.getUsername(), user.getFirstName(), user.getLastName(), user.getProfilePhoto());
         if(blog.getLikes().contains(userDTO))
             return new ResponseEntity<String>("Already liked", HttpStatus.UNAUTHORIZED);
 
@@ -113,7 +113,7 @@ public class BlogController {
 
         User user = userService.getUserByName(principal.getName());
 
-        blog.removeLike(new UserDTO(user.getId(), user.getUsername(), user.getProfilePhoto()));
+        blog.removeLike(new UserDTO(user.getId(), user.getUsername(), user.getFirstName(), user.getLastName(), user.getProfilePhoto()));
         blogService.save(blog);
 
         return ResponseEntity.ok("Like removed.");

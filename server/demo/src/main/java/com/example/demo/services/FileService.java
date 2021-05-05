@@ -1,21 +1,14 @@
 package com.example.demo.services;
 
 import com.example.demo.entities.Image;
-import com.example.demo.payload.response.ImgBBRes;
+// import com.example.demo.payload.response.ImgBBRes;
 import com.example.demo.payload.response.ImgurRes;
-import com.example.demo.repositories.FileRepository;
 import com.example.demo.repositories.ImageRepository;
 import com.example.demo.repositories.PostRepository;
 
-import java.io.IOException;
-import java.util.Base64;
-
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ByteArrayResource;
-import org.springframework.core.io.FileSystemResource;
-import org.springframework.core.io.Resource;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -25,16 +18,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
 @Service
 public class FileService {
-
-    @Autowired
-    FileRepository fileRepository;
 
     @Autowired
     ImageRepository imageRepository;

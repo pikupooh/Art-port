@@ -22,7 +22,7 @@ public class Blog {
 	@Id
 	private String id;
 	private Date uploadDate;
-	@DBRef
+
 	private UserDTO author;
 	private String title;
 	private String description;
@@ -30,7 +30,7 @@ public class Blog {
 	private Image img;
 	private String content;
 	@DBRef
-	private List<Comment> comments;
+	private List<Comment> comments = Collections.emptyList();
 	private List<UserDTO> likes = Collections.emptyList();
 
 	public Blog(){
@@ -38,10 +38,11 @@ public class Blog {
 	}
 	
 	
-	public Blog(Date uploadDate, User author, String title, String description, Image img, String content) {
+	public Blog(Date uploadDate, User author, String title, String description, String content) {
 		this.title = title;
 		this.description = description;
 		this.content = content;
+		this.img = null;
 	}
 	public String getId() {
 		return id;

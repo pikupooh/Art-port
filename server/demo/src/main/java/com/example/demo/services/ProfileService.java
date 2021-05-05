@@ -1,6 +1,7 @@
 package com.example.demo.services;
 
 import com.example.demo.entities.Blog;
+import com.example.demo.entities.Manga;
 import com.example.demo.entities.Post;
 import com.example.demo.entities.Profile;
 import com.example.demo.entities.User;
@@ -8,7 +9,6 @@ import com.example.demo.payload.response.UserDTO;
 import com.example.demo.repositories.ProfileRepository;
 import com.example.demo.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.MongoOperations;
 
 import org.springframework.stereotype.Service;
 
@@ -50,6 +50,11 @@ public class ProfileService {
 
         return profileRepository.findUserBlogsById(id).getUserBlogs();
     }
+    
+    public List<Manga> getUserMangas(String id){
+
+        return profileRepository.findUserMangasById(id).getUserMangas();
+    }
 
     public List<UserDTO> getFollowers(String id){
 
@@ -57,7 +62,7 @@ public class ProfileService {
         List<UserDTO> userDTOList = new ArrayList<>();
         List<User> followers = profileRepository.findFollowersById(id).getFollowers();
         followers.forEach((user) -> {
-            UserDTO userDTO = new UserDTO(user.getId(), user.getUsername(), user.getProfilePhoto());
+            UserDTO userDTO = new UserDTO(user.getId(), user.getUsername(), user.getFirstName(), user.getLastName(), user.getProfilePhoto());
             userDTOList.add(userDTO);
         });
 
@@ -69,7 +74,7 @@ public class ProfileService {
         List<UserDTO> userDTOList = new ArrayList<>();
         List<User> following = profileRepository.findFollowingById(id).getFollowing();
         following.forEach((user) -> {
-            UserDTO userDTO = new UserDTO(user.getId(), user.getUsername(), user.getProfilePhoto());
+            UserDTO userDTO = new UserDTO(user.getId(), user.getUsername(), user.getFirstName(), user.getLastName(), user.getProfilePhoto());
             userDTOList.add(userDTO);
             System.out.println(userDTOList);
         });
@@ -88,6 +93,11 @@ public class ProfileService {
         return profileRepository.findFavoriteBlogsById(id).getFavoriteBlogs();
     }
 
+    public List<Manga> getFavoriteMangas(String id){
+
+        return profileRepository.findFavoriteMangasById(id).getFavoriteMangas();
+    }
+    
     public void addFollower(String userId, String followerId){
 
 
@@ -149,6 +159,21 @@ public class ProfileService {
         profileRepository.save(profile);
     }
 
+    public void addFavoriteManga(String id, Manga manga){
+
+        Profile profile = profileRepository.findById(id).get();
+        profile.addFavoriteManga(manga);
+        profileRepository.save(profile);
+    }
+
+    public void deleteFavoriteManga(String id, Manga manga){
+
+        Profile profile = profileRepository.findById(id).get();
+        System.out.println(manga);
+        profile.removeFavoriteManga(manga);
+        profileRepository.save(profile);
+    }
+    
     public void addPost(String id, Post post){
 
         Profile profile = profileRepository.findById(id).get();
@@ -173,7 +198,25 @@ public class ProfileService {
     public void removeBlog(String id, Blog blog){
 
         Profile profile = profileRepository.findById(id).get();
-        profile.removeBlog(blog);
+        profile.deleteBlog(blog);
         profileRepository.save(profile);
+    }
+    
+    public void addManga(String id, Manga manga){
+
+        Profile profile = profileRepository.findById(id).get();
+        profile.addManga(manga);
+        profileRepository.save(profile);
+    }
+
+    public void removeManga(String id, Manga manga){
+
+        Profile profile = profileRepository.findById(id).get();
+        profile.deleteManga(manga);
+        profileRepository.save(profile);
+    }
+    
+    public void save(Profile profile) {
+    	profileRepository.save(profile);
     }
 }

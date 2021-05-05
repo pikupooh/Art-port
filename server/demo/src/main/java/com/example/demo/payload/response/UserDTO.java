@@ -5,30 +5,36 @@ import java.util.Objects;
 
 public class UserDTO {
 
-    private String userId;
+    private String id;
     private String username;
+    private String firstName;
+    private String lastName;
     private Image profilePhoto;
 
     public UserDTO() {
     }
 
-    public UserDTO(String userId, String username) {
-        this.userId = userId;
+    public UserDTO(String userId, String username, String firstName, String lastName) {
+        this.id = userId;
         this.username = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
-    public UserDTO(String userId, String username, Image profilePhoto) {
-        this.userId = userId;
+    public UserDTO(String userId, String username, String firstName, String lastName, Image profilePhoto) {
+        this.id = userId;
         this.username = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.profilePhoto = profilePhoto;
     }
 
     public String getUserId() {
-        return userId;
+        return id;
     }
 
     public void setUserId(String userId) {
-        this.userId = userId;
+        this.id = userId;
     }
 
     public String getUsername() {
@@ -50,7 +56,7 @@ public class UserDTO {
     @Override
     public String toString() {
         return "UserDTO{" +
-                "userId='" + userId + '\'' +
+                "userId='" + id + '\'' +
                 ", username='" + username + '\'' +
                 ", profilePhoto='" + profilePhoto + '\'' +
                 '}';
@@ -61,11 +67,27 @@ public class UserDTO {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UserDTO userDTO = (UserDTO) o;
-        return userId.equals(userDTO.userId);
+        return id.equals(userDTO.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userId);
+        return Objects.hash(id);
     }
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 }

@@ -15,15 +15,20 @@ public class Profile {
     @DBRef
     private List<Post> userPosts;
     @DBRef
+    private List<Blog> userBlogs;
+    @DBRef
+    private List<Manga> userMangas;
+    @DBRef
     private List<User> followers;
     @DBRef
     private List<User> following;
     @DBRef
     private List<Post> favoritePosts;
     @DBRef
-    private List<Blog> userBlogs;
-    @DBRef
     private List<Blog> favoriteBlogs;
+    @DBRef
+    private List<Manga> favoriteMangas;
+    private List<Rating> userRatings;
 
     public Profile() {
 
@@ -33,7 +38,10 @@ public class Profile {
         this.favoritePosts = new ArrayList<>();
         this.userBlogs = new ArrayList<>();
         this.favoriteBlogs = new ArrayList<>();
-
+        this.favoriteMangas = new ArrayList<>();
+        this.userBlogs = new ArrayList<>();
+        this.userMangas = new ArrayList<>();
+        this.userRatings = new ArrayList<>();
     }
 
     public String getId() {
@@ -52,7 +60,23 @@ public class Profile {
         this.userPosts = userPosts;
     }
 
-    public List<User> getFollowers() {
+	public List<Manga> getUserMangas() {
+		return userMangas;
+	}
+
+	public void setUserMangas(List<Manga> userManga) {
+		this.userMangas = userManga;
+	}
+
+	public List<Manga> getFavoriteMangas() {
+		return favoriteMangas;
+	}
+
+	public void setFavoriteMangas(List<Manga> favoriteMangas) {
+		this.favoriteMangas = favoriteMangas;
+	}
+
+	public List<User> getFollowers() {
         return followers;
     }
 
@@ -118,7 +142,7 @@ public class Profile {
         this.userBlogs.add(blog);
     }
 
-    public void removeBlog(Blog blog){
+    public void deleteBlog(Blog blog){
 
         this.userBlogs.remove(blog);
     }
@@ -153,6 +177,27 @@ public class Profile {
         this.following.remove(user);
     }
 
+    public void addManga(Manga manga){
+
+        this.userMangas.add(manga);
+    }
+
+    public void deleteManga(Manga manga){
+
+        this.userMangas.remove(manga);
+    }
+
+    public void addFavoriteManga(Manga manga){
+
+        this.favoriteMangas.add(manga);
+    }
+
+    public void removeFavoriteManga(Manga manga){
+
+        System.out.println(this.favoriteMangas);
+        this.favoriteMangas.remove(manga);
+    }
+    
 
 	@Override
     public String toString() {
@@ -165,4 +210,12 @@ public class Profile {
                 ", favoriteBlogs=" + favoriteBlogs +
                 '}';
     }
+
+	public List<Rating> getUserRatings() {
+		return userRatings;
+	}
+
+	public void setUserRatings(List<Rating> userRatings) {
+		this.userRatings = userRatings;
+	}
 }
