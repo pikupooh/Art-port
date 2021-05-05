@@ -2,7 +2,7 @@ import { fetchBlogDataAction } from '../actions/fetchBlogDataAction'
 
 function fetchBlogData(id) {
     return dispatch => {
-        fetch(`http://localhost:8080/blog/${id}`)
+        fetch(`http://localhost:3000/dummy2/blogs.json`)
         .then(res =>  res.json())
         .then(res => {
             if(res.error) {
