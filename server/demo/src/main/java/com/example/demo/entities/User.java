@@ -22,6 +22,7 @@ public class User {
     private Image profilePhoto;
     @JsonFormat(pattern = "dd-mm-yyyy")
     private LocalDate dateOfBirth;
+    private boolean isEnabled = false;
 
     public User() {
 
@@ -114,6 +115,14 @@ public class User {
 
     public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+    }
+
+    public boolean isEnabled() {
+        return isEnabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.isEnabled = enabled;
     }
 
     @Override
