@@ -10,10 +10,10 @@ function BlogDataComments(props){
     }
     else{
         return(
-            <div>
+            <div className = "blog_data_comments">
                 {props.comments.map((comment) => 
-                    <div key = {comment.CommentId}>
-                        <BlogDataComment comment = {comment}/>
+                    <div key = {comment.CommentId} >
+                        <BlogDataComment comment = {comment} />
                     </div>
                 )}
                 <BlogCommentSection />

@@ -9,8 +9,8 @@ function BlogCommentSection(){
                         <Form.Control as="textarea" rows = {3} placeholder = "Enter comment here">
                         </Form.Control>
                         <Row>
-                            <Col >
-                                <Button className = "btn-sm ml-auto">
+                            <Col className = "comment_button" >
+                                <Button className = "btn-sm" id = "blog_data_comment_btn">
                                     Comment
                                 </Button>
                             </Col>

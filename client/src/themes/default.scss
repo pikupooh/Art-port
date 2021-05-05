@@ -203,6 +203,11 @@ body{
     padding: 10px !important;
 }
 
+.blog_list_blog_title{
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
 .carousel-inner{
     padding-top: 0 !important;
     padding-bottom: 0 !important;
@@ -247,6 +252,19 @@ body{
     font-weight: 400;
 }
 
+@media (max-width: 1400px){
+    .blog_page_title{
+        position: relative;
+        margin: 0;
+    }
+
+    .blog_page_description{
+        position: relative;
+        margin: 0;
+    }
+}
+
+
 .blog_header_image_container{
     width: 100%;
     height: 80vh;
@@ -264,6 +282,7 @@ body{
     padding-right: 20px;
 }
 
+
 .carousel-inner{
     padding-top: 20px;
     padding-bottom: 20px; 
@@ -279,8 +298,8 @@ body{
 }
 
 .blog_page_uploader{
-    width: 50px;
-    height: 50px;
+    width: 100px;
+    height: 100px;
 }
 
 
@@ -337,9 +356,47 @@ body{
     }
 }
 
-@import '~bootstrap/scss/bootstrap.scss';
-@import "custom1";
+.blog_data_comments{
+    background-color: lighten($color: $background-color, $amount: 10);
+    padding-top: 20px;
+    margin-top: 10px;
+    text-align: left !important;
+}
+
+#blog_data_comment_btn{
+    background-color: rgb(43, 136, 58) !important;
+    border-color: rgb(43, 136, 58) !important;
+
+    &:hover{
+        background-color: lighten($color: rgb(43, 136, 58), $amount: 10) !important
+    }
+
+    &:active{
+        box-shadow: 5px rgb(43, 136, 58) !important
+    }
+}
+
+.blog_page_username{
+    font-size: 30px;
+}
+
+.likes_modal_btn{
+
+    color: rgb(112, 147, 241);
+    font-weight: 600;
+    position: absolute;
+    bottom: 0;
+
+    &:hover{
+        cursor: pointer;
+        color: rgba(112, 147, 241, 0.8)
+    }
+}
+
+
 @import "homegrid";
 @import "postUploaderDetails";
 @import "mangaList.scss";
-@import "mangaData.scss"
+@import "mangaData.scss";
+@import "custom1";
+@import '~bootstrap/scss/bootstrap.scss';

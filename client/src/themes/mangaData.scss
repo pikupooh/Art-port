@@ -93,3 +93,18 @@
         background-color: $background-color;
     }
 }
+
+
+.mangaChapterDetails{
+    background-color: lighten($color: $background-color, $amount: 10);
+}
+
+.manga_chapter_images_container{
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.manga_chapter_title{
+    color: $custom_color_1;
+    font-size: 1.5rem;
+}

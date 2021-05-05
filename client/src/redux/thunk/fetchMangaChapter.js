@@ -10,6 +10,7 @@ function fetchMangaChapter(id) {
                 throw(res.error);
             }
             res = res.filter((mangaChapter) => mangaChapter.id === id)
+            console.log(res[0]);
             dispatch(fetchMangaChapterAction(res[0]))   
             return res;
         })

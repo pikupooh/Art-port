@@ -10,7 +10,7 @@ function PostLikedModal(props){
                                         
                         </Image>
                     </Col>
-                <Col className = "my-auto">
+                <Col className = "my-auto username">
                     {props.like.Username}
                 </Col>
                 </Row>

@@ -7,27 +7,34 @@ import BlogDataComments from "../blogDataComponent/blogDataComments"
 class MangaIndividualChapter extends React.Component {
     componentDidMount() {
         let chapterId = this.props.location.pathname.slice(9);
-        this.props.fetchMangaChapter(chapterId)
+        this.props.fetchMangaChapter(chapterId);
+        window.scrollTo(0,0)
       }
 
-    render () {
-    console.log(this.props);
+  render () {
     return ( 
-        
-        <Container>
-         CHAPTER NO:   {this.props.chapterNo}
-            <div>CHAPTER NAME : {this.props.chapterName}</div>
-            {this.props.photoDocument.map((photo) => 
-                        <div> 
-                        <Image src ={photo.url} fluid></Image>
-                        </div>
-                )} 
-                <BlogDataComments comments = {this.props.comments}/>
-        </Container>
       
-     );
-    }
-     
+      <Container className = 'text-center'>
+        <div className = "my-5 py-5 mangaChapterDetails">
+          <div>
+            CHAPTER NO:   {this.props.chapterNo}
+          </div>
+          <div className = "manga_chapter_title">
+            {this.props.chapterName}
+          </div>
+        </div>
+        <div className = "manga_chapter_images_container">
+          {this.props.photoDocument.map((photo) => 
+            <div key = {photo.id}> 
+              <Image src ={photo.url} fluid className = "my-3"></Image>
+            </div>
+          )} 
+        </div>
+        <BlogDataComments comments = {this.props.comments}/>
+      </Container>
+    
+    );
+  } 
 }
 const mapDispatchToProps = (dispatch) =>
 bindActionCreators(

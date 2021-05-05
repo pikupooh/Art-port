@@ -58,14 +58,14 @@ class blogData extends React.Component {
             </div>
           </div>
         </div>
-        <Container>
-          <Row className = "my-5">
-            <Col sm = {1}>
-              <Image src = {this.props.user.ProfilePhoto} className = "blog_page_uploader" roundedCircle></Image>
+        <Container className = "container-fluid">
+          <Row className = "m-2 mt-4">
+            <Col sm = {2} >
+              <Image fluid src = {this.props.user.ProfilePhoto} className = "blog_page_uploader" roundedCircle></Image>
             </Col>
             <Col className = "text-left my-auto">
               <Link to = {'/artist/' + this.props.user.UserId}>
-              <Row>
+              <Row className = "username blog_page_username">
                 {this.props.user.Username}
               </Row>
               </Link>
@@ -83,15 +83,15 @@ class blogData extends React.Component {
               <Button>
                 Like the blog?
               </Button>
-              <Button className = "ml-2" onClick = {this.showLikesModal}>
+              <span className = "ml-3 likes_modal_btn" onClick = {this.showLikesModal}>
                  {this.props.likes.length} Likes
-              </Button>
+              </span>
             </Col>
           </Row>
-          <Row>
+          <Row className = "mx-2">
             Tags
           </Row>
-          <Row>
+          <Row className = "mx-2">
             <div> 
               {this.props.tags.map((tag, index) =>
                 <Fragment key = {index}>
