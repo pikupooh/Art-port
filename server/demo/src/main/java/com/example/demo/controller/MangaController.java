@@ -40,6 +40,12 @@ public class MangaController {
 
         return mangaService.getAllManga();
     }
+    
+    @GetMapping("/manga/{mangaId}")
+    public Manga getManga(@RequestBody String mangaId) {
+
+        return mangaService.getManga(mangaId);
+    }
 
     @PostMapping("/users/{userId}/manga")
     public ResponseEntity<?> createManga(@PathVariable String userId, @RequestBody Manga manga, Principal principal) {
