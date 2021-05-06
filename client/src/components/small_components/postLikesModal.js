@@ -14,7 +14,7 @@ function PostLikesModal(props){
             <Modal show = {props.show} onHide = {props.hideLikesModal} centered>
                 <Modal.Body>
                     {props.likes.map((like) => 
-                        <PostLikedUser like = {like} key = {like.UserId}/>
+                        <PostLikedUser like = {like} key = {like.userId}/>
                     )}
                 </Modal.Body>
             </Modal>
