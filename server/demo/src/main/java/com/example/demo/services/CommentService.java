@@ -4,7 +4,6 @@ import com.example.demo.entities.Comment;
 import com.example.demo.entities.Reply;
 import com.example.demo.entities.Type;
 import com.example.demo.entities.User;
-import com.example.demo.payload.request.CommentBody;
 import com.example.demo.payload.response.UserDTO;
 import com.example.demo.repositories.CommentRepository;
 import com.example.demo.repositories.ReplyRepository;

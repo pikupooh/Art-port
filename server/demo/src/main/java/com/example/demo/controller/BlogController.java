@@ -59,7 +59,10 @@ public class BlogController {
 	@PutMapping("/blog/{id}")
 	public ResponseEntity<?> updateBlog(@PathVariable String id, @RequestBody Blog updatedBlog, Principal principal){
 		Blog blog = blogRepository.findById(id)
-				.orElseThrow(); //TODO: manage exception
+				.orElse(null);
+		if(blog == null) {
+			return new ResponseEntity<String>("Blog not found", HttpStatus.NOT_FOUND);
+		}
 		if(!(principal.getName().equals(blog.getAuthor().getUsername())))
 			return new ResponseEntity<String>("Unauthorized", HttpStatus.UNAUTHORIZED);
 		blog.setTitle(updatedBlog.getTitle());
@@ -75,7 +78,9 @@ public class BlogController {
 	@DeleteMapping("/blog/{id}")
 	public ResponseEntity<?> deleteBlog(@PathVariable String id, Principal principal){
 		Blog blog = blogRepository.findById(id)
-				.orElseThrow(); //TODO: manage exception
+				.orElse(null);
+		if(blog == null)
+			return new ResponseEntity<String>("Post not found", HttpStatus.NOT_FOUND);
 		if(!(principal.getName().equals(blog.getAuthor().getUsername())))
 			return new ResponseEntity<String>("Unauthorized", HttpStatus.UNAUTHORIZED);
 		blogRepository.delete(blog);
@@ -88,7 +93,7 @@ public class BlogController {
         Blog blog = blogService.getBlog(blogId);
 
         if(blog== null)
-            return new ResponseEntity<String>("Post not found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<String>("Blog not found", HttpStatus.NOT_FOUND);
 
         User user = userService.getUserByName(principal.getName());
 
@@ -109,7 +114,7 @@ public class BlogController {
         Blog blog = blogService.getBlog(blogId);
 
         if(blog== null)
-            return new ResponseEntity<String>("Post not found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<String>("Blog not found", HttpStatus.NOT_FOUND);
 
         User user = userService.getUserByName(principal.getName());
 

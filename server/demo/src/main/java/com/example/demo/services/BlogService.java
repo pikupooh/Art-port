@@ -40,8 +40,6 @@ public class BlogService {
         blog.setUploadDate(new Date());
         User user = userService.getUser(userId);
         blog.setAuthor(new UserDTO(user.getId(), user.getUsername(), user.getFirstName(), user.getLastName(), user.getProfilePhoto()));
-        if(blog.getImg() == null)
-        	blog.setImg(imageService.getimage("60886257aa10f0665d23d2f5"));
         blogRepository.save(blog);
         return blog;
     }

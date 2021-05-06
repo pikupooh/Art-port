@@ -35,11 +35,10 @@ public class FileService {
 
     public String save(byte[] bytes, String fileName, String username) throws Exception {
 
-        String newName = uploadToImgur(bytes);
-
-        System.out.println(newName);
+        String link = uploadToImgur(bytes);
         Image image = new Image();
-        image.setLink(newName);
+        image.setName(fileName);
+        image.setLink(link);
         return imageRepository.save(image).getId();
     }
 
