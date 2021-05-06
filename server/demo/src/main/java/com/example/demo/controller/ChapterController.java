@@ -60,7 +60,8 @@ public class ChapterController {
         
         chapter.setMangaId(mangaId);
         Chapter chapter1 = chapterService.createChapter(chapter, user);
-        
+        manga.addChapter(chapter1);
+        mangaService.save(manga);
         return ResponseEntity.ok(chapter1);
     }
   

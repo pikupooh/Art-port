@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 import java.util.List;
 
+@CrossOrigin
 @RestController
 public class MangaController {
     
@@ -42,7 +43,7 @@ public class MangaController {
     }
     
     @GetMapping("/manga/{mangaId}")
-    public Manga getManga(@RequestBody String mangaId) {
+    public Manga getManga(@PathVariable String mangaId) {
 
         return mangaService.getManga(mangaId);
     }
