@@ -72,6 +72,10 @@ public class BlogService {
         return blog;
     }
     
+    public List<Blog> getBlogByCategory(String[] category) {
+    	return blogRepository.findBlogByCategory(category);
+    }
+    
     public void save(Blog blog){
 
         blogRepository.save(blog);

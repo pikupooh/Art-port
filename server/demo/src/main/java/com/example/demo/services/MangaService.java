@@ -115,6 +115,22 @@ public class MangaService {
 
         return newManga;
     }
+    
+    public List<Manga> getMangaByCategory(String[] category) {
+    	return mangaRepository.findMangaByCategory(category);
+    }
+    
+    public int getMangaRating(String id) {
+    	Optional<Manga> manga1 = mangaRepository.findById(id);
+        if(!manga1.isPresent())
+            return 0;
+        Manga manga = manga1.get();
+        int currRating = manga.getRating();
+        int ratingCount = manga.getRatingCount();
+        if(ratingCount == 0)
+        	return 0;
+        return currRating/ratingCount;
+    }
 
     public void save(Manga manga){
 

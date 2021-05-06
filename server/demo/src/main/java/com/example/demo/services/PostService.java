@@ -85,6 +85,14 @@ public class PostService {
 
         return newPost;
     }
+    
+    public List<Post> getPostByCategory(String[] category) {
+    	return postRepository.findPostByCategory(category);
+    }
+    
+    public List<Post> getPostByTags(String[] tags) {
+    	return postRepository.findPostByTags(tags);
+    }
 
     public void save(Post post){
 

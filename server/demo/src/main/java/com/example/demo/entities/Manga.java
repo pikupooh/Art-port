@@ -30,7 +30,7 @@ public class Manga {
     private String title;
     @NotBlank
     private String about;
-    private List<Category> category = Collections.emptyList();
+    private List<String> category = Collections.emptyList();
     int rating = 0;
     int ratingCount = 0;
     private Type type;
@@ -47,7 +47,7 @@ public class Manga {
 	}
 
 	public Manga(String id, String uploadDate, Image coverPhoto, List<Chapter> chapters, List<Comment> comments,
-			UserDTO userDTO, @NotBlank String title, @NotBlank String about, List<Category> category, int rating, int ratingCount, Type type) {
+			UserDTO userDTO, @NotBlank String title, @NotBlank String about, List<String> category, int rating, int ratingCount, Type type) {
 		super();
 		this.id = id;
 		this.uploadDate = uploadDate;
@@ -112,10 +112,10 @@ public class Manga {
 	public void setAbout(String about) {
 		this.about = about;
 	}
-	public List<Category> getCategory() {
+	public List<String> getCategory() {
 		return category;
 	}
-	public void setCategory(List<Category> category) {
+	public void setCategory(List<String> category) {
 		this.category = category;
 	}
 	public Type getType() {

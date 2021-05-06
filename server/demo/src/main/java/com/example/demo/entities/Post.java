@@ -25,6 +25,8 @@ public class Post {
     private List<Comment> comments = Collections.emptyList();
     private UserDTO userDTO;
     private List<UserDTO> likes = Collections.emptyList();
+    private List<String> tags = Collections.emptyList();
+    private List<String> category = Collections.emptyList();
     @NotBlank
     private String title;
     @NotBlank
@@ -142,8 +144,25 @@ public class Post {
     public void setComments(List<Comment> comments) {
         this.comments = comments;
     }
+    
+    
+    public List<String> getTags() {
+		return tags;
+	}
 
-    @Override
+	public void setTags(List<String> tags) {
+		this.tags = tags;
+	}
+
+	public List<String> getCategory() {
+		return category;
+	}
+
+	public void setCategory(List<String> category) {
+		this.category = category;
+	}
+
+	@Override
     public String toString() {
         return "Post{" +
                 "id='" + id + '\'' +

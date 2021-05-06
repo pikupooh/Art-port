@@ -8,7 +8,6 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -32,9 +31,10 @@ public class Blog {
 	@DBRef
 	private List<Comment> comments = Collections.emptyList();
 	private List<UserDTO> likes = Collections.emptyList();
+    private List<String> category = Collections.emptyList();
 
 	public Blog(){
-		comments = new ArrayList<>();
+
 	}
 	
 	
@@ -96,6 +96,18 @@ public class Blog {
 	public void setComments(List<Comment> comments) {
 		this.comments = comments;
 	}
+	
+	
+
+	public List<String> getCategory() {
+		return category;
+	}
+
+
+	public void setCategory(List<String> category) {
+		this.category = category;
+	}
+
 
 	public void addComment(Comment comment){
 		this.comments.add(comment);
@@ -104,7 +116,7 @@ public class Blog {
 	public void removeComment(Comment comment){
 		this.comments.remove(comment);
 	}
-
+	
 	@Override
     public String toString() {
         return "Blog{" +
