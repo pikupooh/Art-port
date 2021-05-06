@@ -49,3 +49,42 @@ manga_data_container{
     text-align: center;
     color: #e67e22;
 }
+.photo{
+    align-items: center;
+}
+.about_carousel_image{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.about_carousel_item{
+    height: 75vh;
+    width: 100vw;
+}
+
+.about_carousel_title{
+    margin-bottom: 0.5rem;
+    font-weight: 800 ;
+    line-height: 1.2;
+    font-size: 2rem;
+}
+.about_headings{
+   margin-top: 0.5rem;
+   margin-bottom: 0.5rem;
+   text-align:center; 
+   color: #e67e22;}
+   
+
+.display_pic{
+    border-radius: 100%;
+    height :250px;
+    width: 250px;
+    margin-right: 10px;
+    margin-left :10px;
+}
+.front_end{
+    padding-left :25%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
