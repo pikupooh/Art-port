@@ -54,6 +54,34 @@ public class CommentController {
 
         return ResponseEntity.ok(blog.getComments());
     }
+    
+    @GetMapping("/manga/{mangaId}/comment")
+    public ResponseEntity<?> getCommentManga(@PathVariable String mangaId){
+        Manga manga = mangaService.getManga(mangaId);
+
+        if(manga == null){
+            return new ResponseEntity<String>("Manga not found.", HttpStatus.NOT_FOUND);
+        }
+
+        return ResponseEntity.ok(manga.getComments());
+    }
+    
+    @GetMapping("/manga/{mangaId}/chapter/{chapterId}")
+    public ResponseEntity<?> getCommentChapter(@PathVariable String mangaId, @PathVariable String chapterId){
+        Manga manga = mangaService.getManga(mangaId);
+
+        if(manga == null){
+            return new ResponseEntity<String>("Manga not found.", HttpStatus.NOT_FOUND);
+        }
+        
+        Chapter chapter = chapterService.getChapter(chapterId);
+        
+        if(chapter == null) {
+        	return new ResponseEntity<String>("Chapter not found.", HttpStatus.NOT_FOUND);
+        }
+
+        return ResponseEntity.ok(chapter.getComments());
+    }
 
     @PostMapping("/post/{postId}/comment")
     public ResponseEntity<?> addCommentPost(@PathVariable String postId, @Valid @RequestBody CommentBody commentBody, Principal principal){

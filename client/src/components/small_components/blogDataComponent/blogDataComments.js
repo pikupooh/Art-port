@@ -5,14 +5,17 @@ function BlogDataComments(props){
 
     if(props.comments.length === 0){
         return(
-            <div></div>
+            <div className = "blog_data_comments">
+                <BlogCommentSection />
+                
+            </div>
         )
     }
     else{
         return(
             <div className = "blog_data_comments">
                 {props.comments.map((comment) => 
-                    <div key = {comment.CommentId} >
+                    <div key = {comment.id} >
                         <BlogDataComment comment = {comment} />
                     </div>
                 )}

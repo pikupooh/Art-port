@@ -39,7 +39,7 @@ public class BlogService {
 
         blog.setUploadDate(new Date());
         User user = userService.getUser(userId);
-        blog.setAuthor(new UserDTO(user.getId(), user.getUsername(), user.getFirstName(), user.getLastName(), user.getProfilePhoto()));
+        blog.setUser(new UserDTO(user.getId(), user.getUsername(), user.getFirstName(), user.getLastName(), user.getProfilePhoto()));
         blogRepository.save(blog);
         return blog;
     }

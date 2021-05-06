@@ -7,7 +7,7 @@ function BlogListBlogDataComponent(props){
             <Link to = {'/blog/' + props.blog.id}>
                 <div className = "container-fluid blog_list_blog">
                     <Row className = "blog_list_blog_image_container blog_data">
-                        <Image src = {props.blog.photo.url} fluid className = "blog_list_blog_image"></Image>
+                        <Image src = {props.blog.img.link} fluid className = "blog_list_blog_image"></Image>
                     </Row>
                     <div className = "blog_list_blog_data">
                         <Row className = "blog_list_blog_title blog_data">
@@ -20,13 +20,13 @@ function BlogListBlogDataComponent(props){
                             <Row className = "blog_data mb-2">
                                 Posted by
                             </Row>
-                            <Link to = {"/user/" + props.blog.user.UserId}>
+                            <Link to = {"/user/" + props.blog.user.id}>
                                 <Row className = "blog_data">
                                     <Col xs = {2}>
-                                        <Image src = {props.blog.user.ProfilePhoto} className = "blog_list_blog_uploader_photo" roundedCircle></Image>
+                                        <Image src = {props.blog.user.profilePhoto.link} className = "blog_list_blog_uploader_photo" roundedCircle></Image>
                                     </Col>
                                     <Col className = "username">
-                                        {props.blog.user.firstname} {props.blog.user.lastname}
+                                        {props.blog.user.firstName} {props.blog.user.lastName}
                                     </Col>
                                 </Row>
                             </Link>

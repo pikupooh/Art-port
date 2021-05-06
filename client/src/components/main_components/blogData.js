@@ -46,7 +46,7 @@ class blogData extends React.Component {
         <div className = "blog_page_header">
           <div >
             <div className = "blog_header_image_container">
-              <Image src = {this.props.photo.url} fluid className = "blog_header_image"></Image>
+              <Image src = {this.props.img.link} fluid className = "blog_header_image"></Image>
             </div>
             <div className = "blog_page_text_over_image">
               <p className = "blog_page_title">
@@ -61,19 +61,19 @@ class blogData extends React.Component {
         <Container className = "container-fluid">
           <Row className = "m-2 mt-4">
             <Col sm = {2} >
-              <Image fluid src = {this.props.user.ProfilePhoto} className = "blog_page_uploader" roundedCircle></Image>
+              <Image fluid src = {this.props.user.profilePhoto.link} className = "blog_page_uploader" roundedCircle></Image>
             </Col>
             <Col className = "text-left my-auto">
-              <Link to = {'/artist/' + this.props.user.UserId}>
+              <Link to = {'/artist/' + this.props.user.id}>
               <Row className = "username blog_page_username">
-                {this.props.user.Username}
+                {this.props.user.username}
               </Row>
               </Link>
               <Row>
                 {this.props.user.about}
               </Row>
               <Row>
-            Uploaded on {this.props.uploadTime}
+            Uploaded on {this.props.uploadDate}
           </Row>
             </Col>
           </Row>
@@ -125,8 +125,8 @@ const mapStateToProps = (state) => {
     content: state.blogData.content,
     likes: state.blogData.likes,
     comments: state.blogData.comments,
-    photo: state.blogData.photo,
-    uploadTime: state.blogData.uploadTime,
+    img: state.blogData.img,
+    uploadDate: state.blogData.uploadDate,
     tags: state.blogData.tags,
     user: state.blogData.user,
   };

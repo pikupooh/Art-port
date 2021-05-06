@@ -5,19 +5,19 @@ function BlogDataComment(props){
     return(
         <div className = "m-5">
             <Row>
-                <Link to = {'/user/' + props.comment.User.UserId}>
+                <Link to = {'/user/' + props.comment.user.id}>
                     <Col xs = {2}>
-                        <Image src = {props.comment.User.ProfilePhoto} roundedCircle className = "comment_profile_photo"></Image>
+                        <Image src = {props.comment.user.profilePhoto.link} roundedCircle className = "comment_profile_photo"></Image>
                     </Col>
                 </Link>
                 <Col>
-                <Link to = {'/user/' + props.comment.User.UserId}>
+                <Link to = {'/user/' + props.comment.user.id}>
                     <Row className = "username">
-                        {props.comment.User.Username}
+                        {props.comment.user.username}
                     </Row>
                 </Link>
                     <Row>
-                        {props.comment.Text}
+                        {props.comment.content}
                     </Row>
                 </Col>
             </Row>

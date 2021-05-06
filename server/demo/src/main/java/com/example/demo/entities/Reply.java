@@ -19,7 +19,7 @@ public class Reply {
     private String id;
     private String content;
     private String createdDate;
-    private UserDTO userDTO;
+    private UserDTO user;
     @DBRef
     private Comment comment;
 
@@ -57,12 +57,12 @@ public class Reply {
         this.comment = comment;
     }
 
-    public UserDTO getUserDTO() {
-        return userDTO;
+    public UserDTO getUser() {
+        return user;
     }
 
-    public void setUserDTO(UserDTO userDTO) {
-        this.userDTO = userDTO;
+    public void setUser(UserDTO user) {
+        this.user = user;
     }
 
     @Override
@@ -71,7 +71,7 @@ public class Reply {
                 "id='" + id + '\'' +
                 ", content='" + content + '\'' +
                 ", createdDate=" + createdDate +
-                ", userDTO=" + userDTO +
+                ", userDTO=" + user +
                 ", comment=" + comment +
                 '}';
     }

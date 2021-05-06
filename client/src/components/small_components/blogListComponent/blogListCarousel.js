@@ -11,7 +11,7 @@ function BlogListCarousel(props){
                     <Carousel.Item className = "blog_list_carousel_item" key = {blog.id}>
                         <Link to = { '/blog/' + blog.id} >
                             <Image className = "blog_list_carousel_image"
-                                    src= {blog.photo.url}
+                                    src= {blog.img.link}
                                     alt="slide"/>
                             <Carousel.Caption>
                             <p className = "blog_list_carousel_title">{blog.title}</p>

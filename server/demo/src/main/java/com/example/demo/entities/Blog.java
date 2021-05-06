@@ -22,7 +22,7 @@ public class Blog {
 	private String id;
 	private Date uploadDate;
 
-	private UserDTO author;
+	private UserDTO user;
 	private String title;
 	private String description;
 	@DBRef
@@ -38,11 +38,11 @@ public class Blog {
 	}
 	
 	
-	public Blog(Date uploadDate, User author, String title, String description, String content) {
+	public Blog(Date uploadDate, User user, String title, String description, String content) {
 		this.title = title;
 		this.description = description;
 		this.content = content;
-		this.img = null;
+		this.user = new UserDTO(user.getId(), user.getUsername(), user.getFirstName(), user.getLastName(), user.getProfilePhoto());
 	}
 	public String getId() {
 		return id;
@@ -51,11 +51,11 @@ public class Blog {
 		this.id = id;
 	}
 
-	public UserDTO getAuthor() {
-		return author;
+	public UserDTO getUser() {
+		return user;
 	}
-	public void setAuthor(UserDTO author) {
-		this.author = author;
+	public void setUser(UserDTO user) {
+		this.user = user;
 	}
 	public Image getImg() {
 		return img;
@@ -122,7 +122,7 @@ public class Blog {
         return "Blog{" +
                 "id='" + id + '\'' +
                 ", date='" + uploadDate + '\'' +
-                ", author='" + author + '\'' +
+                ", author='" + user + '\'' +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", img='" + img + '\'' +

@@ -7,10 +7,12 @@ const initState = {
   content: '',
   likes: [],
   comments: [],
-  photo: {},
+  img: {},
   uploadTime: '',
   tags: [],
-  user: {},
+  user: {
+    profilePhoto: {}
+  },
 };
 
 export const blogDataReducer = (state = initState, action) => {
@@ -24,9 +26,9 @@ export const blogDataReducer = (state = initState, action) => {
         content: action.payload.blog.content,
         likes: action.payload.blog.likes,
         comments: action.payload.blog.comments,
-        photo: action.payload.blog.photo,
-        uploadTime: action.payload.blog.uploadTime,
-        tags: action.payload.blog.tags,
+        img: action.payload.blog.img,
+        uploadDate: action.payload.blog.uploadDate,
+        tags: action.payload.blog.category,
         user: action.payload.blog.user
       };
     default:

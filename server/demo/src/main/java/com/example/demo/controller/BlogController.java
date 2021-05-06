@@ -63,7 +63,7 @@ public class BlogController {
 		if(blog == null) {
 			return new ResponseEntity<String>("Blog not found", HttpStatus.NOT_FOUND);
 		}
-		if(!(principal.getName().equals(blog.getAuthor().getUsername())))
+		if(!(principal.getName().equals(blog.getUser().getUsername())))
 			return new ResponseEntity<String>("Unauthorized", HttpStatus.UNAUTHORIZED);
 		blog.setTitle(updatedBlog.getTitle());
 		blog.setImg(updatedBlog.getImg());
@@ -81,7 +81,7 @@ public class BlogController {
 				.orElse(null);
 		if(blog == null)
 			return new ResponseEntity<String>("Post not found", HttpStatus.NOT_FOUND);
-		if(!(principal.getName().equals(blog.getAuthor().getUsername())))
+		if(!(principal.getName().equals(blog.getUser().getUsername())))
 			return new ResponseEntity<String>("Unauthorized", HttpStatus.UNAUTHORIZED);
 		blogRepository.delete(blog);
 		return ResponseEntity.ok("DELETED:"+blog.getId());

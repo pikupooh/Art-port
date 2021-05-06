@@ -22,7 +22,7 @@ public class Comment {
     private String createdDate;
     private String content;
     private Type type;
-    private UserDTO userDTO;
+    private UserDTO user;
     private String typeId;
     @DBRef
     private List<Reply> replies;
@@ -66,12 +66,12 @@ public class Comment {
         this.type = type;
     }
 
-    public UserDTO getUserDTO() {
-        return userDTO;
+    public UserDTO getUser() {
+        return user;
     }
 
-    public void setUserDTO(UserDTO userDTO) {
-        this.userDTO = userDTO;
+    public void setUser(UserDTO user) {
+        this.user = user;
     }
 
     public String getTypeId() {
@@ -107,7 +107,7 @@ public class Comment {
                 ", createdDate=" + createdDate +
                 ", content='" + content + '\'' +
                 ", type=" + type +
-                ", userDTO=" + userDTO +
+                ", userDTO=" + user +
                 ", typeId='" + typeId + '\'' +
                 ", replies=" + replies +
                 '}';
