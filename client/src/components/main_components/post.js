@@ -21,7 +21,7 @@ class Post extends React.Component {
       <Row >
         <Col sm = {9} >
           <div>
-            {this.props.photosDoc.map((doc) => 
+            {this.props.images.map((doc) => 
               <PostImage imageDoc = {doc}/>
             )}
           </div>
@@ -45,14 +45,14 @@ const mapDispatchToProps = (dispatch) =>
 
 const mapStateToProps = (state) => {
   return {
-    postId: state.post.postId,
+    id: state.post.id,
     uploadDate: state.post.uploadDate,
     likes: state.post.likes,
-    photosDoc: state.post.photosDoc,
+    images: state.post.images,
     tags: state.post.tags,
     type: state.post.type,
-    userInfo: state.post.userInfo,
-    categories: state.post.categories,
+    user: state.post.user,
+    category: state.post.category,
     comments: state.post.comments,
   };
 };

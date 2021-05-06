@@ -5,19 +5,19 @@ function PostComment(props){
     return(
         <div className = "m-2">
             <Row>
-            <Link to = {'/user/' + props.info.User.UserId}>
+            <Link to = {'/user/' + props.info.user.userId}>
                     <Col xs = {2}>
-                        <Image src = {props.info.User.ProfilePhoto} roundedCircle className = "comment_profile_photo"></Image>
+                        <Image src = {props.info.user.profilePhoto} roundedCircle className = "comment_profile_photo"></Image>
                     </Col>
                 </Link>
                 <Col>
-                <Link to = {'/user/' + props.info.User.UserId}>
+                <Link to = {'/user/' + props.info.user.userId}>
                     <Row className = "username">
-                        {props.info.User.Username}
+                        {props.info.user.username}
                     </Row>
                     </Link>
                     <Row>
-                        {props.info.Text}
+                        {props.info.content}
                     </Row>
                 </Col>
             </Row>

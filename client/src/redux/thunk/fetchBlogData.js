@@ -8,7 +8,6 @@ function fetchBlogData(id) {
             if(res.error) {
                 throw(res.error);
             }
-            console.log(res);
             if(res.img == null) {
                 res.img = {
                     id: "fail",
