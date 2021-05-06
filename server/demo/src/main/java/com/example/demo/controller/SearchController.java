@@ -3,19 +3,12 @@ package com.example.demo.controller;
 import com.example.demo.entities.Blog;
 import com.example.demo.entities.Manga;
 import com.example.demo.entities.Post;
-import com.example.demo.entities.Profile;
-import com.example.demo.entities.User;
 import com.example.demo.services.BlogService;
 import com.example.demo.services.MangaService;
 import com.example.demo.services.PostService;
-import com.example.demo.services.ProfileService;
-import com.example.demo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -62,7 +55,6 @@ public class SearchController {
     
     @GetMapping("/search/blog/category")
     public List<Blog> getBlogsByCategory(@RequestBody String[] category){
-
         return blogService.getBlogByCategory(category);
     }
     
