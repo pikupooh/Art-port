@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import UserPortfolio from './userPortfolio'
 import UserProfileFollowers from './userProfileFollowers'
 import UserProfileFollowing  from './userProfileFollowing'
@@ -14,7 +14,7 @@ class UserProfileExtras extends React.Component {
     
     render(){
         return(
-          <switch>
+          <Switch>
             <Route exact path = {this.props.match.url} component = {UserPortfolio}></Route>
             <Route path = {this.props.match.url + '/followers'} component = {UserProfileFollowers}></Route>
             <Route path = {this.props.match.url + '/following'} component = {UserProfileFollowing}></Route>
@@ -22,7 +22,7 @@ class UserProfileExtras extends React.Component {
             <Route path = {this.props.match.url + '/comics'} component = {UserProfileComics}></Route>
             <Route path = {this.props.match.url + '/blogs'} component = {UserProfileBlogs}></Route>
             <Route path = {this.props.match.url + '/about'} component = {UserProfileAbout}></Route>
-          </switch>
+          </Switch>
         )
     }
 }

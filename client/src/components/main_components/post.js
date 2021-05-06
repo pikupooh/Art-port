@@ -23,7 +23,7 @@ class Post extends React.Component {
         <Col sm = {9} >
           <div>
             {this.props.images.map((doc) => 
-              <PostImage imageDoc = {doc}/>
+              <PostImage key={doc.id} imageDoc = {doc}/>
             )}
           </div>
         </Col>

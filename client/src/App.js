@@ -47,27 +47,29 @@ class App extends React.Component {
       <div>
         <BrowserRouter>
         <Switch>
-          <div>  
-            <NavbarwithRouter onShowModal = {this.handleModalShow}/>
-              <div className = "space_for_navbar"></div>
-              <Route  exact path = '/' component = {Home}/> 
-              <Route  path = '/comics' component = {Comics} />
-              <Route  path = '/blogs' component = {Blogs} />
-              <Route  path = '/manga' component = {Manga} />
-              <Route  path = '/about' component = {About} />
-              <Route path = '/user/:user_id' component = {UserProfile} />
-              <Route path = '/post/:post_id' component = {Post} />
-              <Route path = '/blog/:blog_id' component = {blogData} />
-              <Route path = '/comic/:comic_id' component = {ComicData} />
-              <Route path = '/mangas/:manga_id' component = {MangaData} />
-              <Route path = '/chapter/:chapters_id' component = {MangaIndividualChapter} />
-              <Route path = '/registration' component ={RegistrationForm}/>
-              <Route path ='/postuploadform/' component ={UploadPostForm}/>
-              <Route path ='/bloguploadform/' component ={UploadBlogForm}/>
-              <SignInModal show = {this.state.show} handleModalClose = {this.handleModalClose}
-                handleModalShow = {this.handleModalShow}
-              />
-          </div>
+          <React.Fragment>
+            <div>  
+              <NavbarwithRouter onShowModal = {this.handleModalShow}/>
+                <div className = "space_for_navbar"></div>
+                <Route  exact path = '/' component = {Home}/> 
+                <Route  path = '/comics' component = {Comics} />
+                <Route  path = '/blogs' component = {Blogs} />
+                <Route  path = '/manga' component = {Manga} />
+                <Route  path = '/about' component = {About} />
+                <Route path = '/user/:user_id' component = {UserProfile} />
+                <Route path = '/post/:post_id' component = {Post} />
+                <Route path = '/blog/:blog_id' component = {blogData} />
+                <Route path = '/comic/:comic_id' component = {ComicData} />
+                <Route path = '/mangas/:manga_id' component = {MangaData} />
+                <Route path = '/chapter/:chapters_id' component = {MangaIndividualChapter} />
+                <Route path = '/registration' component ={RegistrationForm}/>
+                <Route path ='/postuploadform/' component ={UploadPostForm}/>
+                <Route path ='/bloguploadform/' component ={UploadBlogForm}/>
+                <SignInModal show = {this.state.show} handleModalClose = {this.handleModalClose}
+                  handleModalShow = {this.handleModalShow}
+                />
+            </div>
+          </React.Fragment>
           </Switch>    
         </BrowserRouter>
         <FooterComponent/>
