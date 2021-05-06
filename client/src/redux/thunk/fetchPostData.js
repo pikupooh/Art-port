@@ -1,6 +1,7 @@
 import { fetchPostDataAction } from '../actions/fetchPostDataAction'
 
 function fetchPostData(postId) {
+    console.log("hello");
     return dispatch => {
         fetch(`http://localhost:8080/post/${postId}`)
         .then(res => res.json())
@@ -8,14 +9,15 @@ function fetchPostData(postId) {
             if(res.error) {
                 throw(res.error);
             }
-            if(res.images.length == 0) {
+            console.log(res);
+            if(res.images.length === 0) {
                 res.images.push({
                     id: "fail",
                     name: "fail",
                     link: "https://via.placeholder.com/300/09f/fff.png"
                 });
             }
-            if(res.user.profilePhoto == null) {
+            if(res.user.profilePhoto === null) {
                 res.user.profilePhoto = {
                     id: "fail",
                     name: "fail",
