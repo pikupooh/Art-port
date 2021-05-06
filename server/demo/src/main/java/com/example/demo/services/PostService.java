@@ -41,7 +41,7 @@ public class PostService {
         UserDTO userDTO = new UserDTO(user.getId(), user.getUsername(), user.getFirstName(), user.getLastName(), user.getProfilePhoto());
 
         post.setUploadDate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")));
-        post.setUserDTO(userDTO);
+        post.setUser(userDTO);
         postRepository.save(post);
         return post;
     }
@@ -81,6 +81,8 @@ public class PostService {
         newPost.setUploadDate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")));
         newPost.setTitle(post.getTitle());
         newPost.setDescription(post.getDescription());
+        if(post.getImages()!=null)
+        	newPost.setImages(post.getImages());
         postRepository.save(newPost);
 
         return newPost;

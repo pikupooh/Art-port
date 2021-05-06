@@ -23,7 +23,7 @@ public class Post {
     private List<Image> images = Collections.emptyList();
     @DBRef
     private List<Comment> comments = Collections.emptyList();
-    private UserDTO userDTO;
+    private UserDTO user;
     private List<UserDTO> likes = Collections.emptyList();
     private List<String> tags = Collections.emptyList();
     private List<String> category = Collections.emptyList();
@@ -105,12 +105,12 @@ public class Post {
         this.images = images;
     }
 
-    public UserDTO getUserDTO() {
-        return userDTO;
+    public UserDTO getUser() {
+        return user;
     }
 
-    public void setUserDTO(UserDTO userDTO) {
-        this.userDTO = userDTO;
+    public void setUser(UserDTO user) {
+        this.user = user;
     }
 
     public List<UserDTO> getLikes() {
@@ -169,7 +169,7 @@ public class Post {
                 ", uploadDate='" + uploadDate + '\'' +
                 ", images=" + images +
                 ", comments=" + comments +
-                ", userDTO=" + userDTO +
+                ", userDTO=" + user +
                 ", likes=" + likes +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +

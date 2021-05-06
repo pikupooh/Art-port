@@ -46,7 +46,7 @@ public class FileUploadController {
     @Autowired
     ChapterService chapterService;
 
-    @PostMapping("/post/{postId}/images/upload")
+    @PostMapping("/posts/{postId}/images/upload")
     String uploadImage(@PathVariable String postId, @RequestParam("files") MultipartFile[] multipartFile, Principal principal) throws Exception {
 
 
@@ -59,7 +59,7 @@ public class FileUploadController {
             }
             Post post = postService.getPost(postId);
             post.addImage(imageService.getimage(imageId));
-            postService.updatePost(post, postId);
+            postService.save(post);
         });
         return "Image uploaded successfully";
 
@@ -79,7 +79,7 @@ public class FileUploadController {
             }
             Blog blog = blogService.getBlog(blogId);
             blog.setImg(imageService.getimage(imageId));
-            blogService.updateBlog(blog, blogId);
+            blogService.save(blog);
         });
         return "Image uploaded successfully";
 
@@ -99,7 +99,7 @@ public class FileUploadController {
             }
             Manga manga = mangaService.getManga(mangaId);
             manga.setCoverPhoto(imageService.getimage(imageId));
-            mangaService.updateManga(manga, mangaId);
+            mangaService.save(manga);
         });
         return "Image uploaded successfully";
 
@@ -119,7 +119,7 @@ public class FileUploadController {
             }
             Chapter chap = chapterService.getChapter(chapId);
             chap.addImage(imageService.getimage(imageId));
-            chapterService.updateChapter(chap, chapId);
+            chapterService.save(chap);
         });
         return "Image uploaded successfully";
 
