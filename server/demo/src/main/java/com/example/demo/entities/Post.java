@@ -162,15 +162,17 @@ public class Post {
 		this.category = category;
 	}
 
-	@Override
+    @Override
     public String toString() {
         return "Post{" +
                 "id='" + id + '\'' +
                 ", uploadDate='" + uploadDate + '\'' +
                 ", images=" + images +
                 ", comments=" + comments +
-                ", userDTO=" + user +
+                ", user=" + user +
                 ", likes=" + likes +
+                ", tags=" + tags +
+                ", category=" + category +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 '}';

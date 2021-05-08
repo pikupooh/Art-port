@@ -13,6 +13,7 @@ import com.example.demo.security.services.UserDetailsImpl;
 import com.example.demo.services.ProfileService;
 import com.example.demo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpCookie;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
@@ -23,7 +24,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.Calendar;
 
@@ -125,6 +128,7 @@ public class AuthController {
         user.setEnabled(true);
         userRepository.save(user);
 
+        verificationTokenRepository.delete(verificationToken);
 
         return ResponseEntity.ok("Account activated. Please return to login page.");
     }
@@ -141,6 +145,45 @@ public class AuthController {
         UserDetailsImpl userDetails = (UserDetailsImpl) authenticate.getPrincipal();
 
         return ResponseEntity.ok(new JwtResponse(jwtToken, userDetails.getId(), userDetails.getUsername(), userDetails.getEmail()));
+    }
+
+    @PostMapping("/forgot-password")
+    public ResponseEntity<?> forgotPassword(HttpServletRequest servletRequest, @RequestBody User user){
+
+        User existingUser = userRepository.findByEmailIgnoreCase(user.getEmail());
+
+        if(existingUser == null)
+            return new ResponseEntity<String>("Email invalid", HttpStatus.NOT_FOUND);
+
+        VerificationToken verificationToken = new VerificationToken(existingUser);
+        verificationTokenRepository.save(verificationToken);
+
+        String appUrl = "http://" + servletRequest.getServerName() + ":" + servletRequest.getServerPort() + servletRequest.getContextPath();
+        SimpleMailMessage mailMessage = new SimpleMailMessage();
+        mailMessage.setTo(existingUser.getEmail());
+        mailMessage.setSubject("Complete Password Reset!");
+        mailMessage.setText("To complete the password reset process, please click here: "
+                + appUrl + "/confirm-reset?token="+verificationToken.getToken());
+
+        emailService.sendEmail(mailMessage);
+
+        return ResponseEntity.ok("Password reset link sent to registered email.");
+    }
+
+    @GetMapping("/confirm-reset")
+    public RedirectView validateToken(@RequestParam("token") String token){
+
+        VerificationToken verificationToken = verificationTokenRepository.findByToken(token);
+
+        /*if(verificationToken == null)
+            return "Invalid Token";
+        */
+        //User user = userRepository.findByEmailIgnoreCase(verificationToken.getUser().getEmail());
+
+        RedirectView redirectView = new RedirectView();
+        redirectView.setUrl("http://localhost:3000/");
+        return redirectView;
+
     }
 
 
