@@ -48,7 +48,7 @@ class App extends React.Component {
         <Switch>
           <React.Fragment>
             <div>  
-              <NavbarwithRouter onShowModal = {this.handleModalShow}/>
+              <NavbarwithRouter onShowModal = {this.handleModalShow} />
                 <div className = "space_for_navbar"></div>
                 <Route  exact path = '/' component = {Home}/> 
                 <Route  path = '/comics' component = {Comics} />
