@@ -38,7 +38,7 @@ class SignInModal extends React.Component{
             <Modal show = {this.props.show} onHide = {this.props.handleModalClose}>
               <Modal.Body>
                 <h3 className = 'text-center'>Sign in</h3>
-                <SignInForm />
+                <SignInForm handleModalClose = {this.props.handleModalClose} />
                 <div className = 'mt-2 '>
                   <a  className='alert-link' href = '/'> Forgot password</a>
                 </div>

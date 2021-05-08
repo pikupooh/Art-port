@@ -8,24 +8,42 @@ import {Form, Button} from 'react-bootstrap'
 
 class SignInForm extends React.Component {
 
-    handleSignIn = () => {
+    constructor(props) {
+        super(props);
+        this.state = { 
+            username: '',
+            password: ''
+        };
+      }
+    
+    handleChange = (event) => {
+    this.setState({
+        ...this.state,
+        [event.target.name]: event.target.value
+        });
+    }
+
+    handleSignIn = (e) => {
+        e.preventDefault();
+        console.log(this.state);
+        this.props.signIn(this.state.username, this.state.password);
         this.props.fetchUserData();
-        this.props.signIn();
+        this.props.handleModalClose();
     }
     render(){
         return(
-            <Form>
+            <Form onSubmit = {this.handleSignIn} >
                 <Form.Group>
-                    <Form.Label>Email address</Form.Label>
-                    <Form.Control type="email" placeholder="Enter email" />
+                    <Form.Label>Username</Form.Label>
+                    <Form.Control type="text" value = {this.state.username} name = "username" onChange = {this.handleChange} placeholder="Enter Username" />
                 </Form.Group>
 
                 <Form.Group>
                     <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="Password" />
+                    <Form.Control type="password" value = {this.state.password} name = "password" onChange = {this.handleChange} placeholder="Password" />
                 </Form.Group>
     
-                <Button variant="primary" type="submit" onClick = {this.handleSignIn}>
+                <Button variant="primary" type="submit">
                     Sign In
                 </Button>
             </Form>
