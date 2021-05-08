@@ -7,6 +7,7 @@ import com.example.demo.entities.Image;
 import com.example.demo.entities.Manga;
 import com.example.demo.entities.Post;
 import com.example.demo.entities.User;
+import com.example.demo.payload.request.FileRequest;
 import com.example.demo.services.BlogService;
 import com.example.demo.services.ChapterService;
 import com.example.demo.services.FileService;
@@ -15,13 +16,16 @@ import com.example.demo.services.MangaService;
 import com.example.demo.services.PostService;
 import com.example.demo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.Valid;
 import java.security.Principal;
 import java.util.Arrays;
+import java.util.LinkedList;
 
-@CrossOrigin
+//@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class FileUploadController {
 
@@ -46,10 +50,11 @@ public class FileUploadController {
     @Autowired
     ChapterService chapterService;
 
-    @PostMapping("/posts/{postId}/images/upload")
-    String uploadImage(@PathVariable String postId, @RequestParam("files") MultipartFile[] multipartFile, Principal principal) throws Exception {
+    @PostMapping(value = "/posts/{postId}/images/upload")
+    String uploadImage(@PathVariable String postId, @Valid @RequestBody FileRequest fileRequest, Principal principal) throws Exception {
 
-
+        System.out.println(fileRequest);
+        MultipartFile[] multipartFile = fileRequest.getMultipartFiles();
         Arrays.asList(multipartFile).stream().forEach(file -> {
             String imageId = null;
             try {

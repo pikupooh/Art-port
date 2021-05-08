@@ -39,7 +39,7 @@ public class PostService {
     public Post createPost(Post post, User user){
 
         UserDTO userDTO = new UserDTO(user.getId(), user.getUsername(), user.getFirstName(), user.getLastName(), user.getProfilePhoto());
-
+        System.out.println(post);
         post.setUploadDate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")));
         post.setUser(userDTO);
         postRepository.save(post);
