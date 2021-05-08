@@ -1,48 +1,80 @@
-import { signInUserAction } from '../../redux/actions/logActions';
-import * as ActionTypes from '../actions/actionTypes'
+import { signInUserAction } from "../../redux/actions/logActions";
+import fetchUserData from "./fetchUserData";
+import * as ActionTypes from "../actions/actionTypes";
 
 export default function signInUser(user, pass) {
-    console.log(user+" "+pass);
+    console.log(user + " " + pass);
     var creds = {
         username: user,
-        password: pass
-    }
-    return dispatch => {
+        password: pass,
+    };
+    return (dispatch) => {
         fetch("http://localhost:8080/api/auth/login", {
-            method: 'POST',
-            headers: { 
-                'Content-Type':'application/json' 
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
             },
-            body: JSON.stringify(creds)
+            body: JSON.stringify(creds),
         })
-        .then(res => {
-            console.log(res);
-            if (res.ok) {
+            .then(
+                (res) => {
+                    console.log(res);
+                    if (res.ok) {
+                        console.log(res);
+                        return res;
+                    } else {
+                        var error = new Error(
+                            "Error " + res.status + ": " + res.statusText
+                        );
+                        error.res = res;
+                        throw error;
+                    }
+                },
+                (error) => {
+                    throw error;
+                }
+            )
+            .then((res) => res.json())
+            .then((res) => {
                 console.log(res);
-                return res;
-            } else {
-                var error = new Error('Error ' + res.status + ': ' + res.statusText);
-                error.res = res;
-                throw error;
-            }
-            },
-            error => {
-                throw error;
+                var token = res.tokenType + " " + res.accessToken;
+                var userId = res.id;
+
+                localStorage.setItem("token", token);
+                localStorage.setItem("userId", userId);
+                dispatch(setUserLogin({ token, userId }));
+                dispatch(fetchUserData());
             })
-        .then(res => res.json())
-        .then(res => {
-            console.log(res);
-            var token = res.type+" "+res.accessToken;
-            var userId = res.id;
-            dispatch(setUserLogin({token, userId}));
-        })
-        .catch(error => console.log(error))
-    }
+            .catch((error) => console.log(error));
+    };
 }
 
-function setUserLogin(details) {
+function setUserLogin(token, userId) {
     return {
         type: ActionTypes.LOGIN_SUCCESS,
-        payload: details
-    }
+        token: token,
+        userId: userId,
+    };
+}
+
+function requestLogout() {
+    return {
+        type: ActionTypes.LOGOUT_REQUEST,
+    };
+}
+
+function successLogout() {
+    return {
+        type: ActionTypes.LOGOUT_SUCCESS,
+    };
+}
+
+export function logoutUser() {
+    return (dispatch) => {
+        dispatch(requestLogout());
+
+        localStorage.removeItem("token");
+        localStorage.removeItem("userId");
+        dispatch(successLogout());
+    };
 }

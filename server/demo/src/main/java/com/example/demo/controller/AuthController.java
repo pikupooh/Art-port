@@ -11,6 +11,7 @@ import com.example.demo.security.jwt.JwtConfig;
 import com.example.demo.security.services.EmailService;
 import com.example.demo.security.services.UserDetailsImpl;
 import com.example.demo.services.ProfileService;
+import com.example.demo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,6 +41,9 @@ public class AuthController {
     VerificationTokenRepository verificationTokenRepository;
 
     @Autowired
+    UserService userService;
+
+    @Autowired
     ProfileService profileService;
 
     @Autowired
@@ -50,6 +54,18 @@ public class AuthController {
 
     @Autowired
     private JwtConfig jwtConfig;
+
+
+    @GetMapping("/users/{userId}")
+    public ResponseEntity<?> getUser(@PathVariable String userId){
+
+        User user = userService.getUser(userId);
+        if(user == null){
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(user);
+    }
 
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpRequest signUpRequest){
