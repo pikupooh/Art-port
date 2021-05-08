@@ -64,7 +64,7 @@ class blogData extends React.Component {
               <Image fluid src = {this.props.user.profilePhoto.link} className = "blog_page_uploader" roundedCircle></Image>
             </Col>
             <Col className = "text-left my-auto">
-              <Link to = {'/artist/' + this.props.user.id}>
+              <Link to = {'/user/' + this.props.user.userId}>
               <Row className = "username blog_page_username">
                 {this.props.user.username}
               </Row>
@@ -73,8 +73,8 @@ class blogData extends React.Component {
                 {this.props.user.about}
               </Row>
               <Row>
-            Uploaded on {this.props.uploadDate}
-          </Row>
+                Uploaded on {this.props.uploadDate}
+              </Row>
             </Col>
           </Row>
           
@@ -118,6 +118,7 @@ class blogData extends React.Component {
   );
 
 const mapStateToProps = (state) => {
+  console.log(state.blogData);
   return {
     id: state.blogData.id,
     title: state.blogData.title,

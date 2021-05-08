@@ -2,6 +2,7 @@ import { Image, Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 function BlogDataComment(props){
+    console.log(props);
     return(
         <div className = "m-5">
             <Row>
@@ -11,7 +12,7 @@ function BlogDataComment(props){
                     </Col>
                 </Link>
                 <Col>
-                <Link to = {'/user/' + props.comment.user.id}>
+                <Link to = {'/user/' + props.comment.user.userId}>
                     <Row className = "username">
                         {props.comment.user.username}
                     </Row>

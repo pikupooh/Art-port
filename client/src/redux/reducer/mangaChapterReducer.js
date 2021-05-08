@@ -14,10 +14,10 @@ export const mangaChapterReducer = (state = initState, action) => {
       return {
         ...state,
         id: action.payload.mangaChapter.id,
-        photoDocument: action.payload.mangaChapter.photoDocument,
+        photoDocument: action.payload.mangaChapter.images,
         comments :action.payload.mangaChapter.comments,
-        chapterNo :action.payload.mangaChapter.chapterNo,
-        chapterName :action.payload.mangaChapter.chapterName
+        chapterNo :action.payload.mangaChapter.no,
+        chapterName :action.payload.mangaChapter.name
       };
     default:
       return state;

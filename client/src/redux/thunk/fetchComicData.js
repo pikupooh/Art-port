@@ -2,15 +2,14 @@ import { fetchComicDataAction } from '../actions/fetchComicDataAction'
 
 function fetchComicData(comicId) {
     return dispatch => {
-        fetch('http://localhost:3000/dummy2/comics.json')
+        fetch('http://localhost:8080/manga/' + comicId)
         .then(res =>  res.json())
         .then(res => {
             if(res.error) {
                 throw(res.error);
             }
-            
-            res = res.filter(comic => comic.comicid === comicId)
-            dispatch(fetchComicDataAction(res[0]))
+
+            dispatch(fetchComicDataAction(res))
          
             return res;
         })

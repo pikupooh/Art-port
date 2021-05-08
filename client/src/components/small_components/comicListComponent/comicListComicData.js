@@ -24,13 +24,11 @@ function ComicListComicData(props){
             <Row>
                 Authors
             </Row>
-                {props.comic.author.map((user) => 
-                    <Link to = {'/user/' + user.UserId}>
-                        <div> 
-                        {user.firstname} {user.lastname + ' '}
-                        </div>
-                    </Link>
-                )}
+                <Link to = {'/user/' + props.comic.userDTO.userId}>
+                    <div> 
+                        {props.comic.userDTO.firstName} {props.comic.userDTO.lastName + ' '}
+                    </div>
+                </Link>
             <Row>
                 {props.comic.chapters.length + chapter} 
             </Row>

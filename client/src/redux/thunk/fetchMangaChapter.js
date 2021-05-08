@@ -3,15 +3,13 @@ import { fetchMangaChapterAction } from '../actions/fetchMangaChapterAction'
 function fetchMangaChapter(id) {
 
     return dispatch => {
-        fetch('http://localhost:3000/dummy2/chapters.json')
+        fetch('http://localhost:8080/chapter/' + id)
         .then(res =>  res.json())
         .then(res => {
             if(res.error) {
                 throw(res.error);
             }
-            res = res.filter((mangaChapter) => mangaChapter.id === id)
-            console.log(res[0]);
-            dispatch(fetchMangaChapterAction(res[0]))   
+            dispatch(fetchMangaChapterAction(res))   
             return res;
         })
         .catch(error => {
