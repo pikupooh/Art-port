@@ -1,41 +1,39 @@
-import * as ActionTypes from '../actions/actionTypes'
+import * as ActionTypes from "../actions/actionTypes";
 
 const initState = {
-    userId: "6086af69ad639088a6d75136",
-    isAuthenticated: localStorage.getItem("isAuthenticated") ? true : false
-}
+    userId: localStorage.getItem("userId"),
+    token: localStorage.getItem("token"),
+    isAuthenticated: localStorage.getItem("token") ? true : false,
+};
 
 export const authReducer = (state = initState, action) => {
     switch (action.type) {
-        case ActionTypes.LOGIN_REQUEST:
-            return {
-                ...state,
-                isAuthenticated: localStorage.getItem("isAuthenticated"),
-            };
         case ActionTypes.LOGIN_SUCCESS:
-            localStorage.setItem("isAuthenticated", true);
             return {
                 ...state,
-                isAuthenticated: localStorage.getItem("isAuthenticated"),
+                isAuthenticated: true,
+                userId: action.userId,
+                token: action.token,
             };
         case ActionTypes.LOGIN_FAILURE:
             return {
                 ...state,
-                isAuthenticated: localStorage.getItem("isAuthenticated"),
+                isAuthenticated: false,
             };
         case ActionTypes.LOGOUT_REQUEST:
             return {
                 ...state,
-                isAuthenticated: localStorage.getItem("isAuthenticated")
+                isAuthenticated: true,
             };
         case ActionTypes.LOGOUT_SUCCESS:
-            localStorage.removeItem("isAuthenticated")
             return {
                 ...state,
                 isAuthenticated: false,
+                userId: null,
+                token: null,
             };
-        
+
         default:
-            return state
+            return state;
     }
-}
+};
