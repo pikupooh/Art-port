@@ -64,8 +64,11 @@ class PostModal extends React.Component {
         instance.chipsData.map((chip) => arr.push(chip["tag"]));
 
         postformData["tags"] = arr;
-        imageformData.append("files", this.fileInput.current.files);
+        for (var i = 0; i < this.fileInput.current.files.length; i++) {
+            
+            imageformData.append("files", this.fileInput.current.files[i], this.fileInput.current.files[i].name);
 
+        }
         console.log(this.fileInput.current.files);
         console.log("yo");
         console.log(postformData);

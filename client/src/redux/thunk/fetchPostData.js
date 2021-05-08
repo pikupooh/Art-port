@@ -82,9 +82,8 @@ export const createPost = (userId, postFormData, imageFormData) => {
 
                 fetch(`http://localhost:8080/posts/${postId}/images/upload`, {
                     method: "POST",
-                    body: { files: imageFormData.get("files") },
+                    body: imageFormData,
                     headers: {
-                        "Content-Type": "application/json",
                         Authorization: bearer,
                     },
                 })

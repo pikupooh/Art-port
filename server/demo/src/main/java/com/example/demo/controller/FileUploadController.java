@@ -17,6 +17,7 @@ import com.example.demo.services.PostService;
 import com.example.demo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -51,10 +52,9 @@ public class FileUploadController {
     ChapterService chapterService;
 
     @PostMapping(value = "/posts/{postId}/images/upload")
-    String uploadImage(@PathVariable String postId, @Valid @RequestBody FileRequest fileRequest, Principal principal) throws Exception {
-
-        System.out.println(fileRequest);
-        MultipartFile[] multipartFile = fileRequest.getMultipartFiles();
+    ResponseEntity<?> uploadImage(@PathVariable String postId,  @RequestParam("files") MultipartFile[] multipartFile, Principal principal) throws Exception {
+    	
+    	Post post = postService.getPost(postId);
         Arrays.asList(multipartFile).stream().forEach(file -> {
             String imageId = null;
             try {
@@ -62,11 +62,10 @@ public class FileUploadController {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            Post post = postService.getPost(postId);
             post.addImage(imageService.getimage(imageId));
             postService.save(post);
         });
-        return "Image uploaded successfully";
+        return ResponseEntity.ok(post);
 
 
     }
