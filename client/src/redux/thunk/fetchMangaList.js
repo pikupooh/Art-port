@@ -3,7 +3,7 @@ import { fetchMangaListAction } from '../actions/fetchMangaListAction'
 function fetchMangaList() {
     
     return dispatch => {
-        fetch('dummy2/mangas.json')
+        fetch('http://localhost:8080/manga')
         .then(res => res.json())
         .then(res => {
             if(res.error) {

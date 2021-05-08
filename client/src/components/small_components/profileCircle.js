@@ -1,7 +1,6 @@
 import  React  from 'react';
 import { connect } from 'react-redux';
 import { Button, Image, NavDropdown } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 
 import fetchUserDataAction from '../../redux/thunk/fetchUserData'

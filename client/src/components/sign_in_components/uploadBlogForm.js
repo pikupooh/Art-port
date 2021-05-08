@@ -1,4 +1,4 @@
-import React,{Component} from "react";
+import React from "react";
 import {Form ,Button,FormGroup} from 'react-bootstrap';
 
 class UploadBlogForm extends React.Component {

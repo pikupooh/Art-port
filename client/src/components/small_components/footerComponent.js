@@ -1,7 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {Container,Row,Col} from "react-bootstrap"
-import { faFacebook,faGooglePlay,faInstagram,faTwitter, faYoutube, } from '@fortawesome/free-brands-svg-icons'
+import {Row,Col} from "react-bootstrap"
+import { faFacebook ,faInstagram,faTwitter, faYoutube } from '@fortawesome/free-brands-svg-icons'
 import { faCopyright } from '@fortawesome/free-solid-svg-icons'
 
 

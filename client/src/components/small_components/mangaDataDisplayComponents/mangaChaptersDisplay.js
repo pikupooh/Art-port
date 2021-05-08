@@ -1,6 +1,5 @@
-import { Col, Image, Row, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import MangaIndividualChapter from "../mangaDataDisplayComponents/mangaIndividualChapter";
+
 function MangaChaptersDisplay (props) {
     return ( 
         <div>

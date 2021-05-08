@@ -2,14 +2,15 @@ import { fetchPostListAction } from '../actions/fetchPostListAction'
 
 function fetchPostList() {
     return dispatch => {
-        fetch(`http://localhost:8080/post`)
+        fetch("http://localhost:8080/post")
         .then(res => res.json())
         .then(res => {
             if(res.error) {
                 throw(res.error);
             }
+            console.log(res);
             res.map(post => {
-                if(post.images.length == 0) {
+                if(post.images.length === 0) {
                     post.images.push( {
                         id: "fail",
                         name: "fail",
@@ -18,7 +19,6 @@ function fetchPostList() {
                 }
                 return post;
             })
-
             dispatch(fetchPostListAction(res))
             return res;
         })

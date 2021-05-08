@@ -1,4 +1,4 @@
-import { Col, Image, Row, Container } from "react-bootstrap";
+import {  Image, Container } from "react-bootstrap";
 import React from "react";
 import {connect} from "react-redux"
 import { bindActionCreators } from "redux";

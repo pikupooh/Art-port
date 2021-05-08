@@ -1,4 +1,4 @@
-import { Image, Container } from "react-bootstrap";
+import { Image } from "react-bootstrap";
 
 function MangaListMangaImage(props){
     return(

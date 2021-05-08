@@ -1,15 +1,11 @@
-import React, { Fragment } from "react";
-import { Image, Row, Container, Col, Button,Carousel } from "react-bootstrap";
+import React from "react";
+import { Image, Container ,Carousel } from "react-bootstrap";
 import rohit from "./profile_components/rohit.jpeg";
 import pratik from  "./profile_components/pratik.jpg"
 import krishanu from  "./profile_components/krishanu.jpg"
 import shaurya from  "./profile_components/shaurya.jpg"
 import zakaria from  "./profile_components/zakaria.jpg"
-import { bindActionCreators } from "redux";
-import { Link } from 'react-router-dom'
-import fetchBlogDataAction from "../../redux/thunk/fetchBlogData";
-import BlogDataComments from "../small_components/blogDataComponent/blogDataComments";
-import PostLikesModal from "../small_components/postLikesModal"
+
 
 class About extends React.Component {
   

@@ -6,7 +6,7 @@ import BlogListBlogDataComponent from '../small_components/blogListComponent/blo
 
 import fetchBlogListAction from '../../redux/thunk/fetchBlogList'
 import BlogListCarousel from '../small_components/blogListComponent/blogListCarousel'
-import { Col, Row } from 'react-bootstrap';
+import { Row } from 'react-bootstrap';
 class blogs extends React.Component{
 
     componentDidMount() {
@@ -19,7 +19,7 @@ class blogs extends React.Component{
                 <div className = "blog_list_blogs_container ">
                     <Row className = "container-fluid blog_list_container">
                         {this.props.blogList.map((blog) => 
-                            <BlogListBlogDataComponent blog = {blog} />
+                            <BlogListBlogDataComponent blog = {blog} key = {blog.id}/>
                         )}
                     </Row>
                 </div>
@@ -33,6 +33,7 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
 }, dispatch)
 
 const mapStateToProps=(state) => {
+    console.log(state.blog.blogList);
     return {
         blogList: state.blog.blogList,
         carouselBlogList: state.blog.carouselBlogList

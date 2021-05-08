@@ -1,5 +1,4 @@
-import { Link } from 'react-router-dom'
-import { Container, Row, Col } from 'react-bootstrap'
+import { Row, Col } from 'react-bootstrap'
 
 import MangaListMangaImage from '../mangaListComponent/mangaListMangaImage'
 import MangaListMangaData from '../mangaListComponent/mangaListMangaData'

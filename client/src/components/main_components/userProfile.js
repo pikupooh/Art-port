@@ -10,10 +10,6 @@ import fetchProfileDataAction from "../../redux/thunk/fetchProfileData";
 
 class UserProfile extends React.Component {
 
-  constructor(props){
-    super(props)
-  }
-
   componentDidMount() {
     console.log("mounted");
     this.props.fetchUserData()

@@ -1,11 +1,8 @@
 import React from 'react';
 import { connect } from  'react-redux';
 import { bindActionCreators } from 'redux';
-import { Link } from 'react-router-dom';
-import {Button,Container,Col,Row} from 'react-bootstrap'
+import {Col,Row} from 'react-bootstrap'
 import HomeGridLayout from '../small_components/homeGridLayout'
-
-import Carousel from 'react-bootstrap/Carousel'
 
 import fetchPostListAction from '../../redux/thunk/fetchPostsList'
 import fetchCategoryListAction from '../../redux/thunk/fetchCategoryList'

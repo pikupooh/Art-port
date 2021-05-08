@@ -10,7 +10,7 @@ import thunk from 'redux-thunk';
 
 
 import  rootReducer  from './redux/reducer/rootReducer'
-import './themes/default.scss';
+import './themes/default.scss'
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 

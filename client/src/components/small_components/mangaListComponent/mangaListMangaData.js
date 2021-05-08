@@ -1,7 +1,6 @@
 import { StarFill } from 'react-bootstrap-icons'
 import { Row, Container } from 'react-bootstrap'
 import {Link} from 'react-router-dom'
-import { Fragment } from 'react'
 
 function MangaListMangaData(props){
     
