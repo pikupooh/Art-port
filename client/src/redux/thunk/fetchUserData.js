@@ -6,8 +6,6 @@ function fetchUserData() {
         fetch(`http://localhost:8080/api/auth/users/${userId}`)
             .then(
                 (res) => {
-                    console.log(res);
-
                     if (res.ok) return res;
                     else {
                         var error = new Error(
@@ -23,7 +21,6 @@ function fetchUserData() {
             )
             .then((res) => res.json())
             .then((res) => {
-                console.log(res);
                 dispatch(fetchUserDataAction(res));
 
                 return res;

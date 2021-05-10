@@ -18,7 +18,6 @@ class SearchBar extends React.Component{
     }
 
     handleOnSearch = () => {
-        console.log(this.state.val)
         this.setState({
             val: ''
         })

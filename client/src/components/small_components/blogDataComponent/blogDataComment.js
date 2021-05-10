@@ -2,7 +2,8 @@ import { Image, Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 function BlogDataComment(props){
-    console.log(props);
+
+    
     return(
         <div className = "m-5">
             <Row>

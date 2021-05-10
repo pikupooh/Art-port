@@ -20,7 +20,6 @@ function BlogDataComments(props){
                     </div>
                 )}
                 <BlogCommentSection />
-                
             </div>
         )
     }

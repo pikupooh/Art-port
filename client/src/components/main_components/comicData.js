@@ -14,7 +14,6 @@ class ComicData extends React.Component {
     }
   
     render() {
-      console.log(this.props);
       return(
         <div className = "container-fluid">
           <MangaDataDisplay photo={this.props.coverPhoto} 
@@ -42,7 +41,6 @@ class ComicData extends React.Component {
   );
 
 const mapStateToProps = (state) => {
-   console.log(state.mangaData);
   return {
     mangaId: state.mangaData.id,
     chapters: state.mangaData.chapters,

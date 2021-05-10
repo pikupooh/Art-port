@@ -12,7 +12,6 @@ class MangaIndividualChapter extends React.Component {
       }
 
   render () {
-    console.log(this.props.photoDocument);
     return ( 
       
       <Container className = 'text-center'>

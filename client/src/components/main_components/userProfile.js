@@ -11,7 +11,6 @@ import fetchProfileDataAction from "../../redux/thunk/fetchProfileData";
 class UserProfile extends React.Component {
 
   componentDidMount() {
-    console.log("mounted");
     this.props.fetchUserData()
     let id = this.props.location.pathname.slice(6)
     this.props.fetchProfileData(id);

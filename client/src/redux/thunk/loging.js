@@ -3,7 +3,6 @@ import fetchUserData from "./fetchUserData";
 import * as ActionTypes from "../actions/actionTypes";
 
 export default function signInUser(user, pass) {
-    console.log(user + " " + pass);
     var creds = {
         username: user,
         password: pass,
@@ -36,7 +35,6 @@ export default function signInUser(user, pass) {
             )
             .then((res) => res.json())
             .then((res) => {
-                console.log(res);
                 var token = res.tokenType + " " + res.accessToken;
                 var userId = res.id;
 

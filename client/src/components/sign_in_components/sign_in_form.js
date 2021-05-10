@@ -24,10 +24,10 @@ class SignInForm extends React.Component {
 
     handleSignIn = (e) => {
         e.preventDefault();
-        console.log(this.state);
         this.props.signIn(this.state.username, this.state.password);
         //this.props.fetchUserData();
         this.props.handleModalClose();
+        window.location.reload()
     };
     render() {
         return (

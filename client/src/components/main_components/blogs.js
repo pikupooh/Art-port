@@ -33,7 +33,6 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
 }, dispatch)
 
 const mapStateToProps=(state) => {
-    console.log(state.blog.blogList);
     return {
         blogList: state.blog.blogList,
         carouselBlogList: state.blog.carouselBlogList

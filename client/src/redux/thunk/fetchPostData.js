@@ -1,7 +1,6 @@
 import { fetchPostDataAction } from '../actions/fetchPostDataAction'
 
 function fetchPostData(postId) {
-    console.log("hello");
     return dispatch => {
         fetch(`http://localhost:8080/post/${postId}`)
         .then(res => res.json())

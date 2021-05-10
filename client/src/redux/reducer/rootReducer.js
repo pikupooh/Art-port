@@ -13,6 +13,8 @@ import { artistUserDataReducer } from "./artistUserDataReducer"
 import {categoryListReducer} from "./categoryListReducer"
 import { profileDataReducer } from "./profileDataReducer";
 import { mangaChapterReducer } from "./mangaChapterReducer";
+import { SignInModalReducer } from "./signInModalReducer";
+
 export default combineReducers({
   auth: authReducer,
   user: userReducer,
@@ -27,5 +29,6 @@ export default combineReducers({
   artistUserData: artistUserDataReducer,
   category : categoryListReducer,
   profile : profileDataReducer,
-  mangaChapter : mangaChapterReducer
+  mangaChapter : mangaChapterReducer,
+  signInModal: SignInModalReducer
 });

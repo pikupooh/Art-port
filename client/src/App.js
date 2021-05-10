@@ -23,23 +23,6 @@ import UploadBlogForm from "./components/sign_in_components/uploadBlogForm"
 const NavbarwithRouter = withRouter(NavbarComponent);
 
 class App extends React.Component {
-
-  constructor(props) {
-		super(props);
-
-		this.state = {
-			show: false,
-		};
-	}
-
-  handleModalClose = () => {
-		this.setState({ show: false });
-	}
-
-	handleModalShow = () => {
-		this.setState({ show: true });
-	}
-
   
   render() {
     return (
@@ -48,7 +31,7 @@ class App extends React.Component {
         <Switch>
           <React.Fragment>
             <div>  
-              <NavbarwithRouter onShowModal = {this.handleModalShow} />
+              <NavbarwithRouter  />
                 <div className = "space_for_navbar"></div>
                 <Route  exact path = '/' component = {Home}/> 
                 <Route  path = '/comics' component = {Comics} />
@@ -64,9 +47,7 @@ class App extends React.Component {
                 <Route path = '/registration' component ={RegistrationForm}/>
                 <Route path ='/postuploadform/' component ={UploadPostForm}/>
                 <Route path ='/bloguploadform/' component ={UploadBlogForm}/>
-                <SignInModal show = {this.state.show} handleModalClose = {this.handleModalClose}
-                  handleModalShow = {this.handleModalShow}
-                />
+                <SignInModal />
             </div>
           </React.Fragment>
           </Switch>    

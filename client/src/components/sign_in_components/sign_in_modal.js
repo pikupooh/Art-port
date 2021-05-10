@@ -1,5 +1,7 @@
 import React from "react"
 import Modal from "react-bootstrap/Modal"
+import { connect } from "react-redux"
+
 import SignInForm from './sign_in_form'
 import RegisterForm from './register_form'
 
@@ -9,7 +11,6 @@ class SignInModal extends React.Component{
 
   constructor(props) {
     super(props)
-
     this.state = {
       isRegisterForm: false,
     }
@@ -27,18 +28,23 @@ class SignInModal extends React.Component{
     });
   }
 
+  handleModalClose = () => {
+    this.props.hideSignInModal()
+  }
+
 
 
     render(){
       // TODO: Better ui
+      console.log(this.props);
 
       if(this.state.isRegisterForm === false){
         
         return(
-            <Modal show = {this.props.show} onHide = {this.props.handleModalClose}>
+            <Modal show = {this.props.show} onHide = {this.handleModalClose}>
               <Modal.Body>
                 <h3 className = 'text-center'>Sign in</h3>
-                <SignInForm handleModalClose = {this.props.handleModalClose} />
+                <SignInForm handleModalClose = {this.handleModalClose} />
                 <div className = 'mt-2 '>
                   <a  className='alert-link' href = '/'> Forgot password</a>
                 </div>
@@ -55,8 +61,7 @@ class SignInModal extends React.Component{
         return(
           <Modal show = {this.props.show} onHide = {() => {
                           setTimeout(() => {this.Register_to_sign_in() }, 250);
-                          this.props.handleModalClose();
-                          
+                          this.handleModalClose();
                           }} >
             <Modal.Body>
               <h3 className = 'text-center'>Register to Art Port</h3>
@@ -72,4 +77,19 @@ class SignInModal extends React.Component{
     }
 }
 
-export default SignInModal
+const mapStateToProps = (state) => {
+  console.log(state.signInModal.show);
+  return{
+    show: state.signInModal.show
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return{
+    hideSignInModal: () => dispatch({type: 'HIDE_MODAL'}),
+    
+  }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignInModal)
