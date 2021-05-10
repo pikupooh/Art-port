@@ -1,113 +1,107 @@
-import React from 'react'
-import { Button } from 'react-bootstrap'
-import { connect } from 'react-redux'
+import React from "react";
+import { Button } from "react-bootstrap";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 
-import deleteBlogLike from '../../../redux/thunk/delete/deleteBlogLike'
-import postBlogLike from '../../../redux/thunk/post/postBlogLike'
+import deleteBlogLike from "../../../redux/thunk/delete/deleteBlogLike";
+import postBlogLike from "../../../redux/thunk/post/postBlogLike";
 
-class BlogLikeButton extends React.Component{
-
-    constructor(props){
-        super(props)
+class BlogLikeButton extends React.Component {
+    constructor(props) {
+        super(props);
         this.state = {
             liked: false,
-        }
+        };
     }
 
-    componentDidMount(){
-        if(this.props.blogId !== "")
-            this.updateButtonState()
+    componentDidMount() {
+        if (this.props.blogId !== "") this.updateButtonState();
     }
 
-
-    trimUser = () =>{
-
+    trimUser = () => {
         var temp = {
-            ...this.props.user
-        }
+            ...this.props.user,
+        };
 
-        delete temp.about
-        delete temp.email
-        delete temp.dob
+        delete temp.about;
+        delete temp.email;
+        delete temp.dob;
 
-        return temp
-    }
+        return temp;
+    };
 
     updateButtonState = () => {
-        var foundUser = this.props.likes.filter((user) => 
-            user.userId === this.props.userId
-        )
+        var foundUser = this.props.likes.filter(
+            (user) => user.userId === this.props.userId
+        );
 
         console.log(foundUser);
-        
-        if(foundUser.length !== 0){
+
+        if (foundUser.length !== 0) {
             this.setState({
-                liked: true
+                liked: true,
+            });
+        } else {
+            this.setState({
+                liked: false,
             });
         }
-        else{
-            this.setState({
-                liked: false
-            });
-        }
-    }
+    };
 
     blogLiked = () => {
-
-        if(this.props.userId === null){
-            this.props.showSignInModal()
+        if (this.props.userId === null) {
+            this.props.showSignInModal();
             return;
         }
 
         //  Remove later as always didMount calls when likes changes
         this.setState({
-            liked: true
-        })
+            liked: true,
+        });
 
-        this.props.postBlogLike(this.trimUser(), this.props.blogId)
-
-    }
+        this.props.postBlogLike(this.trimUser(), this.props.blogId);
+    };
 
     removeLiked = () => {
-        
-        this.props.deleteBlogLike(this.props.user.userId, this.props.blogId)
+        this.props.deleteBlogLike(this.props.user.userId, this.props.blogId);
         this.setState({
-            liked: false
-        })
-    }
+            liked: false,
+        });
+    };
 
-    render(){
-        if(this.state.liked === false){
-            return(
-                <Button className = "mt-3" onClick = {this.blogLiked}>
+    render() {
+        if (this.state.liked === false) {
+            return (
+                <Button className="mt-3" onClick={this.blogLiked}>
                     Like
                 </Button>
-            )
-        }
-        else{
-            return(
-                <Button className = "mt-3" onClick = {this.removeLiked}>
+            );
+        } else {
+            return (
+                <Button className="mt-3" onClick={this.removeLiked}>
                     Unlike
                 </Button>
-            )
-        }       
+            );
+        }
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return{
-        showSignInModal: () => dispatch({type: 'SHOW_MODAL'}),
-        deleteBlogLike: deleteBlogLike,
-        postBlogLike: postBlogLike
-    }
-}
+const mapDispatchToProps = (dispatch) =>
+    bindActionCreators(
+        {
+            showSignInModal: () => dispatch({ type: "SHOW_MODAL" }),
+            deleteBlogLike: deleteBlogLike,
+            postBlogLike: postBlogLike,
+        },
+        dispatch
+    );
 
 const mapStateToProps = (state) => {
-    return{
+    return {
         userId: state.auth.userId,
         likes: state.blogData.likes,
-        user: state.user
-    }
-}
+        user: state.user,
+    };
+};
 
-export default connect( mapStateToProps , mapDispatchToProps)(BlogLikeButton)
+export default connect(mapStateToProps, mapDispatchToProps)(BlogLikeButton);

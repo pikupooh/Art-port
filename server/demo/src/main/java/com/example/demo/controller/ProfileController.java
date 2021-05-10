@@ -46,9 +46,9 @@ public class ProfileController {
         User user = userService.getUserByName(principal.getName());
         if(user == null)
             return new ResponseEntity<String>("User not present.", HttpStatus.UNAUTHORIZED);
-        if (!user.getId().equals(userId))
+        /*if (!user.getId().equals(userId))
             return new ResponseEntity<String>("User invalid.", HttpStatus.UNAUTHORIZED);
-
+        */
         return ResponseEntity.ok(profileService.getUserProfile(userId));
     }
 
