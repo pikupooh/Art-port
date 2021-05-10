@@ -1,29 +1,28 @@
-import { LIKE_BLOG } from "../../actions/actionTypes"
+import { LIKE_BLOG } from "../../actions/actionTypes";
 
-function postBlogLike(user, blogId){
+function postBlogLike(user, blogId) {
+    const token = localStorage.getItem("token");
 
-    const token = localStorage.getItem("token")
-
-    return dispatch => {
-        fetch('localhost:8080/blog/' + blogId + '/likes', {
-            method: 'PUT',
+    return (dispatch) => {
+        fetch(`http://localhost:8080/blog/${blogId}/likes`, {
+            method: "PUT",
             headers: {
-                "Content-Type": "application/json",
                 Authorization: token,
-            }
+            },
         })
-        .then(response => {
-            console.log(response);
-            if(response.ok){
-                dispatch({
-                    type: LIKE_BLOG,
-                    payload: {
-                        user
-                    }
-                })
-            }
-        })
-    }
+            .then((response) => {
+                console.log(response);
+                if (response.ok) {
+                    dispatch({
+                        type: LIKE_BLOG,
+                        payload: {
+                            user,
+                        },
+                    });
+                }
+            })
+            .catch((err) => console.error(err));
+    };
 }
 
-export default postBlogLike
+export default postBlogLike;
