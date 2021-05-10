@@ -5,9 +5,7 @@ import { Nav, NavItem, Navbar } from "react-bootstrap"
 import { Link } from 'react-router-dom'
 import  SearchBar from '../small_components/search_bar'
 
-const NavbarComponent = props => {
-    
-    const { onShowModal } = props
+const NavbarComponent = () => {
 
     return(
         <div>
@@ -30,7 +28,7 @@ const NavbarComponent = props => {
                             <Link to = "/about" className = "nav-link">About</Link>
                         </NavItem>
                         <NavItem className = "nav_profile">
-                            <ProfileCircle onShowModal = {onShowModal} />
+                            <ProfileCircle />
                         </NavItem>
                     </Nav>
                 </Navbar.Collapse>

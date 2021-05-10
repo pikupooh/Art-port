@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import PostComments from './postComments'
 import PostLikesModal from '../postLikesModal'
 import PostCommentSection from './postCommentSection'
-
+import PostLikeButton from '../likeButtons/postLikeButton'
 class PostedUserDetails extends React.Component{
 
     constructor(props){
@@ -56,9 +56,7 @@ class PostedUserDetails extends React.Component{
                         <Button>Follow</Button>
                     </Col>
                     <Col>
-                        <Button className = "mt-3">
-                            Like
-                        </Button>
+                        <PostLikeButton postid = {this.props.info.id} likes = {this.props.info.likes}  handleModalShow = {this.props.info.handleModalShow}/>
                     </Col>
                 </Row>
                 <p onClick = {this.showLikesModal}
@@ -98,7 +96,7 @@ class PostedUserDetails extends React.Component{
                 </div>
                 <PostComments comments = {this.props.info.comments}/>
             </div>
-            <PostCommentSection />
+            <PostCommentSection postId = {this.props.info.id}/>
         </div>
     )}
 }

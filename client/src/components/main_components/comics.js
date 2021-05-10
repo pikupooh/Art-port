@@ -25,7 +25,6 @@ class Comics extends React.Component{
             </div>
             )
     }
- 
 }
 
 
@@ -34,7 +33,6 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
 }, dispatch)
 
 const mapStateToProps=(state) => {
-    console.log(state.comic);
     return {
         comicList :state.comic.comicList,
     }

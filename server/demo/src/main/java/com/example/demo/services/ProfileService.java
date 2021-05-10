@@ -38,7 +38,10 @@ public class ProfileService {
 
     public Profile getUserProfile(String id){
 
-        return profileRepository.findById(id).get();
+        Optional<Profile> profile = profileRepository.findById(id);
+
+        return profile.orElse(null);
+
     }
 
     public List<Post> getUserPosts(String id){

@@ -25,7 +25,6 @@ class Manga extends React.Component{
             </div>
         )
     }
- 
 }
 
 

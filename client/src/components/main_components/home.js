@@ -4,7 +4,7 @@ import HomeGrid from '../main_components/homeGrid'
 class Home extends React.Component {
   render(){
     return(
-      <div>
+      <div className = "container-fluid">
       <HomeGrid />
       </div>
     )

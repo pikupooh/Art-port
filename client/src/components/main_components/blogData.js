@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom'
 import fetchBlogDataAction from "../../redux/thunk/fetchBlogData";
 import BlogDataComments from "../small_components/blogDataComponent/blogDataComments";
 import PostLikesModal from "../small_components/postLikesModal"
+import BlogLikeButton from "../small_components/likeButtons/blogLikeButton"
 
 class blogData extends React.Component {
   
@@ -64,7 +65,7 @@ class blogData extends React.Component {
               <Image fluid src = {this.props.user.profilePhoto.link} className = "blog_page_uploader" roundedCircle></Image>
             </Col>
             <Col className = "text-left my-auto">
-              <Link to = {'/artist/' + this.props.user.id}>
+              <Link to = {'/user/' + this.props.user.userId}>
               <Row className = "username blog_page_username">
                 {this.props.user.username}
               </Row>
@@ -73,16 +74,14 @@ class blogData extends React.Component {
                 {this.props.user.about}
               </Row>
               <Row>
-            Uploaded on {this.props.uploadDate}
-          </Row>
+                Uploaded on {this.props.uploadDate}
+              </Row>
             </Col>
           </Row>
           
           <Row className = "my-3">
             <Col className = "mb-3">
-              <Button>
-                Like the blog?
-              </Button>
+              <BlogLikeButton blogId = {this.props.id}/>
               <span className = "ml-3 likes_modal_btn" onClick = {this.showLikesModal}>
                  {this.props.likes.length} Likes
               </span>
