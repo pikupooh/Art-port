@@ -36,8 +36,6 @@ class SignInModal extends React.Component{
 
     render(){
       // TODO: Better ui
-      console.log(this.props);
-
       if(this.state.isRegisterForm === false){
         
         return(
@@ -78,7 +76,6 @@ class SignInModal extends React.Component{
 }
 
 const mapStateToProps = (state) => {
-  console.log(state.signInModal.show);
   return{
     show: state.signInModal.show
   }
@@ -87,7 +84,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return{
     hideSignInModal: () => dispatch({type: 'HIDE_MODAL'}),
-    
   }
 }
 

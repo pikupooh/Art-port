@@ -2,58 +2,81 @@ import React from 'react'
 import { Button } from 'react-bootstrap'
 import { connect } from 'react-redux'
 
+import deleteBlogLike from '../../../redux/thunk/delete/deleteBlogLike'
+import postBlogLike from '../../../redux/thunk/post/postBlogLike'
+
 class BlogLikeButton extends React.Component{
 
     constructor(props){
         super(props)
         this.state = {
-            liked: false
+            liked: false,
         }
     }
 
     componentDidMount(){
-        var foundLiked = this.props.likes.filter((like) =>
-            like.id === this.props.blogId
+        if(this.props.blogId !== "")
+            this.updateButtonState()
+    }
+
+
+    trimUser = () =>{
+
+        var temp = {
+            ...this.props.user
+        }
+
+        delete temp.about
+        delete temp.email
+        delete temp.dob
+
+        return temp
+    }
+
+    updateButtonState = () => {
+        var foundUser = this.props.likes.filter((user) => 
+            user.userId === this.props.userId
         )
-        if(foundLiked.length !== 0){
+
+        console.log(foundUser);
+        
+        if(foundUser.length !== 0){
             this.setState({
                 liked: true
-            })
+            });
+        }
+        else{
+            this.setState({
+                liked: false
+            });
         }
     }
 
     blogLiked = () => {
 
-        const token = localStorage.getItem('token')
-
-        if(token === null){
+        if(this.props.userId === null){
             this.props.showSignInModal()
             return;
         }
 
-        console.log('like');
-        // fetch('localhost:8080/post/' + {postId} + '/likes', {
-        //     method: 'PUT',
-        //     headers: {
-        //         "Content-Type": "application/json",
-        //         Authorization: token,
-        //     }
-        // })
-        // .then(response => {
-        //     if(response.ok){
-    
-        //     }
-        // })
+        //  Remove later as always didMount calls when likes changes
+        this.setState({
+            liked: true
+        })
+
+        this.props.postBlogLike(this.trimUser(), this.props.blogId)
+
     }
 
     removeLiked = () => {
+        
+        this.props.deleteBlogLike(this.props.user.userId, this.props.blogId)
         this.setState({
             liked: false
         })
     }
 
     render(){
-
         if(this.state.liked === false){
             return(
                 <Button className = "mt-3" onClick = {this.blogLiked}>
@@ -73,8 +96,18 @@ class BlogLikeButton extends React.Component{
 
 const mapDispatchToProps = (dispatch) => {
     return{
-        showSignInModal: () => dispatch({type: 'SHOW_MODAL'})
+        showSignInModal: () => dispatch({type: 'SHOW_MODAL'}),
+        deleteBlogLike: deleteBlogLike,
+        postBlogLike: postBlogLike
     }
 }
 
-export default connect(null, mapDispatchToProps)(BlogLikeButton)
+const mapStateToProps = (state) => {
+    return{
+        userId: state.auth.userId,
+        likes: state.blogData.likes,
+        user: state.user
+    }
+}
+
+export default connect( mapStateToProps , mapDispatchToProps)(BlogLikeButton)

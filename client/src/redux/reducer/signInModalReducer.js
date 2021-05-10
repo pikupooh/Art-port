@@ -3,7 +3,6 @@ const initState = {
 }
 
 export const SignInModalReducer = (state = initState, action) => {
-    console.log(action);
     switch(action.type){
         case 'SHOW_MODAL': 
             return{
