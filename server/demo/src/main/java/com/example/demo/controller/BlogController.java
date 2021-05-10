@@ -110,7 +110,7 @@ public class BlogController {
 
     @DeleteMapping("/blog/{blogId}/likes")
     public ResponseEntity<?> removeLike(@PathVariable String blogId, Principal principal){
-
+	    System.out.println("hehehe");
         Blog blog = blogService.getBlog(blogId);
 
         if(blog== null)
