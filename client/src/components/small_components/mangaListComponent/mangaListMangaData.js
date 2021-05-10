@@ -12,7 +12,6 @@ function MangaListMangaData(props){
     else{
         chapter = ' chapters'
     }
-
     return(
         <Container className = "manga-list_manga_data">
             <Row className = "manga_list_manga_data_title">
@@ -32,11 +31,9 @@ function MangaListMangaData(props){
                     Authors
                 </Row>
                 <Row >
-                    {props.manga.author.map((user) => 
-                        <Link to = {'/user/' + user.UserId} className = "manga_list_manga_data_authors">
-                            {user.firstname} {user.lastname + ' '}
-                        </Link>
-                    )}
+                    <Link to = {'/user/' + props.manga.userDTO.userId} className = "manga_list_manga_data_authors">
+                            {props.manga.userDTO.firstName} {props.manga.userDTO.lastName + ' '}
+                    </Link>
                 </Row>
             </div>
         </Container>

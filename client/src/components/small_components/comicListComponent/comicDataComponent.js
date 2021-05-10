@@ -9,7 +9,7 @@ function ComicDataComponent(props){
         <div className = "container-fluid my-2 manga_list_manga_container">
             <Row className = "m-4">
                 <Col md = {6} >
-                    <ComicListComicImage imageUrl = {props.comic.coverPhoto}
+                    <ComicListComicImage image = {props.comic.coverPhoto}
                     />
                 </Col>
                 <Col>

@@ -2,7 +2,6 @@ import { Button } from 'react-bootstrap'
 
 function SignOutButton(props){
     
-    console.log(props)
 
     if(props.userId === props.artistId){
         return(

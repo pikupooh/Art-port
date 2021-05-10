@@ -1,9 +1,10 @@
 import { Image, Row, Col } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 function PostLikedModal(props){
     return(
         <div className = "m-4">
-            <a href = {"http://localhost:3000/artist/" + props.like.userId}>
+            <Link to = { '/user/' + props.like.userId}>
                 <Row>
                     <Col xs = {2}>
                         <Image src = {props.like.profilePhoto.link} roundedCircle className = "post_profile_photo">
@@ -14,7 +15,7 @@ function PostLikedModal(props){
                     {props.like.username}
                 </Col>
                 </Row>
-            </a>
+            </Link>
         </div>
     )
 }

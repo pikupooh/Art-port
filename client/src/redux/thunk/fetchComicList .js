@@ -3,7 +3,7 @@ import { fetchComicListAction } from '../actions/fetchComicListAction'
 function fetchComicList() {
     
     return dispatch => {
-        fetch('dummy2/comics.json')
+        fetch('http://localhost:8080/comic')
         .then(res => res.json())
         .then(res => {
             if(res.error) {

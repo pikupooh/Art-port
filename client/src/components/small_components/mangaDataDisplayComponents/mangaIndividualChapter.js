@@ -26,7 +26,7 @@ class MangaIndividualChapter extends React.Component {
         <div className = "manga_chapter_images_container">
           {this.props.photoDocument.map((photo) => 
             <div key = {photo.id}> 
-              <Image src ={photo.url} fluid className = "my-3"></Image>
+              <Image src ={photo.link} fluid className = "my-3"></Image>
             </div>
           )} 
         </div>

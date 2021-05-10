@@ -15,6 +15,10 @@ class ProfileCircle extends React.Component {
         this.props.logoutUser();
     };
 
+    showModal = () => {
+        this.props.showSignInModal();
+    }
+
     render() {
         if (this.props.isAuthenticated === true) {
             return (
@@ -45,7 +49,7 @@ class ProfileCircle extends React.Component {
             return (
                 <Button
                     className="ml-3 my-auto"
-                    onClick={this.props.onShowModal}
+                    onClick={this.showModal}
                 >
                     Sign In
                 </Button>
@@ -67,6 +71,7 @@ const mapDispatchToProps = (dispatch) =>
         {
             fetchUserData: fetchUserDataAction,
             logoutUser: logoutUser,
+            showSignInModal: () => dispatch({type: 'SHOW_MODAL'}),
         },
         dispatch
     );

@@ -6,8 +6,8 @@ function BlogDataComments(props){
     if(props.comments.length === 0){
         return(
             <div className = "blog_data_comments">
+                Be the first to comment
                 <BlogCommentSection />
-                
             </div>
         )
     }
@@ -20,7 +20,6 @@ function BlogDataComments(props){
                     </div>
                 )}
                 <BlogCommentSection />
-                
             </div>
         )
     }

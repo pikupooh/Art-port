@@ -30,7 +30,7 @@ class MangaData extends React.Component {
 
             <MangaDescriptionDisplay about = {this.props.about}/>
             <MangaChaptersDisplay chapters ={this.props.chapters}/> 
-            <BlogDataComments comments = {this.props.Comments}/>
+            <BlogDataComments comments = {this.props.comments}/>
           </Container>
         </div>
       )
@@ -47,7 +47,7 @@ class MangaData extends React.Component {
 const mapStateToProps = (state) => {
   
   return {
-    id: state.mangaData.id,
+    mangaId: state.mangaData.id,
     chapters: state.mangaData.chapters,
     rating: state.mangaData.rating,
     noOfRating: state.mangaData.noOfRating,
@@ -56,7 +56,9 @@ const mapStateToProps = (state) => {
     type: state.mangaData.type,
     coverPhoto: state.mangaData.coverPhoto,
     author : state.mangaData.author,
-    Comments : state.mangaData.Comments
+    comments : state.mangaData.comments,
+    uploadDate : state.mangaData.uploadDate,
+    category : state.mangaData.category,
   };
 };
 

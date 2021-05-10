@@ -6,6 +6,7 @@ function PostLikesModal(props){
     if(!props.likes.length === 0){
         return(
             <div>
+                No likes
             </div>
         )
     }

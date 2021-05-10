@@ -1,4 +1,5 @@
-import {FETCH_BLOG_DATA} from './actionTypes'
+import {FETCH_BLOG_DATA, LIKE_BLOG} from './actionTypes'
+
 export const fetchBlogDataAction = (blog) => {
     return {
         type :FETCH_BLOG_DATA,
@@ -7,3 +8,12 @@ export const fetchBlogDataAction = (blog) => {
         }
     };
 };
+
+export const postBlogLike = (user) => {
+    return{
+        type: LIKE_BLOG,
+        payload: {
+            user
+        }
+    }
+}

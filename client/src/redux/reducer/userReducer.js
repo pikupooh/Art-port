@@ -16,7 +16,7 @@ export const userReducer = (state = initState, action) => {
         case ActionTypes.FETCH_USER_DATA:
             return {
                 ...state,
-                userId: action.payload.userData.userId,
+                userId: action.payload.userData.id,
                 email: action.payload.userData.email,
                 userName: action.payload.userData.username,
                 firstName: action.payload.userData.firstName,

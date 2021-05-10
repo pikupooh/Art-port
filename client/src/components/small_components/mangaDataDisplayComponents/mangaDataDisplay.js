@@ -9,7 +9,7 @@ function MangaDataDisplay (props) {
             <Row className = "my-4">
                 <Col md = {3} >
                     <div className = "manga_data_manga_image_container">
-                        <Image src ={props.photo} className="manga_data_manga_image"></Image>
+                        <Image src ={props.photo.link} className="manga_data_manga_image" alt = "manga_cover_photo"></Image>
                     </div>
                 </Col>
                 <Col>
@@ -31,11 +31,10 @@ function MangaDataDisplay (props) {
                             <Row >
                                 Authors:
                             </Row>
-                            {props.author.map((user) => 
-                                <Link to = {'/user/' + user.UserId} className = "manga_data_authors"> 
-                                {user.firstname} {user.lastname + ' '}
-                                </Link>
-                            )}
+                            <Link to = {'/user/' + props.author.userId} className = "manga_data_authors"> 
+                                {props.author.firstName} {props.author.lastName + ' '}
+                            </Link>
+                            
                         </div>
                     </Container>   
                 </Col>

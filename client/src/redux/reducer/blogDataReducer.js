@@ -31,6 +31,22 @@ export const blogDataReducer = (state = initState, action) => {
         tags: action.payload.blog.category,
         user: action.payload.blog.user
       };
+
+    case ActionTypes.LIKE_BLOG:
+      var newLikes = state.likes
+      newLikes.push(action.payload.user)
+      return{
+        ...state,
+        likes: newLikes
+      }
+    
+    case ActionTypes.UNLIKE_BLOG:
+      var newLikes = state.likes.filter((user) => user.userId !== action.payload.userId)
+      return{
+        ...state,
+        likes: newLikes
+      }
+
     default:
       return state;
   }
