@@ -81,7 +81,7 @@ class blogData extends React.Component {
           
           <Row className = "my-3">
             <Col className = "mb-3">
-              <BlogLikeButton likes = {this.props.likes} blogId = {this.props.id}/>
+              <BlogLikeButton blogId = {this.props.id}/>
               <span className = "ml-3 likes_modal_btn" onClick = {this.showLikesModal}>
                  {this.props.likes.length} Likes
               </span>

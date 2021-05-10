@@ -2,7 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
-import fetchUserDataAction from "../../redux/thunk/fetchUserData";
 import signInUser from "../../redux/thunk/loging";
 import { Form, Button } from "react-bootstrap";
 
@@ -25,9 +24,8 @@ class SignInForm extends React.Component {
     handleSignIn = (e) => {
         e.preventDefault();
         this.props.signIn(this.state.username, this.state.password);
-        //this.props.fetchUserData();
         this.props.handleModalClose();
-        window.location.reload()
+        setInterval(() => window.location.reload(), 400)
     };
     render() {
         return (
@@ -65,7 +63,6 @@ class SignInForm extends React.Component {
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
-            fetchUserData: fetchUserDataAction,
             signIn: signInUser,
         },
         dispatch
