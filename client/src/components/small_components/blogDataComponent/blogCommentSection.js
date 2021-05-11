@@ -1,6 +1,10 @@
 import React from 'react'
 import { Form, Col, Row, Button } from 'react-bootstrap'
 import { connect } from 'react-redux'
+import postBlogComment from "../../../redux/thunk/post/postBlogComment"
+import { bindActionCreators } from 'redux'
+
+import trimUser from "../../helpers/trimUser"
 
 class BlogCommentSection extends React.Component{
 
@@ -11,6 +15,8 @@ class BlogCommentSection extends React.Component{
             this.props.showSignInModal()
             return;
         }
+
+        this.props.postBlogComment(trimUser(this.props.user), this.props.blogId)
     }
 
     render(){
@@ -37,10 +43,19 @@ class BlogCommentSection extends React.Component{
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return{
-        showSignInModal: () => dispatch({type: 'SHOW_MODAL'})
-    }
-}
+const mapDispatchToProps = (dispatch) =>  bindActionCreators(
+    {
+        showSignInModal: () => dispatch({type: 'SHOW_MODAL'}),
+        postBlogComment: postBlogComment
+    },
+    dispatch
+);
 
-export default connect(null, mapDispatchToProps)(BlogCommentSection)
+const mapStateToProps = (state) => {
+    return {
+        userId: state.auth.userId,
+        comment: state.blogData.comment,
+        user: state.user,
+    };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(BlogCommentSection)

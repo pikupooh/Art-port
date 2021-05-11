@@ -5,6 +5,7 @@ import { bindActionCreators } from "redux";
 
 import deleteBlogLike from "../../../redux/thunk/delete/deleteBlogLike";
 import postBlogLike from "../../../redux/thunk/post/postBlogLike";
+import trimUser from "../../helpers/trimUser";
 
 class BlogLikeButton extends React.Component {
     constructor(props) {
@@ -17,18 +18,6 @@ class BlogLikeButton extends React.Component {
     componentDidMount() {
         if (this.props.blogId !== "") this.updateButtonState();
     }
-
-    trimUser = () => {
-        var temp = {
-            ...this.props.user,
-        };
-
-        delete temp.about;
-        delete temp.email;
-        delete temp.dob;
-
-        return temp;
-    };
 
     updateButtonState = () => {
         var foundUser = this.props.likes.filter(
@@ -59,7 +48,7 @@ class BlogLikeButton extends React.Component {
             liked: true,
         });
 
-        this.props.postBlogLike(this.trimUser(), this.props.blogId);
+        this.props.postBlogLike(trimUser(this.props.user), this.props.blogId);
     };
 
     removeLiked = () => {

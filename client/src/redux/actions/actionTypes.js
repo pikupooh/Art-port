@@ -30,3 +30,5 @@ export const FETCH_MANGA_CHAPTER = "FETCH_MANGA_CHAPTER";
 
 export const LIKE_BLOG = "LIKE_BLOG";
 export const UNLIKE_BLOG = "UNLIKE_BLOG";
+
+export const POST_COMMENT = "POST_COMMENT";

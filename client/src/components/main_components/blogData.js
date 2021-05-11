@@ -102,7 +102,7 @@ class blogData extends React.Component {
           <div className = "mt-5">
             {this.props.content}
           </div>
-          <BlogDataComments comments = {this.props.comments}/>
+          <BlogDataComments blogId = {this.props.id} comments = {this.props.comments}/>
         </Container>
       </div>
       )
