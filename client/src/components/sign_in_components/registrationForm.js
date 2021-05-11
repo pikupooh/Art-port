@@ -1,7 +1,5 @@
-import React, { Component } from "react";
+import React from "react";
 import { Form, Button } from "react-bootstrap";
-import moment from "moment";
-import { NodePlusFill } from "react-bootstrap-icons";
 
 class RegistrationForm extends React.Component {
     constructor(props) {
@@ -97,7 +95,7 @@ class RegistrationForm extends React.Component {
             typeof input["password"] !== "undefined" &&
             typeof input["confirm_password"] !== "undefined"
         ) {
-            if (input["password"] != input["confirm_password"]) {
+            if (input["password"] !== input["confirm_password"]) {
                 isValid = false;
                 errors["password"] = "Passwords don't match.";
             }

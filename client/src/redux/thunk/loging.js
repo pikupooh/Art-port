@@ -1,4 +1,3 @@
-import { signInUserAction } from "../../redux/actions/logActions";
 import fetchUserData from "./fetchUserData";
 import * as ActionTypes from "../actions/actionTypes";
 

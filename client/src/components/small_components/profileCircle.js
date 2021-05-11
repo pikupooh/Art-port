@@ -4,7 +4,6 @@ import { Button, Image, NavDropdown } from "react-bootstrap";
 import { bindActionCreators } from "redux";
 import { logoutUser } from "../../redux/thunk/loging";
 import fetchUserDataAction from "../../redux/thunk/fetchUserData";
-import { signOutUserAction } from "../../redux//actions/logActions";
 
 class ProfileCircle extends React.Component {
     componentDidMount() {
