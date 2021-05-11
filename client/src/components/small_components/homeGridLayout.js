@@ -6,10 +6,7 @@ function HomeGridLayout(props){
         <Link to = {'post/' + props.post.id}>
             <div className = "home_grid_posts">
                 <div className = "home_grid_posts_image_container">
-                            <Image  className="JKL"
-                                src = {props.post.images[0].link}
-                                className = "home_grid_posts_image">
-                            </Image>
+                            <Image src = {props.post.images[0].link} className = "home_grid_posts_image" />
                 </div>
                 <div className = "home_grid_posts_details_overlay">
                     <Row className = "home_grid_posts_details_container">

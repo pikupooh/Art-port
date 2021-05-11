@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Image, Row, Container, Col, Button } from "react-bootstrap";
+import { Image, Row, Container, Col } from "react-bootstrap";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Link } from 'react-router-dom'

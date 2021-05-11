@@ -24,10 +24,10 @@ class FooterComponent extends React.Component{
             </Col>
             <Col mr ={20} pr={30}>  
             <ul className="social_links">
-                        <li><a href="#"><FontAwesomeIcon icon ={faInstagram}/></a></li>
-                        <li><a href="#"><FontAwesomeIcon icon ={faTwitter}/></a></li>
-                        <li><a href="#"><FontAwesomeIcon icon ={faYoutube}/></a></li>
-                        <li><a href="#"><FontAwesomeIcon icon ={faFacebook}/></a></li>
+                        <li><a href="/"><FontAwesomeIcon icon ={faInstagram}/></a></li>
+                        <li><a href="/"><FontAwesomeIcon icon ={faTwitter}/></a></li>
+                        <li><a href="/"><FontAwesomeIcon icon ={faYoutube}/></a></li>
+                        <li><a href="/"><FontAwesomeIcon icon ={faFacebook}/></a></li>
                     </ul>
             </Col>
         </Row>

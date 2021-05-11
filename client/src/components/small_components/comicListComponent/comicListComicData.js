@@ -1,4 +1,3 @@
-import { Fragment } from 'react'
 import { Row,Container } from 'react-bootstrap'
 import {Link} from 'react-router-dom'
 import { StarFill } from 'react-bootstrap-icons'
@@ -21,7 +20,7 @@ function ComicListComicData(props){
             </Row>
             <div className = "comic_chapters_and_genre">
             <Row className= "comic_chapters">
-                Chapters:  {props.comic.chapters.length } 
+                Chapters:  {props.comic.chapters.length } {chapter}
             </Row>
             <Row>
                 Genre:

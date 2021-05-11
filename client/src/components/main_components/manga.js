@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from  'react-redux';
 import { bindActionCreators } from 'redux';
-import {Link} from 'react-router-dom';
-import {Row, Col} from 'react-bootstrap'
+import { Link } from 'react-router-dom';
+import { Row, Col } from 'react-bootstrap'
 
 import fetchMangaListAction from '../../redux/thunk/fetchMangaList'
 import MangaDataComponent from '../small_components/mangaListComponent/mangaDataComponent'
