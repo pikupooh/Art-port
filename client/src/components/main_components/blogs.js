@@ -12,6 +12,7 @@ class blogs extends React.Component{
     componentDidMount() {
         this.props.fetchBlogList()
     }
+    
     render(){
         return(
             <div>
@@ -26,7 +27,6 @@ class blogs extends React.Component{
             </div>
         )
     }
- 
 }
 const mapDispatchToProps = (dispatch) => bindActionCreators({
     fetchBlogList: fetchBlogListAction

@@ -4,9 +4,20 @@ import { connect } from 'react-redux'
 import postBlogComment from "../../../redux/thunk/post/postBlogComment"
 import { bindActionCreators } from 'redux'
 
-import trimUser from "../../helpers/trimUser"
-
 class BlogCommentSection extends React.Component{
+
+    constructor(props){
+        super(props)
+        this.state = {
+            messege: '',
+        }
+    }
+
+    handleOnChange = (event) => {
+        this.setState({
+            messege: event.target.value
+        })
+    }
 
     comment = () => {
         const token = localStorage.getItem('token')
@@ -16,7 +27,12 @@ class BlogCommentSection extends React.Component{
             return;
         }
 
-        this.props.postBlogComment(trimUser(this.props.user), this.props.blogId)
+        if(this.state.messege !== ''){
+            this.props.postBlogComment(this.props.blogId, this.state.messege)
+            this.setState({
+                messege: ''
+            })
+        }
     }
 
     render(){
@@ -24,7 +40,10 @@ class BlogCommentSection extends React.Component{
             <div className = "my-4 blog_page_comment_section">
                 <Form>
                     <Form.Group>
-                        <Form.Control as="textarea" rows = {3} placeholder = "Enter comment here">
+                        <Form.Control as="textarea" rows = {3} 
+                                    placeholder = "Enter comment here" 
+                                    onChange = {this.handleOnChange} 
+                                    value = {this.state.messege}>
                         </Form.Control>
                         <Row>
                             <Col className = "comment_button" >
@@ -54,7 +73,7 @@ const mapDispatchToProps = (dispatch) =>  bindActionCreators(
 const mapStateToProps = (state) => {
     return {
         userId: state.auth.userId,
-        comment: state.blogData.comment,
+        comments: state.blogData.comments,
         user: state.user,
     };
 };

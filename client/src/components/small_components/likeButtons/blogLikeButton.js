@@ -16,7 +16,7 @@ class BlogLikeButton extends React.Component {
     }
 
     componentDidMount() {
-        setTimeout(() => this.updateButtonState(), 1000);
+        setTimeout(() => this.updateButtonState(), 2000);
     }
 
     updateButtonState = () => {

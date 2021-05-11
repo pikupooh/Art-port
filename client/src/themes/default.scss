@@ -383,6 +383,19 @@ footer {
     color: rgba(112, 147, 241, 0.8);
   }
 }
+
+.blog_comment_reply{
+  font-size: 13px;
+  color: rgb(197, 197, 197);
+  
+
+  &:hover{
+    color: rgb(235, 235, 235);
+    cursor: pointer
+  }
+  
+}
+
 @import "comicList";
 @import "homegrid";
 @import "postUploaderDetails";

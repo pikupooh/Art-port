@@ -113,7 +113,8 @@ public class CommentController {
         blog.addComment(comment);
         blogService.updateBlog(blog, blogId);
 
-        return ResponseEntity.ok("Comment added");
+
+        return ResponseEntity.ok(comment);
     }
     
     @PostMapping("/manga/{mangaId}/comment")
@@ -157,7 +158,7 @@ public class CommentController {
             return new ResponseEntity<String>("Comment not found.", HttpStatus.NOT_FOUND);
         }
 
-        return ResponseEntity.ok("Reply added");
+        return ResponseEntity.ok(reply);
     }
 
     @PutMapping("/comment/{commentId}")

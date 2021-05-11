@@ -1,13 +1,14 @@
 import BlogDataComment from './blogDataComment'
 import BlogCommentSection from './blogCommentSection'
 
-function BlogDataComments(props){
+
+function BlogDataComments (props){
 
     if(props.comments.length === 0){
         return(
             <div className = "blog_data_comments">
                 Be the first to comment
-                <BlogCommentSection />
+                <BlogCommentSection blogId = {props.blogId}/>
             </div>
         )
     }
@@ -15,11 +16,12 @@ function BlogDataComments(props){
         return(
             <div className = "blog_data_comments">
                 {props.comments.map((comment) => 
-                    <div key = {comment.id} >
+                    <div  key = {comment.id}>
                         <BlogDataComment comment = {comment} />
+                        
                     </div>
                 )}
-                <BlogCommentSection />
+                <BlogCommentSection blogId = {props.blogId}/>
             </div>
         )
     }

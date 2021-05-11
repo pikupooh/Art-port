@@ -47,6 +47,28 @@ export const blogDataReducer = (state = initState, action) => {
                 likes: newLikes,
             };
 
+        case ActionTypes.POST_BLOG_COMMENT:
+            return {
+                ...state,
+                comments: [
+                    ...state.comments,
+                    action.payload
+                ]
+            };
+        
+        case ActionTypes.POST_BLOG_REPLY:
+            var newComments = [
+                ...state.comments
+            ]
+            newComments.forEach(comment => {
+                if(comment.id === action.payload.parentCommentId){
+                    comment.replies.push(action.payload.response)
+                }
+            });
+            return {
+                ...state,
+                comments: newComments
+            }
         default:
             return state;
     }
