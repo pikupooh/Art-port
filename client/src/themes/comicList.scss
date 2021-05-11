@@ -1,0 +1,66 @@
+.comic_data_container{
+    margin-top: 40px;
+}
+.comic_list_title{
+    text-align : center;
+    padding-bottom: 3px;
+    color : gold;
+    font-size: 1.2rem;
+    font-weight:800;
+}
+.comic_rating{
+    padding-bottom: 105px;
+    font-size: 20px;
+}
+.comic_chapters{
+    font-size: 20px;
+}
+.comic_chapters_and_genre{
+    padding-bottom: 105px;
+    padding-left: 10px;
+}
+.comic_list_comic_image{
+    object-fit: cover;
+    width: 80%;
+    height: 100%;
+    padding-left: 50px;
+}
+.comic_image{
+    max-width: 40%;
+}
+.comic_list_comic_image_container{
+    width: 120%;
+    height: 40vh;   
+}
+.comic_authors{
+    padding-left: 10px;
+}
+.comic_author_name{
+ font-size: 20px;
+ margin-left: 5px;
+ border : 1px solid gold;
+ display: inline-block;
+ text-decoration: none;
+ padding: 8px 8px;
+ color: #fff;
+ font-weight: 300;
+ border-radius: 200px;
+ &:hover{
+    background-color:gold !important;
+    color: white !important;
+}
+}
+/*.comic_author_name{
+    border-radius: 20px;
+    border: 2px solid #3c82d1;
+    color: lighten($color: #3c82d1, $amount: 35) !important;
+    margin: 3px;
+    padding: 2px;
+    font-size: 0.8rem;
+
+    &:hover{
+        background-color: #3c82d1;
+        color: white !important;
+    }
+}*/
+

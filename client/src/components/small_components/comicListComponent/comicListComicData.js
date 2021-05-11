@@ -1,6 +1,7 @@
 import { Fragment } from 'react'
-import { Row } from 'react-bootstrap'
+import { Row,Container } from 'react-bootstrap'
 import {Link} from 'react-router-dom'
+import { StarFill } from 'react-bootstrap-icons'
 
 function ComicListComicData(props){
     
@@ -12,30 +13,38 @@ function ComicListComicData(props){
     else{
         chapter = ' chapters'
     }
-
     return(
-        <Fragment>
-            <Row>
-                {props.comic.title}
-            </Row>
-            <Row>
+        <Container className="comic_data_container">
+            <Row className="comic_rating" >
+            <StarFill className = "my-auto mr-3 manga_list_manga_data_rating_star"/>
                 Ratings {props.comic.rating}
             </Row>
+            <div className = "comic_chapters_and_genre">
+            <Row className= "comic_chapters">
+                Chapters:  {props.comic.chapters.length } 
+            </Row>
             <Row>
+                Genre:
+            </Row>
+            </div>
+            <div className= "comic_authors">
+            <Row className= "comic_chapters">
                 Authors
             </Row>
-                <Link to = {'/user/' + props.comic.userDTO.userId}>
-                    <div> 
-                        {props.comic.userDTO.firstName} {props.comic.userDTO.lastName + ' '}
-                    </div>
-                </Link>
-            <Row>
-                {props.comic.chapters.length + chapter} 
+            <Row className = "comic_author_name">
+
+            <Link to = {'/user/' + props.comic.userDTO.userId}>
+                   <div >
+                   {props.comic.userDTO.firstName} {props.comic.userDTO.lastName + ' '}
+                       </div> 
+                  
+                        
+                    </Link>
             </Row>
-            <Row>
-                Genre
-            </Row>
-        </Fragment>
+            </div>
+           
+              
+        </Container>
     )
 }
 

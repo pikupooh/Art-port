@@ -12,16 +12,16 @@ class Comics extends React.Component{
     }
     render(){
         return(
-            <div className = "container-fluid">
-                <Row>
+            <div >
+                
                     {this.props.comicList.map((comic) => 
-                        <Col sm = {6} xl = {4} key ={comic.id}>
+                        <div  key ={comic.id}>
                             <Link to = {'/comic/' + comic.id}>
-                                <ComicDataComponent comic = {comic} />
+                                <ComicDataComponent comic = {comic} /><br></br>
                             </Link>
-                        </Col>
+                        </div>
                     )}
-                </Row>
+                
             </div>
             )
     }

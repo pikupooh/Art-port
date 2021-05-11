@@ -9,8 +9,10 @@ function ComicListMangaImage(props){
     }
 
     return(
-        <div className = "manga_list_manga_image_container">
-            <Image src = {props.image.link} className = "manga_list_manga_image" alt = "comic_cover_photo"></Image>
+        <div className = "comic_list_comic_image_container">
+            <Image src = {props.image.link} className = "comic_list_comic_image" alt = "comic_cover_photo">
+            
+            </Image>
         </div>
     )
 }

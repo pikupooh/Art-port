@@ -1,11 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import {Container} from "react-bootstrap"
 
 import fetchComicDataAction from "../../redux/thunk/fetchComicData";
-import MangaDataDisplay from "../small_components/mangaDataDisplayComponents/mangaDataDisplay";
-import MangaDescriptionDisplay from "../small_components/mangaDataDisplayComponents/mangaDescriptionDisplay"
-import MangaChaptersDisplay from "../small_components/mangaDataDisplayComponents/mangaChaptersDisplay"
+import ComicDataDisplay from "../small_components/comicDataDisplayComponents/comicDataDisplay";
+import ComicDescriptionDisplay from "../small_components/comicDataDisplayComponents/comicDescriptionDisplay"
+import ComicChapterDisplay from "../small_components/comicDataDisplayComponents/comicChapterDisplay"
 import BlogDataComments from '../small_components/blogDataComponent/blogDataComments'
 class ComicData extends React.Component {
     componentDidMount() {
@@ -14,9 +15,10 @@ class ComicData extends React.Component {
     }
   
     render() {
+      console.log(this.props);
       return(
-        <div className = "container-fluid">
-          <MangaDataDisplay photo={this.props.coverPhoto} 
+        <Container>
+          <ComicDataDisplay photo={this.props.coverPhoto} 
                              rating ={this.props.rating}
                              noOfRating={this.props.noOfRating}
                              type ={this.props.type} 
@@ -25,10 +27,10 @@ class ComicData extends React.Component {
                             chaptersLength = {this.props.chapters.length}
                              />
 
-            <MangaDescriptionDisplay about = {this.props.about}/>
-            <MangaChaptersDisplay chapters ={this.props.chapters}/> 
+            <ComicDescriptionDisplay about = {this.props.about}/>
+            <ComicChapterDisplay chapters ={this.props.chapters}/> 
             <BlogDataComments comments = {this.props.comments}/>
-        </div>
+        </Container>
       )
     }
   }
@@ -41,6 +43,7 @@ class ComicData extends React.Component {
   );
 
 const mapStateToProps = (state) => {
+   console.log(state.mangaData);
   return {
     mangaId: state.mangaData.id,
     chapters: state.mangaData.chapters,
