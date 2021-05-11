@@ -1,80 +1,106 @@
-import React from 'react'
-import { Button } from 'react-bootstrap'
-import { connect } from 'react-redux'
+import React from "react";
+import { Button } from "react-bootstrap";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 
-class PostLikeButton extends React.Component{
+import deletePostLike from "../../../redux/thunk/delete/deletePostLike";
+import postPostLike from "../../../redux/thunk/post/postPostLike";
 
-    constructor(props){
-        super(props)
+class PostLikeButton extends React.Component {
+    constructor(props) {
+        super(props);
         this.state = {
-            liked: false
-        }
+            liked: false,
+        };
     }
 
-    componentDidMount(){
-        var foundLiked = this.props.likes.filter((like) =>
-            like.id === this.props.id
-        )
-        if(foundLiked.length !== 0){
+    componentDidMount() {
+        setTimeout(() => this.updateButtonState(), 1000);
+    }
+
+    trimUser = () => {
+        var temp = {
+            ...this.props.user,
+        };
+
+        delete temp.about;
+        delete temp.email;
+        delete temp.dob;
+
+        return temp;
+    };
+
+    updateButtonState = () => {
+        var foundUser = this.props.likes.filter(
+            (user) => user.userId === this.props.userId
+        );
+
+        console.log(foundUser);
+
+        if (foundUser.length !== 0) {
             this.setState({
-                liked: true
-            })
+                liked: true,
+            });
+        } else {
+            this.setState({
+                liked: false,
+            });
         }
-    }
+    };
 
-    postLiked = () => {
-
-        const token = localStorage.getItem('token')
-
-        if(token === null){
-            this.props.showSignInModal()
+    blogLiked = () => {
+        if (this.props.userId === null) {
+            this.props.showSignInModal();
             return;
         }
 
-        console.log('like');
-        // fetch('localhost:8080/post/' + {postId} + '/likes', {
-        //     method: 'PUT',
-        //     headers: {
-        //         "Content-Type": "application/json",
-        //         Authorization: token,
-        //     }
-        // })
-        // .then(response => {
-        //     if(response.ok){
-    
-        //     }
-        // })
-    }
+        this.setState({
+            liked: true,
+        });
+
+        this.props.postPostLike(this.trimUser(), this.props.postId);
+    };
 
     removeLiked = () => {
+        this.props.deletePostLike(this.props.user.userId, this.props.postId);
         this.setState({
-            liked: false
-        })
-    }
+            liked: false,
+        });
+    };
 
-    render(){
-
-        if(this.state.liked === false){
-            return(
-                <Button className = "mt-3" onClick = {this.postLiked}>
+    render() {
+        if (this.state.liked === false) {
+            return (
+                <Button className="mt-3" onClick={this.blogLiked}>
                     Like
                 </Button>
-            )
-        }
-        else{
-            return(
-                <Button className = "mt-3" onClick = {this.removeLiked}>
+            );
+        } else {
+            return (
+                <Button className="mt-3" onClick={this.removeLiked}>
                     Unlike
                 </Button>
-            )
-        }       
+            );
+        }
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return{
-        showSignInModal: () => dispatch({type: 'SHOW_MODAL'})
-    }
-}
+const mapDispatchToProps = (dispatch) =>
+    bindActionCreators(
+        {
+            showSignInModal: () => dispatch({ type: "SHOW_MODAL" }),
+            deletePostLike: deletePostLike,
+            postPostLike: postPostLike,
+        },
+        dispatch
+    );
 
-export default connect(null, mapDispatchToProps)(PostLikeButton)
+const mapStateToProps = (state) => {
+    return {
+        userId: state.auth.userId,
+        likes: state.post.likes,
+        user: state.user,
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostLikeButton);

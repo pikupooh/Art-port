@@ -3,7 +3,7 @@ import * as ActionTypes from "../actions/actionTypes";
 const initState = {
     userId: "",
     email: "",
-    userName: "",
+    username: "",
     firstName: "",
     lastName: "",
     profilePhoto: "",
@@ -18,7 +18,7 @@ export const userReducer = (state = initState, action) => {
                 ...state,
                 userId: action.payload.userData.id,
                 email: action.payload.userData.email,
-                userName: action.payload.userData.username,
+                username: action.payload.userData.username,
                 firstName: action.payload.userData.firstName,
                 lastName: action.payload.userData.lastName,
                 profilePhoto: action.payload.userData.profilePhoto,

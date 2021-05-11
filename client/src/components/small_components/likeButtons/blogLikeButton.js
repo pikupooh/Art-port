@@ -16,16 +16,13 @@ class BlogLikeButton extends React.Component {
     }
 
     componentDidMount() {
-        if (this.props.blogId !== "") this.updateButtonState();
+        setTimeout(() => this.updateButtonState(), 1000);
     }
 
     updateButtonState = () => {
         var foundUser = this.props.likes.filter(
             (user) => user.userId === this.props.userId
         );
-
-        console.log(foundUser);
-
         if (foundUser.length !== 0) {
             this.setState({
                 liked: true,

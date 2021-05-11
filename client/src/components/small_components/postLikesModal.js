@@ -3,11 +3,13 @@ import { Modal } from 'react-bootstrap'
 import PostLikedUser from './postLikedUser'
 
 function PostLikesModal(props){
-    if(!props.likes.length === 0){
+    if(props.likes.length === 0){
         return(
-            <div>
-                No likes
-            </div>
+            <Modal show = {props.show} onHide = {props.hideLikesModal} centered>
+                <Modal.Body>
+                    No Likes
+                </Modal.Body>
+            </Modal>
         )
     }
     else{

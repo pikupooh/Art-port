@@ -32,3 +32,5 @@ export const LIKE_BLOG = "LIKE_BLOG";
 export const UNLIKE_BLOG = "UNLIKE_BLOG";
 
 export const POST_COMMENT = "POST_COMMENT";
+export const LIKE_POST = "LIKE_POST";
+export const UNLIKE_POST = "UNLIKE_POST";
