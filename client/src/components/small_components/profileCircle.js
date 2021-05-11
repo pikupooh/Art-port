@@ -13,6 +13,7 @@ class ProfileCircle extends React.Component {
 
     signOut = () => {
         this.props.logoutUser();
+        window.location.reload()
     };
 
     showModal = () => {

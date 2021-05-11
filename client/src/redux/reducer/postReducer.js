@@ -29,6 +29,22 @@ export const PostReducer = (state = initState, action) => {
         category: action.payload.postData.category,
         comments: action.payload.postData.comments,
       };
+
+    case ActionTypes.LIKE_POST:
+        return {
+            ...state,
+            likes: [...state.likes, action.payload.user],
+        };
+
+    case ActionTypes.UNLIKE_POST:
+        var newLikes = state.likes.filter(
+            (user) => user.userId !== action.payload.userId
+        );
+        return {
+            ...state,
+            likes: newLikes,
+        };
+
     default:
       return state;
   }

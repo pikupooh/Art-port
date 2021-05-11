@@ -56,7 +56,7 @@ class PostedUserDetails extends React.Component{
                         <Button>Follow</Button>
                     </Col>
                     <Col>
-                        <PostLikeButton postid = {this.props.info.id} likes = {this.props.info.likes}  handleModalShow = {this.props.info.handleModalShow}/>
+                        <PostLikeButton postId = {this.props.info.id}/>
                     </Col>
                 </Row>
                 <p onClick = {this.showLikesModal}

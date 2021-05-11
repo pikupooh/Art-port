@@ -8,7 +8,6 @@ function fetchPostData(postId) {
             if(res.error) {
                 throw(res.error);
             }
-            console.log(res);
             if(res.images.length === 0) {
                 res.images.push({
                     id: "fail",
