@@ -7,12 +7,14 @@ public class JwtResponse {
     private String id;
     private String username;
     private String email;
+    private String profilePhoto;
 
-    public JwtResponse(String token, String id, String username, String email) {
+    public JwtResponse(String token, String id, String username, String email, String profilePhoto) {
         this.token = token;
         this.id = id;
         this.username = username;
         this.email = email;
+        this.profilePhoto = profilePhoto;
     }
 
     public String getAccessToken() {
@@ -54,5 +56,13 @@ public class JwtResponse {
     public void setUsername(String username) {
         this.username = username;
 
+    }
+
+    public String getProfilePhoto() {
+        return profilePhoto;
+    }
+
+    public void setProfilePhoto(String profilePhoto) {
+        this.profilePhoto = profilePhoto;
     }
 }

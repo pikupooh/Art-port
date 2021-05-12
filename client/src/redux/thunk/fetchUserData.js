@@ -1,8 +1,7 @@
 import { fetchUserDataAction } from "../actions/fetchUserDataAction";
 
-function fetchUserData() {
+function fetchUserData(userId) {
     return (dispatch) => {
-        let userId = localStorage.getItem("userId");
         fetch(`http://localhost:8080/api/auth/users/${userId}`, {
             headers: {
                 Authorization: localStorage.getItem("token"),

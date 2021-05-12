@@ -1,27 +1,25 @@
-import * as ActionTypes from '../actions/actionTypes'
+import * as ActionTypes from "../actions/actionTypes";
 
 const initState = {
     id: "",
-    user: {},
     userPosts: [],
     userBlogs: [],
     userMangas: [],
     userComics: [],
     followers: [],
     following: [],
-    favouritePosts:[],
-    favouriteBlogs:[],
-    favouriteMangas:[],
-    favouriteComics:[],
-}
+    favouritePosts: [],
+    favouriteBlogs: [],
+    favouriteMangas: [],
+    favouriteComics: [],
+};
 
 export const profileDataReducer = (state = initState, action) => {
-    switch(action.type){
+    switch (action.type) {
         case ActionTypes.FETCH_PROFILE_DATA:
             return {
                 ...state,
                 id: action.payload.profileData.id,
-                user: action.payload.profileData.user,
                 userPosts: action.payload.profileData.userPosts,
                 userBlogs: action.payload.profileData.userBlogs,
                 userComics: action.payload.profileData.userComics,
@@ -32,8 +30,14 @@ export const profileDataReducer = (state = initState, action) => {
                 favouriteBlogs: action.payload.profileData.favouriteBlogs,
                 favouriteComics: action.payload.profileData.favouriteComics,
                 favouriteMangas: action.payload.profileData.favouriteMangas,
-            }
+            };
+
+        case ActionTypes.ADD_POST:
+            return {
+                ...state,
+                userPosts: [...state.userPosts, action.payload.postData],
+            };
         default:
-            return state
+            return state;
     }
-}
+};

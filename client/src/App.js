@@ -18,6 +18,9 @@ import MangaIndividualChapter from "./components/small_components/mangaDataDispl
 import RegistrationForm from "./components/sign_in_components/registrationForm";
 import UploadPostForm from "./components/sign_in_components/uploadPostForm";
 import UploadBlogForm from "./components/sign_in_components/uploadBlogForm";
+import UploadComponent from "./components/main_components/uploadComponent";
+import ForgotPassword from "./components/small_components/forgotPassword";
+import ResetPassword from "./components/small_components/resetPassword";
 
 const NavbarwithRouter = withRouter(NavbarComponent);
 
@@ -69,11 +72,20 @@ class App extends React.Component {
                                     path="/bloguploadform/"
                                     component={UploadBlogForm}
                                 />
+                                <Route
+                                    path="/forgotPassword"
+                                    component={ForgotPassword}
+                                />
+                                <Route
+                                    path="/resetPassword"
+                                    component={ResetPassword}
+                                />
                                 <SignInModal />
                             </div>
                         </>
                     </Switch>
                 </BrowserRouter>
+                <UploadComponent />
                 <FooterComponent />
             </div>
         );

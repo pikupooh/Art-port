@@ -4,6 +4,8 @@ import { Button, Image, NavDropdown } from "react-bootstrap";
 import { bindActionCreators } from "redux";
 import { logoutUser } from "../../redux/thunk/loging";
 import fetchUserDataAction from "../../redux/thunk/fetchUserData";
+import { signOutUserAction } from "../../redux//actions/logActions";
+import { altImage } from "../../shared/categories";
 
 class ProfileCircle extends React.Component {
     componentDidMount() {
@@ -12,14 +14,15 @@ class ProfileCircle extends React.Component {
 
     signOut = () => {
         this.props.logoutUser();
-        window.location.reload()
+        window.location.reload();
     };
 
     showModal = () => {
         this.props.showSignInModal();
-    }
+    };
 
     render() {
+        console.log(this.props.profilePhoto, this.props.userId);
         if (this.props.isAuthenticated === true) {
             return (
                 <div className="text-center">
@@ -27,7 +30,7 @@ class ProfileCircle extends React.Component {
                         roundedCircle
                         fluid
                         className="nav_profile_img"
-                        alt="user_photo"
+                        alt={altImage}
                         src={this.props.profilePhoto}
                     ></Image>
                     <NavDropdown title="" id="nav-dropdown" variant="tabs">
@@ -47,10 +50,7 @@ class ProfileCircle extends React.Component {
             );
         } else {
             return (
-                <Button
-                    className="ml-3 my-auto"
-                    onClick={this.showModal}
-                >
+                <Button className="ml-3 my-auto" onClick={this.showModal}>
                     Sign In
                 </Button>
             );
@@ -62,7 +62,7 @@ const mapStateToProps = (state) => {
     return {
         userId: state.auth.userId,
         isAuthenticated: state.auth.isAuthenticated,
-        profilePhoto: state.user.profilePhoto,
+        profilePhoto: state.auth.profilePhoto,
     };
 };
 
@@ -71,7 +71,7 @@ const mapDispatchToProps = (dispatch) =>
         {
             fetchUserData: fetchUserDataAction,
             logoutUser: logoutUser,
-            showSignInModal: () => dispatch({type: 'SHOW_MODAL'}),
+            showSignInModal: () => dispatch({ type: "SHOW_MODAL" }),
         },
         dispatch
     );

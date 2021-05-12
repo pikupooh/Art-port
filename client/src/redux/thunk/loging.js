@@ -18,7 +18,6 @@ export default function signInUser(user, pass) {
                 (res) => {
                     console.log(res);
                     if (res.ok) {
-                        console.log(res);
                         return res;
                     } else {
                         var error = new Error(
@@ -34,23 +33,28 @@ export default function signInUser(user, pass) {
             )
             .then((res) => res.json())
             .then((res) => {
+                console.log(res);
                 var token = res.tokenType + " " + res.accessToken;
                 var userId = res.id;
+                let profilePhoto = res.profilePhoto;
 
                 localStorage.setItem("token", token);
                 localStorage.setItem("userId", userId);
-                dispatch(setUserLogin({ token, userId }));
+                localStorage.setItem("profilePhoto", profilePhoto);
+
+                dispatch(setUserLogin({ token, userId, profilePhoto }));
                 dispatch(fetchUserData());
             })
             .catch((error) => console.log(error));
     };
 }
 
-function setUserLogin(token, userId) {
+function setUserLogin(token, userId, profilePhoto) {
     return {
         type: ActionTypes.LOGIN_SUCCESS,
         token: token,
         userId: userId,
+        profilePhoto: profilePhoto,
     };
 }
 

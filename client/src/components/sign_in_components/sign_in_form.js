@@ -25,7 +25,7 @@ class SignInForm extends React.Component {
         e.preventDefault();
         this.props.signIn(this.state.username, this.state.password);
         this.props.handleModalClose();
-        setTimeout(() => window.location.reload(), 400)
+        setTimeout(() => window.location.reload(), 400);
     };
     render() {
         return (
