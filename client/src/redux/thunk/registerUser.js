@@ -29,11 +29,11 @@ export default function registerUser(userData, imageFromData) {
                 console.log(res);
 
                 //TODO- ROHIT + Subordinates
-                if (res == "Username is already taken") {
+                if (res === "Username is already taken") {
                     //dispatch something
                     //todo
                     console.log("You are shit.");
-                } else if (res == "Email already in use");
+                } else if (res === "Email already in use");
                 else {
                     //dispatch something Rohit do
                 }

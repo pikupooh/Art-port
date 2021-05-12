@@ -1,5 +1,8 @@
 import React from "react";
 import PostModal from "../small_components/uploadForms/postModal";
+import BlogModal from "../small_components/uploadForms/blogModal";
+import MangaModal from "../small_components/uploadForms/mangaModal";
+import ComicModal from "../small_components/uploadForms/comicModal";
 
 class UploadComponent extends React.Component {
     constructor(props) {
@@ -18,15 +21,15 @@ class UploadComponent extends React.Component {
     };
 
     handleBlogModalClose = () => {
-        this.setState({ postShow: false });
+        this.setState({ blogShow: false });
     };
 
     handleComicModalClose = () => {
-        this.setState({ postShow: false });
+        this.setState({ comicShow: false });
     };
 
     handleMangaModalClose = () => {
-        this.setState({ postShow: false });
+        this.setState({ mangaShow: false });
     };
 
     handlePostModalShow = () => {
@@ -54,23 +57,40 @@ class UploadComponent extends React.Component {
                 <ul class="submenu">
                     <li class="submenu_li">
                         <a class="submenu_a" onClick={this.handlePostModalShow}>
-                            <i class="material-icons">add</i>
+                            <i class="material-icons">post_add</i>
                         </a>
                     </li>
                     <li class="submenu_li">
-                        <a href="#" class="submenu_a">
-                            <i class="material-icons">code</i>
+                        <a class="submenu_a" onClick={this.handleBlogModalShow}>
+                            <i class="material-icons">attach_file</i>
                         </a>
                     </li>
                     <li class="submenu_li">
-                        <a href="#" class="submenu_a">
-                            <i class="material-icons">explore</i>
+                        <a class="submenu_a" onClick={this.handleMangaModalShow}>
+                            <i class="material-icons">insert_drive_file</i>
+                        </a>
+                    </li>
+                    <li class="submenu_li">
+                        <a class="submenu_a" onClick={this.handleComicModalShow}>
+                            <i class="material-icons">face</i>
                         </a>
                     </li>
                 </ul>
                 <PostModal
                     show={this.state.postShow}
                     handleModalClose={this.handlePostModalClose}
+                />
+                <BlogModal
+                    show={this.state.blogShow}
+                    handleModalClose={this.handleBlogModalClose}
+                />
+                <MangaModal
+                    show={this.state.mangaShow}
+                    handleModalClose={this.handleMangaModalClose}
+                />
+                <ComicModal
+                    show={this.state.comicShow}
+                    handleModalClose={this.handleComicModalClose}
                 />
             </div>
         );

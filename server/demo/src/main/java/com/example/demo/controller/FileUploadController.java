@@ -71,8 +71,8 @@ public class FileUploadController {
     }
 
     @PostMapping("/blogs/{blogId}/images/upload")
-    String uploadBlogImage(@PathVariable String blogId, @RequestParam("files") MultipartFile[] multipartFile, Principal principal) throws Exception {
-
+    ResponseEntity<?> uploadBlogImage(@PathVariable String blogId, @RequestParam("files") MultipartFile[] multipartFile, Principal principal) throws Exception {
+    	Blog blog = blogService.getBlog(blogId);
 
         Arrays.asList(multipartFile).stream().forEach(file -> {
             String imageId = null;
@@ -81,18 +81,18 @@ public class FileUploadController {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            Blog blog = blogService.getBlog(blogId);
+            
             blog.setImg(imageService.getimage(imageId));
             blogService.save(blog);
         });
-        return "Image uploaded successfully";
+        return ResponseEntity.ok(blog);
 
 
     }
     
     @PostMapping("/mangas/{mangaId}/images/upload")
-    String uploadMangaImage(@PathVariable String mangaId, @RequestParam("files") MultipartFile[] multipartFile, Principal principal) throws Exception {
-
+    ResponseEntity<?> uploadMangaImage(@PathVariable String mangaId, @RequestParam("files") MultipartFile[] multipartFile, Principal principal) throws Exception {
+    	Manga manga = mangaService.getManga(mangaId);
 
         Arrays.asList(multipartFile).stream().forEach(file -> {
             String imageId = null;
@@ -101,19 +101,17 @@ public class FileUploadController {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            Manga manga = mangaService.getManga(mangaId);
             manga.setCoverPhoto(imageService.getimage(imageId));
             mangaService.save(manga);
         });
-        return "Image uploaded successfully";
-
+        return ResponseEntity.ok(manga);
 
     }
     
     @PostMapping("/chapters/{chapId}/images/upload")
-    String uploadChapterImage(@PathVariable String chapId, @RequestParam("files") MultipartFile[] multipartFile, Principal principal) throws Exception {
+    ResponseEntity<?> uploadChapterImage(@PathVariable String chapId, @RequestParam("files") MultipartFile[] multipartFile, Principal principal) throws Exception {
 
-
+    	Chapter chap = chapterService.getChapter(chapId);
         Arrays.asList(multipartFile).stream().forEach(file -> {
             String imageId = null;
             try {
@@ -121,13 +119,10 @@ public class FileUploadController {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            Chapter chap = chapterService.getChapter(chapId);
             chap.addImage(imageService.getimage(imageId));
             chapterService.save(chap);
         });
-        return "Image uploaded successfully";
-
-
+        return ResponseEntity.ok(chap);
     }
 
     @PostMapping("/users/{userId}/upload")

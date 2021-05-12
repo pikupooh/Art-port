@@ -1,4 +1,5 @@
 import { fetchBlogDataAction } from '../actions/fetchBlogDataAction'
+import { addUserBlog } from "../actions/fetchProfileDataAction";
 
 function fetchBlogData(id) {
     return dispatch => {
@@ -31,5 +32,86 @@ function fetchBlogData(id) {
         })
     }
 }
+
+export const createBlog = (userId, postFormData, imageFormData, profileId) => {
+    console.log("hello blog");
+
+    console.log(userId, profileId);
+    const token = localStorage.getItem("token");
+
+    return (dispatch) => {
+        fetch(`http://localhost:8080/users/${userId}/blog`, {
+            method: "POST",
+            body: JSON.stringify(postFormData),
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: token,
+            },
+        })
+            .then(
+                (response) => {
+                    if (response.ok) return response;
+                    else {
+                        var error = new Error(
+                            "Error " +
+                                response.status +
+                                ": " +
+                                response.statusText
+                        );
+                        error.response = response;
+                        throw error;
+                    }
+                },
+                (error) => {
+                    var errmess = new Error(error.message);
+                    throw errmess;
+                }
+            )
+            .then((response) => response.json())
+            .then((response) => {
+                console.log(response);
+                let blogId = response.id;
+
+                fetch(`http://localhost:8080/blogs/${blogId}/images/upload`, {
+                    method: "POST",
+                    body: imageFormData,
+                    headers: {
+                        Authorization: token,
+                    },
+                })
+                    .then(
+                        (response) => {
+                            if (response.ok) return response.json();
+                            else {
+                                var error = new Error(
+                                    "Error " +
+                                        response.status +
+                                        ": " +
+                                        response.statusText
+                                );
+                                error.response = response;
+                                throw error;
+                            }
+                        },
+                        (error) => {
+                            var errmess = new Error(error.message);
+                            throw errmess;
+                        }
+                    )
+                    .then((response) => {
+                        if (userId === profileId) {
+                            console.log("Same");
+                            dispatch(addUserBlog(response));
+                        }
+                    })
+                    .catch((error) => {
+                        console.log(error.message);
+                    });
+            })
+            .catch((error) => {
+                console.log(error.message);
+            });
+    };
+};
 
 export default fetchBlogData;

@@ -37,6 +37,21 @@ export const profileDataReducer = (state = initState, action) => {
                 ...state,
                 userPosts: [...state.userPosts, action.payload.postData],
             };
+        case ActionTypes.ADD_BLOG:
+            return {
+                ...state,
+                userBlogs: [...state.userBlogs, action.payload.blogData],
+            };
+        case ActionTypes.ADD_MANGA:
+            return {
+                ...state,
+                userBlogs: [...state.userMangas, action.payload.mangaData],
+            };
+        case ActionTypes.ADD_COMIC:
+            return {
+                ...state,
+                userBlogs: [...state.userComics, action.payload.comicData],
+            };
         default:
             return state;
     }
