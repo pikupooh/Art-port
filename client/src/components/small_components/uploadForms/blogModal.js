@@ -94,6 +94,11 @@ class BlogModal extends React.Component {
             isValid = false;
             errors["files"] = "Please upload some images.";
         }
+        if (!input["content"]) {
+            isValid = false;
+            errors["content"] = "Please add a content.";
+        }
+
         this.setState({
             errors: errors,
         });
@@ -139,7 +144,8 @@ class BlogModal extends React.Component {
                         <Form.Group>
                             <Form.Label>Content</Form.Label>
                             <Form.Control
-                                type="textarea"
+                                as="textarea"
+                                rows="6"
                                 placeholder="Enter Content"
                                 name="content"
                                 onChange={(e) => {

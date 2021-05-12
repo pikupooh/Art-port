@@ -120,7 +120,12 @@ class PostModal extends React.Component {
         return (
             <Modal show={this.props.show} onHide={this.props.handleModalClose}>
                 <Modal.Body>
-                    <Form id="post-form" onSubmit={(e) => this.handleSubmit(e)}>
+                    <Form id="post-form" onSubmit={(e) => this.handleSubmit(e)} onKeyDown={(e) => {
+                        if(e.key==="Enter"){
+                            console.log("Enter");
+                            e.preventDefault();
+                        }
+                    }}>
                         <Form.Group>
                             <Form.Label>Title</Form.Label>
                             <Form.Control
