@@ -51,28 +51,28 @@ class UploadComponent extends React.Component {
     render() {
         return (
             <div>
-                <a href="#" class="float fab">
-                    <i class="material-icons">add</i>
+                <a href="#" className="float fab">
+                    <i className="material-icons">add</i>
                 </a>
-                <ul class="submenu">
-                    <li class="submenu_li">
-                        <a class="submenu_a" onClick={this.handlePostModalShow}>
-                            <i class="material-icons">post_add</i>
+                <ul className="submenu">
+                    <li className="submenu_li">
+                        <a className="submenu_a" onClick={this.handlePostModalShow}>
+                            <i className="material-icons">post_add</i>
                         </a>
                     </li>
-                    <li class="submenu_li">
-                        <a class="submenu_a" onClick={this.handleBlogModalShow}>
-                            <i class="material-icons">attach_file</i>
+                    <li className="submenu_li">
+                        <a className="submenu_a" onClick={this.handleBlogModalShow}>
+                            <i className="material-icons">attach_file</i>
                         </a>
                     </li>
-                    <li class="submenu_li">
-                        <a class="submenu_a" onClick={this.handleMangaModalShow}>
-                            <i class="material-icons">insert_drive_file</i>
+                    <li className="submenu_li">
+                        <a className="submenu_a" onClick={this.handleMangaModalShow}>
+                            <i className="material-icons">insert_drive_file</i>
                         </a>
                     </li>
-                    <li class="submenu_li">
-                        <a class="submenu_a" onClick={this.handleComicModalShow}>
-                            <i class="material-icons">face</i>
+                    <li className="submenu_li">
+                        <a className="submenu_a" onClick={this.handleComicModalShow}>
+                            <i className="material-icons">face</i>
                         </a>
                     </li>
                 </ul>

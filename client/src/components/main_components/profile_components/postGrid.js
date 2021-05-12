@@ -4,10 +4,6 @@ import {Col,Row} from 'react-bootstrap'
 import HomeGridLayout from '../../small_components/homeGridLayout'
 
 class PostGrid extends React.Component{
-    
-    componentDidMount() {
-        console.log("mount", this.props.postList);
-    }
     render(){
         return(
             <div>
@@ -24,6 +20,7 @@ class PostGrid extends React.Component{
 }
 
 const mapStateToProps = (state) => {
+    console.log(state);
     return {
         postList: state.profile.userPosts,
     }
