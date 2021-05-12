@@ -1,14 +1,11 @@
 import { fetchProfileDataAction } from "../actions/fetchProfileDataAction";
 
 function fetchProfileData(id) {
-    console.log(id);
     return (dispatch) => {
         fetch(`http://localhost:8080/users/${id}/profile`)
             .then(
                 (res) => {
-                    console.log(res);
-
-                    if (res.ok) return res.text();
+                    if (res.ok) return res.json();
                     else {
                         var error = new Error(
                             "Error " + res.status + ": " + res.statusText

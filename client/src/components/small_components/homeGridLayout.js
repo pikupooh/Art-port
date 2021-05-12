@@ -2,6 +2,14 @@ import { Col, Image, Row} from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 function HomeGridLayout(props){
+    if(props.post.images.length === 0) {
+        props.post.images = [{
+                id: "fail",
+                name: "fail",
+                link: "https://via.placeholder.com/300/09f/fff.png"
+            }
+        ]
+    }
     return(    
         <Link to = {'post/' + props.post.id}>
             <div className = "home_grid_posts">
