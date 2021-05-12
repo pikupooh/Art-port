@@ -1,0 +1,101 @@
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+/*
+ * Container - Button
+ */
+.float {
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    bottom: 40px;
+    right: 40px;
+    background-color: #0c9;
+    color: #fff;
+    border-radius: 50px;
+    text-align: center;
+    z-index: 1000;
+    animation: bot-to-top 2s ease-out;
+}
+/*
+ * Submenu - Buttons
+ */
+.submenu {
+    position: fixed;
+    right: 40px;
+    bottom: 80px;
+    z-index: 100;
+}
+.submenu_li {
+    list-style: none;
+    margin-bottom: 10px;
+}
+.submenu_a {
+    width: 50px;
+    height: 50px;
+    background-color: #f33;
+    color: #fff;
+    border-radius: 50px;
+    text-align: center;
+    display: block;
+}
+/* Hidden Buttons */
+.submenu {
+    visibility: hidden;
+}
+/* Visible Buttons */
+.fab:hover + .submenu {
+    visibility: visible;
+    animation: scale-in 0.5s;
+}
+.submenu:hover {
+    visibility: visible !important;
+}
+/* Center icons */
+a i.material-icons {
+    font-size: 24px;
+    vertical-align: middle;
+    margin-top: 0.4em;
+}
+/*
+ * Animations
+ */
+.fab i {
+    animation: rotate-in 0.5s;
+}
+.fab:hover > i {
+    animation: rotate-out 0.5s;
+}
+
+@keyframes bot-to-top {
+    0% {
+        bottom: -60px;
+    }
+    50% {
+        bottom: 40px;
+    }
+}
+@keyframes scale-in {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+@keyframes rotate-in {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+@keyframes rotate-out {
+    from {
+        transform: rotate(360deg);
+    }
+    to {
+        transform: rotate(0deg);
+    }
+}

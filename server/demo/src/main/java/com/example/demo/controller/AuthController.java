@@ -78,8 +78,7 @@ public class AuthController {
         System.out.println(signUpRequest.getEmail());
         if(userRepository.existsByUsername((signUpRequest.getUsername()))){
 
-            return ResponseEntity.badRequest()
-                    .body("Username is already taken");
+            return new ResponseEntity<String>("Username is already taken", HttpStatus.CONFLICT);
         }
 
         if(userRepository.existsByEmail(signUpRequest.getEmail())){
@@ -143,8 +142,8 @@ public class AuthController {
         String jwtToken = jwtConfig.generateJwtToken(authenticate);
 
         UserDetailsImpl userDetails = (UserDetailsImpl) authenticate.getPrincipal();
-
-        return ResponseEntity.ok(new JwtResponse(jwtToken, userDetails.getId(), userDetails.getUsername(), userDetails.getEmail()));
+        System.out.println(userDetails.getProfilePhoto());
+        return ResponseEntity.ok(new JwtResponse(jwtToken, userDetails.getId(), userDetails.getUsername(), userDetails.getEmail(), userDetails.getProfilePhoto()));
     }
 
     @PostMapping("/forgot-password")

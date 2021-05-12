@@ -17,16 +17,18 @@ public class UserDetailsImpl implements UserDetails {
     private String username;
     private String email;
     private String password;
+    private String profilePhoto;
     private Collection<? extends GrantedAuthority> authorities;
     private boolean isEnabled;
 
 
-    public UserDetailsImpl(String id, String username, String email, String password, boolean isEnabled, Collection<? extends GrantedAuthority> authorities) {
+    public UserDetailsImpl(String id, String username, String email, String password, boolean isEnabled, String profilePhoto, Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
         this.isEnabled = isEnabled;
+        this.profilePhoto = profilePhoto;
         this.authorities = authorities;
     }
 
@@ -35,7 +37,7 @@ public class UserDetailsImpl implements UserDetails {
 
         List<GrantedAuthority> authority = Collections.singletonList(new SimpleGrantedAuthority(user.getRole().name()));
 
-        return new UserDetailsImpl(user.getId(), user.getUsername(), user.getEmail(), user.getPassword(), user.isEnabled(), authority);
+        return new UserDetailsImpl(user.getId(), user.getUsername(), user.getEmail(), user.getPassword(), user.isEnabled(), user.getProfilePhoto().getLink(), authority);
     }
 
     @Override
@@ -49,6 +51,10 @@ public class UserDetailsImpl implements UserDetails {
 
     public String getEmail() {
         return email;
+    }
+
+    public String getProfilePhoto() {
+        return profilePhoto;
     }
 
     @Override

@@ -1,6 +1,10 @@
 import React from "react";
 import { Form, Button } from "react-bootstrap";
 
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import registerUser from "../../redux/thunk/registerUser";
+
 class RegistrationForm extends React.Component {
     constructor(props) {
         super(props);
@@ -10,6 +14,8 @@ class RegistrationForm extends React.Component {
             errors: {},
             value: "",
         };
+
+        this.fileInput = React.createRef();
     }
 
     handleChange(e) {
@@ -36,8 +42,16 @@ class RegistrationForm extends React.Component {
         if (this.validate()) {
             console.log(this.state);
 
-            let input = {};
+            let imageFormData = new FormData();
+            imageFormData.append(
+                "files",
+                this.fileInput.current.files[0],
+                this.fileInput.current.files[0].name
+            );
 
+            this.props.registerUser(this.state.input, imageFormData);
+
+            let input = {};
             input["username"] = "";
             input["firstName"] = "";
             input["lastName"] = "";
@@ -100,7 +114,7 @@ class RegistrationForm extends React.Component {
                 errors["password"] = "Passwords don't match.";
             }
         }
-        if (!input["files"]) {
+        if (this.fileInput.current.files.length === 0) {
             isValid = false;
             errors["files"] = "Please upload a profile picture.";
         }
@@ -220,13 +234,10 @@ class RegistrationForm extends React.Component {
                     <div className="text-danger">{this.state.errors.dob}</div>
                 </Form.Group>
                 <Form.Group>
-                    <Form.File
-                        name="files"
-                        value={this.state.value}
-                        onChange={(e) => {
-                            this.handleFileChange(e);
-                        }}
-                    />
+                    <Form.Label className="label">
+                        Upload Profile Picture
+                    </Form.Label>
+                    <Form.File name="files" ref={this.fileInput} />
                     <div className="text-danger">{this.state.errors.files}</div>
                 </Form.Group>
                 <Button variant="primary" type="submit">
@@ -237,4 +248,12 @@ class RegistrationForm extends React.Component {
     }
 }
 
-export default RegistrationForm;
+const mapDispatchToProps = (dispatch) =>
+    bindActionCreators(
+        {
+            registerUser: registerUser,
+        },
+        dispatch
+    );
+
+export default connect(null, mapDispatchToProps)(RegistrationForm);

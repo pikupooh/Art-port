@@ -10,6 +10,7 @@ import com.example.demo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -34,6 +35,7 @@ public class ProfileController {
     @Autowired
     BlogService blogService;
 
+    @PreAuthorize("isAuthenticated()")
     @GetMapping("/profile")
     public List<Profile> getAllProfiles(){
 
@@ -41,14 +43,12 @@ public class ProfileController {
     }
 
     @GetMapping("/users/{userId}/profile")
-    public ResponseEntity<?> getUserProfile(@PathVariable String userId, Principal principal){
+    public ResponseEntity<?> getUserProfile(@PathVariable String userId){
 
-        User user = userService.getUserByName(principal.getName());
+        User user = userService.getUser(userId);
         if(user == null)
             return new ResponseEntity<String>("User not present.", HttpStatus.UNAUTHORIZED);
-        /*if (!user.getId().equals(userId))
-            return new ResponseEntity<String>("User invalid.", HttpStatus.UNAUTHORIZED);
-        */
+
         return ResponseEntity.ok(profileService.getUserProfile(userId));
     }
 
