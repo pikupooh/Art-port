@@ -7,8 +7,6 @@ import UserProfileFollowing  from './userProfileFollowing'
 import UserProfileManga from './userProfileManga'
 import UserProfileComics from './userProfileComics'
 import UserProfileBlogs from './userProfileBlogs'
-import UserProfileAbout from './userProfileAbout'
-
 
 class UserProfileExtras extends React.Component {
     
@@ -21,7 +19,6 @@ class UserProfileExtras extends React.Component {
             <Route path = {this.props.match.url + '/manga'} component = {UserProfileManga}></Route>
             <Route path = {this.props.match.url + '/comics'} component = {UserProfileComics}></Route>
             <Route path = {this.props.match.url + '/blogs'} component = {UserProfileBlogs}></Route>
-            <Route path = {this.props.match.url + '/about'} component = {UserProfileAbout}></Route>
           </Switch>
         )
     }

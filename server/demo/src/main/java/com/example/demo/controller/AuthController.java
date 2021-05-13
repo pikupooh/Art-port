@@ -87,7 +87,7 @@ public class AuthController {
                     .body("Email is already in use");
         }
 
-        User user = new User(signUpRequest.getUsername(), signUpRequest.getFirstName(), signUpRequest.getLastName(), signUpRequest.getEmail(), passwordEncoder.encode(signUpRequest.getPassword()), signUpRequest.getDateOfBirth());
+        User user = new User(signUpRequest.getUsername(), signUpRequest.getFirstName(), signUpRequest.getLastName(), signUpRequest.getEmail(), passwordEncoder.encode(signUpRequest.getPassword()), signUpRequest.getAbout(), signUpRequest.getDateOfBirth());
         System.out.println("REached here");
         userRepository.save(user);
         System.out.println("here");
@@ -142,8 +142,10 @@ public class AuthController {
         String jwtToken = jwtConfig.generateJwtToken(authenticate);
 
         UserDetailsImpl userDetails = (UserDetailsImpl) authenticate.getPrincipal();
-        System.out.println(userDetails.getProfilePhoto());
-        return ResponseEntity.ok(new JwtResponse(jwtToken, userDetails.getId(), userDetails.getUsername(), userDetails.getEmail(), userDetails.getProfilePhoto()));
+        String profilePhoto = "https://via.placeholder.com/150";
+        if(userDetails.getProfilePhoto() != null)
+        	profilePhoto = userDetails.getProfilePhoto();
+        return ResponseEntity.ok(new JwtResponse(jwtToken, userDetails.getId(), userDetails.getUsername(), userDetails.getEmail(), profilePhoto));
     }
 
     @PostMapping("/forgot-password")

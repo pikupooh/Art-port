@@ -37,6 +37,7 @@ class UserProfile extends React.Component {
                         <div>{this.props.user.email}</div>
                     </div>
                     <div>{this.props.user.userName}</div>
+                    <div>{this.props.user.about}</div>
                 </div>
                 <UserProfileNavbar match={this.props.match} />
                 <UserProfileExtras match={this.props.match} />

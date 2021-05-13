@@ -30,12 +30,22 @@ public class SignUpRequest {
     @Size(min = 8, max = 30)
     private String password;
     
+    @NotBlank
+    private String about;
     
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateOfBirth; 
+    
+    public String getAbout() {
+		return about;
+	}
 
-    public LocalDate getDateOfBirth() {
+	public void setAbout(String about) {
+		this.about = about;
+	}
+
+	public LocalDate getDateOfBirth() {
 		return dateOfBirth;
 	}
 
