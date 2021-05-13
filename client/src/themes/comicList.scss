@@ -1,36 +1,39 @@
-.comic_data_container{
-    margin-top: 40px;
+.data_container{
+    width:50%;
+}
+.comic_list{
+    &:hover{
+    background-color:  lighten($color: $background-color, $amount: 20);
+    }
 }
 .comic_list_title{
-    text-align : center;
-    padding-bottom: 3px;
+    padding-bottom: 20px;
     color : gold;
-    font-size: 1.2rem;
+    font-size: 17px;
     font-weight:800;
 }
 .comic_rating{
-    padding-bottom: 105px;
-    font-size: 20px;
+    padding-top:10px;
+    font-size: 15px;
 }
 .comic_chapters{
-    font-size: 20px;
+    font-size: 15px;
 }
 .comic_chapters_and_genre{
-    padding-bottom: 105px;
-    padding-left: 10px;
+    padding-top:10px;
 }
 .comic_list_comic_image{
     object-fit: cover;
     width: 80%;
     height: 100%;
-    padding-left: 50px;
+    padding-left: 20px;
 }
 .comic_image{
     max-width: 40%;
 }
 .comic_list_comic_image_container{
-    width: 120%;
-    height: 40vh;   
+    width: 100%;
+    height: 20vh;   
 }
 .comic_authors{
     padding-left: 10px;
@@ -63,4 +66,10 @@
         color: white !important;
     }
 }*/
+.comiclist_container{
+    padding-left:0;
+    padding-right:0;
+    padding-top:7px;
+    padding-bot:7px;
+}
 

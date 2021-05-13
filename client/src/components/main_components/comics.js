@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from  'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
+import {Row,Col,Container} from 'react-bootstrap';
 
 import fetchComicListAction from '../../redux/thunk/fetchComicList '
 import ComicDataComponent from '../small_components/comicListComponent/comicDataComponent'
@@ -11,17 +12,19 @@ class Comics extends React.Component{
     }
     render(){
         return(
-            <div >
-                
+            < Row>
+                   
                     {this.props.comicList.map((comic) => 
-                        <div  key ={comic.id}>
+                        
+                        <Col sm={6}  key ={comic.id} className = "comiclist_container">
                             <Link to = {'/comic/' + comic.id}>
-                                <ComicDataComponent comic = {comic} /><br></br>
+                                <ComicDataComponent comic = {comic} />
                             </Link>
-                        </div>
+                            </Col>
+            
                     )}
-                
-            </div>
+                   
+            </Row>
             )
     }
 }
