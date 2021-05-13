@@ -114,7 +114,7 @@ export const createPost = (userId, postFormData, imageFormData, profileId) => {
                     )
                     .then((response) => {
                         if (userId === profileId) {
-                            console.log("Same");
+                            console.log("Same", response);
                             dispatch(addUserPost(response));
                         }
                     })

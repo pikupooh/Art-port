@@ -33,24 +33,25 @@ export const profileDataReducer = (state = initState, action) => {
             };
 
         case ActionTypes.ADD_POST:
+            console.log("reducer", action.payload, state.userPosts);
             return {
                 ...state,
-                userPosts: [...state.userPosts, action.payload.postData],
+                userPosts: [...state.userPosts, action.payload],
             };
         case ActionTypes.ADD_BLOG:
             return {
                 ...state,
-                userBlogs: [...state.userBlogs, action.payload.blogData],
+                userBlogs: [...state.userBlogs, action.payload],
             };
         case ActionTypes.ADD_MANGA:
             return {
                 ...state,
-                userBlogs: [...state.userMangas, action.payload.mangaData],
+                userBlogs: [...state.userMangas, action.payload],
             };
         case ActionTypes.ADD_COMIC:
             return {
                 ...state,
-                userBlogs: [...state.userComics, action.payload.comicData],
+                userBlogs: [...state.userComics, action.payload],
             };
         default:
             return state;
