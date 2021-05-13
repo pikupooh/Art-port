@@ -1,52 +1,32 @@
-import { Row, Col, Image } from 'react-bootstrap'
-import {ReplyFill } from 'react-bootstrap-icons'
-import { Link } from 'react-router-dom'
+import { Component } from 'react';
 
-function BlogDataCommentsReplies(props){
+import BlogDataCommentsReply from "./blogDataCommentReply"
 
-    if(props.replies.length === 0 || props.showReplies === false){
+class BlogDataCommentReplies extends Component{
+
+    render(){
+        if(this.props.replies.length === 0 || this.props.showReplies === false){
+            return(
+                <div>
+                    
+                </div>
+            )
+        }
+
         return(
-            <div>
-                
-            </div>
-        )
-    }
-
-    return(
-        <div className = "ml-5">
-            <div className = "ml-5">
-                {props.replies.map((reply) => 
-                    <div key = {reply.id}>
-                    <Row>
-                        <Link to = {'/user/' + reply.user.userid}>
-                            <Col xs = {2}>
-                                <Image src = {reply.user.profilePhoto.link} roundedCircle className = "comment_profile_photo"></Image>
-                            </Col>
-                        </Link>
-                        <Col>
-                        <Link to = {'/user/' + reply.user.userId}>
-                            <Row>
-                                <div className = "username">
-                                    {reply.user.username}
-                                </div>
-                            </Row>
-                        </Link>
-                            <Row>
-                                {reply.content}
-                            </Row>
-                            <Row>
-                                <div className = "blog_comment_reply" onClick = {() => props.openReplyForm(reply.user.username)}>
-                                    <ReplyFill></ReplyFill> 
-                                    Reply
-                                </div>
-                            </Row>
-                        </Col>
-                    </Row>
+            <div className = "blog_data_comments">
+                {this.props.replies.map((reply) => 
+                    <div  key = {reply.id}>
+                        <BlogDataCommentsReply reply = {reply} 
+                                               openReplyForm = {this.props.openReplyForm}
+                                               showReplies = {this.props.showReplies}
+                                               closeReplyForm = {this.props.closeReplyForm}
+                        />
                     </div>
                 )}
             </div>
-        </div>
-    )
+        )
+    }
 }
 
-export default BlogDataCommentsReplies
+export default BlogDataCommentReplies

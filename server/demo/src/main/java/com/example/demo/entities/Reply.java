@@ -20,6 +20,7 @@ public class Reply {
     private String content;
     private String createdDate;
     private UserDTO user;
+    private String replyTo;
     @DBRef
     private Comment comment;
 
@@ -65,13 +66,23 @@ public class Reply {
         this.user = user;
     }
 
+
+    public String getReplyTo() {
+        return replyTo;
+    }
+
+    public void setReplyTo(String replyTo) {
+        this.replyTo = replyTo;
+    }
+
     @Override
     public String toString() {
         return "Reply{" +
                 "id='" + id + '\'' +
                 ", content='" + content + '\'' +
-                ", createdDate=" + createdDate +
-                ", userDTO=" + user +
+                ", createdDate='" + createdDate + '\'' +
+                ", user=" + user +
+                ", replyTo='" + replyTo + '\'' +
                 ", comment=" + comment +
                 '}';
     }

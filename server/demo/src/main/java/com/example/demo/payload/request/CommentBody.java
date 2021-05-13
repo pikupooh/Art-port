@@ -6,6 +6,15 @@ public class CommentBody {
 
     @NotBlank
     private String content;
+    private String replyTo;
+
+    public String getReplyTo() {
+        return replyTo;
+    }
+
+    public void setReplyTo(String replyTo) {
+        this.replyTo = replyTo;
+    }
 
     public String getContent() {
         return content;

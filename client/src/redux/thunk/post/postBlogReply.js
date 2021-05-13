@@ -1,6 +1,6 @@
 import { POST_BLOG_REPLY } from "../../actions/actionTypes";
 
-function postBlogReply(parentCommentId, messege) {    
+function postBlogReply(parentCommentId, message, replyTo) {    
 
     const token = localStorage.getItem("token");
 
@@ -8,7 +8,8 @@ function postBlogReply(parentCommentId, messege) {
         fetch(`http://localhost:8080/comment/${parentCommentId}/reply`, {
             method: "POST",
             body: JSON.stringify({
-                content: messege
+                replyTo,
+                content: message
             }),
             headers: {
                 "Content-Type": "application/json",
@@ -21,7 +22,6 @@ function postBlogReply(parentCommentId, messege) {
                 }
             })
             .then((response) => {
-                console.log(response);
                 dispatch({
                     type: POST_BLOG_REPLY,
                     payload: {

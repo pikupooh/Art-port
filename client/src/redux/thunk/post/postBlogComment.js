@@ -1,6 +1,6 @@
 import { POST_BLOG_COMMENT } from "../../actions/actionTypes";
 
-function postBlogComment(blogId, messege) {
+function postBlogComment(blogId, message) {
     
     const token = localStorage.getItem("token");
 
@@ -8,7 +8,7 @@ function postBlogComment(blogId, messege) {
         fetch(`http://localhost:8080/blog/${blogId}/comment`, {
             method: "POST",
             body: JSON.stringify({
-                content: messege
+                content: message
             }),
             headers: {
                 "Content-Type": "application/json",

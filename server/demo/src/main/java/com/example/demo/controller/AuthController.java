@@ -60,7 +60,6 @@ public class AuthController {
     private JwtConfig jwtConfig;
 
 
-    @PreAuthorize("isAuthenticated()")
     @GetMapping("/users/{userId}")
     public ResponseEntity<?> getUser(@PathVariable String userId){
 

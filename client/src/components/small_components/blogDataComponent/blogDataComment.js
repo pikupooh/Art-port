@@ -22,7 +22,7 @@ class BlogDataComment extends Component{
         }
     }
 
-    openReplyForm = (username = this.props.comment.user.username) => {
+    openReplyForm = (username) => {
         console.log(username);
         this.setState({
             isReply: true,
@@ -57,12 +57,13 @@ class BlogDataComment extends Component{
         })
     }
 
+
     deleteComment = () => {
         this.props.deleteBlogComment(this.props.comment.id)
     }
 
     render(){
-        console.log("render", this.props.comment);
+        
         return(
             <div className = "mx-3 my-2">
                 <Row>
@@ -83,18 +84,16 @@ class BlogDataComment extends Component{
                             {this.props.comment.content}
                         </Row>
                         <Row id = "blog_comments_options">
-                            <div className = "blog_comment_reply" onClick = {() => this.openReplyForm()}>
+                            <div className = "blog_comment_reply" onClick = {() => this.openReplyForm(this.props.comment.user.username)}>
                                 <ReplyFill></ReplyFill> 
                                 Reply
                             </div>
                             <ShowHideRepliesButton showReplies = {this.state.showReplies} 
                                                     toggleShowReplies = {this.toggleShowReplies} 
                                                     repliesLength = {this.props.comment.replies.length}/>
-                            <CloseReplyFormButton isReply = {this.state.isReply} closeReplyForm = {this.closeReplyForm} />
                             <EditButton id = {this.props.comment.user.userId}
                                         userId = {this.props.userId}
                                         openEditForm = {this.openEditForm}
-                                        closeEditForm = {this.closeEditForm}
                                         isEdit = {this.state.isEdit}
                             />
                             <DeleteButton id = {this.props.comment.user.userId}
@@ -107,6 +106,7 @@ class BlogDataComment extends Component{
                 <BlogDataCommentReplies replies = {this.props.comment.replies}
                                         openReplyForm = {this.openReplyForm}
                                         showReplies = {this.state.showReplies}
+                                        closeReplyForm = {this.closeReplyForm}
                 />
                 <BlogCommentReplyForm isReply = {this.state.isReply} 
                                     replyToUser = {this.state.replyToUser}
@@ -137,24 +137,6 @@ const mapDispatchToProps = (dispatch) => bindActionCreators(
 )
 
 export default connect(mapStateToProps, mapDispatchToProps)(BlogDataComment)
-
-function CloseReplyFormButton (props) {
-
-    if(props.isReply === true){
-        return(
-            <p onClick = {() => props.closeReplyForm()} className = "ml-3">
-                Cancel Reply
-            </p>
-        )
-    }
-    else{
-        return(
-            <div>
-
-            </div>
-        )
-    }
-}
 
 function ShowHideRepliesButton(props) {
 
@@ -209,8 +191,8 @@ function EditButton(props){
     }
     else if(props.isEdit === true){
         return(
-            <p onClick = {props.closeEditForm}>
-                Cancel Edit
+            <p>
+                
             </p>
         )
     }

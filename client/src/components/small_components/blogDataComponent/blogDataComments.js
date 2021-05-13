@@ -15,7 +15,6 @@ class BlogDataComments extends Component{
         )
     }
     else{
-        console.log(this.props.comments);
         return(
             <div className = "blog_data_comments">
                 {this.props.comments.map((comment) => 
