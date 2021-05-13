@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 import deleteBlogLike from "../../../redux/thunk/delete/deleteBlogLike";
+import fetchUserData from "../../../redux/thunk/fetchUserData";
 import postBlogLike from "../../../redux/thunk/post/postBlogLike";
 import trimUser from "../../helpers/trimUser";
 
@@ -16,21 +17,25 @@ class BlogLikeButton extends React.Component {
     }
 
     componentDidMount() {
-        setTimeout(() => this.updateButtonState(), 2000);
+        this.props.fetchUserData(this.props.userId)
+        setTimeout(() => {
+            this.updateButtonState();
+        }, 2000);
     }
 
     updateButtonState = () => {
+        
         var foundUser = this.props.likes.filter(
             (user) => user.userId === this.props.userId
         );
+
+        
         if (foundUser.length !== 0) {
-            this.setState({
-                liked: true,
-            });
+            return true
+            
         } else {
-            this.setState({
-                liked: false,
-            });
+            return false
+            
         }
     };
 
@@ -40,7 +45,6 @@ class BlogLikeButton extends React.Component {
             return;
         }
 
-        //  Remove later as always didMount calls when likes changes
         this.setState({
             liked: true,
         });
@@ -49,14 +53,14 @@ class BlogLikeButton extends React.Component {
     };
 
     removeLiked = () => {
-        this.props.deleteBlogLike(this.props.user.userId, this.props.blogId);
+        this.props.deleteBlogLike(this.props.userId, this.props.blogId);
         this.setState({
             liked: false,
         });
     };
 
     render() {
-        if (this.state.liked === false) {
+        if (this.updateButtonState()=== false) {
             return (
                 <Button className="mt-3" onClick={this.blogLiked}>
                     Like
@@ -78,6 +82,7 @@ const mapDispatchToProps = (dispatch) =>
             showSignInModal: () => dispatch({ type: "SHOW_MODAL" }),
             deleteBlogLike: deleteBlogLike,
             postBlogLike: postBlogLike,
+            fetchUserData: fetchUserData
         },
         dispatch
     );

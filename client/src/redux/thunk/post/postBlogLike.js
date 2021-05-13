@@ -2,6 +2,7 @@ import { LIKE_BLOG } from "../../actions/actionTypes";
 
 function postBlogLike(user, blogId) {
     const token = localStorage.getItem("token");
+    console.log(user, blogId);
 
     return (dispatch) => {
         fetch(`http://localhost:8080/blog/${blogId}/likes`, {
@@ -13,13 +14,17 @@ function postBlogLike(user, blogId) {
             .then((response) => {
                 console.log(response);
                 if (response.ok) {
-                    dispatch({
-                        type: LIKE_BLOG,
-                        payload: {
-                            user,
-                        },
-                    });
+                    return response.text()
                 }
+            })
+            .then((response) => {
+                dispatch({
+                    type: LIKE_BLOG,
+                    payload: {
+                        user,
+                    },
+                });
+                return response
             })
             .catch((err) => console.error(err));
     };

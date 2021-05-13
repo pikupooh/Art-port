@@ -1,12 +1,11 @@
-import { POST_BLOG_REPLY } from "../../actions/actionTypes";
+import { EDIT_BLOG_COMMENT } from "../../actions/actionTypes";
 
-function postBlogReply(parentCommentId, messege) {    
-
+function editBlogComment(commentId, messege) {
+    
     const token = localStorage.getItem("token");
-
     return (dispatch) => {
-        fetch(`http://localhost:8080/comment/${parentCommentId}/reply`, {
-            method: "POST",
+        fetch(`http://localhost:8080/comment/${commentId}`, {
+            method: "PUT",
             body: JSON.stringify({
                 content: messege
             }),
@@ -23,10 +22,9 @@ function postBlogReply(parentCommentId, messege) {
             .then((response) => {
                 console.log(response);
                 dispatch({
-                    type: POST_BLOG_REPLY,
+                    type: EDIT_BLOG_COMMENT,
                     payload: {
-                        response,
-                        parentCommentId
+                        response
                     }
                 })
             })
@@ -34,4 +32,4 @@ function postBlogReply(parentCommentId, messege) {
     };
 }
 
-export default postBlogReply;
+export default editBlogComment;

@@ -1,30 +1,33 @@
 import BlogDataComment from './blogDataComment'
 import BlogCommentSection from './blogCommentSection'
+import { Component } from 'react';
 
 
-function BlogDataComments (props){
+class BlogDataComments extends Component{
 
-    if(props.comments.length === 0){
+    render(){
+    if(this.props.comments.length === 0){
         return(
             <div className = "blog_data_comments">
                 Be the first to comment
-                <BlogCommentSection blogId = {props.blogId}/>
+                <BlogCommentSection blogId = {this.props.blogId}/>
             </div>
         )
     }
     else{
+        console.log(this.props.comments);
         return(
             <div className = "blog_data_comments">
-                {props.comments.map((comment) => 
+                {this.props.comments.map((comment) => 
                     <div  key = {comment.id}>
                         <BlogDataComment comment = {comment} />
                         
                     </div>
                 )}
-                <BlogCommentSection blogId = {props.blogId}/>
+                <BlogCommentSection blogId = {this.props.blogId}/>
             </div>
         )
-    }
+    }}
 }
 
 export default BlogDataComments

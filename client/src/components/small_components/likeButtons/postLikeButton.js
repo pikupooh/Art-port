@@ -5,17 +5,14 @@ import { bindActionCreators } from "redux";
 
 import deletePostLike from "../../../redux/thunk/delete/deletePostLike";
 import postPostLike from "../../../redux/thunk/post/postPostLike";
-
+import fetchUserData from "../../../redux/thunk/fetchUserData"
 class PostLikeButton extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            liked: false,
-        };
     }
 
     componentDidMount() {
-        setTimeout(() => this.updateButtonState(), 1000);
+        this.props.fetchUserData(this.props.userId)
     }
 
     trimUser = () => {
@@ -38,13 +35,9 @@ class PostLikeButton extends React.Component {
         console.log(foundUser);
 
         if (foundUser.length !== 0) {
-            this.setState({
-                liked: true,
-            });
+            return true
         } else {
-            this.setState({
-                liked: false,
-            });
+            return false
         }
     };
 
@@ -62,14 +55,14 @@ class PostLikeButton extends React.Component {
     };
 
     removeLiked = () => {
-        this.props.deletePostLike(this.props.user.userId, this.props.postId);
+        this.props.deletePostLike(this.props.userId, this.props.postId);
         this.setState({
             liked: false,
         });
     };
 
     render() {
-        if (this.state.liked === false) {
+        if (this.updateButtonState() === false) {
             return (
                 <Button className="mt-3" onClick={this.blogLiked}>
                     Like
@@ -91,6 +84,7 @@ const mapDispatchToProps = (dispatch) =>
             showSignInModal: () => dispatch({ type: "SHOW_MODAL" }),
             deletePostLike: deletePostLike,
             postPostLike: postPostLike,
+            fetchUserData: fetchUserData
         },
         dispatch
     );

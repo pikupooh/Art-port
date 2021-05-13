@@ -27,7 +27,7 @@ export const blogDataReducer = (state = initState, action) => {
                 likes: action.payload.blog.likes,
                 comments: action.payload.blog.comments,
                 img: action.payload.blog.img,
-                uploadDate: action.payload.blog.uploadDate,
+                uploadDate: action.payload.blog.createdDate,
                 tags: action.payload.blog.category,
                 user: action.payload.blog.user,
             };
@@ -57,18 +57,62 @@ export const blogDataReducer = (state = initState, action) => {
             };
         
         case ActionTypes.POST_BLOG_REPLY:
-            var newComments = [
-                ...state.comments
-            ]
-            newComments.forEach(comment => {
-                if(comment.id === action.payload.parentCommentId){
-                    comment.replies.push(action.payload.response)
+            console.log(state.comments);
+            console.log(action.payload);
+            
+            var newComments = []
+            var tempComment 
+
+            state.comments.map((comment) => {
+                if(comment.id !== action.payload.parentCommentId){
+                    newComments.push(comment)
                 }
-            });
+                else{
+                    tempComment = comment
+                }
+            })
+
+            let newReply = {
+                comment: action.payload.response.comment.id,
+                id: action.payload.response.id,
+                user: action.payload.response.user,
+                content: action.payload.response.content,
+                createdDate: action.payload.response.createdDate,
+            }
+
+            tempComment.replies.push(newReply)
+            newComments.push(tempComment)
+
             return {
                 ...state,
                 comments: newComments
             }
+
+        case ActionTypes.DELETE_BLOG_COMMENT:
+            var newComments = state.comments.filter(
+                (comment) => comment.id !== action.payload.commentId
+            );
+            return {
+                ...state,
+                comments: newComments
+            };
+
+        case ActionTypes.EDIT_BLOG_COMMENT:
+            var tempComment = state.comments.filter((comment) => comment.id === action.payload.response.id)
+            tempComment = tempComment[0]
+            tempComment = {
+                ...tempComment,
+                content: action.payload.response.content,
+                createdDate: action.payload.response.createdDate
+            }
+            var newComments = state.comments.filter((comment) => comment.id !== action.payload.response.id)
+            newComments.push(tempComment)
+            return {
+                ...state,
+                comments: newComments
+            }
+
+
         default:
             return state;
     }

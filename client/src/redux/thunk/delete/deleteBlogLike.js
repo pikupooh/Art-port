@@ -3,10 +3,8 @@ import { UNLIKE_BLOG } from '../../actions/actionTypes'
 function deleteBlogLike(userId, blogId){
 
     const token = localStorage.getItem("token")
-    console.log(userId, blogId, token);
 
     return dispatch => {
-        console.log('zak');
         fetch(`http://localhost:8080/blog/${blogId}/likes`, {
             method: 'DELETE',
             headers: {
