@@ -1,10 +1,12 @@
 package com.example.demo.controller;
 
+import com.example.demo.entities.Image;
 import com.example.demo.entities.User;
 import com.example.demo.entities.VerificationToken;
 import com.example.demo.payload.request.LoginRequest;
 import com.example.demo.payload.request.SignUpRequest;
 import com.example.demo.payload.response.JwtResponse;
+import com.example.demo.repositories.ImageRepository;
 import com.example.demo.repositories.UserRepository;
 import com.example.demo.repositories.VerificationTokenRepository;
 import com.example.demo.security.jwt.JwtConfig;
@@ -40,6 +42,9 @@ public class AuthController {
 
     @Autowired
      UserRepository userRepository;
+    
+    @Autowired
+    ImageRepository imageRepository;
 
     @Autowired
     VerificationTokenRepository verificationTokenRepository;
@@ -87,9 +92,13 @@ public class AuthController {
         }
 
         User user = new User(signUpRequest.getUsername(), signUpRequest.getFirstName(), signUpRequest.getLastName(), signUpRequest.getEmail(), passwordEncoder.encode(signUpRequest.getPassword()), signUpRequest.getAbout(), signUpRequest.getDateOfBirth());
-        System.out.println("REached here");
+        String link = "https://via.placeholder.com/150";
+        Image image = new Image();
+        image.setName("placeholder");
+        image.setLink(link);
+        image = imageRepository.save(image);
+        user.setProfilePhoto(image);
         userRepository.save(user);
-        System.out.println("here");
 
         VerificationToken verificationToken = new VerificationToken(user);
         verificationTokenRepository.save(verificationToken);
@@ -133,18 +142,11 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest){
-
         Authentication authenticate = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
-
         SecurityContextHolder.getContext().setAuthentication(authenticate);
-
         String jwtToken = jwtConfig.generateJwtToken(authenticate);
-
         UserDetailsImpl userDetails = (UserDetailsImpl) authenticate.getPrincipal();
-        String profilePhoto = "https://via.placeholder.com/150";
-        if(userDetails.getProfilePhoto() != null)
-        	profilePhoto = userDetails.getProfilePhoto();
-        return ResponseEntity.ok(new JwtResponse(jwtToken, userDetails.getId(), userDetails.getUsername(), userDetails.getEmail(), profilePhoto));
+        return ResponseEntity.ok(new JwtResponse(jwtToken, userDetails.getId(), userDetails.getUsername(), userDetails.getEmail(), userDetails.getProfilePhoto()));
     }
 
     @PostMapping("/forgot-password")

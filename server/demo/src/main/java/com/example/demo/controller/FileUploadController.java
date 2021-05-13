@@ -152,9 +152,9 @@ public class FileUploadController {
             }
             Image img = user.getProfilePhoto();
             img.setLink(link);
+            imageService.save(img);
         });
-        return "Image uploaded successfully";
-
+        return "Image updated successfully";
 
     }
     
