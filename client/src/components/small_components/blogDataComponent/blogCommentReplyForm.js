@@ -28,7 +28,7 @@ class BlogCommentReplyForm extends Component{
                 messege: ''
             })
         }
-        
+        this.props.closeReplyForm()
     }
 
     render(){

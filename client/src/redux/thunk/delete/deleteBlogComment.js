@@ -1,10 +1,11 @@
-import { UNLIKE_POST } from '../../actions/actionTypes'
+import { DELETE_BLOG_COMMENT } from '../../actions/actionTypes'
 
-function deletePostLike(userId, postId){
+function deleteBlogComment(commentId){
 
     const token = localStorage.getItem("token")
+    console.log(commentId);
     return dispatch => {
-        fetch(`http://localhost:8080/post/${postId}/likes`, {
+        fetch(`http://localhost:8080/comment/${commentId}`, {
             method: 'DELETE',
             headers: {
                 Authorization: token,
@@ -15,9 +16,9 @@ function deletePostLike(userId, postId){
             if(response.ok){
                 dispatch(
                     {
-                        type: UNLIKE_POST,
+                        type: DELETE_BLOG_COMMENT,
                         payload: {
-                            userId
+                            commentId
                         }
                     }
                 );
@@ -27,4 +28,4 @@ function deletePostLike(userId, postId){
     }
 }
 
-export default deletePostLike
+export default deleteBlogComment

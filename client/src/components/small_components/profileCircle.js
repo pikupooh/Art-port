@@ -9,7 +9,6 @@ import { altImage } from "../../shared/categories";
 
 class ProfileCircle extends React.Component {
     componentDidMount() {
-        this.props.fetchUserData();
     }
 
     signOut = () => {

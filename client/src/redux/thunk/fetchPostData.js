@@ -2,9 +2,9 @@ import { fetchPostDataAction } from "../actions/fetchPostDataAction";
 import { addUserPost } from "../actions/fetchProfileDataAction";
 
 function fetchPostData(postId) {
-    return (dispatch) => {
+    return (dispatch) =>
         fetch(`http://localhost:8080/post/${postId}`)
-            .then((res) => res.json())
+            .then((res) => { console.log(res); return res.json()})
             .then((res) => {
                 if (res.error) {
                     throw res.error;
@@ -37,15 +37,15 @@ function fetchPostData(postId) {
                             link: "https://via.placeholder.com/300/09f/fff.png",
                         };
                     }
-                    dispatch(fetchPostDataAction(res));
-                    return res;
                 }
+                dispatch(fetchPostDataAction(res));
+                return res;
             })
             .catch((error) => {
                 console.log(error);
             });
     };
-}
+
 
 export const createPost = (userId, postFormData, imageFormData, profileId) => {
     console.log("hello");

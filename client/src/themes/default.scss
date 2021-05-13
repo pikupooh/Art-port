@@ -405,11 +405,13 @@ footer {
   
 }
 
+@import "commentsOptions.scss";
 @import "comicList";
 @import "homegrid";
 @import "postUploaderDetails";
 @import "mangaList.scss";
 @import "mangaData.scss";
 @import "custom1";
-@import "~bootstrap/scss/bootstrap.scss";
 @import "custom2";
+@import "~bootstrap/scss/bootstrap.scss";
+

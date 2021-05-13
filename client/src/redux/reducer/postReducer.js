@@ -17,6 +17,7 @@ const initState = {
 export const PostReducer = (state = initState, action) => {
     switch (action.type) {
         case ActionTypes.FETCH_POST_DATA:
+            console.log((action.payload.postData));
             return {
                 ...state,
                 id: action.payload.postData.id,
@@ -37,9 +38,11 @@ export const PostReducer = (state = initState, action) => {
             };
 
         case ActionTypes.UNLIKE_POST:
+            console.log(state.likes);
             var newLikes = state.likes.filter(
                 (user) => user.userId !== action.payload.userId
             );
+            console.log(newLikes);
             return {
                 ...state,
                 likes: newLikes,

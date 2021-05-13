@@ -2,9 +2,13 @@ import { Image, Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { ReplyFill } from 'react-bootstrap-icons'
 import { Component } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
 import BlogDataCommentReplies from './blogDataCommentReplies'
 import BlogCommentReplyForm from './blogCommentReplyForm'
+import deleteBlogComment from "../../../redux/thunk/delete/deleteBlogComment"
+import BlogCommentEditForm from "../blogDataComponent/blogCommentEditForm"
 
 class BlogDataComment extends Component{
     
@@ -13,7 +17,8 @@ class BlogDataComment extends Component{
         this.state = {
             isReply: false,
             replyToUser: null,
-            showReplies: false
+            showReplies: false,
+            isEdit: false
         }
     }
 
@@ -21,7 +26,8 @@ class BlogDataComment extends Component{
         console.log(username);
         this.setState({
             isReply: true,
-            replyToUser: username
+            replyToUser: username,
+            isEdit: false
         })
     }
 
@@ -32,17 +38,34 @@ class BlogDataComment extends Component{
         })
     }
 
+    openEditForm = () => {
+        this.setState({
+            isReply: false,
+            isEdit: true
+        })
+    }
+
+    closeEditForm = () => {
+        this.setState({
+            isEdit: false,
+        })
+    }
+
     toggleShowReplies = () => {
         this.setState({
             showReplies: !this.state.showReplies
         })
     }
 
+    deleteComment = () => {
+        this.props.deleteBlogComment(this.props.comment.id)
+    }
+
     render(){
         return(
             <div className = "mx-3 my-2">
                 <Row>
-                    <Link to = {'/user/' + this.props.comment.user.userid}>
+                    <Link to = {'/user/' + this.props.comment.user.userId}>
                         <Col xs = {2}>
                             <Image src = {this.props.comment.user.profilePhoto.link} roundedCircle className = "comment_profile_photo"></Image>
                         </Col>
@@ -50,21 +73,33 @@ class BlogDataComment extends Component{
                     <Col>
                     <Link to = {'/user/' + this.props.comment.user.userId}>
                         <Row>
-                            <div className = "username">
+                            <p className = "username">
                                 {this.props.comment.user.username}
-                            </div>
+                            </p>
                         </Row>
                     </Link>
                         <Row>
                             {this.props.comment.content}
                         </Row>
-                        <Row>
+                        <Row id = "blog_comments_options">
                             <div className = "blog_comment_reply" onClick = {() => this.openReplyForm()}>
                                 <ReplyFill></ReplyFill> 
                                 Reply
                             </div>
-                            <ShowHideRepliesButton showReplies = {this.state.showReplies} toggleShowReplies = {this.toggleShowReplies} repliesLength = {this.props.comment.replies.length}/>
+                            <ShowHideRepliesButton showReplies = {this.state.showReplies} 
+                                                    toggleShowReplies = {this.toggleShowReplies} 
+                                                    repliesLength = {this.props.comment.replies.length}/>
                             <CloseReplyFormButton isReply = {this.state.isReply} closeReplyForm = {this.closeReplyForm} />
+                            <EditButton id = {this.props.comment.user.userId}
+                                        userId = {this.props.userId}
+                                        openEditForm = {this.openEditForm}
+                                        closeEditForm = {this.closeEditForm}
+                                        isEdit = {this.state.isEdit}
+                            />
+                            <DeleteButton id = {this.props.comment.user.userId}
+                                          userId = {this.props.userId}
+                                          deleteComment = {this.deleteComment}
+                            />
                         </Row>
                     </Col>
                 </Row>
@@ -75,13 +110,32 @@ class BlogDataComment extends Component{
                 <BlogCommentReplyForm isReply = {this.state.isReply} 
                                     replyToUser = {this.state.replyToUser}
                                     parentCommentId = {this.props.comment.id}
+                                    closeReplyForm = {this.closeReplyForm}
+                                      />
+
+                <BlogCommentEditForm isEdit = {this.state.isEdit} 
+                                     commentId = {this.props.comment.id}
+                                     closeEditForm = {this.closeEditForm}
                                       />
             </div>
         )
     }
 }
 
-export default BlogDataComment
+const mapStateToProps = (state) => {
+    return {
+        userId: state.auth.userId,
+    }
+}
+
+const mapDispatchToProps = (dispatch) => bindActionCreators(
+    {
+        deleteBlogComment: deleteBlogComment,
+    },
+    dispatch
+)
+
+export default connect(mapStateToProps, mapDispatchToProps)(BlogDataComment)
 
 function CloseReplyFormButton (props) {
 
@@ -103,6 +157,14 @@ function CloseReplyFormButton (props) {
 
 function ShowHideRepliesButton(props) {
 
+    if(props.repliesLength === 0){
+        return(
+            <div>
+                
+            </div>
+        )
+    }
+
     if(props.showReplies === true){
         return(
             <p onClick = {() => props.toggleShowReplies()} className = "ml-3">
@@ -113,8 +175,49 @@ function ShowHideRepliesButton(props) {
     else{
         return(
             <p onClick = {() => props.toggleShowReplies()} className = "ml-3">
-                Show Replies ({props.repliesLength})
+                Show Replies 
             </p>
+        )
+    }
+}
+
+function DeleteButton(props){
+    if(props.id === props.userId){
+        return(
+            <i className = "material-icons text-center ml-2" onClick = {props.deleteComment}>
+                delete
+            </i>
+        )
+    }
+    else{
+        return(
+            <div>
+                
+            </div>
+        )
+    }
+}
+
+function EditButton(props){
+    if(props.id === props.userId && props.isEdit === false){
+        return(
+            <i className = "material-icons text-center ml-2" onClick = {props.openEditForm}>
+                edit
+            </i>
+        )
+    }
+    else if(props.isEdit === true){
+        return(
+            <p onClick = {props.closeEditForm}>
+                Cancel Edit
+            </p>
+        )
+    }
+    else{
+        return(
+            <div>
+
+            </div>
         )
     }
 }

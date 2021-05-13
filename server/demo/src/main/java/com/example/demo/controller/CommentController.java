@@ -171,7 +171,7 @@ public class CommentController {
 
         }
 
-        return ResponseEntity.ok("Comment updated.");
+        return ResponseEntity.ok(comment);
 
     }
 

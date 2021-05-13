@@ -1,6 +1,7 @@
 import { fetchUserDataAction } from "../actions/fetchUserDataAction";
 
 function fetchUserData(userId) {
+
     return (dispatch) => {
         fetch(`http://localhost:8080/api/auth/users/${userId}`, {
             headers: {
