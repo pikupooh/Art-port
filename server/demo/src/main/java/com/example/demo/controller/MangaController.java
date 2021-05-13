@@ -75,7 +75,7 @@ public class MangaController {
             return new ResponseEntity<String>("User invalid.", HttpStatus.UNAUTHORIZED);
         manga.setType(Type.valueOf("COMIC"));
         Manga manga1 = mangaService.createManga(manga, user);
-        profileService.addManga(userId, manga);
+        profileService.addComic(userId, manga);
 
         return ResponseEntity.ok(manga1);
     }
@@ -92,7 +92,10 @@ public class MangaController {
         Manga manga = mangaService.deleteManga(mangaId);
         if (manga == null)
             return new ResponseEntity<String>("Manga does not exist.", HttpStatus.NOT_FOUND);
-        profileService.removeManga(userId, manga);
+        if(manga.getType() == Type.valueOf("MANGA"))
+        	profileService.removeManga(userId, manga);
+        else
+        	profileService.removeComic(userId, manga);
         return ResponseEntity.ok(manga);
     }
 

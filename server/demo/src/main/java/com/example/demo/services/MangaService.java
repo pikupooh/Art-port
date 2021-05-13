@@ -76,8 +76,8 @@ public class MangaService {
         manga1.getComments().forEach((comment) ->{
             commentService.deleteComment(comment.getId());
         });
-        
-        imageService.deleteimage(manga1.getCoverPhoto().getId());
+        if(manga1.getCoverPhoto() != null)
+        	imageService.deleteimage(manga1.getCoverPhoto().getId());
         
         manga1.getChapters().forEach((chapter) ->{
             chapterService.deleteChapter(chapter.getId());

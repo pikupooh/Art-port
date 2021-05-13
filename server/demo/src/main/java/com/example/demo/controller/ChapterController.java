@@ -59,6 +59,7 @@ public class ChapterController {
             return new ResponseEntity<String>("Owner Invalid", HttpStatus.UNAUTHORIZED);
         
         chapter.setMangaId(mangaId);
+        chapter.setNo(manga.getChapters().size()+1);
         Chapter chapter1 = chapterService.createChapter(chapter, user);
         manga.addChapter(chapter1);
         mangaService.save(manga);

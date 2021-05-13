@@ -19,6 +19,8 @@ public class Profile {
     @DBRef
     private List<Manga> userMangas;
     @DBRef
+    private List<Manga> userComics;
+    @DBRef
     private List<User> followers;
     @DBRef
     private List<User> following;
@@ -28,6 +30,8 @@ public class Profile {
     private List<Blog> favoriteBlogs;
     @DBRef
     private List<Manga> favoriteMangas;
+    @DBRef
+    private List<Manga> favoriteComics;
     private List<Rating> userRatings;
 
     public Profile() {
@@ -39,6 +43,8 @@ public class Profile {
         this.userBlogs = new ArrayList<>();
         this.favoriteBlogs = new ArrayList<>();
         this.favoriteMangas = new ArrayList<>();
+        this.userComics = new ArrayList<>();
+        this.favoriteComics = new ArrayList<>();
         this.userBlogs = new ArrayList<>();
         this.userMangas = new ArrayList<>();
         this.userRatings = new ArrayList<>();
@@ -67,6 +73,15 @@ public class Profile {
 	public void setUserMangas(List<Manga> userManga) {
 		this.userMangas = userManga;
 	}
+	
+	public List<Manga> getUserComics() {
+		return userComics;
+	}
+
+	public void setUserComics(List<Manga> userComic) {
+		this.userComics = userComic;
+	}
+
 
 	public List<Manga> getFavoriteMangas() {
 		return favoriteMangas;
@@ -74,6 +89,14 @@ public class Profile {
 
 	public void setFavoriteMangas(List<Manga> favoriteMangas) {
 		this.favoriteMangas = favoriteMangas;
+	}
+	
+	public List<Manga> getFavoriteComics() {
+		return favoriteComics;
+	}
+
+	public void setFavoriteComics(List<Manga> favoriteComics) {
+		this.favoriteComics = favoriteComics;
 	}
 
 	public List<User> getFollowers() {
@@ -198,6 +221,26 @@ public class Profile {
         this.favoriteMangas.remove(manga);
     }
     
+    public void addComic(Manga manga){
+
+        this.userComics.add(manga);
+    }
+
+    public void deleteComic(Manga manga){
+
+        this.userComics.remove(manga);
+    }
+
+    public void addFavoriteComic(Manga manga){
+
+        this.favoriteComics.add(manga);
+    }
+
+    public void removeFavoriteComic(Manga manga){
+
+        System.out.println(this.favoriteMangas);
+        this.favoriteComics.remove(manga);
+    }
 
 	@Override
     public String toString() {

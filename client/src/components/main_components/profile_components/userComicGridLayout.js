@@ -3,36 +3,36 @@ import { Link } from "react-router-dom";
 import React from 'react';
 import { connect } from  'react-redux';
 import { bindActionCreators } from 'redux';
-import deleteUserPost from '../../../redux/thunk/deleteUserPost'
+import deleteUserComic from '../../../redux/thunk/deleteUserComic'
 
-class UserPostGridLayout extends React.Component{
+class UserComicGridLayout extends React.Component{
 
-    deletePost = () => {
-        this.props.deleteUserPost(this.props.userId, this.props.post.id);
+    deleteComic = () => {
+        console.log("delete")
+        this.props.deleteUserComic(this.props.userId, this.props.comic.id);
     }
 
     render() {
-        if(this.props.post.images.length === 0) {
-            this.props.post.images = [{
+        if(this.props.comic.coverPhoto === null) {
+            this.props.comic.coverPhoto = {
                     id: "fail",
                     name: "fail",
                     link: "https://via.placeholder.com/300/09f/fff.png"
                 }
-            ]
         }
         return(    
-            <Link to = {'/post/' + this.props.post.id}>
+            <Link to = {'/comic/' + this.props.comic.id}>
                 <div className = "home_grid_posts">
                     <div className = "home_grid_posts_image_container">
-                            <Image src = {this.props.post.images[0].link} className = "home_grid_posts_image" />
+                            <Image src = {this.props.comic.coverPhoto.link} className = "home_grid_posts_image" />
                     </div>
                     <div className = "home_grid_posts_details_overlay">
                         <Row className = "home_grid_posts_details_container">
                             <Col className = "home_grid_posts_details_container_username ml-2 my-auto">
-                                <Link to = {'/user/' + this.props.post.user.userId} >
-                                    <DeleteButton id = {this.props.post.user.userId}
+                                <Link to = {'/user/' + this.props.comic.userDTO.userId + '/comics'} >
+                                    <DeleteButton id = {this.props.comic.userDTO.userId}
                                                         userId = {this.props.userId}
-                                                        deletePost = {this.deletePost}/>
+                                                        deleteComic = {this.deleteComic}/>
                                 </Link>
                             </Col>
                         </Row>
@@ -51,17 +51,17 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(
     {
-        deleteUserPost: deleteUserPost,
+      deleteUserComic: deleteUserComic,
     },
     dispatch
 )
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserPostGridLayout);
+export default connect(mapStateToProps, mapDispatchToProps)(UserComicGridLayout);
 
 function DeleteButton(props){
     if(props.id === props.userId){
         return(
-            <i className = "material-icons text-center ml-2" onClick = {props.deletePost}>
+            <i className = "material-icons text-center ml-2" onClick = {props.deleteComic}>
                 delete
             </i>
         )

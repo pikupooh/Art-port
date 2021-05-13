@@ -58,6 +58,11 @@ public class ProfileService {
 
         return profileRepository.findUserMangasById(id).getUserMangas();
     }
+    
+    public List<Manga> getUserComics(String id){
+
+        return profileRepository.findUserComicsById(id).getUserMangas();
+    }
 
     public List<UserDTO> getFollowers(String id){
 
@@ -99,6 +104,11 @@ public class ProfileService {
     public List<Manga> getFavoriteMangas(String id){
 
         return profileRepository.findFavoriteMangasById(id).getFavoriteMangas();
+    }
+    
+    public List<Manga> getFavoriteComics(String id){
+
+        return profileRepository.findFavoriteComicsById(id).getFavoriteMangas();
     }
     
     public void addFollower(String userId, String followerId){
@@ -177,6 +187,21 @@ public class ProfileService {
         profileRepository.save(profile);
     }
     
+    public void addFavoriteComic(String id, Manga manga){
+
+        Profile profile = profileRepository.findById(id).get();
+        profile.addFavoriteComic(manga);
+        profileRepository.save(profile);
+    }
+
+    public void deleteFavoriteComic(String id, Manga manga){
+
+        Profile profile = profileRepository.findById(id).get();
+        System.out.println(manga);
+        profile.removeFavoriteComic(manga);
+        profileRepository.save(profile);
+    }
+    
     public void addPost(String id, Post post){
 
         Profile profile = profileRepository.findById(id).get();
@@ -211,11 +236,25 @@ public class ProfileService {
         profile.addManga(manga);
         profileRepository.save(profile);
     }
+    
+    public void addComic(String id, Manga manga){
+
+        Profile profile = profileRepository.findById(id).get();
+        profile.addComic(manga);
+        profileRepository.save(profile);
+    }
 
     public void removeManga(String id, Manga manga){
 
         Profile profile = profileRepository.findById(id).get();
         profile.deleteManga(manga);
+        profileRepository.save(profile);
+    }
+    
+    public void removeComic(String id, Manga manga){
+
+        Profile profile = profileRepository.findById(id).get();
+        profile.deleteComic(manga);
         profileRepository.save(profile);
     }
     

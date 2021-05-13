@@ -1,4 +1,4 @@
-import { FETCH_PROFILE_DATA, ADD_POST, ADD_BLOG, ADD_MANGA, ADD_COMIC, DELETE_POST } from "./actionTypes";
+import { FETCH_PROFILE_DATA, ADD_POST, ADD_BLOG, ADD_MANGA, ADD_COMIC, DELETE_POST, DELETE_COMIC, DELETE_MANGA, DELETE_BLOG } from "./actionTypes";
 
 export const fetchProfileDataAction = (profileData) => {
     return {
@@ -41,5 +41,26 @@ export const deleteUserPostAction = (postId) => {
     return {
         type: DELETE_POST,
         payload: postId
+    }
+}
+
+export const deleteUserMangaAction = (mangaId) => {
+    return {
+        type: DELETE_MANGA,
+        payload: mangaId
+    }
+}
+
+export const deleteUserComicAction = (comicId) => {
+    return {
+        type: DELETE_COMIC,
+        payload: comicId
+    }
+}
+
+export const deleteUserBlogAction = (blogId) => {
+    return {
+        type: DELETE_BLOG,
+        payload: blogId
     }
 }

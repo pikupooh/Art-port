@@ -44,4 +44,8 @@ export const ADD_MANGA = "ADD_MANGA";
 export const ADD_COMIC = "ADD_COMIC";
 
 export const DELETE_POST = "DELETE_POST";
+export const DELETE_BLOG = "DELETE_BLOG";
+export const DELETE_COMIC = "DELETE_COMIC";
+export const DELETE_MANGA = "DELETE_MANGA";
+
 

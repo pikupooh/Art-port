@@ -87,6 +87,18 @@ public class ProfileController {
 
         return ResponseEntity.ok(profileService.getUserMangas(userId));
     }
+    
+    @GetMapping("/users/{userId}/comics")
+    public ResponseEntity<?> getUserComics(@PathVariable String userId, Principal principal){
+
+        User user = userService.getUserByName(principal.getName());
+        if(user == null)
+            return new ResponseEntity<String>("User not present.", HttpStatus.UNAUTHORIZED);
+        if (!user.getId().equals(userId))
+            return new ResponseEntity<String>("User invalid.", HttpStatus.UNAUTHORIZED);
+
+        return ResponseEntity.ok(profileService.getUserComics(userId));
+    }
 
     @GetMapping("/users/{userId}/followers")
     public ResponseEntity<?> getFollowers(@PathVariable String userId, Principal principal){
@@ -146,6 +158,18 @@ public class ProfileController {
             return new ResponseEntity<String>("User invalid.", HttpStatus.UNAUTHORIZED);
 
         return ResponseEntity.ok(profileService.getFavoriteMangas(userId));
+    }
+    
+    @GetMapping("/users/{userId}/favoriteComics")
+    public ResponseEntity<?> getFavoriteComics(@PathVariable String userId, Principal principal){
+
+        User user = userService.getUserByName(principal.getName());
+        if(user == null)
+            return new ResponseEntity<String>("User not present.", HttpStatus.UNAUTHORIZED);
+        if (!user.getId().equals(userId))
+            return new ResponseEntity<String>("User invalid.", HttpStatus.UNAUTHORIZED);
+
+        return ResponseEntity.ok(profileService.getFavoriteComics(userId));
     }
     
     @PostMapping("/users/{userId}/follower/{followerId}")
@@ -250,6 +274,32 @@ public class ProfileController {
 
         profileService.deleteFavoriteManga(userId, mangaService.getManga(mangaId));
         return ResponseEntity.ok("Manga deleted as favorite");
+    }
+    
+    @PostMapping("/users/{userId}/favorites/comic/{mangaId}")
+    public ResponseEntity<?> addFavoriteComic(@PathVariable String userId, @PathVariable String mangaId, Principal principal){
+
+        User user = userService.getUserByName(principal.getName());
+        if(user == null)
+            return new ResponseEntity<String>("User not present.", HttpStatus.UNAUTHORIZED);
+        if (!user.getId().equals(userId))
+            return new ResponseEntity<String>("User invalid.", HttpStatus.UNAUTHORIZED);
+
+        profileService.addFavoriteComic(userId, mangaService.getManga(mangaId));
+        return ResponseEntity.ok("Manga added as favorite");
+    }
+
+    @DeleteMapping("/users/{userId}/favorites/comic/{postId}")
+    public ResponseEntity<?> removeFavoriteComic(@PathVariable String userId, @PathVariable String mangaId, Principal principal) {
+
+        User user = userService.getUserByName(principal.getName());
+        if(user == null)
+            return new ResponseEntity<String>("User not present.", HttpStatus.UNAUTHORIZED);
+        if (!user.getId().equals(userId))
+            return new ResponseEntity<String>("User invalid.", HttpStatus.UNAUTHORIZED);
+
+        profileService.deleteFavoriteComic(userId, mangaService.getManga(mangaId));
+        return ResponseEntity.ok("Comic deleted as favorite");
     }
 
 

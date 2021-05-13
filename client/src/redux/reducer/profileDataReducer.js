@@ -17,6 +17,7 @@ const initState = {
 export const profileDataReducer = (state = initState, action) => {
     switch (action.type) {
         case ActionTypes.FETCH_PROFILE_DATA:
+            console.log("fetchprofiledata", action.payload.profileData);
             return {
                 ...state,
                 id: action.payload.profileData.id,
@@ -33,7 +34,6 @@ export const profileDataReducer = (state = initState, action) => {
             };
 
         case ActionTypes.ADD_POST:
-            console.log("reducer", action.payload, state.userPosts);
             return {
                 ...state,
                 userPosts: [...state.userPosts, action.payload],
@@ -44,20 +44,39 @@ export const profileDataReducer = (state = initState, action) => {
                 userBlogs: [...state.userBlogs, action.payload],
             };
         case ActionTypes.ADD_MANGA:
+            console.log(action.payload)
             return {
                 ...state,
-                userBlogs: [...state.userMangas, action.payload],
+                userMangas: [...state.userMangas, action.payload],
             };
         case ActionTypes.ADD_COMIC:
             return {
                 ...state,
-                userBlogs: [...state.userComics, action.payload],
+                userComics: [...state.userComics, action.payload],
             };
         case ActionTypes.DELETE_POST:
             let updatedPosts = state.userPosts.filter((post) => post.id !== action.payload)
             return {
                 ...state,
                 userPosts: updatedPosts,
+            };
+        case ActionTypes.DELETE_MANGA:
+            let updatedMangas = state.userMangas.filter((manga) => manga.id !== action.payload)
+            return {
+                ...state,
+                userMangas: updatedMangas,
+            };
+        case ActionTypes.DELETE_COMIC:
+            let updatedComics = state.userComics.filter((comic) => comic.id !== action.payload)
+            return {
+                ...state,
+                userComics: updatedComics,
+            };
+        case ActionTypes.DELETE_BLOG:
+            let updatedBlogs = state.userBlogs.filter((blog) => blog.id !== action.payload)
+            return {
+                ...state,
+                userBlogs: updatedBlogs,
             };
         default:
             return state;

@@ -19,6 +19,9 @@ public interface ProfileRepository extends MongoRepository<Profile, String> {
     
     @Query(fields = "{userMangas: 1}")
     Profile findUserMangasById(String id);
+    
+    @Query(fields = "{userComics: 1}")
+    Profile findUserComicsById(String id);
 
     @Query(fields = "{id:0, followers:1}")
     Profile findFollowersById(String id);
@@ -34,4 +37,7 @@ public interface ProfileRepository extends MongoRepository<Profile, String> {
     
     @Query(fields = "{favoriteMangas: 1}")
     Profile findFavoriteMangasById(String id);
+    
+    @Query(fields = "{favoriteComics: 1}")
+    Profile findFavoriteComicsById(String id);
 }

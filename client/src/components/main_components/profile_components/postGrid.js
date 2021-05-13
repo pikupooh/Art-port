@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from  'react-redux';
 import {Col,Row} from 'react-bootstrap'
-import UserPostGridLayout from '../../main_components/profile_components/userPostGridLayout'
+import UserPostGridLayout from './userPostGridLayout'
 
 class PostGrid extends React.Component{
     render(){
