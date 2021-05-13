@@ -11,7 +11,7 @@ function HomeGridLayout(props){
         ]
     }
     return(    
-        <Link to = {'post/' + props.post.id}>
+        <Link to = {'/post/' + props.post.id}>
             <div className = "home_grid_posts">
                 <div className = "home_grid_posts_image_container">
                             <Image src = {props.post.images[0].link} className = "home_grid_posts_image" />

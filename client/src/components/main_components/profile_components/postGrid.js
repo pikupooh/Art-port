@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from  'react-redux';
 import {Col,Row} from 'react-bootstrap'
-import HomeGridLayout from '../../small_components/homeGridLayout'
+import UserPostGridLayout from '../../main_components/profile_components/userPostGridLayout'
 
 class PostGrid extends React.Component{
     render(){
@@ -10,7 +10,7 @@ class PostGrid extends React.Component{
                 <Row className = "home_grid_container">
                     {this.props.postList.map((post) => 
                     <Col key={post.id} sm = {6} md = {4} lg = {2} className = "home_grid_posts_container">
-                        <HomeGridLayout  post = {post}/>
+                        <UserPostGridLayout  post = {post}/>
                     </Col>
                     )}
                 </Row>
@@ -20,7 +20,6 @@ class PostGrid extends React.Component{
 }
 
 const mapStateToProps = (state) => {
-    console.log(state);
     return {
         postList: state.profile.userPosts,
     }

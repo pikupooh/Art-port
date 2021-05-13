@@ -53,6 +53,12 @@ export const profileDataReducer = (state = initState, action) => {
                 ...state,
                 userBlogs: [...state.userComics, action.payload],
             };
+        case ActionTypes.DELETE_POST:
+            let updatedPosts = state.userPosts.filter((post) => post.id !== action.payload)
+            return {
+                ...state,
+                userPosts: updatedPosts,
+            };
         default:
             return state;
     }

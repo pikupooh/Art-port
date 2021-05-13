@@ -68,7 +68,7 @@ export const blogDataReducer = (state = initState, action) => {
                     newComments.push(comment)
                 }
                 else{
-                    tempComment = comment
+                    tempComment = Object.assign({}, comment);
                 }
             })
 

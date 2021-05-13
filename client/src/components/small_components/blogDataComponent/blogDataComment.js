@@ -62,6 +62,7 @@ class BlogDataComment extends Component{
     }
 
     render(){
+        console.log("render", this.props.comment);
         return(
             <div className = "mx-3 my-2">
                 <Row>
@@ -175,7 +176,7 @@ function ShowHideRepliesButton(props) {
     else{
         return(
             <p onClick = {() => props.toggleShowReplies()} className = "ml-3">
-                Show Replies 
+                Show Replies ({props.repliesLength})
             </p>
         )
     }

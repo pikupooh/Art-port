@@ -1,4 +1,4 @@
-import { FETCH_PROFILE_DATA, ADD_POST, ADD_BLOG, ADD_MANGA, ADD_COMIC } from "./actionTypes";
+import { FETCH_PROFILE_DATA, ADD_POST, ADD_BLOG, ADD_MANGA, ADD_COMIC, DELETE_POST } from "./actionTypes";
 
 export const fetchProfileDataAction = (profileData) => {
     return {
@@ -36,3 +36,10 @@ export const addUserComic = (comicData) => {
         payload: comicData,
     };
 };
+
+export const deleteUserPostAction = (postId) => {
+    return {
+        type: DELETE_POST,
+        payload: postId
+    }
+}
