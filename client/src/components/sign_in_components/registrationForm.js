@@ -58,6 +58,7 @@ class RegistrationForm extends React.Component {
             input["email"] = "";
             input["password"] = "";
             input["confirm_password"] = "";
+            input["about"] = "";
             input["dob"] = "";
             input["files"] = null;
             this.setState({ input: input, errors: {}, value: "" });
@@ -118,6 +119,12 @@ class RegistrationForm extends React.Component {
             isValid = false;
             errors["files"] = "Please upload a profile picture.";
         }
+
+        if (!input["about"]) {
+            isValid = false;
+            errors["about"] = "Please enter a short description.";
+        }
+
         this.setState({
             errors: errors,
         });
@@ -232,6 +239,21 @@ class RegistrationForm extends React.Component {
                         }}
                     />
                     <div className="text-danger">{this.state.errors.dob}</div>
+                </Form.Group>
+                <Form.Group controlId="about">
+                    <Form.Label className="label">About</Form.Label>
+                    <Form.Control
+                        type="About"
+                        placeholder="Tell us about yourself"
+                        name="about"
+                        value={this.state.input.about}
+                        onChange={(e) => {
+                            this.handleChange(e);
+                        }}
+                    />
+                    <div className="text-danger">
+                        {this.state.errors.about}
+                    </div>
                 </Form.Group>
                 <Form.Group>
                     <Form.Label className="label">
