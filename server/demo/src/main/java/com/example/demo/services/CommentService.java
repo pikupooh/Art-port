@@ -43,10 +43,11 @@ public class CommentService {
         commentRepository.save(comment);
         return comment;
     }
-    public Reply createReply(String username, String content, String parentId){
+    public Reply createReply(String username, String content, String replyTo, String parentId){
 
         Reply reply = new Reply();
         reply.setContent(content);
+        reply.setReplyTo(replyTo);
         reply.setCreatedDate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")));
 
         Optional<Comment> comment1 = commentRepository.findById(parentId);

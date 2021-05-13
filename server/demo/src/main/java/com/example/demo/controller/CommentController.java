@@ -152,7 +152,7 @@ public class CommentController {
 
     @PostMapping("/comment/{commentId}/reply")
     public ResponseEntity<?> addReply(@PathVariable String commentId, @Valid @RequestBody CommentBody commentBody, Principal principal){
-        Reply reply = commentService.createReply(principal.getName(), commentBody.getContent(), commentId);
+        Reply reply = commentService.createReply(principal.getName(), commentBody.getContent(), commentBody.getReplyTo(), commentId);
 
         if(reply == null){
             return new ResponseEntity<String>("Comment not found.", HttpStatus.NOT_FOUND);
@@ -185,7 +185,7 @@ public class CommentController {
 
         }
 
-        return ResponseEntity.ok("Reply updated.");
+        return ResponseEntity.ok(reply);
 
     }
 

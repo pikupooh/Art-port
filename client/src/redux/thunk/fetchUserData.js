@@ -4,9 +4,7 @@ function fetchUserData(userId) {
 
     return (dispatch) => {
         fetch(`http://localhost:8080/api/auth/users/${userId}`, {
-            headers: {
-                Authorization: localStorage.getItem("token"),
-            },
+           
         })
             .then(
                 (res) => {

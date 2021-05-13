@@ -1,10 +1,11 @@
-import { EDIT_BLOG_COMMENT } from "../../actions/actionTypes";
+import { EDIT_BLOG_REPLY } from "../../actions/actionTypes";
 
-function editBlogComment(commentId, message) {
+function editBlogReply(replyId, message) {
     
     const token = localStorage.getItem("token");
+    console.log(replyId, message);
     return (dispatch) => {
-        fetch(`http://localhost:8080/comment/${commentId}`, {
+        fetch(`http://localhost:8080/reply/${replyId}`, {
             method: "PUT",
             body: JSON.stringify({
                 content: message
@@ -22,14 +23,12 @@ function editBlogComment(commentId, message) {
             .then((response) => {
                 console.log(response);
                 dispatch({
-                    type: EDIT_BLOG_COMMENT,
-                    payload: {
-                        response
-                    }
+                    type: EDIT_BLOG_REPLY,
+                    payload: {response}
                 })
             })
             .catch((err) => console.error(err));
     };
 }
 
-export default editBlogComment;
+export default editBlogReply;

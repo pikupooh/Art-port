@@ -10,22 +10,21 @@ class BlogCommentReplyForm extends Component{
     constructor(props){
         super(props)
         this.state = {
-            messege: ''
+            message: ''
         }
     }
 
     handleOnChange = (event) => {
         this.setState({
-            messege: event.target.value
+            message: event.target.value
         })
     }
 
     reply = () => {
-        if(this.state.messege !== ''){
-            var mes = '@' + this.props.replyToUser + ' ' + this.state.messege
-            this.props.postBlogReply(this.props.parentCommentId, mes)
+        if(this.state.message !== ''){
+            this.props.postBlogReply(this.props.parentCommentId, this.state.message, this.props.replyToUser)
             this.setState({
-                messege: ''
+                message: ''
             })
         }
         this.props.closeReplyForm()
@@ -44,13 +43,16 @@ class BlogCommentReplyForm extends Component{
                                 <Form.Control as="textarea" rows = {1} 
                                             placeholder = "Enter reply here" 
                                             onChange = {this.handleOnChange} 
-                                            value = {this.state.messege}>
+                                            value = {this.state.message}>
                                 </Form.Control>
                                 <Row>
                                     <Col className = "comment_button" >
-                                        <Button className = "btn-sm" onClick = {this.reply}>
+                                        <Button className = "btn-sm" onClick = {() => this.reply()}>
                                             Reply
                                         </Button>
+                                        <p onClick = {this.props.closeReplyForm}>
+                                            Cancel
+                                        </p>
                                     </Col>
                                     <Col >
                                         

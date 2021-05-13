@@ -9,13 +9,13 @@ class BlogCommentSection extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-            messege: '',
+            message: '',
         }
     }
 
     handleOnChange = (event) => {
         this.setState({
-            messege: event.target.value
+            message: event.target.value
         })
     }
 
@@ -27,10 +27,10 @@ class BlogCommentSection extends React.Component{
             return;
         }
 
-        if(this.state.messege !== ''){
-            this.props.postBlogComment(this.props.blogId, this.state.messege)
+        if(this.state.message !== ''){
+            this.props.postBlogComment(this.props.blogId, this.state.message)
             this.setState({
-                messege: ''
+                message: ''
             })
         }
     }
@@ -43,7 +43,7 @@ class BlogCommentSection extends React.Component{
                         <Form.Control as="textarea" rows = {3} 
                                     placeholder = "Enter comment here" 
                                     onChange = {this.handleOnChange} 
-                                    value = {this.state.messege}>
+                                    value = {this.state.message}>
                         </Form.Control>
                         <Row>
                             <Col className = "comment_button" >

@@ -35,7 +35,7 @@ public class ProfileController {
     @Autowired
     BlogService blogService;
 
-    @PreAuthorize("isAuthenticated()")
+
     @GetMapping("/profile")
     public List<Profile> getAllProfiles(){
 
