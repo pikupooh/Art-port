@@ -5,7 +5,6 @@ import PostComment from "./postComment"
 class PostComments extends React.Component{
     
     render(){
-        console.log(this.props.comments);
         if(this.props.comments.length === 0){
             return(
                 <div>

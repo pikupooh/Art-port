@@ -1,7 +1,7 @@
-import {FETCH_MANGA_DATA} from './actionTypes'
+import {FETCH_COMIC_DATA} from './actionTypes'
 export const fetchComicDataAction = (mangaData) => {
     return {
-        type :FETCH_MANGA_DATA,
+        type :FETCH_COMIC_DATA,
         payload:{
             mangaData,
         }

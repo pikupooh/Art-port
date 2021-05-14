@@ -5,12 +5,13 @@ import { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import deletePostComment from '../../../redux/thunk/delete/deletePostComment'
-import PostCommentEditForm from './postCommentEditForm'
-import PostCommentReplyForm from './postCommentReplyForm'
-import PostDataCommentReplies from './postDataCommentReplies'
-class PostComment extends Component{
+import MangaDataCommentReplies from './mangaDataCommentReplies'
+import MangaCommentReplyForm from './mangaCommentReplyForm'
+import deleteMangaComment from "../../../../redux/thunk/delete/deleteMangaComment"
+import MangaCommentEditForm from "./mangaCommentEditForm"
 
+class MangaDataComment extends Component{
+    
     constructor(props){
         super(props)
         this.state = {
@@ -58,31 +59,32 @@ class PostComment extends Component{
 
 
     deleteComment = () => {
-        this.props.deletePostComment(this.props.comment.id)
+        this.props.deleteMangaComment(this.props.comment.id)
     }
-    
+
     render(){
+        
         return(
-            <div className = "m-2">
+            <div className = "mx-3 my-2">
                 <Row>
-                <Link to = {'/user/' + this.props.comment.user.userId}>
+                    <Link to = {'/user/' + this.props.comment.user.userId}>
                         <Col xs = {2}>
                             <Image src = {this.props.comment.user.profilePhoto.link} roundedCircle className = "comment_profile_photo"></Image>
                         </Col>
                     </Link>
                     <Col>
                     <Link to = {'/user/' + this.props.comment.user.userId}>
-                        <Row >
+                        <Row>
                             <p className = "username">
                                 {this.props.comment.user.username}
                             </p>
                         </Row>
-                        </Link>
+                    </Link>
                         <Row>
                             {this.props.comment.content}
                         </Row>
-                        <Row>
-                            <div onClick = {() => this.openReplyForm(this.props.comment.user.username)}>
+                        <Row id = "blog_comments_options">
+                            <div className = "blog_comment_reply" onClick = {() => this.openReplyForm(this.props.comment.user.username)}>
                                 <ReplyFill></ReplyFill> 
                                 Reply
                             </div>
@@ -101,19 +103,18 @@ class PostComment extends Component{
                         </Row>
                     </Col>
                 </Row>
-                <PostDataCommentReplies replies = {this.props.comment.replies}
+                <MangaDataCommentReplies replies = {this.props.comment.replies}
                                         openReplyForm = {this.openReplyForm}
                                         showReplies = {this.state.showReplies}
                                         closeReplyForm = {this.closeReplyForm}
                 />
-
-                <PostCommentReplyForm isReply = {this.state.isReply} 
+                <MangaCommentReplyForm isReply = {this.state.isReply} 
                                     replyToUser = {this.state.replyToUser}
                                     parentCommentId = {this.props.comment.id}
                                     closeReplyForm = {this.closeReplyForm}
-                />
+                                      />
 
-                <PostCommentEditForm isEdit = {this.state.isEdit} 
+                <MangaCommentEditForm isEdit = {this.state.isEdit} 
                                      commentId = {this.props.comment.id}
                                      closeEditForm = {this.closeEditForm}
                                       />
@@ -130,12 +131,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(
     {
-        deletePostComment
+        deleteMangaComment
     },
     dispatch
 )
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostComment)
+export default connect(mapStateToProps, mapDispatchToProps)(MangaDataComment)
 
 function ShowHideRepliesButton(props) {
 
