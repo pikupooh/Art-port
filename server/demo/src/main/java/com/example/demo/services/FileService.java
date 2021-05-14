@@ -33,7 +33,7 @@ public class FileService {
     @Value("${demo.app.clientID}")
     String clientID;
 
-    public String save(byte[] bytes, String fileName, String username) throws Exception {
+    public String save(byte[] bytes, String fileName) throws Exception {
 
         String link = uploadToImgur(bytes);
         Image image = new Image();

@@ -1,5 +1,6 @@
 import React from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Toast, Alert } from "react-bootstrap";
+import { withRouter } from "react-router-dom";
 
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -12,11 +13,50 @@ class RegistrationForm extends React.Component {
         this.state = {
             input: {},
             errors: {},
-            value: "",
         };
 
         this.fileInput = React.createRef();
     }
+
+    componentDidUpdate() {
+        if (
+            this.props.isSignedUp &&
+            (Object.keys(this.state.errors).length ||
+                this.state.input.username !== "")
+        ) {
+            let input = {};
+            input["username"] = "";
+            input["firstName"] = "";
+            input["lastName"] = "";
+            input["email"] = "";
+            input["password"] = "";
+            input["confirm_password"] = "";
+            input["about"] = "";
+            input["dob"] = "";
+            input["files"] = null;
+            this.setState({ input: input, errors: {} });
+            document.getElementById("register_form").reset();
+        }
+        if (this.props.errmess !== "") window.scrollTo(0, 0);
+        if (this.props.isSignedUp) {
+            window.scrollTo(0, 0);
+            setTimeout(() => {
+                this.props.history.push("/");
+            }, 2000);
+        }
+    }
+
+    calculateAge = (dob1) => {
+        var today = new Date();
+        var birthDate = new Date(dob1);
+        var age_now = today.getFullYear() - birthDate.getFullYear();
+        var m = today.getMonth() - birthDate.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+            age_now--;
+        }
+        console.log(age_now);
+        return age_now;
+    };
 
     handleChange(e) {
         let input = this.state.input;
@@ -24,15 +64,6 @@ class RegistrationForm extends React.Component {
 
         this.setState({
             input,
-        });
-    }
-
-    handleFileChange(e) {
-        let input = this.state.input;
-        input[e.target.name] = e.target.files[0];
-        this.setState({
-            input,
-            value: e.target.value,
         });
     }
 
@@ -44,27 +75,20 @@ class RegistrationForm extends React.Component {
 
             let imageFormData = new FormData();
             imageFormData.append(
-                "files",
+                "image",
                 this.fileInput.current.files[0],
                 this.fileInput.current.files[0].name
             );
 
-            this.props.registerUser(this.state.input, imageFormData);
+            imageFormData.append("username", this.state.input.username);
+            imageFormData.append("firstName", this.state.input.firstName);
+            imageFormData.append("lastName", this.state.input.lastName);
+            imageFormData.append("password", this.state.input.password);
+            imageFormData.append("about", this.state.input.about);
+            imageFormData.append("dateOfBirth", this.state.input.dob);
+            imageFormData.append("email", this.state.input.email);
 
-            let input = {};
-            input["username"] = "";
-            input["firstName"] = "";
-            input["lastName"] = "";
-            input["email"] = "";
-            input["password"] = "";
-            input["confirm_password"] = "";
-            input["about"] = "";
-            input["dob"] = "";
-            input["files"] = null;
-            this.setState({ input: input, errors: {}, value: "" });
-            console.log(this.state);
-
-            alert("Registered.");
+            this.props.registerUser(imageFormData);
         }
     }
 
@@ -76,6 +100,9 @@ class RegistrationForm extends React.Component {
         if (!input["username"]) {
             isValid = false;
             errors["username"] = "Please enter your username.";
+        } else if (input["username"].length < 3) {
+            isValid = false;
+            errors["username"] = "Username must be atleast 3 characters long.";
         }
 
         if (!input["firstName"]) {
@@ -95,12 +122,23 @@ class RegistrationForm extends React.Component {
         if (!input["dob"]) {
             isValid = false;
             errors["dob"] = "Please enter your date of birth.";
+        } else {
+            let age = this.calculateAge(input["dob"]);
+            if (age < 0) errors["dob"] = "Please enter a valid date of birth.";
+            else if (age < 16)
+                errors["dob"] = "You must be atleast 16 years of age.";
         }
         if (!input["password"]) {
             isValid = false;
             errors["password"] = "Please enter your password.";
+        } else if (
+            input["password"].length < 8 ||
+            input["password"].length > 30
+        ) {
+            isValid = false;
+            errors["password"] =
+                "Password length must be between 8 and 30 characters.";
         }
-
         if (!input["confirm_password"]) {
             isValid = false;
             errors["confirm_password"] = "Please confirm your password.";
@@ -133,142 +171,174 @@ class RegistrationForm extends React.Component {
     }
     render() {
         return (
-            <Form className="login_form" onSubmit={(e) => this.handleSubmit(e)}>
-                <h2 className="heading">Welcome to Artport</h2>
-                <Form.Group controlId="email">
-                    <Form.Label className="label">Email address</Form.Label>
-                    <Form.Control
-                        type="email"
-                        placeholder="Enter email"
-                        name="email"
-                        value={this.state.input.email}
-                        onChange={(e) => {
-                            this.handleChange(e);
-                        }}
-                    />
-                    <div className="text-danger">{this.state.errors.email}</div>
-                </Form.Group>
+            <div>
+                <Form
+                    id="register_form"
+                    className="login_form"
+                    onSubmit={(e) => this.handleSubmit(e)}
+                >
+                    <h2 className="heading">Welcome to Artport</h2>
+                    {this.props.isSignedUp && (
+                        <Alert variant="success">
+                            A verification mail has been sent to your registered
+                            email.
+                        </Alert>
+                    )}
 
-                <Form.Group controlId="username">
-                    <Form.Label className="label">Username</Form.Label>
-                    <Form.Control
-                        type="username"
-                        placeholder="username"
-                        name="username"
-                        value={this.state.input.username}
-                        onChange={(e) => {
-                            this.handleChange(e);
-                        }}
-                    />
-                    <div className="text-danger">
-                        {this.state.errors.username}
-                    </div>
-                </Form.Group>
+                    {this.props.errmess !== "" && (
+                        <Alert variant="danger">{this.props.errmess}</Alert>
+                    )}
 
-                <Form.Group controlId="password">
-                    <Form.Label className="label">Password</Form.Label>
-                    <Form.Control
-                        type="password"
-                        placeholder="Password"
-                        name="password"
-                        value={this.state.input.password}
-                        onChange={(e) => {
-                            this.handleChange(e);
-                        }}
-                    />
-                    <div className="text-danger">
-                        {this.state.errors.password}
-                    </div>
-                </Form.Group>
+                    <Form.Group controlId="email">
+                        <Form.Label className="label">Email address</Form.Label>
+                        <Form.Control
+                            type="email"
+                            placeholder="Enter email"
+                            name="email"
+                            value={this.state.input.email}
+                            onChange={(e) => {
+                                this.handleChange(e);
+                            }}
+                        />
+                        <div className="text-danger">
+                            {this.state.errors.email}
+                        </div>
+                    </Form.Group>
 
-                <Form.Group controlId="conf-password">
-                    <Form.Label className="label">Confirm Password</Form.Label>
-                    <Form.Control
-                        type="password"
-                        placeholder="Password"
-                        name="confirm_password"
-                        value={this.state.input.confirm_password}
-                        onChange={(e) => {
-                            this.handleChange(e);
-                        }}
-                    />
-                    <div className="text-danger">
-                        {this.state.errors.confirm_password}
-                    </div>
-                </Form.Group>
+                    <Form.Group controlId="username">
+                        <Form.Label className="label">Username</Form.Label>
+                        <Form.Control
+                            type="username"
+                            placeholder="username"
+                            name="username"
+                            value={this.state.input.username}
+                            onChange={(e) => {
+                                this.handleChange(e);
+                            }}
+                        />
+                        <div className="text-danger">
+                            {this.state.errors.username}
+                        </div>
+                    </Form.Group>
 
-                <Form.Group controlId="firstName">
-                    <Form.Label className="label">First Name</Form.Label>
-                    <Form.Control
-                        type="First Name"
-                        placeholder="First Name"
-                        name="firstName"
-                        value={this.state.input.firstName}
-                        onChange={(e) => {
-                            this.handleChange(e);
-                        }}
-                    />
-                    <div className="text-danger">
-                        {this.state.errors.firstName}
-                    </div>
-                </Form.Group>
-                <Form.Group controlId="lastName">
-                    <Form.Label className="label">Last Name</Form.Label>
-                    <Form.Control
-                        type="Last Name"
-                        placeholder="Last Name"
-                        name="lastName"
-                        value={this.state.input.lastName}
-                        onChange={(e) => {
-                            this.handleChange(e);
-                        }}
-                    />
-                    <div className="text-danger">
-                        {this.state.errors.lastName}
-                    </div>
-                </Form.Group>
-                <Form.Group controlId="date">
-                    <Form.Label className="label">Date of Birth</Form.Label>
-                    <Form.Control
-                        type="date"
-                        placeholder="Date of Birth"
-                        name="dob"
-                        value={this.state.input.dob}
-                        onChange={(e) => {
-                            this.handleChange(e);
-                        }}
-                    />
-                    <div className="text-danger">{this.state.errors.dob}</div>
-                </Form.Group>
-                <Form.Group controlId="about">
-                    <Form.Label className="label">About</Form.Label>
-                    <Form.Control
-                        type="About"
-                        placeholder="Tell us about yourself"
-                        name="about"
-                        value={this.state.input.about}
-                        onChange={(e) => {
-                            this.handleChange(e);
-                        }}
-                    />
-                    <div className="text-danger">
-                        {this.state.errors.about}
-                    </div>
-                </Form.Group>
-                <Form.Group>
-                    <Form.Label className="label">
-                        Upload Profile Picture
-                    </Form.Label>
-                    <Form.File name="files" ref={this.fileInput} />
-                    <div className="text-danger">{this.state.errors.files}</div>
-                </Form.Group>
-                <Button variant="primary" type="submit">
-                    Register
-                </Button>
-            </Form>
+                    <Form.Group controlId="password">
+                        <Form.Label className="label">Password</Form.Label>
+                        <Form.Control
+                            type="password"
+                            placeholder="Password"
+                            name="password"
+                            value={this.state.input.password}
+                            onChange={(e) => {
+                                this.handleChange(e);
+                            }}
+                        />
+                        <div className="text-danger">
+                            {this.state.errors.password}
+                        </div>
+                    </Form.Group>
+
+                    <Form.Group controlId="conf-password">
+                        <Form.Label className="label">
+                            Confirm Password
+                        </Form.Label>
+                        <Form.Control
+                            type="password"
+                            placeholder="Password"
+                            name="confirm_password"
+                            value={this.state.input.confirm_password}
+                            onChange={(e) => {
+                                this.handleChange(e);
+                            }}
+                        />
+                        <div className="text-danger">
+                            {this.state.errors.confirm_password}
+                        </div>
+                    </Form.Group>
+
+                    <Form.Group controlId="firstName">
+                        <Form.Label className="label">First Name</Form.Label>
+                        <Form.Control
+                            type="First Name"
+                            placeholder="First Name"
+                            name="firstName"
+                            value={this.state.input.firstName}
+                            onChange={(e) => {
+                                this.handleChange(e);
+                            }}
+                        />
+                        <div className="text-danger">
+                            {this.state.errors.firstName}
+                        </div>
+                    </Form.Group>
+                    <Form.Group controlId="lastName">
+                        <Form.Label className="label">Last Name</Form.Label>
+                        <Form.Control
+                            type="Last Name"
+                            placeholder="Last Name"
+                            name="lastName"
+                            value={this.state.input.lastName}
+                            onChange={(e) => {
+                                this.handleChange(e);
+                            }}
+                        />
+                        <div className="text-danger">
+                            {this.state.errors.lastName}
+                        </div>
+                    </Form.Group>
+                    <Form.Group controlId="date">
+                        <Form.Label className="label">Date of Birth</Form.Label>
+                        <Form.Control
+                            type="date"
+                            placeholder="Date of Birth"
+                            name="dob"
+                            value={this.state.input.dob}
+                            onChange={(e) => {
+                                this.handleChange(e);
+                            }}
+                        />
+                        <div className="text-danger">
+                            {this.state.errors.dob}
+                        </div>
+                    </Form.Group>
+                    <Form.Group controlId="about">
+                        <Form.Label className="label">About</Form.Label>
+                        <Form.Control
+                            type="About"
+                            placeholder="Tell us about yourself"
+                            name="about"
+                            value={this.state.input.about}
+                            onChange={(e) => {
+                                this.handleChange(e);
+                            }}
+                        />
+                        <div className="text-danger">
+                            {this.state.errors.about}
+                        </div>
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label className="label">
+                            Upload Profile Picture
+                        </Form.Label>
+                        <Form.File name="files" ref={this.fileInput} />
+                        <div className="text-danger">
+                            {this.state.errors.files}
+                        </div>
+                    </Form.Group>
+                    <Button variant="primary" type="submit">
+                        Register
+                    </Button>
+                </Form>
+            </div>
         );
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        isSignedUp: state.register.isSignedUp,
+        errmess: state.register.errmess,
+    };
+};
 
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
@@ -278,4 +348,6 @@ const mapDispatchToProps = (dispatch) =>
         dispatch
     );
 
-export default connect(null, mapDispatchToProps)(RegistrationForm);
+export default withRouter(
+    connect(mapStateToProps, mapDispatchToProps)(RegistrationForm)
+);
