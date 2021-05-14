@@ -7,7 +7,7 @@ import MangaDataDisplay from "../small_components/mangaDataDisplayComponents/man
 import MangaDescriptionDisplay from "../small_components/mangaDataDisplayComponents/mangaDescriptionDisplay"
 import fetchMangaDataAction from "../../redux/thunk/fetchMangaData";
 import MangaChaptersDisplay from "../small_components/mangaDataDisplayComponents/mangaChaptersDisplay"
-import BlogDataComments from '../small_components/blogDataComponent/blogDataComments'
+import MangaDataComments from '../small_components/mangaDataDisplayComponents/comments/mangaDataComments'
 class MangaData extends React.Component {
     componentDidMount() {
       let mangaId = this.props.location.pathname.slice(8);
@@ -30,7 +30,7 @@ class MangaData extends React.Component {
 
             <MangaDescriptionDisplay about = {this.props.about}/>
             <MangaChaptersDisplay chapters ={this.props.chapters}/> 
-            <BlogDataComments comments = {this.props.comments}/>
+            <MangaDataComments comments = {this.props.comments} mangaId = {this.props.mangaId}/>
           </Container>
         </div>
       )
