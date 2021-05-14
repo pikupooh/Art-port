@@ -41,15 +41,14 @@ export default function signInUser(user, pass) {
                 localStorage.setItem("token", token);
                 localStorage.setItem("userId", userId);
                 localStorage.setItem("profilePhoto", profilePhoto);
-
                 dispatch(setUserLogin({ token, userId, profilePhoto }));
-                dispatch(fetchUserData());
+                dispatch(fetchUserData(userId));
             })
             .catch((error) => console.log(error));
     };
 }
 
-function setUserLogin(token, userId, profilePhoto) {
+function setUserLogin({token, userId, profilePhoto}) {
     return {
         type: ActionTypes.LOGIN_SUCCESS,
         token: token,
