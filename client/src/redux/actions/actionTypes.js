@@ -39,6 +39,11 @@ export const DELETE_BLOG_REPLY = "DELETE_BLOG_REPLY";
 export const POST_POST_COMMENT = "POST_POST_COMMENT";
 export const LIKE_POST = "LIKE_POST";
 export const UNLIKE_POST = "UNLIKE_POST";
+export const POST_POST_REPLY = "POST_POST_REPLY";
+export const DELETE_POST_COMMENT = "DELETE_POST_COMMENT";
+export const EDIT_POST_COMMENT = "EDIT_POST_COMMENT"
+export const EDIT_POST_REPLY = "EDIT_POST_REPLY"
+export const DELETE_POST_REPLY = "DELETE_POST_REPLY";
 
 export const ADD_POST = "ADD_POST";
 export const ADD_BLOG = "ADD_BLOG";

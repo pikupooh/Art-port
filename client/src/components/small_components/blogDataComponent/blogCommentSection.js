@@ -1,8 +1,9 @@
 import React from 'react'
 import { Form, Col, Row, Button } from 'react-bootstrap'
 import { connect } from 'react-redux'
-import postBlogComment from "../../../redux/thunk/post/postBlogComment"
 import { bindActionCreators } from 'redux'
+
+import postBlogComment from "../../../redux/thunk/post/postBlogComment"
 
 class BlogCommentSection extends React.Component{
 

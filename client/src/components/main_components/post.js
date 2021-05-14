@@ -9,15 +9,15 @@ import PostedUserDetails from "../small_components/postComponents/postedUserDeta
 import PostImage from "../small_components/postComponents/postImage"
 
 class Post extends React.Component {
+
   componentDidMount() {
     let postId = this.props.location.pathname.slice(6);
-    console.log(postId);
     this.props.fetchPostData(postId)
     window.scrollTo(0, 0);
   }
 
   render() {
-    console.log(this.props);
+    console.log(this.props.comments);
     return(
       <div className = "container-fluid">
       <Row >

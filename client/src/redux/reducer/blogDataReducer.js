@@ -88,7 +88,8 @@ export const blogDataReducer = (state = initState, action) => {
             }
 
         case ActionTypes.DELETE_BLOG_COMMENT:
-            var newComments = state.comments.filter(
+            newComments = []
+            newComments = state.comments.filter(
                 (comment) => comment.id !== action.payload.commentId
             );
             return {
@@ -98,13 +99,13 @@ export const blogDataReducer = (state = initState, action) => {
 
         case ActionTypes.EDIT_BLOG_COMMENT:
             
-            var newComments = []
+            newComments = []
             state.comments.map((comment) => {
                 if(comment.id !== action.payload.response.id){
                     newComments.push(comment)
                 }
                 else{
-                    let tempComment = Object.assign(comment)
+                    tempComment = Object.assign(comment)
                     tempComment = {
                         ...tempComment,
                         content: action.payload.response.content,
@@ -119,10 +120,9 @@ export const blogDataReducer = (state = initState, action) => {
             }
 
         case ActionTypes.EDIT_BLOG_REPLY:
-            var newComments = []
-            var tempComment 
+            newComments = []
 
-            var newReply = {
+            newReply = {
                 comment: action.payload.response.comment.id,
                 id: action.payload.response.id,
                 user: action.payload.response.user,
@@ -156,8 +156,7 @@ export const blogDataReducer = (state = initState, action) => {
             }
             
         case ActionTypes.DELETE_BLOG_REPLY:
-            var newComments = []
-            var tempComment 
+            newComments = []
 
             state.comments.map((comment) => {
                 if(comment.id !== action.payload.commentId){

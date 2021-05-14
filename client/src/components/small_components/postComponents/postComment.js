@@ -1,28 +1,184 @@
-import { Col, Image, Row } from 'react-bootstrap'
+import { Image, Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import { ReplyFill } from 'react-bootstrap-icons'
+import { Component } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+class PostComment extends Component{
 
-function PostComment(props){
-    return(
-        <div className = "m-2">
-            <Row>
-            <Link to = {'/user/' + props.info.user.userId}>
-                    <Col xs = {2}>
-                        <Image src = {props.info.user.profilePhoto} roundedCircle className = "comment_profile_photo"></Image>
-                    </Col>
-                </Link>
-                <Col>
-                <Link to = {'/user/' + props.info.user.userId}>
-                    <Row className = "username">
-                        {props.info.user.username}
-                    </Row>
+    constructor(props){
+        super(props)
+        this.state = {
+            isReply: false,
+            replyToUser: null,
+            showReplies: false,
+            isEdit: false
+        }
+    }
+
+    openReplyForm = (username) => {
+        console.log(username);
+        this.setState({
+            isReply: true,
+            replyToUser: username,
+            isEdit: false
+        })
+    }
+
+    closeReplyForm = () => {
+        this.setState({
+            isReply: false,
+            replyToUser: null
+        })
+    }
+
+    openEditForm = () => {
+        this.setState({
+            isReply: false,
+            isEdit: true
+        })
+    }
+
+    closeEditForm = () => {
+        this.setState({
+            isEdit: false,
+        })
+    }
+
+    toggleShowReplies = () => {
+        this.setState({
+            showReplies: !this.state.showReplies
+        })
+    }
+
+
+    deleteComment = () => {
+    }
+    
+    render(){
+        console.log(this.props);
+        return(
+            <div className = "m-2">
+                <Row>
+                <Link to = {'/user/' + this.props.comment.user.userId}>
+                        <Col xs = {2}>
+                            <Image src = {this.props.comment.user.profilePhoto.link} roundedCircle className = "comment_profile_photo"></Image>
+                        </Col>
                     </Link>
-                    <Row>
-                        {props.info.content}
-                    </Row>
-                </Col>
-            </Row>
-        </div>
-    )
+                    <Col>
+                    <Link to = {'/user/' + this.props.comment.user.userId}>
+                        <Row >
+                            <p className = "username">
+                                {this.props.comment.user.username}
+                            </p>
+                        </Row>
+                        </Link>
+                        <Row>
+                            {this.props.comment.content}
+                        </Row>
+                        <Row>
+                            <div onClick = {() => this.openReplyForm(this.props.comment.user.username)}>
+                                <ReplyFill></ReplyFill> 
+                                Reply
+                            </div>
+                            <ShowHideRepliesButton showReplies = {this.state.showReplies} 
+                                                    toggleShowReplies = {this.toggleShowReplies} 
+                                                    repliesLength = {this.props.comment.replies.length}/>
+                            <EditButton id = {this.props.comment.user.userId}
+                                        userId = {this.props.userId}
+                                        openEditForm = {this.openEditForm}
+                                        isEdit = {this.state.isEdit}
+                            />
+                            <DeleteButton id = {this.props.comment.user.userId}
+                                          userId = {this.props.userId}
+                                          deleteComment = {this.deleteComment}
+                            />
+                        </Row>
+                    </Col>
+                </Row>
+            </div>
+        )
+    }
 }
 
-export default PostComment
+const mapStateToProps = (state) => {
+    return {
+        userId: state.auth.userId,
+    }
+}
+
+const mapDispatchToProps = (dispatch) => bindActionCreators(
+    {
+        
+    },
+    dispatch
+)
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostComment)
+
+function ShowHideRepliesButton(props) {
+
+    if(props.repliesLength === 0){
+        return(
+            <div>
+                
+            </div>
+        )
+    }
+
+    if(props.showReplies === true){
+        return(
+            <p onClick = {() => props.toggleShowReplies()} className = "ml-3">
+                Hide Replies
+            </p>
+        )
+    }
+    else{
+        return(
+            <p onClick = {() => props.toggleShowReplies()} className = "ml-3">
+                Show Replies ({props.repliesLength})
+            </p>
+        )
+    }
+}
+
+function DeleteButton(props){
+    if(props.id === props.userId){
+        return(
+            <i className = "material-icons text-center ml-2" onClick = {props.deleteComment}>
+                delete
+            </i>
+        )
+    }
+    else{
+        return(
+            <div>
+                
+            </div>
+        )
+    }
+}
+
+function EditButton(props){
+    if(props.id === props.userId && props.isEdit === false){
+        return(
+            <i className = "material-icons text-center ml-2" onClick = {props.openEditForm}>
+                edit
+            </i>
+        )
+    }
+    else if(props.isEdit === true){
+        return(
+            <p>
+                
+            </p>
+        )
+    }
+    else{
+        return(
+            <div>
+
+            </div>
+        )
+    }
+}

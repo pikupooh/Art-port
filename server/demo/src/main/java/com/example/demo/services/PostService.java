@@ -71,6 +71,10 @@ public class PostService {
         return post1;
     }
 
+    public  Post updatePostComment(Post post){
+        return postRepository.save(post);
+    }
+
     public Post updatePost(Post post, String id){
 
         Optional<Post> post1 = postRepository.findById(id);

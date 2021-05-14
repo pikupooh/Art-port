@@ -32,8 +32,6 @@ class PostLikeButton extends React.Component {
             (user) => user.userId === this.props.userId
         );
 
-        console.log(foundUser);
-
         if (foundUser.length !== 0) {
             return true
         } else {

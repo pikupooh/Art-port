@@ -95,9 +95,10 @@ public class CommentController {
         Comment comment = commentService.createComment(principal.getName(), commentBody.getContent(), "POST", postId);
 
         post.addComment(comment);
-        postService.updatePost(post, postId);
+        postService.updatePostComment(post);
 
-        return ResponseEntity.ok("Comment added");
+
+        return ResponseEntity.ok(comment);
     }
 
     @PostMapping("/blog/{blogId}/comment")
@@ -128,9 +129,9 @@ public class CommentController {
         Comment comment = commentService.createComment(principal.getName(), commentBody.getContent(), "MANGA", mangaId);
 
         manga.addComment(comment);
-        mangaService.updateManga(manga, mangaId);
+        mangaService.updateMangaComment(manga);
 
-        return ResponseEntity.ok("Comment added");
+        return ResponseEntity.ok(comment);
     }
     
     @PostMapping("/manga/{mangaId}/chapter/{chapId}/comment")

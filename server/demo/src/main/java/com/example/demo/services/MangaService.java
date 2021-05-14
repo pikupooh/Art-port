@@ -1,6 +1,7 @@
 package com.example.demo.services;
 
 import com.example.demo.entities.Manga;
+import com.example.demo.entities.Post;
 import com.example.demo.entities.Type;
 import com.example.demo.entities.User;
 import com.example.demo.payload.response.UserDTO;
@@ -85,6 +86,9 @@ public class MangaService {
 
         mangaRepository.deleteById(id);
         return manga1;
+    }
+    public Manga updateMangaComment(Manga manga){
+        return mangaRepository.save(manga);
     }
 
     public Manga updateManga(Manga manga, String id){
