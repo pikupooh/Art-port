@@ -3,10 +3,13 @@ package com.example.demo.controller;
 import com.example.demo.entities.Blog;
 import com.example.demo.entities.Manga;
 import com.example.demo.entities.Post;
+import com.example.demo.payload.response.Searches;
 import com.example.demo.services.BlogService;
 import com.example.demo.services.MangaService;
 import com.example.demo.services.PostService;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,6 +27,17 @@ public class SearchController {
     @Autowired
     BlogService blogService;
 
+    @GetMapping("/search")
+    public ResponseEntity<?> getResults(@RequestBody String[] category){
+
+        List<Post> posts = postService.getPostByCategory(category);
+        List<Blog> blogs = blogService.getBlogByCategory(category);
+        List<Manga> manga = mangaService.getMangaByCategory(category);
+        List<Manga> comic = mangaService.getComicByCategory(category);
+        
+        return ResponseEntity.ok(new Searches(posts, manga, blogs, comic));
+    }
+    
     @GetMapping("/search/posts")
     public List<Post> getAllPosts(){
 

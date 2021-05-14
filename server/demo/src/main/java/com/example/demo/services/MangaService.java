@@ -124,6 +124,10 @@ public class MangaService {
     	return mangaRepository.findMangaByCategory(category);
     }
     
+    public List<Manga> getComicByCategory(String[] category) {
+    	return mangaRepository.findComicByCategory(category);
+    }
+    
     public int getMangaRating(String id) {
     	Optional<Manga> manga1 = mangaRepository.findById(id);
         if(!manga1.isPresent())
