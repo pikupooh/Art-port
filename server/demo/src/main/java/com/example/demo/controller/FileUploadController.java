@@ -58,7 +58,7 @@ public class FileUploadController {
         Arrays.asList(multipartFile).stream().forEach(file -> {
             String imageId = null;
             try {
-                imageId = fileService.save(file.getBytes(), file.getOriginalFilename(), principal.getName());
+                imageId = fileService.save(file.getBytes(), file.getOriginalFilename());
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -77,7 +77,7 @@ public class FileUploadController {
         Arrays.asList(multipartFile).stream().forEach(file -> {
             String imageId = null;
             try {
-                imageId = fileService.save(file.getBytes(), file.getOriginalFilename(), principal.getName());
+                imageId = fileService.save(file.getBytes(), file.getOriginalFilename());
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -97,7 +97,7 @@ public class FileUploadController {
         Arrays.asList(multipartFile).stream().forEach(file -> {
             String imageId = null;
             try {
-                imageId = fileService.save(file.getBytes(), file.getOriginalFilename(), principal.getName());
+                imageId = fileService.save(file.getBytes(), file.getOriginalFilename());
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -115,7 +115,7 @@ public class FileUploadController {
         Arrays.asList(multipartFile).stream().forEach(file -> {
             String imageId = null;
             try {
-                imageId = fileService.save(file.getBytes(), file.getOriginalFilename(), principal.getName());
+                imageId = fileService.save(file.getBytes(), file.getOriginalFilename());
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -133,7 +133,7 @@ public class FileUploadController {
 	        Arrays.asList(multipartFile).stream().forEach(file -> {
 	            String imageId = null;
 	            try {
-	                imageId = fileService.save(file.getBytes(), file.getOriginalFilename(), principal.getName());
+	                imageId = fileService.save(file.getBytes(), file.getOriginalFilename());
 	            } catch (Exception e) {
 	                e.printStackTrace();
 	            }

@@ -12,6 +12,8 @@ import com.example.demo.repositories.VerificationTokenRepository;
 import com.example.demo.security.jwt.JwtConfig;
 import com.example.demo.security.services.EmailService;
 import com.example.demo.security.services.UserDetailsImpl;
+import com.example.demo.services.FileService;
+import com.example.demo.services.ImageService;
 import com.example.demo.services.ProfileService;
 import com.example.demo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +28,12 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.Calendar;
 
 @CrossOrigin
@@ -64,6 +68,11 @@ public class AuthController {
     @Autowired
     private JwtConfig jwtConfig;
 
+    @Autowired
+    private FileService fileService;
+
+    @Autowired
+    private ImageService imageService;
 
     @GetMapping("/users/{userId}")
     public ResponseEntity<?> getUser(@PathVariable String userId){
@@ -77,7 +86,7 @@ public class AuthController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpRequest signUpRequest){
+    public ResponseEntity<?> registerUser(@Valid @ModelAttribute SignUpRequest signUpRequest) throws Exception {
 
         System.out.println(signUpRequest.getEmail());
         if(userRepository.existsByUsername((signUpRequest.getUsername()))){
@@ -87,19 +96,19 @@ public class AuthController {
 
         if(userRepository.existsByEmail(signUpRequest.getEmail())){
 
-            return  ResponseEntity.badRequest()
-                    .body("Email is already in use");
+            return new ResponseEntity<String>("Email is already in use", HttpStatus.CONFLICT);
+
         }
 
         User user = new User(signUpRequest.getUsername(), signUpRequest.getFirstName(), signUpRequest.getLastName(), signUpRequest.getEmail(), passwordEncoder.encode(signUpRequest.getPassword()), signUpRequest.getAbout(), signUpRequest.getDateOfBirth());
-        String link = "https://via.placeholder.com/150";
-        Image image = new Image();
-        image.setName("placeholder");
-        image.setLink(link);
-        image = imageRepository.save(image);
-        user.setProfilePhoto(image);
-        userRepository.save(user);
 
+        MultipartFile image = signUpRequest.getImage();
+
+        String imageId = fileService.save(image.getBytes(), image.getName());
+        user.setProfilePhoto(imageService.getimage(imageId));
+
+        userRepository.save(user);
+        System.out.println(user);
         VerificationToken verificationToken = new VerificationToken(user);
         verificationTokenRepository.save(verificationToken);
 
@@ -112,7 +121,7 @@ public class AuthController {
         emailService.sendEmail(mailMessage);
 
         profileService.createProfile(user);
-        return ResponseEntity.ok("User registered successfully");
+        return ResponseEntity.ok(user);
     }
 
     @GetMapping("/confirm-account")

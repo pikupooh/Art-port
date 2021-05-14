@@ -2,6 +2,7 @@ package com.example.demo.payload.request;
 
 import java.time.LocalDate;
 
+import javax.mail.Multipart;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -9,6 +10,7 @@ import javax.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.web.multipart.MultipartFile;
 
 public class SignUpRequest {
 
@@ -35,7 +37,9 @@ public class SignUpRequest {
     
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd")
-    private LocalDate dateOfBirth; 
+    private LocalDate dateOfBirth;
+
+    private MultipartFile image;
     
     public String getAbout() {
 		return about;
@@ -91,5 +95,13 @@ public class SignUpRequest {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public MultipartFile getImage() {
+        return image;
+    }
+
+    public void setImage(MultipartFile image) {
+        this.image = image;
     }
 }
