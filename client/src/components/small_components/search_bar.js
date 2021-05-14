@@ -1,8 +1,9 @@
 import React from 'react'
 import {Form, FormControl} from 'react-bootstrap'
-
-
+import {Link} from 'react-router-dom'
+ 
 class SearchBar extends React.Component{
+ 
 
     constructor(props){
         super(props)
@@ -10,11 +11,14 @@ class SearchBar extends React.Component{
             val: ''
         }
     }
-
     handleOnChange = (e) => {
+        
         this.setState({
             val: e.target.value
         });
+       
+        console.log(this.state.val);
+      
     }
 
     handleOnSearch = () => {
@@ -24,8 +28,9 @@ class SearchBar extends React.Component{
     }
 
     render(){
+          
         return(
-                <Form className = "search_bar"  >
+                <Form className = "search_bar" onSubmit = {this.handleOnSearch} >
                     <Form.Group>
                         <FormControl  size = "sm"
                             placeholder = "Search"

@@ -69,16 +69,6 @@ body {
         ) !important;
     }
 }
-
-.profile_page_header {
-    margin: 20px;
-}
-
-.profile_page_photo {
-    height: 150px;
-    width: 150px;
-}
-
 .profile_page_user_name {
     margin-top: 20px;
     margin-left: 2px;
@@ -356,14 +346,17 @@ footer {
 
 .blog_data_comments {
     background-color: lighten($color: $background-color, $amount: 10);
-    padding-top: 20px;
+    padding-top: 10px;
     margin-top: 10px;
+    margin-bottom:10px;
     text-align: left !important;
+    border-radius:50px;
 }
 
 #blog_data_comment_btn {
     background-color: rgb(43, 136, 58) !important;
     border-color: rgb(43, 136, 58) !important;
+
 
     &:hover {
         background-color: lighten(
@@ -404,7 +397,7 @@ footer {
   }
   
 }
-
+@import "userprofile.scss";
 @import "commentsOptions.scss";
 @import "comicList";
 @import "homegrid";

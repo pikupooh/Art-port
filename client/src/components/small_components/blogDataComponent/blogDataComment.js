@@ -81,7 +81,9 @@ class BlogDataComment extends Component{
                         </Row>
                     </Link>
                         <Row>
-                            {this.props.comment.content}
+                        <p className= "comment_content my-1">
+                        {this.props.comment.content}
+                        </p>
                         </Row>
                         <Row id = "blog_comments_options">
                             <div className = "blog_comment_reply" onClick = {() => this.openReplyForm(this.props.comment.user.username)}>
@@ -95,10 +97,12 @@ class BlogDataComment extends Component{
                                         userId = {this.props.userId}
                                         openEditForm = {this.openEditForm}
                                         isEdit = {this.state.isEdit}
+                                   
                             />
                             <DeleteButton id = {this.props.comment.user.userId}
                                           userId = {this.props.userId}
                                           deleteComment = {this.deleteComment}
+                                           
                             />
                         </Row>
                     </Col>

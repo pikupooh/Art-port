@@ -38,26 +38,32 @@ class BlogDataCommentsReply extends Component{
         return(
             <div className = "ml-5">
                 <div className = "ml-5">
-                        <Row>
-                            <Link to = {'/user/' + this.props.reply.user.userid}>
+                        <Row >
+                       
+                        <Link to = {'/user/' + this.props.reply.user.userid}>
                                 <Col xs = {2}>
                                     <Image src = {this.props.reply.user.profilePhoto.link} roundedCircle className = "comment_profile_photo"></Image>
                                 </Col>
                             </Link>
+                             <p className="replies">
                             <Col>
                             <Link to = {'/user/' + this.props.reply.user.userId}>
                                 <Row>
                                     <div >
-                                        <span className = "username">{this.props.reply.user.username} &nbsp;</span>
-                                        replying to <span className = "username">  @{this.props.reply.replyTo}</span>
+                                        <span >{this.props.reply.user.username} &nbsp;</span>
+                                        replying to <span >  @{this.props.reply.replyTo}</span>
                                     </div>
                                 </Row>
                             </Link>
                                 <Row>
-                                    
                                     {this.props.reply.content}
                                 </Row>
-                                <Row>
+                                
+                            </Col>
+                            </p>
+                            
+                        </Row>
+                        <Row className="reply_button">
                                     <div className = "blog_comment_reply" onClick = {() => this.props.openReplyForm(this.props.reply.user.username)}>
                                         <ReplyFill></ReplyFill> 
                                         Reply
@@ -73,8 +79,6 @@ class BlogDataCommentsReply extends Component{
                                                 deleteReply = {this.deleteReply}
                                     />
                                 </Row>
-                            </Col>
-                        </Row>
                         <BlogCommentEditReplyForm isEdit = {this.state.isEdit}
                                                 closeEditReplyForm = {this.closeEditReplyForm}
                                                 replyId = {this.props.reply.id}

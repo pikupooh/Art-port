@@ -1,3 +1,30 @@
 #blog_comments_options{
     font-size: 0.8rem !important;
 }
+.comment_box{
+    border-radius : 25px;
+}
+.username{
+     background-color: lighten($color: $background-color, $amount: 15);
+    border-radius:10px;
+    padding-left:10px;
+    padding-right:10px;
+}
+.comment_content{
+  background-color: lighten($color: $background-color, $amount: 15);
+     border-radius:10px;
+    padding-left:10px;
+    padding-right:10px;
+}
+.replies{
+     background-color: lighten($color: $background-color, $amount: 15);
+    border-radius:10px;
+     padding-left:10px;
+    padding-right:10px;
+    margin-bottom:4px;
+
+}
+.reply_button{
+    padding-left:60px;
+    padding-bottom:4px;
+}

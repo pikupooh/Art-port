@@ -2,6 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Image } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import {Button} from "react-bootstrap";
 
 import fetchUserData from "../../redux/thunk/fetchUserData";
 import UserProfileNavbar from "../small_components/userProfileComponents/userProfileNavbar";
@@ -16,7 +18,7 @@ class UserProfile extends React.Component {
     }
 
     render() {
-        console.log(this.props.user);
+        console.log(this.props);
         return (
             <div>
                 <div className="text-center profile_page_header">
@@ -37,7 +39,13 @@ class UserProfile extends React.Component {
                         <div>{this.props.user.email}</div>
                     </div>
                     <div>{this.props.user.userName}</div>
-                    <div>{this.props.user.about}</div>
+              
+                    <Link to={this.props.match.url + "/about"} className="nav-link">
+                    <Button className="follow_about_button">About</Button>
+                       <Button href="" className="follow_about_button">Follow</Button>
+                     </Link>
+                    
+                   
                 </div>
                 <UserProfileNavbar match={this.props.match} />
                 <UserProfileExtras match={this.props.match} />

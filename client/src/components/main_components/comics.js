@@ -18,7 +18,7 @@ class Comics extends React.Component{
                         
                         <Col sm={6}  key ={comic.id} className = "comiclist_container">
                             <Link to = {'/comic/' + comic.id}>
-                                <ComicDataComponent comic = {comic} />
+                                <ComicDataComponent comic = {comic}/>
                             </Link>
                             </Col>
             

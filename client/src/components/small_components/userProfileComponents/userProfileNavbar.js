@@ -42,11 +42,11 @@ class UserProfileNavbar extends React.Component {
               Blogs
             </Link>
           </NavItem>
-          <NavItem>
+          {/* <NavItem>
             <Link to={this.props.match.url + "/about"} className="nav-link">
               About
             </Link>
-          </NavItem>
+          </NavItem> */}
         </span>
       </Nav>
     );
