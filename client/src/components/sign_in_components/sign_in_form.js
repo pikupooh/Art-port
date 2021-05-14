@@ -1,9 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { withRouter } from "react-router-dom";
 
 import signInUser from "../../redux/thunk/loging";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Alert } from "react-bootstrap";
 
 class SignInForm extends React.Component {
     constructor(props) {
@@ -11,6 +12,8 @@ class SignInForm extends React.Component {
         this.state = {
             username: "",
             password: "",
+            errors: {},
+            loginError: "",
         };
     }
 
@@ -21,44 +24,103 @@ class SignInForm extends React.Component {
         });
     };
 
+    validate() {
+        let errors = {};
+        let isValid = true;
+
+        if (this.state.username === "") {
+            isValid = false;
+            errors["username"] = "Please enter your username.";
+        }
+
+        if (this.state.password === "") {
+            isValid = false;
+            errors["password"] = "Please enter your password.";
+        }
+
+        this.setState({
+            errors: errors,
+        });
+
+        return isValid;
+    }
+
+    resetForm = () => {
+        this.setState({ username: "", password: "", errors: {} });
+    };
     handleSignIn = (e) => {
         e.preventDefault();
-        this.props.signIn(this.state.username, this.state.password);
-        this.props.handleModalClose();
-        // setTimeout(() => window.location.reload(), 4000);
+        if (this.validate()) {
+            this.props.signIn(this.state.username, this.state.password);
+            console.log("yo");
+            setTimeout(() => {
+                console.log("so");
+                if (this.props.isAuthenticated) {
+                    console.log(this.props.isAuthenticated);
+                    this.props.handleModalClose();
+                    return this.props.history.push("/");
+                } else {
+                    this.resetForm();
+                    this.setState({
+                        loginError: "Invalid username or password",
+                    });
+                }
+                console.log(this.state);
+            }, 1000);
+            // setTimeout(() => window.location.reload(), 4000);
+        }
     };
+
     render() {
+        const { loginError } = this.state;
         return (
-            <Form onSubmit={this.handleSignIn}>
-                <Form.Group>
-                    <Form.Label>Username</Form.Label>
-                    <Form.Control
-                        type="text"
-                        value={this.state.username}
-                        name="username"
-                        onChange={this.handleChange}
-                        placeholder="Enter Username"
-                    />
-                </Form.Group>
+            <div>
+                {loginError && <Alert variant="danger">{loginError}</Alert>}
+                <Form onSubmit={this.handleSignIn}>
+                    <Form.Group>
+                        <Form.Label>Username</Form.Label>
+                        <Form.Control
+                            type="text"
+                            value={this.state.username}
+                            name="username"
+                            onChange={this.handleChange}
+                            placeholder="Enter Username"
+                        />
 
-                <Form.Group>
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control
-                        type="password"
-                        value={this.state.password}
-                        name="password"
-                        onChange={this.handleChange}
-                        placeholder="Password"
-                    />
-                </Form.Group>
+                        <div className="text-danger">
+                            {this.state.errors.username}
+                        </div>
+                    </Form.Group>
 
-                <Button variant="primary" type="submit">
-                    Sign In
-                </Button>
-            </Form>
+                    <Form.Group>
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control
+                            type="password"
+                            value={this.state.password}
+                            name="password"
+                            onChange={this.handleChange}
+                            placeholder="Password"
+                        />
+
+                        <div className="text-danger">
+                            {this.state.errors.password}
+                        </div>
+                    </Form.Group>
+
+                    <Button variant="primary" type="submit">
+                        Sign In
+                    </Button>
+                </Form>
+            </div>
         );
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        isAuthenticated: state.auth.isAuthenticated,
+    };
+};
 
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
@@ -68,4 +130,6 @@ const mapDispatchToProps = (dispatch) =>
         dispatch
     );
 
-export default connect(null, mapDispatchToProps)(SignInForm);
+export default withRouter(
+    connect(mapStateToProps, mapDispatchToProps)(SignInForm)
+);

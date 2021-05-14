@@ -1,4 +1,7 @@
 import React from "react";
+
+import { Tooltip, OverlayTrigger } from "react-bootstrap";
+
 import PostModal from "../small_components/uploadForms/postModal";
 import BlogModal from "../small_components/uploadForms/blogModal";
 import MangaModal from "../small_components/uploadForms/mangaModal";
@@ -15,6 +18,10 @@ class UploadComponent extends React.Component {
             mangaShow: false,
         };
     }
+
+    renderTooltip = (type) => (
+        <Tooltip id="button-tooltip">Create a {type}</Tooltip>
+    );
 
     handlePostModalClose = () => {
         this.setState({ postShow: false });
@@ -56,24 +63,62 @@ class UploadComponent extends React.Component {
                 </a>
                 <ul className="submenu">
                     <li className="submenu_li">
-                        <a className="submenu_a" onClick={this.handlePostModalShow}>
-                            <i className="material-icons">post_add</i>
-                        </a>
+                        <OverlayTrigger
+                            placement="left"
+                            delay={{ show: 250, hide: 350 }}
+                            overlay={this.renderTooltip("post")}
+                        >
+                            <a
+                                className="submenu_a"
+                                onClick={this.handlePostModalShow}
+                            >
+                                <i className="material-icons">post_add</i>
+                            </a>
+                        </OverlayTrigger>
                     </li>
                     <li className="submenu_li">
-                        <a className="submenu_a" onClick={this.handleBlogModalShow}>
-                            <i className="material-icons">attach_file</i>
-                        </a>
+                        <OverlayTrigger
+                            placement="left"
+                            delay={{ show: 250, hide: 350 }}
+                            overlay={this.renderTooltip("blog")}
+                        >
+                            <a
+                                className="submenu_a"
+                                onClick={this.handleBlogModalShow}
+                            >
+                                <i className="material-icons">attach_file</i>
+                            </a>
+                        </OverlayTrigger>
                     </li>
                     <li className="submenu_li">
-                        <a className="submenu_a" onClick={this.handleMangaModalShow}>
-                            <i className="material-icons">insert_drive_file</i>
-                        </a>
+                        <OverlayTrigger
+                            placement="left"
+                            delay={{ show: 250, hide: 350 }}
+                            overlay={this.renderTooltip("manga")}
+                        >
+                            <a
+                                className="submenu_a"
+                                onClick={this.handleMangaModalShow}
+                            >
+                                <i className="material-icons">
+                                    insert_drive_file
+                                </i>
+                            </a>
+                        </OverlayTrigger>
                     </li>
                     <li className="submenu_li">
-                        <a className="submenu_a" onClick={this.handleComicModalShow}>
-                            <i className="material-icons">face</i>
-                        </a>
+                        <OverlayTrigger
+                            placement="left"
+                            delay={{ show: 250, hide: 350 }}
+                            overlay={this.renderTooltip("comic")}
+                        >
+                            <a
+                                className="submenu_a"
+                                onClick={this.handleComicModalShow}
+                            >
+                                <i className="material-icons">face</i>
+                            </a>
+                        </OverlayTrigger>
                     </li>
                 </ul>
                 <PostModal
