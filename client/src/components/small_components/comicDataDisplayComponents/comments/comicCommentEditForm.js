@@ -3,7 +3,7 @@ import { Form, Button, Row, Col } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { bindActionCreators } from "redux";
 
-import editMangaComment from "../../../../redux/thunk/put/editMangaComment";
+import editComicComment from "../../../../redux/thunk/put/editComicComment";
 
 class MangaCommentEditForm extends Component{
     
@@ -22,7 +22,7 @@ class MangaCommentEditForm extends Component{
 
     edit = () => {
         if(this.state.message !== ''){
-            this.props.editMangaComment(this.props.commentId, this.state.message)
+            this.props.editComicComment(this.props.commentId, this.state.message)
             this.setState({
                 message: ''
             })
@@ -70,7 +70,7 @@ class MangaCommentEditForm extends Component{
 }
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-    editMangaComment: editMangaComment
+    editComicComment: editComicComment
 }, dispatch)
 
 export default connect(null, mapDispatchToProps)(MangaCommentEditForm)

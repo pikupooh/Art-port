@@ -3,9 +3,9 @@ import { Form, Button, Row, Col } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { bindActionCreators } from "redux";
 
-import postMangaReply from "../../../../redux/thunk/post/postMangaReply";
+import postComicReply from "../../../../redux/thunk/post/postComicReply";
 
-class MangaCommentReplyForm extends Component{
+class ComicCommentReplyForm extends Component{
     
     constructor(props){
         super(props)
@@ -22,7 +22,7 @@ class MangaCommentReplyForm extends Component{
 
     reply = () => {
         if(this.state.message !== ''){
-            this.props.postMangaReply(this.props.parentCommentId, this.state.message, this.props.replyToUser)
+            this.props.postComicReply(this.props.parentCommentId, this.state.message, this.props.replyToUser)
             this.setState({
                 message: ''
             })
@@ -75,7 +75,7 @@ class MangaCommentReplyForm extends Component{
 }
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-    postMangaReply
+    postComicReply
 }, dispatch)
 
-export default connect(null, mapDispatchToProps)(MangaCommentReplyForm)
+export default connect(null, mapDispatchToProps)(ComicCommentReplyForm)

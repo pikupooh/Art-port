@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import MangaCommentEditReplyForm from "./mangaCommentEditReplyForm"
-import deleteMangaReply from "../../../../redux/thunk/delete/deleteMangaReply"
+import ComicCommentEditReplyForm from "./comicCommentEditReplyForm"
+import deleteComicReply from "../../../../redux/thunk/delete/deleteComicReply"
 
-class MangaDataCommentsReply extends Component{
+class ComicDataCommentsReply extends Component{
 
     constructor(props){
         super(props)
@@ -31,7 +31,7 @@ class MangaDataCommentsReply extends Component{
     }
 
     deleteReply = () => {
-       this.props.deleteMangaReply(this.props.reply.id, this.props.reply.comment);
+       this.props.deleteComicReply(this.props.reply.id, this.props.reply.comment);
     }
 
     render(){
@@ -75,7 +75,7 @@ class MangaDataCommentsReply extends Component{
                             </Row>
                         </Col>
                     </Row>
-                    <MangaCommentEditReplyForm isEdit = {this.state.isEdit}
+                    <ComicCommentEditReplyForm isEdit = {this.state.isEdit}
                                             closeEditReplyForm = {this.closeEditReplyForm}
                                             replyId = {this.props.reply.id}
                     />
@@ -93,12 +93,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(
     {
-        deleteMangaReply
+        deleteComicReply
     },
     dispatch
 )
 
-export default connect(mapStateToProps, mapDispatchToProps)(MangaDataCommentsReply)
+export default connect(mapStateToProps, mapDispatchToProps)(ComicDataCommentsReply)
 
 function DeleteButton(props){
     if(props.id === props.userId){

@@ -7,7 +7,7 @@ import fetchComicDataAction from "../../redux/thunk/fetchComicData";
 import ComicDataDisplay from "../small_components/comicDataDisplayComponents/comicDataDisplay";
 import ComicDescriptionDisplay from "../small_components/comicDataDisplayComponents/comicDescriptionDisplay"
 import ComicChapterDisplay from "../small_components/comicDataDisplayComponents/comicChapterDisplay"
-import BlogDataComments from '../small_components/blogDataComponent/blogDataComments'
+import ComicDataComments from "../small_components/comicDataDisplayComponents/comments/comicDataComments"
 class ComicData extends React.Component {
     componentDidMount() {
       let comicId = this.props.location.pathname.slice(7);
@@ -15,7 +15,6 @@ class ComicData extends React.Component {
     }
   
     render() {
-      console.log(this.props);
       return(
         <Container>
           <ComicDataDisplay photo={this.props.coverPhoto} 
@@ -29,7 +28,7 @@ class ComicData extends React.Component {
 
             <ComicDescriptionDisplay about = {this.props.about}/>
             <ComicChapterDisplay chapters ={this.props.chapters}/> 
-            <BlogDataComments comments = {this.props.comments}/>
+            <ComicDataComments comments = {this.props.comments} mangaId = {this.props.mangaId}/>
         </Container>
       )
     }
@@ -43,20 +42,20 @@ class ComicData extends React.Component {
   );
 
 const mapStateToProps = (state) => {
-   console.log(state.mangaData);
+   console.log(state.comicData);
   return {
-    mangaId: state.mangaData.id,
-    chapters: state.mangaData.chapters,
-    rating: state.mangaData.rating,
-    noOfRating: state.mangaData.noOfRating,
-    title: state.mangaData.title,
-    about: state.mangaData.about,
-    type: state.mangaData.type,
-    coverPhoto: state.mangaData.coverPhoto,
-    author : state.mangaData.author,
-    comments : state.mangaData.comments,
-    uploadDate : state.mangaData.uploadDate,
-    category : state.mangaData.category,
+    mangaId: state.comicData.id,
+    chapters: state.comicData.chapters,
+    rating: state.comicData.rating,
+    noOfRating: state.comicData.noOfRating,
+    title: state.comicData.title,
+    about: state.comicData.about,
+    type: state.comicData.type,
+    coverPhoto: state.comicData.coverPhoto,
+    author : state.comicData.author,
+    comments : state.comicData.comments,
+    uploadDate : state.comicData.uploadDate,
+    category : state.comicData.category,
   };
 };
 

@@ -3,9 +3,9 @@ import { Form, Button, Row, Col } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { bindActionCreators } from "redux";
 
-import editMangaComment from "../../../../redux/thunk/put/editMangaComment";
+import editComicReply from "../../../../redux/thunk/put/editComicReply"
 
-class MangaCommentEditForm extends Component{
+class ComicCommentEditReplyForm extends Component{
     
     constructor(props){
         super(props)
@@ -21,13 +21,14 @@ class MangaCommentEditForm extends Component{
     }
 
     edit = () => {
+
+        this.props.editComicReply(this.props.replyId, this.state.message)
         if(this.state.message !== ''){
-            this.props.editMangaComment(this.props.commentId, this.state.message)
             this.setState({
                 message: ''
             })
         }
-        this.props.closeEditForm();
+        this.props.closeEditReplyForm();
     }
 
     render(){
@@ -37,18 +38,18 @@ class MangaCommentEditForm extends Component{
                     <Form>
                         <Form.Group>
                             <Form.Control as="textarea" rows = {1} 
-                                        placeholder = "Enter edited commment here" 
+                                        placeholder = "Enter edited reply here" 
                                         onChange = {this.handleOnChange} 
                                         value = {this.state.message}>
                             </Form.Control>
                             <Row>
                                 <Col className = "comment_button" >
                                     <Button className = "btn-sm" onClick = {this.edit}>
-                                        Edit
+                                        Edit Reply
                                     </Button>
-                                    <p onClick = {this.props.closeEditForm}>
-                                            Cancel
-                                        </p>
+                                    <p onClick = {this.props.closeEditReplyForm}>
+                                        Cancel
+                                    </p>
                                 </Col>
                                 <Col >
                                     
@@ -70,7 +71,7 @@ class MangaCommentEditForm extends Component{
 }
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-    editMangaComment: editMangaComment
+    editComicReply
 }, dispatch)
 
-export default connect(null, mapDispatchToProps)(MangaCommentEditForm)
+export default connect(null, mapDispatchToProps)(ComicCommentEditReplyForm)
