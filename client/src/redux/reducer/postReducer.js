@@ -12,6 +12,8 @@ const initState = {
     },
     categories: [],
     comments: [],
+    title: '',
+    description: ''
 };
 
 export const PostReducer = (state = initState, action) => {
@@ -28,6 +30,8 @@ export const PostReducer = (state = initState, action) => {
                 user: action.payload.postData.user,
                 category: action.payload.postData.category,
                 comments: action.payload.postData.comments,
+                title: action.payload.postData.title,
+                description: action.payload.postData.description,
             };
 
         case ActionTypes.LIKE_POST:
@@ -54,7 +58,129 @@ export const PostReducer = (state = initState, action) => {
                 ]
             };
 
+        case ActionTypes.DELETE_POST_COMMENT:
+            var newComments = []
+            var tempComment
+            newComments = state.comments.filter(
+                (comment) => comment.id !== action.payload.commentId
+            );
+            return {
+                ...state,
+                comments: newComments
+            };
+
+        case ActionTypes.EDIT_POST_COMMENT: 
+            newComments = []
+            state.comments.map((comment) => {
+                if(comment.id !== action.payload.response.id){
+                    newComments.push(comment)
+                }
+                else{
+                    tempComment = Object.assign(comment)
+                    tempComment = {
+                        ...tempComment,
+                        content: action.payload.response.content,
+                        createdDate: action.payload.response.createdDate
+                    }
+                    newComments.push(tempComment)
+                }
+            })
+            return {
+                ...state,
+                comments: newComments
+            }
+
+        case ActionTypes.POST_POST_REPLY:
+            newComments = []
+
+            var newReply = {
+                comment: action.payload.response.comment.id,
+                id: action.payload.response.id,
+                user: action.payload.response.user,
+                content: action.payload.response.content,
+                createdDate: action.payload.response.createdDate,
+                replyTo: action.payload.response.replyTo
+            }
+
+            state.comments.map((comment) => {
+                if(comment.id !== action.payload.parentCommentId){
+                    newComments.push(comment)
+                }
+                else{
+                    tempComment = Object.assign({}, comment);
+                    tempComment.replies.push(newReply)
+                    newComments.push(tempComment)
+                }
+            })
+
+            return {
+                ...state,
+                comments: newComments
+            }
+
+        case ActionTypes.EDIT_POST_REPLY:
+            newComments = []
+
+            newReply = {
+                comment: action.payload.response.comment.id,
+                id: action.payload.response.id,
+                user: action.payload.response.user,
+                content: action.payload.response.content,
+                createdDate: action.payload.response.createdDate,
+                replyTo: action.payload.response.replyTo
+            }
+
+            state.comments.map((comment) => {
+                if(comment.id !== newReply.comment){
+                    newComments.push(comment)
+                }
+                else{
+                    tempComment = Object.assign({}, comment);
+                    tempComment.replies = []
+                    comment.replies.map((reply) => {
+                        if(reply.id === newReply.id){
+                            tempComment.replies.push(newReply)
+                        }
+                        else{
+                            tempComment.replies.push(reply)
+                        }
+                    })
+                    newComments.push(tempComment)
+                }
+            })
+        
+            return {
+                ...state,
+                comments: newComments
+            }
+        
+        case ActionTypes.DELETE_POST_REPLY:
+            newComments = []
+
+            state.comments.map((comment) => {
+                if(comment.id !== action.payload.commentId){
+                    newComments.push(comment)
+                }
+                else{
+                    tempComment = Object.assign({}, comment);
+                    tempComment.replies = []
+                    comment.replies.map((reply) => {
+                        if(reply.id !== action.payload.replyId){
+                            tempComment.replies.push(reply)
+                        }
+                    })
+                    newComments.push(tempComment)
+                }
+            })
+        
+            return {
+                ...state,
+                comments: newComments
+            }
+
         default:
             return state;
+
+            
     }
 };

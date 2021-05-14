@@ -17,18 +17,17 @@ class Post extends React.Component {
   }
 
   render() {
-    console.log(this.props.comments);
     return(
       <div className = "container-fluid">
       <Row >
-        <Col sm = {9} >
+        <Col lg = {9} >
           <div>
             {this.props.images.map((doc) => 
               <PostImage key={doc.id} imageDoc = {doc}/>
             )}
           </div>
         </Col>
-        <Col className = "post_details_section" sm = {3} >
+        <Col className = "post_details_section" >
           <PostedUserDetails info = {this.props}/>
         </Col>    
       </Row>
@@ -55,7 +54,9 @@ const mapStateToProps = (state) => {
     type: state.post.type,
     user: state.post.user,
     category: state.post.category,
-    comments: state.post.comments
+    comments: state.post.comments,
+    title: state.post.title,
+    description: state.post.description
   };
 };
 

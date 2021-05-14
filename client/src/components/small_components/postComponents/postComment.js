@@ -4,6 +4,11 @@ import { ReplyFill } from 'react-bootstrap-icons'
 import { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+
+import deletePostComment from '../../../redux/thunk/delete/deletePostComment'
+import PostCommentEditForm from './postCommentEditForm'
+import PostCommentReplyForm from './postCommentReplyForm'
+import PostDataCommentReplies from './postDataCommentReplies'
 class PostComment extends Component{
 
     constructor(props){
@@ -53,10 +58,10 @@ class PostComment extends Component{
 
 
     deleteComment = () => {
+        this.props.deletePostComment(this.props.comment.id)
     }
     
     render(){
-        console.log(this.props);
         return(
             <div className = "m-2">
                 <Row>
@@ -96,6 +101,22 @@ class PostComment extends Component{
                         </Row>
                     </Col>
                 </Row>
+                <PostDataCommentReplies replies = {this.props.comment.replies}
+                                        openReplyForm = {this.openReplyForm}
+                                        showReplies = {this.state.showReplies}
+                                        closeReplyForm = {this.closeReplyForm}
+                />
+
+                <PostCommentReplyForm isReply = {this.state.isReply} 
+                                    replyToUser = {this.state.replyToUser}
+                                    parentCommentId = {this.props.comment.id}
+                                    closeReplyForm = {this.closeReplyForm}
+                />
+
+                <PostCommentEditForm isEdit = {this.state.isEdit} 
+                                     commentId = {this.props.comment.id}
+                                     closeEditForm = {this.closeEditForm}
+                                      />
             </div>
         )
     }
@@ -109,7 +130,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(
     {
-        
+        deletePostComment
     },
     dispatch
 )
