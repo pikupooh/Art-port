@@ -10,7 +10,7 @@ class BlogDataComments extends Component{
         return(
             <div>
             <div className = "blog_data_comments" style ={{padding:"5px" ,justifyContent:"center"}}>
-               <p style ={{paddingTop:"5px",paddingLeft:"2px"}}>Be the first to comment</p> 
+               <p style ={{paddingTop:"5px",paddingLeft:"5px"}}>Be the first to comment</p> 
              </div>
              <div>
                 <BlogCommentSection blogId = {this.props.blogId}/>

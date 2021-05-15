@@ -50,7 +50,7 @@ class BlogDataCommentsReply extends Component{
                             <Link to = {'/user/' + this.props.reply.user.userId}>
                                 <Row>
                                     <div >
-                                        <span >{this.props.reply.user.username} &nbsp;</span>
+                                        <span className = "user_name" >{this.props.reply.user.username} &nbsp;</span>
                                         replying to <span >  @{this.props.reply.replyTo}</span>
                                     </div>
                                 </Row>
@@ -107,7 +107,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(BlogDataCommentsRepl
 function DeleteButton(props){
     if(props.id === props.userId){
         return(
-            <i className = "material-icons text-center ml-2" onClick = {props.deleteReply}>
+            <i className = "material-icons text-center ml-2" id= "delete_button" onClick = {props.deleteReply}>
                 delete
             </i>
         )
@@ -124,7 +124,7 @@ function DeleteButton(props){
 function EditButton(props){
     if(props.id === props.userId && props.isEdit === false){
         return(
-            <i className = "material-icons text-center ml-2" onClick = {props.openEditReplyForm}>
+            <i className = "material-icons text-center ml-2" id= "edit_button" onClick = {props.openEditReplyForm}>
                 edit
             </i>
         )
