@@ -12,7 +12,10 @@ import fetchProfileData from "../../redux/thunk/fetchProfileData";
 
 class UserProfile extends React.Component {
     componentDidMount() {
-        let id = this.props.location.pathname.slice(6);
+        let lastSlash = this.props.location.pathname.lastIndexOf("/");
+
+        let id = lastSlash==5?this.props.location.pathname.slice(6):this.props.location.pathname.slice(6, lastSlash);
+        console.log(id);
         this.props.fetchProfileData(id);
         this.props.fetchUserData(id);
     }
@@ -36,15 +39,11 @@ class UserProfile extends React.Component {
                         </div>
                     </div>
                     <div className="profile_page_email">
-                        <div>{this.props.user.email}</div>
+                        <div>Contact: {this.props.user.email}</div>
                     </div>
-                    <div>{this.props.user.userName}</div>
-              
-                    <Link to={this.props.match.url + "/about"} className="nav-link">
-                    <Button className="follow_about_button">About</Button>
-                       <Button href="" className="follow_about_button">Follow</Button>
-                     </Link>
-                    
+                    <div>{this.props.user.about}</div>
+                        
+                    {(this.props.id !== this.props.userId) && (<Button href="" className="follow_about_button">Follow</Button>)}                
                    
                 </div>
                 <UserProfileNavbar match={this.props.match} />
@@ -64,6 +63,7 @@ const mapDispatchToProps = (dispatch) =>
     );
 
 const mapStateToProps = (state) => {
+    console.log(state);
     return {
         userId: state.auth.userId,
         user: state.user,

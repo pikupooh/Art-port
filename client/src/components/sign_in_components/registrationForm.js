@@ -1,10 +1,11 @@
 import React from "react";
 import { Form, Button, Toast, Alert } from "react-bootstrap";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import registerUser from "../../redux/thunk/registerUser";
+import { TextCenter } from "react-bootstrap-icons";
 
 class RegistrationForm extends React.Component {
     constructor(props) {
@@ -324,9 +325,14 @@ class RegistrationForm extends React.Component {
                             {this.state.errors.files}
                         </div>
                     </Form.Group>
-                    <Button variant="primary" type="submit">
+                    <Button style={{align: TextCenter}} variant="primary" type="submit">
                         Register
                     </Button>
+                    <div className="text-center">
+                    <Link onClick={this.props.showSignInModal}>
+                        Already have an account?
+                    </Link>
+                    </div>
                 </Form>
             </div>
         );
@@ -344,6 +350,7 @@ const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
             registerUser: registerUser,
+            showSignInModal: () => dispatch({ type: "SHOW_MODAL" }), 
         },
         dispatch
     );

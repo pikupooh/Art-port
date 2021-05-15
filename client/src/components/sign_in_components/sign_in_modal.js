@@ -6,6 +6,7 @@ import SignInForm from "./sign_in_form";
 import RegisterForm from "./register_form";
 
 import { Button } from "react-bootstrap";
+import { Link } from "react-router-dom"
 
 class SignInModal extends React.Component {
     constructor(props) {
@@ -46,9 +47,11 @@ class SignInModal extends React.Component {
                             </a>
                         </div>
                         <div className="mt-3 text-center">
-                            <Button onClick={this.Sign_in_to_register}>
+                            <Link to="/registration">
+                            <Button onClick={this.handleModalClose}>
                                 Don't have an account? Register
                             </Button>
+                            </Link>
                         </div>
                     </Modal.Body>
                 </Modal>
