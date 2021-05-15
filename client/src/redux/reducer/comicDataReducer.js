@@ -176,6 +176,12 @@ export const comicDataReducer = (state = initState, action) => {
             ...state,
             comments: newComments
         }
+        
+    case ActionTypes.COMIC_CHAPTER_ADDED:
+        return {
+            ...state,
+            chapters: [...state.chapters, action.chapter]
+        }
 
     default:
       return state;

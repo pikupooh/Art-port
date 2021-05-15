@@ -177,6 +177,13 @@ export const mangaDataReducer = (state = initState, action) => {
             comments: newComments
         }
 
+
+    case ActionTypes.MANGA_CHAPTER_ADDED:
+        return {
+            ...state,
+            chapters: [...state.chapters, action.chapter]
+        }
+
     default:
       return state;
   }

@@ -23,9 +23,7 @@ public class Chapter {
     private List<Comment> comments = Collections.emptyList();
     @NotBlank
     private String name;
-    @NotBlank
     private int no;
-    @NotBlank
     private String mangaId;
 
     public String getMangaId() {
