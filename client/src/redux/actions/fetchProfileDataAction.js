@@ -1,4 +1,4 @@
-import { FETCH_PROFILE_DATA, ADD_POST, ADD_BLOG, ADD_MANGA, ADD_COMIC, DELETE_POST, DELETE_COMIC, DELETE_MANGA, DELETE_BLOG } from "./actionTypes";
+import { FETCH_PROFILE_DATA, USER_PROFILE_FETCH, ADD_POST, ADD_BLOG, ADD_MANGA, ADD_COMIC, DELETE_POST, DELETE_COMIC, DELETE_MANGA, DELETE_BLOG } from "./actionTypes";
 
 export const fetchProfileDataAction = (profileData) => {
     return {
@@ -6,6 +6,13 @@ export const fetchProfileDataAction = (profileData) => {
         payload: {
             profileData,
         },
+    };
+};
+
+export const fetchUserProfileAction = (profile) => {
+    return {
+        type: USER_PROFILE_FETCH,
+        profile: profile
     };
 };
 

@@ -4,6 +4,7 @@ import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
 
 import signInUser from "../../redux/thunk/loging";
+import { fetchUserProfileData } from "../../redux/thunk/fetchProfileData"
 import { Form, Button, Alert } from "react-bootstrap";
 
 class SignInForm extends React.Component {
@@ -58,6 +59,7 @@ class SignInForm extends React.Component {
                 if (this.props.isAuthenticated) {
                     console.log(this.props.isAuthenticated);
                     this.props.handleModalClose();
+                    this.props.fetchUserProfile(this.props.id);
                     return this.props.history.push("/");
                 } else {
                     this.resetForm();
@@ -119,6 +121,7 @@ class SignInForm extends React.Component {
 const mapStateToProps = (state) => {
     return {
         isAuthenticated: state.auth.isAuthenticated,
+        id: state.auth.userId
     };
 };
 
@@ -126,6 +129,7 @@ const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
             signIn: signInUser,
+            fetchUserProfile: fetchUserProfileData
         },
         dispatch
     );

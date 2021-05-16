@@ -5,12 +5,12 @@ const initState = {
     token: localStorage.getItem("token"),
     isAuthenticated: localStorage.getItem("token") ? true : false,
     profilePhoto: localStorage.getItem("profilePhoto"),
+    profile: localStorage.getItem("profile")
 };
 
 export const authReducer = (state = initState, action) => {
     switch (action.type) {
         case ActionTypes.LOGIN_SUCCESS:
-            console.log(action.profilePhoto, action.userId);
             return {
                 ...state,
                 isAuthenticated: true,
@@ -34,6 +34,12 @@ export const authReducer = (state = initState, action) => {
                 isAuthenticated: false,
                 userId: null,
                 token: null,
+            };
+        case ActionTypes.USER_PROFILE_FETCH:
+            console.log(action);
+            return {
+                ...state,
+                profile: action.profile,
             };
 
         default:
