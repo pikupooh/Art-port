@@ -3,7 +3,7 @@ import * as ActionTypes from "../actions/actionTypes"
 export function searchPosts (tags) {
 
     return (dispatch) => {
-        fetch(`http://localhost:8080//search/posts/tags`, {
+        fetch(`http://localhost:8080/search/posts/tags`, {
             method: 'GET',
             body: tags        
         })
