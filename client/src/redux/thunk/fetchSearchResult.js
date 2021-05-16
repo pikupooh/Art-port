@@ -37,7 +37,7 @@ export function searchPosts (tags) {
 export function searchCategory (category) {
 
     return (dispatch) => {
-        fetch(`http://localhost:8080//search`, {
+        fetch(`http://localhost:8080/search`, {
             method: 'GET',
             body: category        
         })
@@ -75,4 +75,4 @@ function searchResultAction (result) {
     };
 }
 
-export default fetchUserData;
+export default searchPosts;
