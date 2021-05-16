@@ -63,9 +63,9 @@ public class SearchController {
     }
     
     @GetMapping("/search/posts/tags")
-    public List<Post> getPostsByTags(@RequestBody String[] tags){
+    public ResponseEntity<?> getPostsByTags(@RequestBody String[] tags){
 
-        return postService.getPostByTags(tags);
+        return ResponseEntity.ok(postService.getPostByTags(tags));
     }
     
     @GetMapping("/search/blog/category")
