@@ -51,7 +51,7 @@ class BlogDataCommentsReply extends Component{
                                 <Row>
                                     <div >
                                         <span className = "user_name" >{this.props.reply.user.username} &nbsp;</span>
-                                        replying to <span >  @{this.props.reply.replyTo}</span>
+                                        replying to <span  className = "user_name" >  @{this.props.reply.replyTo}</span>
                                     </div>
                                 </Row>
                             </Link>
