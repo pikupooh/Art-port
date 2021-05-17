@@ -1,6 +1,7 @@
 import React from 'react'
-import {Form, FormControl} from 'react-bootstrap'
-import {Link} from 'react-router-dom'
+import {Form, FormControl,Row,Col} from 'react-bootstrap'
+import {Link,withRouter} from 'react-router-dom'
+
  
 class SearchBar extends React.Component{
  
@@ -16,32 +17,34 @@ class SearchBar extends React.Component{
         this.setState({
             val: e.target.value
         });
-       
-        console.log(this.state.val);
-      
     }
 
     handleOnSearch = () => {
+        if(this.state.val !== ''){
+        this.props.history.push('/search/' +this.state.val)
         this.setState({
             val: ''
         })
+        }
     }
 
     render(){
           
         return(
-                <Form className = "search_bar" onSubmit = {this.handleOnSearch} >
-                    <Form.Group>
+                <Form  className = "search_bar" >
+                  <Row>
                         <FormControl  size = "sm"
                             placeholder = "Search"
                             onChange = {e => this.handleOnChange(e)}
                             value = {this.state.val}
+                            style={{maxWidth:"1000px"}}
                         ></FormControl>
-                    </Form.Group>
+                        <i className = "material-icons text-center ml-2" id = "search_button" onClick={this.handleOnSearch}>  search</i>
+                    </Row>
                 </Form>
    
         )
     }
 }
 
-export default SearchBar
+export default withRouter(SearchBar)
