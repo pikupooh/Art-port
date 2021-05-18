@@ -2,7 +2,7 @@ const initState = {
     show: false
 }
 
-export const SignInModalReducer = (state = initState, action) => {
+export const signInModalReducer = (state = initState, action) => {
     switch(action.type){
         case 'SHOW_MODAL': 
             return{

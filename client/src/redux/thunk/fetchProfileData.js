@@ -1,6 +1,7 @@
 import { fetchProfileDataAction, fetchUserProfileAction } from "../actions/fetchProfileDataAction";
 
 function fetchProfileData(id) {
+
     return (dispatch) => {
         fetch(`http://localhost:8080/users/${id}/profile`)
             .then(
@@ -31,7 +32,10 @@ function fetchProfileData(id) {
     };
 }
 
-export function fetchUserProfileData(id) {
+export function fetchUserProfileData() {
+
+    let id = localStorage.getItem('userId')
+
     return (dispatch) => {
         fetch(`http://localhost:8080/users/${id}/profile`)
             .then(
@@ -51,10 +55,8 @@ export function fetchUserProfileData(id) {
             )
             //.then((res) => res.json())
             .then((res) => {
-                //res = res.filter((profile) => profile.user.UserId === id);
-                localStorage.setItem("profile", res);
+                console.log(res);
                 dispatch(fetchUserProfileAction(res));
-
                 return res;
             })
             .catch((error) => {

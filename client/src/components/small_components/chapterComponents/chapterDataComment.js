@@ -5,12 +5,12 @@ import { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import BlogDataCommentReplies from './blogDataCommentReplies'
-import BlogCommentReplyForm from './blogCommentReplyForm'
-import deleteBlogComment from "../../../redux/thunk/delete/deleteBlogComment"
-import BlogCommentEditForm from "./blogCommentEditForm"
+import ChapterDataCommentReplies from './chapterDataCommentReplies'
+import ChapterCommentReplyForm from './chapterCommentReplyForm'
+import deleteChapterComment from "../../../redux/thunk/delete/deleteChapterComment"
+import ChapterCommentEditForm from "./chapterCommentEditForm"
 
-class BlogDataComment extends Component{
+class ChapterDataComment extends Component{
     
     constructor(props){
         super(props)
@@ -59,7 +59,7 @@ class BlogDataComment extends Component{
 
 
     deleteComment = () => {
-        this.props.deleteBlogComment(this.props.comment.id)
+        this.props.deleteChapterComment(this.props.comment.id)
     }
 
     render(){
@@ -112,18 +112,18 @@ class BlogDataComment extends Component{
                         </Row>
                     </Col>
                 </Row>
-                <BlogDataCommentReplies replies = {this.props.comment.replies}
+                <ChapterDataCommentReplies replies = {this.props.comment.replies}
                                         openReplyForm = {this.openReplyForm}
                                         showReplies = {this.state.showReplies}
                                         closeReplyForm = {this.closeReplyForm}
                 />
-                <BlogCommentReplyForm isReply = {this.state.isReply} 
+                <ChapterCommentReplyForm isReply = {this.state.isReply} 
                                     replyToUser = {this.state.replyToUser}
                                     parentCommentId = {this.props.comment.id}
                                     closeReplyForm = {this.closeReplyForm}
                                       />
 
-                <BlogCommentEditForm isEdit = {this.state.isEdit} 
+                <ChapterCommentEditForm isEdit = {this.state.isEdit} 
                                      commentId = {this.props.comment.id}
                                      closeEditForm = {this.closeEditForm}
                                       />
@@ -140,12 +140,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(
     {
-        deleteBlogComment: deleteBlogComment,
+        deleteChapterComment: deleteChapterComment,
     },
     dispatch
 )
 
-export default connect(mapStateToProps, mapDispatchToProps)(BlogDataComment)
+export default connect(mapStateToProps, mapDispatchToProps)(ChapterDataComment)
 
 function ShowHideRepliesButton(props) {
 

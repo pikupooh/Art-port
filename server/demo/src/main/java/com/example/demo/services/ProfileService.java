@@ -111,12 +111,12 @@ public class ProfileService {
         return profileRepository.findFavoriteComicsById(id).getFavoriteMangas();
     }
     
-    public void addFollower(String userId, String followerId){
+    public User addFollower(String userId, String followerId){
 
 
         Optional<User> user = userRepository.findById(userId);
         Optional<User> follower = userRepository.findById(followerId);
-
+        System.out.println(follower.isPresent());
         Profile profile = profileRepository.findById(userId).get();
         profile.addFollowing(follower.get());
         profileRepository.save(profile);
@@ -124,6 +124,8 @@ public class ProfileService {
         Profile profile1 = profileRepository.findById(followerId).get();
         profile1.addFollower(user.get());
         profileRepository.save(profile1);
+
+        return follower.get();
     }
 
     public void deleteFollower(String userId, String followerId){
@@ -131,13 +133,17 @@ public class ProfileService {
         Optional<User> user = userRepository.findById(userId);
         Optional<User> follower = userRepository.findById(followerId);
 
-
+        System.out.println(follower.get());
         Profile profile = profileRepository.findById(userId).get();
+
         profile.removeFollowing(follower.get());
+        System.out.println(profile.getFollowing());
         profileRepository.save(profile);
 
         Profile profile1 = profileRepository.findById(followerId).get();
+
         profile1.removeFollower(user.get());
+        System.out.println(profile1.getFollowers());
         profileRepository.save(profile1);
 
 

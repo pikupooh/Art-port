@@ -174,20 +174,19 @@ public class ProfileController {
     
     @PostMapping("/users/{userId}/follower/{followerId}")
     public ResponseEntity<?> addFollower(@PathVariable String userId, @PathVariable String followerId, Principal principal){
-
+        System.out.println("hehe");
         User user = userService.getUserByName(principal.getName());
         if(user == null)
             return new ResponseEntity<String>("User not present.", HttpStatus.UNAUTHORIZED);
         if (!user.getId().equals(userId))
             return new ResponseEntity<String>("User invalid.", HttpStatus.UNAUTHORIZED);
 
-        profileService.addFollower(userId, followerId);
-        return ResponseEntity.ok("Follower added");
+        User following = profileService.addFollower(userId, followerId);
+        return ResponseEntity.ok(following);
     }
 
     @DeleteMapping("/users/{userId}/follower/{followerId}")
     public ResponseEntity<?> removeFollower(@PathVariable String userId, @PathVariable String followerId, Principal principal){
-
         User user = userService.getUserByName(principal.getName());
         if(user == null)
             return new ResponseEntity<String>("User not present.", HttpStatus.UNAUTHORIZED);
@@ -200,6 +199,7 @@ public class ProfileController {
 
     @PostMapping("/users/{userId}/favorites/post/{postId}")
     public ResponseEntity<?> addFavoritePost(@PathVariable String userId, @PathVariable String postId, Principal principal){
+
 
         User user = userService.getUserByName(principal.getName());
         if(user == null)
