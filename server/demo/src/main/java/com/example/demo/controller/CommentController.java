@@ -147,7 +147,7 @@ public class CommentController {
         chap.addComment(comment);
         chapterService.updateChapter(chap, chapId);
 
-        return ResponseEntity.ok("Comment added");
+        return ResponseEntity.ok(comment);
     }
 
 
