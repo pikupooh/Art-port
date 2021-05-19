@@ -36,8 +36,9 @@ body {
 
 .nav_profile_img {
     margin-top: 4px;
-    width: 35px;
-    height: 35px;
+    width: 35px !important;
+    height: 35px !important;
+    object-fit: cover;
 }
 
 #nav-dropdown {
@@ -102,8 +103,9 @@ body {
 }
 
 .comment_profile_photo {
-    width: 30px;
-    height: 30px;
+    width: 30px !important;
+    height: 30px !important;
+    object-fit: cover;
 }
 
 .space_for_navbar {
@@ -195,6 +197,7 @@ body {
 .blog_list_blog_data_details {
     position: absolute;
     bottom: 10px;
+    width: 100%;
 }
 
 .blog_list_blog_data {
@@ -216,8 +219,15 @@ body {
 }
 
 .blog_list_blog_uploader_photo {
-    max-width: 30px;
-    max-height: 30px;
+    width: 30px !important;
+    height: 30px !important;
+    object-fit: cover;
+}
+
+.blog_list_profile_image_container{
+    margin-left: 15px;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
 }
 
 .blog_list_carousel_image {
@@ -288,8 +298,9 @@ body {
 }
 
 .blog_page_uploader {
-    width: 100px;
-    height: 100px;
+    width: 100px !important;
+    height: 100px !important;
+    object-fit: cover;
 }
 
 .footer_nav {
