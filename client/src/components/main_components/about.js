@@ -7,7 +7,8 @@ import shaurya from  "./profile_components/shaurya.jpg"
 import zakaria from  "./profile_components/zakaria.jpg"
 
 
-class About extends React.Component {
+class About extends React.Component 
+{
   
   render() {
     return(
