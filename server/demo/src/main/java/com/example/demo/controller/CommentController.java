@@ -142,10 +142,11 @@ public class CommentController {
             return new ResponseEntity<String>("Manga not found.", HttpStatus.NOT_FOUND);
         }
 
-        Comment comment = commentService.createComment(principal.getName(), commentBody.getContent(), "CHAPTER", mangaId);
+        Comment comment = commentService.createComment(principal.getName(), commentBody.getContent(), "CHAPTER", chapId);
 
         chap.addComment(comment);
-        chapterService.updateChapter(chap, chapId);
+        System.out.println(chap.getComments());
+        chapterService.updateComment(chap, chapId);
 
         return ResponseEntity.ok(comment);
     }
@@ -223,7 +224,7 @@ public class CommentController {
             String chapId = comment.getTypeId();
             Chapter chap = chapterService.getChapter(chapId);
             chap.removeComment(comment);
-            chapterService.updateChapter(chap, chapId);
+            chapterService.updateComment(chap, chapId);
         }
         return ResponseEntity.ok("Comment Deleted.");
 

@@ -11,7 +11,8 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ChapterService {
+public class
+ChapterService {
 
     @Autowired
     ChapterRepository chapterRepository;
@@ -82,6 +83,19 @@ public class ChapterService {
         chapterRepository.save(newChapter);
 
         return newChapter;
+    }
+
+    public Chapter updateComment(Chapter chapter, String id){
+
+        if(chapterRepository.existsById(id)){
+
+            chapter.setId(id);
+            chapterRepository.save(chapter);
+
+            return chapter;
+        }
+
+        return null;
     }
 
     public void save(Chapter chapter){
