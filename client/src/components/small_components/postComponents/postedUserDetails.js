@@ -37,12 +37,12 @@ class PostedUserDetails extends React.Component{
                 <div className = "post_page_uploader_info">
                     <Row>
                         <Col lg = {4} xl = {3} >
-                            <Link to = {'/user/' + this.props.info.user.id}>
+                            <Link to = {'/user/' + this.props.info.user.userId}>
                                 <Image fluid className = "post_profile_photo" src = {this.props.info.user.profilePhoto.link} roundedCircle></Image>
                             </Link>
                         </Col>
                         <Col className = "text-left ml-1 my-auto">
-                            <Link to = {'/user/' + this.props.info.user.id}>
+                            <Link to = {'/user/' + this.props.info.user.userId}>
                                 <span className = "username">
                                     {this.props.info.user.username}
                                 </span>

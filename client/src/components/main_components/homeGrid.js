@@ -14,9 +14,9 @@ import fetchPostListAction from '../../redux/thunk/fetchPostsList'
 const settings = {
     dots: false,
     infinite: false,
-    speed: 1000,
+    speed: 1200,
     slidesToShow: 6,
-    slidesToScroll: 4,
+    slidesToScroll: 6,
     initialSlide: 0,
     responsive: [
         {
@@ -105,6 +105,7 @@ function CategoryContainer({category, url}){
             </div>
             <div className = "category_overlay"></div>
             <div className = "category_name">{category}</div>
+            <div className = "category_hover_overlay"></div>
         </div>
     )
 }
