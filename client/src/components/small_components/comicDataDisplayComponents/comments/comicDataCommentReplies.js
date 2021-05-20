@@ -14,7 +14,7 @@ class ComicDataCommentReplies extends Component{
         }
 
         return(
-            <div className = "blog_data_comments">
+            <div  className = "blog_replies">
                 {this.props.replies.map((reply) => 
                     <div  key = {reply.id}>
                         <ComicDataCommentsReply reply = {reply} 

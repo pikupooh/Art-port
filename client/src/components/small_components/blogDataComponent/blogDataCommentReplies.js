@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import {Container  } from "react-bootstrap";
 
 import BlogDataCommentsReply from "./blogDataCommentReply"
 
@@ -14,7 +15,7 @@ class BlogDataCommentReplies extends Component{
         }
 
         return(
-            <div className = "blog_data_comments">
+            <div className = "blog_replies">
                 {this.props.replies.map((reply) => 
                     <div  key = {reply.id}>
                         <BlogDataCommentsReply reply = {reply} 

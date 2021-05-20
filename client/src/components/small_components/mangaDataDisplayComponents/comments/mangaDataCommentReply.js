@@ -35,51 +35,55 @@ class MangaDataCommentsReply extends Component{
     }
 
     render(){
-        return(
-            <div className = "ml-5">
+        return(    
+             <div className = "ml-5">
                 <div className = "ml-5">
-                    <Row>
+                        <Row >
+                       
                         <Link to = {'/user/' + this.props.reply.user.userid}>
-                            <Col xs = {2}>
-                                <Image src = {this.props.reply.user.profilePhoto.link} roundedCircle className = "comment_profile_photo"></Image>
-                            </Col>
-                        </Link>
-                        <Col>
-                        <Link to = {'/user/' + this.props.reply.user.userId}>
-                            <Row>
-                                <div >
-                                    <span className = "username">{this.props.reply.user.username} &nbsp;</span>
-                                    replying to <span className = "username">  @{this.props.reply.replyTo}</span>
-                                </div>
-                            </Row>
-                        </Link>
-                            <Row>
+                                <Col xs = {2}>
+                                    <Image src = {this.props.reply.user.profilePhoto.link} roundedCircle className = "comment_profile_photo"></Image>
+                                </Col>
+                            </Link>
+                             <p className="replies">
+                            <Col>
+                            <Link to = {'/user/' + this.props.reply.user.userId}>
+                                <Row>
+                                    <div >
+                                        <span className = "user_name" >{this.props.reply.user.username} &nbsp;</span>
+                                        replying to <span className = "user_name" >  @{this.props.reply.replyTo}</span>
+                                    </div>
+                                </Row>
+                            </Link>
+                                <Row>
+                                    {this.props.reply.content}
+                                </Row>
                                 
-                                {this.props.reply.content}
-                            </Row>
-                            <Row>
-                                <div className = "blog_comment_reply" onClick = {() => this.props.openReplyForm(this.props.reply.user.username)}>
-                                    <ReplyFill></ReplyFill> 
-                                    Reply
-                                </div>
-                                <EditButton id = {this.props.reply.user.userId}
-                                            userId = {this.props.userId}
-                                            openEditReplyForm = {this.openEditReplyForm}
-                                            closeEditReplyForm = {this.closeEditReplyForm}
-                                            isEdit = {this.state.isEdit}
-                                />
-                                <DeleteButton id = {this.props.reply.user.userId}
-                                            userId = {this.props.userId}
-                                            deleteReply = {this.deleteReply}
-                                />
-                            </Row>
-                        </Col>
-                    </Row>
-                    <MangaCommentEditReplyForm isEdit = {this.state.isEdit}
-                                            closeEditReplyForm = {this.closeEditReplyForm}
-                                            replyId = {this.props.reply.id}
-                    />
-                </div>
+                            </Col>
+                            </p>
+                            
+                        </Row>
+                        <Row className="reply_button">
+                                    <div className = "blog_comment_reply" onClick = {() => this.props.openReplyForm(this.props.reply.user.username)}>
+                                        <ReplyFill></ReplyFill> 
+                                        Reply
+                                    </div>
+                                    <EditButton id = {this.props.reply.user.userId}
+                                                userId = {this.props.userId}
+                                                openEditReplyForm = {this.openEditReplyForm}
+                                                closeEditReplyForm = {this.closeEditReplyForm}
+                                                isEdit = {this.state.isEdit}
+                                    />
+                                    <DeleteButton id = {this.props.reply.user.userId}
+                                                userId = {this.props.userId}
+                                                deleteReply = {this.deleteReply}
+                                    />
+                                </Row>
+                        <MangaCommentEditReplyForm isEdit = {this.state.isEdit}
+                                                closeEditReplyForm = {this.closeEditReplyForm}
+                                                replyId = {this.props.reply.id}
+                        />
+                    </div>
             </div>
         )
     }
@@ -103,7 +107,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(MangaDataCommentsRep
 function DeleteButton(props){
     if(props.id === props.userId){
         return(
-            <i className = "material-icons text-center ml-2" onClick = {props.deleteReply}>
+            <i className = "material-icons text-center ml-2" id = "delete_button"onClick = {props.deleteReply}>
                 delete
             </i>
         )
@@ -120,7 +124,7 @@ function DeleteButton(props){
 function EditButton(props){
     if(props.id === props.userId && props.isEdit === false){
         return(
-            <i className = "material-icons text-center ml-2" onClick = {props.openEditReplyForm}>
+            <i className = "material-icons text-center ml-2"  id = "edit_button"onClick = {props.openEditReplyForm}>
                 edit
             </i>
         )

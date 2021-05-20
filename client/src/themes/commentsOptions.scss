@@ -43,7 +43,18 @@
 }
 #delete_button{
     font-size:medium;
+    &:hover{
+        cursor:pointer;
+    }
 }
 #edit_button{
     font-size:medium;
+    &:hover{
+        cursor:pointer;
+    }
+}
+.showhidereplies_button{
+    &:hover{
+        cursor:pointer;
+    }
 }

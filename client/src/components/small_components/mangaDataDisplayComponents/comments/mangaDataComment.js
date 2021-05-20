@@ -73,24 +73,30 @@ class MangaDataComment extends Component{
                         </Col>
                     </Link>
                     <Col>
-                    <Link to = {'/user/' + this.props.comment.user.userId}>
+                  
                         <Row>
+                          <Link to = {'/user/' + this.props.comment.user.userId}>
                             <p className = "username">
                                 {this.props.comment.user.username}
                             </p>
+                            </Link>
                         </Row>
-                    </Link>
+                    
                         <Row>
+                         <p className= "comment_content my-1">
                             {this.props.comment.content}
+                            </p>
                         </Row>
                         <Row id = "blog_comments_options">
                             <div className = "blog_comment_reply" onClick = {() => this.openReplyForm(this.props.comment.user.username)}>
                                 <ReplyFill></ReplyFill> 
                                 Reply
                             </div>
+                             <p className= "showhidereplies_button">
                             <ShowHideRepliesButton showReplies = {this.state.showReplies} 
                                                     toggleShowReplies = {this.toggleShowReplies} 
                                                     repliesLength = {this.props.comment.replies.length}/>
+                                                    </p>
                             <EditButton id = {this.props.comment.user.userId}
                                         userId = {this.props.userId}
                                         openEditForm = {this.openEditForm}
@@ -167,7 +173,7 @@ function ShowHideRepliesButton(props) {
 function DeleteButton(props){
     if(props.id === props.userId){
         return(
-            <i className = "material-icons text-center ml-2" onClick = {props.deleteComment}>
+            <i className = "material-icons text-center ml-2" id = "delete_button" onClick = {props.deleteComment}>
                 delete
             </i>
         )
@@ -184,7 +190,7 @@ function DeleteButton(props){
 function EditButton(props){
     if(props.id === props.userId && props.isEdit === false){
         return(
-            <i className = "material-icons text-center ml-2" onClick = {props.openEditForm}>
+            <i className = "material-icons text-center ml-2" id = "edit_button" onClick = {props.openEditForm}>
                 edit
             </i>
         )

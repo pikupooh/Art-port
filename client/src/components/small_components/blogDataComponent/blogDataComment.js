@@ -73,16 +73,13 @@ class BlogDataComment extends Component{
                         </Col>
                     </Link>
                     <Col>
-                   
                         <Row>
                             
                              <Link to = {'/user/' + this.props.comment.user.userId}>
                                <p className="username">
                                 {this.props.comment.user.username}
                                 </p>
-                               
-                                 </Link>
-                          
+                                 </Link>  
                         </Row>
                    
                         <Row>
@@ -95,9 +92,12 @@ class BlogDataComment extends Component{
                                 <ReplyFill></ReplyFill> 
                                 Reply
                             </div>
+                            <p className= "showhidereplies_button">
                             <ShowHideRepliesButton showReplies = {this.state.showReplies} 
                                                     toggleShowReplies = {this.toggleShowReplies} 
-                                                    repliesLength = {this.props.comment.replies.length}/>
+                                                    repliesLength = {this.props.comment.replies.length}
+                                                   /></p>
+                            
                             <EditButton id = {this.props.comment.user.userId}
                                         userId = {this.props.userId}
                                         openEditForm = {this.openEditForm}
@@ -159,14 +159,14 @@ function ShowHideRepliesButton(props) {
 
     if(props.showReplies === true){
         return(
-            <p onClick = {() => props.toggleShowReplies()} className = "ml-3">
+            <p onClick = {() => props.toggleShowReplies()} className = "ml-3"  >
                 Hide Replies
             </p>
         )
     }
     else{
         return(
-            <p onClick = {() => props.toggleShowReplies()} className = "ml-3">
+            <p onClick = {() => props.toggleShowReplies()} className = "ml-3" >
                 Show Replies ({props.repliesLength})
             </p>
         )
