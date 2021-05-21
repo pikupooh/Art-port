@@ -59,9 +59,9 @@ class UploadComponent extends React.Component {
         return (
             <div>
                 <a href="#" className="float fab">
-                    <i className="material-icons">add</i>
+                    <i className="material-icons upload_icon">add</i>
                 </a>
-                <ul className="submenu">
+                <ul className="submenu upload_buttons_container">
                     <li className="submenu_li">
                         <OverlayTrigger
                             placement="left"
@@ -72,7 +72,7 @@ class UploadComponent extends React.Component {
                                 className="submenu_a"
                                 onClick={this.handlePostModalShow}
                             >
-                                <i className="material-icons">post_add</i>
+                                <i className="material-icons upload_icon">post_add</i>
                             </a>
                         </OverlayTrigger>
                     </li>
@@ -86,7 +86,7 @@ class UploadComponent extends React.Component {
                                 className="submenu_a"
                                 onClick={this.handleBlogModalShow}
                             >
-                                <i className="material-icons">attach_file</i>
+                                <i className="material-icons upload_icon">attach_file</i>
                             </a>
                         </OverlayTrigger>
                     </li>
@@ -100,7 +100,7 @@ class UploadComponent extends React.Component {
                                 className="submenu_a"
                                 onClick={this.handleMangaModalShow}
                             >
-                                <i className="material-icons">
+                                <i className="material-icons upload_icon">
                                     insert_drive_file
                                 </i>
                             </a>
@@ -116,7 +116,7 @@ class UploadComponent extends React.Component {
                                 className="submenu_a"
                                 onClick={this.handleComicModalShow}
                             >
-                                <i className="material-icons">face</i>
+                                <i className="material-icons upload_icon">face</i>
                             </a>
                         </OverlayTrigger>
                     </li>

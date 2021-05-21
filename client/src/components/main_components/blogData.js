@@ -66,8 +66,10 @@ class blogData extends React.Component {
             </Col>
             <Col className = "text-left my-auto">
               <Link to = {'/user/' + this.props.user.userId}>
-              <Row className = "username blog_page_username">
-                {this.props.user.username}
+              <Row className = " blog_page_username">
+                <span className = "username">
+                  {this.props.user.username}
+                </span>
               </Row>
               </Link>
               <Row>
