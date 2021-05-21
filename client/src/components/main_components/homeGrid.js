@@ -55,6 +55,19 @@ const settings = {
 
 class HomeGrid extends React.Component{
 
+    constructor(props){
+        super(props);
+        this.state = {
+            active: ''
+        }
+    }
+
+    changeCategory = (categoryName) => {
+        this.setState({
+            active: categoryName
+        })
+    }
+
     componentDidMount(){
         this.props.fetchPostList()
     }
@@ -65,8 +78,12 @@ class HomeGrid extends React.Component{
                 <div className = "container-fluid my-3">
                     <Slider {...settings}>
                         {categories.map((category, index) => 
-                            <div key = {category} className = "">
-                                <CategoryContainer url = {categoriesUrl[index]} category = {category} />
+                            <div key = {category} className = "" onClick = {() => this.changeCategory(category)}>
+                                <CategoryContainer  url = {categoriesUrl[index]} 
+                                                    category = {category} 
+                                                    activeCategory = {this.state.active}
+                                                    changeCategory = {this.changeCategory}
+                                                    />
                             </div>
                         )}
                     </Slider>
@@ -97,7 +114,7 @@ const mapDispatchToProps = (dispatch) =>  bindActionCreators({
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeGrid);
 
-function CategoryContainer({category, url}){
+function CategoryContainer({category, url, activeCategory}){
     return(
         <div className = "category_container">
             <div className = "category_image_container">
@@ -106,6 +123,25 @@ function CategoryContainer({category, url}){
             <div className = "category_overlay"></div>
             <div className = "category_name">{category}</div>
             <div className = "category_hover_overlay"></div>
+            <ActiveCategoryOverlay categoryName = {category} activeCategory = {activeCategory} />
         </div>
     )
+}
+
+
+function ActiveCategoryOverlay({categoryName, activeCategory}){
+    if(categoryName === activeCategory){
+        return(
+            <div className = "active_category_overlay">
+
+            </div>
+        )
+    }
+    else{
+        return(
+            <div>
+
+            </div>
+        )
+    }
 }
