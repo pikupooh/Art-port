@@ -376,14 +376,14 @@ footer {
 
 .username {
     color: $custom_color_1;
-
+    margin-bottom :0.5rem;
     &:hover {
         color: white;
     }
 }
 
 .blog_data_comments {
-    background-color: lighten($color: $background-color, $amount: 10);
+    background-color: lighten($color: $background-color, $amount:5);
     padding-top: 10px;
     margin-top: 10px;
     margin-bottom:10px;
@@ -519,6 +519,15 @@ footer {
     background-color: rgba($color: #fda643, $alpha: 0.7);
     
     opacity: 0.7;
+}
+
+.blog_replies{
+    max-width: 600px;
+ margin-left:60px;
+ margin-right:60px;
+ padding : 20px 10px;
+ border-radius: 25px;
+ background-color:lighten($color: $background-color, $amount:10);
 }
 
 @import "userprofile.scss";

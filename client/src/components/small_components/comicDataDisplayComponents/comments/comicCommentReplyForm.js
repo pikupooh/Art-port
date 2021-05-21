@@ -33,26 +33,27 @@ class ComicCommentReplyForm extends Component{
     render(){
         if(this.props.isReply === true){
             return(
-                <Row>
-                    <Col sm = {2}>
+                 <div className="reply_form">
+                    <div classname ="reply_to">
                         Reply to {this.props.replyToUser}
-                    </Col>
-                    <Col className = "">
+                    </div>
+                    <div className = "reply_on_comment">
                         <Form>
                             <Form.Group>
                                 <Form.Control as="textarea" rows = {1} 
                                             placeholder = "Enter reply here" 
                                             onChange = {this.handleOnChange} 
-                                            value = {this.state.message}>
+                                            value = {this.state.message}
+                                            style = {{borderRadius:"10px"}}>
                                 </Form.Control>
                                 <Row>
                                     <Col className = "comment_button" >
-                                        <Button className = "btn-sm" onClick = {() => this.reply()}>
+                                        <Button className = "btn-sm my-1" onClick = {() => this.reply()}>
                                             Reply
                                         </Button>
-                                        <p onClick = {this.props.closeReplyForm}>
+                                        <Button className= "btn-sm my-1 mx-1" onClick = {this.props.closeReplyForm}>
                                             Cancel
-                                        </p>
+                                        </Button>
                                     </Col>
                                     <Col >
                                         
@@ -60,8 +61,8 @@ class ComicCommentReplyForm extends Component{
                                 </Row>
                             </Form.Group>
                         </Form>
-                    </Col>
-                </Row>
+                    </div>
+                </div>
             )
         }
         else{
