@@ -9,6 +9,8 @@ import BlogDataComments from "../small_components/blogDataComponent/blogDataComm
 import PostLikesModal from "../small_components/postLikesModal"
 import BlogLikeButton from "../small_components/likeButtons/blogLikeButton"
 
+import { ShareRow } from "../small_components/ShareRow"
+
 class blogData extends React.Component {
   
   constructor(props){
@@ -66,8 +68,10 @@ class blogData extends React.Component {
             </Col>
             <Col className = "text-left my-auto">
               <Link to = {'/user/' + this.props.user.userId}>
-              <Row className = "username blog_page_username">
-                {this.props.user.username}
+              <Row className = " blog_page_username">
+                <span className = "username">
+                  {this.props.user.username}
+                </span>
               </Row>
               </Link>
               <Row>
@@ -86,6 +90,9 @@ class blogData extends React.Component {
                  {this.props.likes.length} Likes
               </span>
             </Col>
+          </Row>
+          <Row className = "mx-2">
+            <ShareRow />
           </Row>
           <Row className = "mx-2">
             Tags

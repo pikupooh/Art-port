@@ -22,9 +22,13 @@
     "react-redux": "^7.2.3",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "react-share": "^4.4.0",
+    "react-slick": "^0.28.1",
     "react-social-login-buttons": "^3.4.0",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
+    "slick-carousel": "^1.8.1",
+    "slick-slider": "^1.8.2",
     "web-vitals": "^1.1.1"
   },
   "scripts": {

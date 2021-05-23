@@ -9,6 +9,7 @@ import fetchMangaDataAction from "../../redux/thunk/fetchMangaData";
 import MangaChaptersDisplay from "../small_components/mangaDataDisplayComponents/mangaChaptersDisplay"
 import MangaDataComments from '../small_components/mangaDataDisplayComponents/comments/mangaDataComments'
 import ChapterModal from "../small_components/uploadForms/chapterModal"
+import ShareRow from "../small_components/ShareRow";
 
 class MangaData extends React.Component {
 
@@ -47,6 +48,7 @@ class MangaData extends React.Component {
                              />
 
             <MangaDescriptionDisplay about = {this.props.about}/>
+            <ShareRow />
             {(this.props.author.userId === this.props.userId) && (<Button onClick = {this.handleFormModalShow}>+ Add Chapter</Button>)}            <MangaChaptersDisplay chapters ={this.props.chapters}/> 
             <MangaDataComments comments = {this.props.comments} mangaId = {this.props.mangaId}/>
           </Container>

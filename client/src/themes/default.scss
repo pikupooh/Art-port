@@ -7,8 +7,13 @@ $body-color: white;
 
 $custom_color_1: rgb(238, 129, 39);
 
+html, #root{
+    height: 100%;
+}
+
 body {
     font-family: "Work Sans", sans-serif !important;
+    height: 100%;
 }
 
 @mixin btn_color {
@@ -36,8 +41,9 @@ body {
 
 .nav_profile_img {
     margin-top: 4px;
-    width: 35px;
-    height: 35px;
+    width: 35px !important;
+    height: 35px !important;
+    object-fit: cover;
 }
 
 #nav-dropdown {
@@ -102,13 +108,14 @@ body {
 }
 
 .comment_profile_photo {
-    width: 30px;
-    height: 30px;
+    width: 30px !important;
+    height: 30px !important;
+    object-fit: cover;
 }
 
 .space_for_navbar {
-    height: 56px;
-    width: 100%;
+    height: 56px !important;
+    width: 100% !important;
 }
 
 .post_comment_textarea {
@@ -195,6 +202,7 @@ body {
 .blog_list_blog_data_details {
     position: absolute;
     bottom: 10px;
+    width: 100%;
 }
 
 .blog_list_blog_data {
@@ -216,8 +224,15 @@ body {
 }
 
 .blog_list_blog_uploader_photo {
-    max-width: 30px;
-    max-height: 30px;
+    width: 30px !important;
+    height: 30px !important;
+    object-fit: cover;
+}
+
+.blog_list_profile_image_container{
+    margin-left: 15px;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
 }
 
 .blog_list_carousel_image {
@@ -288,8 +303,9 @@ body {
 }
 
 .blog_page_uploader {
-    width: 100px;
-    height: 100px;
+    width: 100px !important;
+    height: 100px !important;
+    object-fit: cover;
 }
 
 .footer_nav {
@@ -319,12 +335,33 @@ body {
 .footer_nav li a:active {
     color: #ddd;
 }
+
 footer {
     background-color: rgb(26, 25, 25);
     padding: 20px;
     font-size: 20px;
     border-top: 1px solid rgb(70, 68, 68);
+    height: 50px;
 }
+
+.footer_container{
+
+}
+
+.container_head{
+    height: 100px;
+}
+
+.content_wrapper{
+    min-height: 89vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.main_wrapper{
+    height: 100%;
+}
+
 .copyright_statement {
     color: #888;
     text-align: center;
@@ -339,14 +376,14 @@ footer {
 
 .username {
     color: $custom_color_1;
-
+    margin-bottom :0.5rem;
     &:hover {
         color: white;
     }
 }
 
 .blog_data_comments {
-    background-color: lighten($color: $background-color, $amount: 10);
+    background-color: lighten($color: $background-color, $amount:5);
     padding-top: 10px;
     margin-top: 10px;
     margin-bottom:10px;
@@ -398,6 +435,7 @@ footer {
   }
   
 }
+
 #search_button{
     font-size:20px;
     color:white;
@@ -409,6 +447,108 @@ footer {
         color:skyblue;
         cursor:pointer;
     }
+}
+
+
+.category_container{
+    height: 50px;
+    width: 200px;
+    margin-left: 20px;
+    
+    &:hover{
+        cursor: pointer;
+    }
+}
+
+.category_image_container{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.category_image{
+    width: 100%;
+}
+
+.category_overlay{
+    position: absolute;
+    top: 0;
+    height: 50px ;
+    width: 200px;
+    background-color: rgba($color: #000000, $alpha: 0.7);
+    
+    opacity: 0.5;
+
+    &:hover{
+        background-color: lighten($custom_color_1, 10);
+    }
+}
+
+.category_name{
+    position: absolute;
+    bottom: 22px;
+    width: 200px;
+    text-align: center;
+    font-weight: 900;
+}
+
+.category_hover_overlay{
+    position: absolute;
+    top: 0;
+    height: 50px ;
+    width: 200px;
+    background-color: rgba($color: #000000, $alpha: 0.7);
+    
+    opacity: 0;
+
+    &:hover{
+        background-color: white;
+        opacity: 0.2;
+    }
+}
+
+.upload_icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    margin-top: 0 !important;
+    
+    &:hover{
+        cursor: pointer;
+    }
+}
+
+.upload_buttons_container{
+    width: 60px !important ;
+    padding-left: 0.7rem;
+}
+
+.active_category_overlay{
+    position: absolute;
+    top: 0;
+    height: 50px ;
+    width: 200px;
+    background-color: rgba($color: #fda643, $alpha: 0.7);
+    
+    opacity: 0.7;
+}
+
+.blog_replies{
+    max-width: 600px;
+ margin-left:60px;
+ margin-right:60px;
+ padding : 20px 10px;
+ border-radius: 25px;
+ background-color:lighten($color: $background-color, $amount:10);
+}
+
+.share_buttons {
+    vertical-align: top;
+    display: inline-block;
+    margin-right: 10px;
+    text-align: center;
 }
 
 @import "userprofile.scss";

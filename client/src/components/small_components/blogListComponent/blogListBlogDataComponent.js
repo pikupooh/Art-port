@@ -22,11 +22,13 @@ function BlogListBlogDataComponent(props){
                             </Row>
                             <Link to = {"/user/" + props.blog.user.id}>
                                 <Row className = "blog_data">
-                                    <Col xs = {2}>
-                                        <Image src = {props.blog.user.profilePhoto.link} className = "blog_list_blog_uploader_photo" roundedCircle></Image>
+                                    <Col sm = {2} >
+                                        <Image fluid src = {props.blog.user.profilePhoto.link} className = "blog_list_blog_uploader_photo" roundedCircle></Image>
                                     </Col>
-                                    <Col className = "username">
-                                        {props.blog.user.firstName} {props.blog.user.lastName}
+                                    <Col>
+                                        <span className = "username">
+                                            {props.blog.user.firstName} {props.blog.user.lastName}
+                                        </span>
                                     </Col>
                                 </Row>
                             </Link>

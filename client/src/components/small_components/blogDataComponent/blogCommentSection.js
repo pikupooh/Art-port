@@ -53,9 +53,6 @@ class BlogCommentSection extends React.Component{
                                     Comment
                                 </Button>
                             </Col>
-                            <Col >
-                                
-                            </Col>
                         </Row>
                     </Form.Group>
                 </Form>

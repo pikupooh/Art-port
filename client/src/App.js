@@ -30,70 +30,84 @@ import ForgotPassword from "./components/small_components/forgotPassword";
 import ResetPassword from "./components/small_components/resetPassword";
 import SearchResults from "./components/main_components/searchResults";
 
+
 const NavbarwithRouter = withRouter(NavbarComponent);
 
 class App extends React.Component {
     render() {
         return (
-            <div>
-                <BrowserRouter>
-                    <Switch>
-                        <>
-                            <div>
-                                <NavbarwithRouter />
-                                <div className="space_for_navbar"></div>
-                                <Route exact path="/" component={Home} />
-                                <Route path="/comics" component={Comics} />
-                                <Route path="/blogs" component={Blogs} />
-                                <Route path="/manga" component={Manga} />
-                                <Route path="/about" component={About} />
-                                <Route
-                                    path="/user/:user_id"
-                                    component={UserProfile}
-                                />
-                                <Route
-                                    path="/search/:val"
-                                    component={SearchResults}
-                                />
-                                <Route path="/post/:post_id" component={Post} />
-                                <Route
-                                    path="/blog/:blog_id"
-                                    component={blogData}
-                                />
-                                <Route
-                                    path="/comic/:comic_id"
-                                    component={ComicData}
-                                />
-                                <Route
-                                    path="/mangas/:manga_id"
-                                    component={MangaData}
-                                />
-                                <Route
-                                    path="/chapter/:chapters_id"
-                                    component={MangaIndividualChapter}
-                                />
-                                <Route path="/registration">
-                                    {this.props.isAuthenticated ? (
-                                        <Redirect to="/" />
-                                    ) : (
-                                        <RegistrationForm />
-                                    )}
-                                </Route>
-                                <Route
-                                    path="/forgotPassword"
-                                    component={ForgotPassword}
-                                />
-                                <Route
-                                    path="/resetPassword"
-                                    component={ResetPassword}
-                                />
-                                <SignInModal />
-                            </div>
-                        </>
-                    </Switch>
-                </BrowserRouter>
+            <div className = "main_wrapper">
+                <div className = "content_wrapper">
+                    <div className="space_for_navbar"></div>
+                    <BrowserRouter>
+                        <Switch>
+                            <>
+                                <div>
+                                    <NavbarwithRouter />
+                                    <Route exact path="/" component={Home} />
+                                    <Route path="/comics" component={Comics} />
+                                    <Route path="/blogs" component={Blogs} />
+                                    <Route path="/manga" component={Manga} />
+                                    <Route path="/about" component={About} />
+                                    <Route
+                                        path="/user/:user_id"
+                                        component={UserProfile}
+                                    />
+                                    <Route
+                                        path="/search/:val"
+                                        component={SearchResults}
+                                    />
+                                    <Route path="/post/:post_id" component={Post} />
+                                    <Route
+                                        path="/blog/:blog_id"
+                                        component={blogData}
+                                    />
+                                    <Route
+                                        path="/comic/:comic_id"
+                                        component={ComicData}
+                                    />
+                                    <Route
+                                        path="/mangas/:manga_id"
+                                        component={MangaData}
+                                    />
+                                    <Route
+                                        path="/chapter/:chapters_id"
+                                        component={MangaIndividualChapter}
+                                    />
+                                    <Route
+                                        path="/registration"
+                                        component={RegistrationForm}
+                                    />
+                                    <Route
+                                        path="/postuploadform/"
+                                        component={UploadPostForm}
+                                    />
+                                    <Route
+                                        path="/bloguploadform/"
+                                        component={UploadBlogForm}
+                                    />
+                                    <Route
+                                        path="/forgotPassword"
+                                        component={ForgotPassword}
+                                    />
+                                    <Route
+                                        path="/resetPassword"
+                                        component={ResetPassword}
+                                    />
+                                    <Route
+                                         path = "/searchResults"
+                                         component ={SerachResults}
+                                    />      
+
+                                    <SignInModal />
+                                    <div className = "footer_head"></div>
+                                </div>
+                            </>
+                        </Switch>
+                    </BrowserRouter>
+                </div>
                 {this.props.isAuthenticated ? <UploadComponent /> : null}
-                <FooterComponent />
+                <FooterComponent /> 
             </div>
         );
     }

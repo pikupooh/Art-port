@@ -6,7 +6,7 @@ import UserPostGridLayout from './userPostGridLayout'
 class PostGrid extends React.Component{
     render(){
         return(
-            <div>
+            <div className = "container-fluid">
                 <Row className = "home_grid_container">
                     {this.props.postList.map((post) => 
                     <Col key={post.id} sm = {6} md = {4} lg = {2} className = "home_grid_posts_container">

@@ -16,14 +16,16 @@ class MangaDataComments extends Component{
     }
     else{
         return(
+            <div>
             <div className = "blog_data_comments">
                 {this.props.comments.map((comment) => 
                     <div  key = {comment.id}>
                         <MangaDataComment comment = {comment} />
                         
                     </div>
-                )}
-                <MangaCommentSection mangaId = {this.props.mangaId}/>
+                )}     
+            </div>
+             <div > <MangaCommentSection blogId = {this.props.mangaId}/></div>
             </div>
         )
     }}

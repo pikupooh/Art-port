@@ -1,98 +1,100 @@
 import React from 'react';
 import { connect } from  'react-redux';
 import { bindActionCreators } from 'redux';
-import {Col,Row} from 'react-bootstrap'
+import {Col,Image,Row} from 'react-bootstrap';
+import Slider from 'react-slick';
+import {categories, categoriesUrl} from '../../shared/categories'
+
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
+
 import HomeGridLayout from '../small_components/homeGridLayout'
-
 import fetchPostListAction from '../../redux/thunk/fetchPostsList'
-import fetchCategoryListAction from '../../redux/thunk/fetchCategoryList'
 
-
+const settings = {
+    dots: false,
+    infinite: false,
+    speed: 1200,
+    slidesToShow: 6,
+    slidesToScroll: 6,
+    initialSlide: 0,
+    responsive: [
+        {
+            breakpoint: 1415,
+            settings: {
+                slidesToShow: 5,
+                slidesToScroll: 3,
+                infinite: true,
+            }
+        },
+      {
+        breakpoint: 1150,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+        }
+      },
+      {
+        breakpoint: 800,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
+  };
 
 class HomeGrid extends React.Component{
 
+    constructor(props){
+        super(props);
+        this.state = {
+            active: ''
+        }
+    }
+
+    changeCategory = (categoryName) => {
+        this.setState({
+            active: categoryName
+        })
+    }
+
     componentDidMount(){
         this.props.fetchPostList()
-        this.props.fetchCategoryList() 
     }
 
     render(){
-
-        // let i =0;
-        // //Stored the firstfour categories in firstfourcategories array
-        // let firstFourCategories = []; 
-        //  this.props.categoryList.map(firstFour => {
-        //     if(i<4){
-        //         firstFourCategories[i] = firstFour;
-        //         i++;
-        //     }
-        
-        // })
-        // i=0;
-        //  //Stored the secondfour categories in secondfourcategories array
-        // let secondFourCategories =[];
-        // this.props.categoryList.map(secondFour => {
-        //     if(i>=4 && i<8){
-        //         secondFourCategories[i] = secondFour;
-        //     }
-        //     i++;
-        // })
-        // i=0;
-        //   //Stored the lastTHree categories in lastThreecategories array
-        // let lastThreeCategories =[];
-        // this.props.categoryList.map(lastThree => {
-        //     if(i>=8 ){
-        //         lastThreeCategories[i] = lastThree;
-        //     }
-        //     i++;
-        // })
         return(
-         
-                <div>
-                    <div className="my-3">
-                        {/* <Carousel indicators= {false}>
-                     
-                              <Carousel.Item>
-                              <Container>
-                                 {
-                                 firstFourCategories.map((c) => 
-                                <Link to = {'/'} >       
-                               <Button className = "category_buttons"  > {c.name}</Button> 
-                                </Link>            
-                             )}
-                             </Container>
-                            </Carousel.Item>
-                            <Carousel.Item>
-                            <Container>
-                                {
-                             secondFourCategories.map((c1) => 
-                                <Link to = {'/'} >       
-                               <Button className = "category_buttons"  > {c1.name}</Button> 
-                                </Link>            
-                             )}
-                             </Container>
-                            </Carousel.Item>
-                            <Carousel.Item>
-                            <Container>
-                                {
-                             lastThreeCategories.map((m) => 
-                                <Link to = {'/'} >       
-                               <Button className = "category_buttons"  > {m.name}</Button> 
-                                </Link>            
-                             )}
-                             </Container>
-                            </Carousel.Item>
-                            
-                        </Carousel>  */}
-                     
-                    </div>
-                    <Row className = "home_grid_container">
-                        {this.props.postList.map((post) => 
-                        <Col key={post.id} sm = {6} md = {4} lg = {2} className = "home_grid_posts_container">
-                            <HomeGridLayout  post = {post}/>
-                        </Col>
+            <div >
+                <div className = "container-fluid my-3">
+                    <Slider {...settings}>
+                        {categories.map((category, index) => 
+                            <div key = {category} className = "" onClick = {() => this.changeCategory(category)}>
+                                <CategoryContainer  url = {categoriesUrl[index]} 
+                                                    category = {category} 
+                                                    activeCategory = {this.state.active}
+                                                    changeCategory = {this.changeCategory}
+                                                    />
+                            </div>
                         )}
-                    </Row>
+                    </Slider>
+                </div>
+                <Row className = "home_grid_container">
+                    {this.props.postList.map((post) => 
+                    <Col key={post.id} sm = {6} md = {4} lg = {2} className = "home_grid_posts_container">
+                        <HomeGridLayout  post = {post}/>
+                    </Col>
+                    )}
+                </Row>
             </div>
         )
     }
@@ -107,9 +109,39 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) =>  bindActionCreators({
-    
     fetchPostList: fetchPostListAction,
-    fetchCategoryList :fetchCategoryListAction
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeGrid);
+
+function CategoryContainer({category, url, activeCategory}){
+    return(
+        <div className = "category_container">
+            <div className = "category_image_container">
+                <Image src = {url} alt = "img" className = "category_image"/>
+            </div>
+            <div className = "category_overlay"></div>
+            <div className = "category_name">{category}</div>
+            <div className = "category_hover_overlay"></div>
+            <ActiveCategoryOverlay categoryName = {category} activeCategory = {activeCategory} />
+        </div>
+    )
+}
+
+
+function ActiveCategoryOverlay({categoryName, activeCategory}){
+    if(categoryName === activeCategory){
+        return(
+            <div className = "active_category_overlay">
+
+            </div>
+        )
+    }
+    else{
+        return(
+            <div>
+
+            </div>
+        )
+    }
+}

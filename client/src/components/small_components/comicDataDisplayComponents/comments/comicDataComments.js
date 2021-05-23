@@ -8,22 +8,28 @@ class ComicDataComments extends Component{
     render(){
     if(this.props.comments.length === 0){
         return(
-            <div className = "blog_data_comments">
-                Be the first to comment
-                <ComicCommentSection mangaId = {this.props.mangaId}/>
+              <div>
+            <div className = "blog_data_comments" style ={{padding:"5px" ,justifyContent:"center"}}>
+               <p style ={{paddingTop:"5px",paddingLeft:"5px"}}>Be the first to comment</p> 
+             </div>
+             <div>
+                <ComicCommentSection blogId = {this.props.mangaId}/>
+                </div>
             </div>
-        )
+        )  
     }
     else{
         return(
-            <div className = "blog_data_comments">
+             <div>
+                <div className = "blog_data_comments">
                 {this.props.comments.map((comment) => 
                     <div  key = {comment.id}>
                         <ComicDataComment comment = {comment} />
                         
                     </div>
-                )}
-                <ComicCommentSection mangaId = {this.props.mangaId}/>
+                )}     
+                </div>
+             <div > <ComicCommentSection blogId = {this.props.blogId}/></div>
             </div>
         )
     }}

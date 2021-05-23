@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { Form, Button, Row, Col } from 'react-bootstrap'
+import { Form, Button, Row, Col ,Container} from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { bindActionCreators } from "redux";
 
@@ -33,30 +33,30 @@ class BlogCommentEditForm extends Component{
     render(){
         if(this.props.isEdit === true){
             return(
-                <Col className = "mt-2">
-                    <Form>
-                        <Form.Group>
-                            <Form.Control as="textarea" rows = {1} 
-                                        placeholder = "Enter edited commment here" 
-                                        onChange = {this.handleOnChange} 
-                                        value = {this.state.message}>
-                            </Form.Control>
-                            <Row>
-                                <Col className = "comment_button" >
-                                    <Button className = "btn-sm" onClick = {this.edit}>
-                                        Edit
-                                    </Button>
-                                    <p onClick = {this.props.closeEditForm}>
+                <Container style={{maxWidth:"1000px"}}>
+                 <div className = "reply_on_comment">
+                        <Form>
+                            <Form.Group>
+                                <Form.Control as="textarea" rows = {1} 
+                                            placeholder = "Enter edited commment here" 
+                                            onChange = {this.handleOnChange} 
+                                            value = {this.state.message}
+                                            style = {{borderRadius:"10px"}}>
+                                </Form.Control>
+                                <Row>
+                                    <Col className = "comment_button" >
+                                        <Button className = "btn-sm my-1" onClick = {() => this.edit}>
+                                            Reply
+                                        </Button>
+                                        <Button className= "btn-sm my-1 mx-1"  onClick = {this.props.closeEditForm}>
                                             Cancel
-                                        </p>
-                                </Col>
-                                <Col >
-                                    
-                                </Col>
-                            </Row>
-                        </Form.Group>
-                    </Form>
-                </Col>
+                                        </Button>
+                                    </Col>
+                                </Row>
+                            </Form.Group>
+                        </Form>
+                    </div>
+                    </Container>
             )
         }
         else{

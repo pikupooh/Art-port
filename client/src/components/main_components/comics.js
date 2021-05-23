@@ -16,7 +16,7 @@ class Comics extends React.Component{
                    
                     {this.props.comicList.map((comic) => 
                         
-                        <Col sm={6}  key ={comic.id} className = "comiclist_container">
+                        <Col sm={6}  key ={comic.id} style={{paddingRight:"0px",paddingLeft :"0px"}}>
                             <Link to = {'/comic/' + comic.id}>
                                 <ComicDataComponent comic = {comic}/>
                             </Link>

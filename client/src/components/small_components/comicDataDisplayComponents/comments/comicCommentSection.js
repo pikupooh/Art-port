@@ -38,17 +38,18 @@ class ComicCommentSection extends React.Component{
 
     render(){
         return(
-            <div className = "my-4 blog_page_comment_section">
+            <div className = "my-2 blog_page_comment_section">
                 <Form>
                     <Form.Group>
                         <Form.Control as="textarea" rows = {3} 
                                     placeholder = "Enter comment here" 
                                     onChange = {this.handleOnChange} 
-                                    value = {this.state.message}>
+                                    value = {this.state.message}
+                                    style = {{borderRadius : "25px"}}>
                         </Form.Control>
                         <Row>
                             <Col className = "comment_button" >
-                                <Button className = "btn-sm" id = "blog_data_comment_btn" onClick = {this.comment}>
+                                <Button className ="btn-sm mx-2 my-1" id = "blog_data_comment_btn" onClick = {this.comment}>
                                     Comment
                                 </Button>
                             </Col>

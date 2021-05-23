@@ -1,45 +1,289 @@
-import React from 'react';
-import {searchPosts,searchCategory} from "../../redux/thunk/fetchSearchResult";
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
+import React from 'react'
+import { connect } from  'react-redux';
+import { bindActionCreators } from 'redux';
+import { Link } from 'react-router-dom';
+import {Row,Col,Container,Image} from 'react-bootstrap';
 class SearchResults extends React.Component{
-componentDidMount() {
-    let searchkey = this.props.location.pathname.slice(8);
-    console.log(searchkey);
-   var search = new Array();
-    let s= '';
-    for(let i =0;i<searchkey.length;i++)
-    {
-        if(searchkey[i]!== '')
-        s+= searchkey[i];
-        else if(searchkey[i]=== '')
-        {
-            search.push(s);
-            s='';
-        }
+    componentDidMount() {
+       console.log("search results");
     }
-    search.push(s);
-    this.props.fetchSearchResult(search);
-  }
-    render() {
-        console.log(this.props);
-    return (
-        <div>
-        </div>
-     )
+    render(){
+        return(
+            <div className="search">
+            <Container style = {{paddingLeft : "100px", paddingRight: "100px"}}>
+
+
+
+
+                 {/* opening of the page. This is just the heading */}
+                <Row style = {{marginBottom :"10px"}}>
+                  <h5 className = "search_heading">Showing search results for : In the middle</h5>
+                </Row>
+                <Row>
+                <p>
+                    <a className = "search_button" href= "#">Blogs </a>
+                </p>
+                <p>
+                   <a className = "search_button" href= "#">Comics </a> 
+                </p>
+                <p>
+                    <a className = "search_button" href= "#">Mangas </a>
+                </p>
+                <p>
+                    <a className = "search_button" href= "#">Artists </a>
+                </p>
+                </Row>
+                 {/* opening of the page. This is just the heading */}
+
+
+
+
+
+
+                <Row>
+                    <h5 className = "top_result"> Top result </h5>
+                </Row>
+
+
+
+
+
+                {/* Top result section */}
+                <Row > 
+                <Row className= "search_result_container">
+                    <Col sm ={1} className="A">
+                        <Link to ="#">
+                         <div className = "search_image_container">
+                             <Image src = "https://i.ytimg.com/vi/xQzS3JnZQZM/maxresdefault.jpg" className="search_image" alt = "comic_cover_photo"></Image>
+                         </div>
+                         </Link>
+                    </Col>
+                    <Col>
+                        <Link to ="#">
+                        <div className ="search_result_heading">The Middle</div>
+                        </Link>
+                        <div className="result_description">
+                        Video |  Grey, Zedd & Maren Morris |  105M likes
+                        </div>
+                    </Col>
+                </Row>
+                </Row>
+                 {/* Top result section */}
+
+
+
+
+
+
+
+                <Row>
+                    <h5 className = "top_result"> Blogs </h5>
+                </Row>
+
+
+
+                {/* Blog result */}
+                <Row className="top_result_data"> 
+                    <Row className = "search_result_container">
+                        <Col sm ={1} className="A">
+                            <Link to ="#">
+                                <div className = "search_image_container">
+                                    <Image src = "https://i.ytimg.com/vi/xQzS3JnZQZM/maxresdefault.jpg" className="search_image" alt = "comic_cover_photo"></Image>
+                                 </div>
+                            </Link>
+                        </Col>
+                        <Col>
+                            <Link to ="#">
+                                <div className ="search_result_heading">The Middle</div>
+                             </Link>
+                                 <div className="result_description">
+                                     Video |  Grey, Zedd & Maren Morris |  105M likes
+                                 </div>
+                        </Col>
+                     </Row>
+                     <Row className = "search_result_container">
+                            <Col sm ={1} className="A">
+                                <Link to ="#">
+                                      <div className = "search_image_container">
+                                         <Image src = "https://i.ytimg.com/vi/xQzS3JnZQZM/maxresdefault.jpg" className="search_image" alt = "comic_cover_photo"></Image>
+                                     </div>
+                                 </Link>
+                             </Col>
+                             <Col>
+                                 <Link to ="#">
+                                      <div className ="search_result_heading">The Middle</div>
+                                  </Link>
+                                     <div className="result_description">
+                                          Video |  Grey, Zedd & Maren Morris |  105M likes
+                                     </div>
+                              </Col>
+                     </Row>
+                      <Row className = "search_result_container">
+                             <Col sm ={1} className="A">
+                                 <Link to ="#">
+                                     <div className = "search_image_container">
+                                         <Image src = "https://i.ytimg.com/vi/xQzS3JnZQZM/maxresdefault.jpg" className="search_image" alt = "comic_cover_photo"></Image>
+                                      </div>
+                                 </Link>
+                             </Col>
+                        <Col>
+                             <Link to ="#">
+                                 <div className ="search_result_heading">The Middle</div>
+                            </Link>
+                              <div className="result_description">
+                                   Video |  Grey, Zedd & Maren Morris |  105M likes
+                             </div>
+                        </Col>
+                     </Row>
+                </Row>
+                 {/* Blog result section */}
+
+
+
+
+
+                <Row>
+                    <h5 className = "top_result"> Comics </h5>
+                </Row>
+
+
+
+
+
+
+
+                {/* Comic result section*/}
+                  <Row className="top_result_data"> 
+                    <Row className = "search_result_container">
+                        <Col sm ={1} className="A">
+                            <Link to ="#">
+                                <div className = "search_image_container">
+                                    <Image src = "https://i.ytimg.com/vi/xQzS3JnZQZM/maxresdefault.jpg" className="search_image" alt = "comic_cover_photo"></Image>
+                                 </div>
+                            </Link>
+                        </Col>
+                        <Col>
+                            <Link to ="#">
+                                <div className ="search_result_heading">The Middle</div>
+                             </Link>
+                                 <div className="result_description">
+                                     Video |  Grey, Zedd & Maren Morris |  105M likes
+                                 </div>
+                        </Col>
+                     </Row>
+                     <Row className = "search_result_container">
+                            <Col sm ={1} className="A">
+                                <Link to ="#">
+                                      <div className = "search_image_container">
+                                         <Image src = "https://i.ytimg.com/vi/xQzS3JnZQZM/maxresdefault.jpg" className="search_image" alt = "comic_cover_photo"></Image>
+                                     </div>
+                                 </Link>
+                             </Col>
+                             <Col>
+                                 <Link to ="#">
+                                      <div className ="search_result_heading">The Middle</div>
+                                  </Link>
+                                     <div className="result_description">
+                                          Video |  Grey, Zedd & Maren Morris |  105M likes
+                                     </div>
+                              </Col>
+                     </Row>
+                      <Row className = "search_result_container">
+                             <Col sm ={1} className="A">
+                                 <Link to ="#">
+                                     <div className = "search_image_container">
+                                         <Image src = "https://i.ytimg.com/vi/xQzS3JnZQZM/maxresdefault.jpg" className="search_image" alt = "comic_cover_photo"></Image>
+                                      </div>
+                                 </Link>
+                             </Col>
+                        <Col>
+                             <Link to ="#">
+                                 <div className ="search_result_heading">The Middle</div>
+                            </Link>
+                              <div className="result_description">
+                                   Video |  Grey, Zedd & Maren Morris |  105M likes
+                             </div>
+                        </Col>
+                     </Row>
+                </Row>
+                {/* Comic result section */}
+
+
+
+
+
+                <Row>
+                    <h5 className= " top_result">Mangas</h5>
+                </Row>
+
+
+
+
+
+
+
+                                {/* Manga result section*/}
+                  <Row className="top_result_data"> 
+                    <Row className = "search_result_container">
+                        <Col sm ={1} className="A">
+                            <Link to ="#">
+                                <div className = "search_image_container">
+                                    <Image src = "https://i.ytimg.com/vi/xQzS3JnZQZM/maxresdefault.jpg" className="search_image" alt = "comic_cover_photo"></Image>
+                                 </div>
+                            </Link>
+                        </Col>
+                        <Col>
+                            <Link to ="#">
+                                <div className ="search_result_heading">The Middle</div>
+                             </Link>
+                                 <div className="result_description">
+                                     Video |  Grey, Zedd & Maren Morris |  105M likes
+                                 </div>
+                        </Col>
+                     </Row>
+                     <Row className = "search_result_container">
+                            <Col sm ={1} className="A">
+                                <Link to ="#">
+                                      <div className = "search_image_container">
+                                         <Image src = "https://i.ytimg.com/vi/xQzS3JnZQZM/maxresdefault.jpg" className="search_image" alt = "comic_cover_photo"></Image>
+                                     </div>
+                                 </Link>
+                             </Col>
+                             <Col>
+                                 <Link to ="#">
+                                      <div className ="search_result_heading">The Middle</div>
+                                  </Link>
+                                     <div className="result_description">
+                                          Video |  Grey, Zedd & Maren Morris |  105M likes
+                                     </div>
+                              </Col>
+                     </Row>
+                      <Row className = "search_result_container">
+                             <Col sm ={1} className="A">
+                                 <Link to ="#">
+                                     <div className = "search_image_container">
+                                         <Image src = "https://i.ytimg.com/vi/xQzS3JnZQZM/maxresdefault.jpg" className="search_image" alt = "comic_cover_photo"></Image>
+                                      </div>
+                                 </Link>
+                             </Col>
+                        <Col>
+                             <Link to ="#">
+                                 <div className ="search_result_heading">The Middle</div>
+                            </Link>
+                              <div className="result_description">
+                                   Video |  Grey, Zedd & Maren Morris |  105M likes
+                             </div>
+                        </Col>
+                     </Row>
+                </Row>
+                {/* Manga result section */}
+
+
+
+            </Container>
+            </div>
+            )
     }
 }
- const mapDispatchToProps = (dispatch) =>
-  bindActionCreators(
-    {
-      fetchSearchResult: searchPosts,
-    },
-    dispatch
-  );
+ export default SearchResults;
 
-const mapStateToProps = (state) => {
-  return {
-      result : state.search.result
-  };
-};
-export default connect(mapStateToProps, mapDispatchToProps)(SearchResults)

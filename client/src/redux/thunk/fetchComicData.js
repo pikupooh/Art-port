@@ -11,7 +11,6 @@ function fetchComicData(comicId) {
             }
 
             dispatch(fetchComicDataAction(res))
-         
             return res;
         })
         .catch(error => {
