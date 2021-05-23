@@ -551,6 +551,14 @@ footer {
     text-align: center;
 }
 
+.text-white-color {
+    color: white !important;
+}
+
+.label-alpha-white {
+    color: rgba(248, 248, 248, 0.87) !important;
+}
+
 @import "userprofile.scss";
 @import "commentsOptions.scss";
 @import "comicList";

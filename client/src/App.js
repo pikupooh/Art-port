@@ -96,7 +96,7 @@ class App extends React.Component {
                                     />
                                     <Route
                                          path = "/searchResults"
-                                         component ={SerachResults}
+                                         component ={SearchResults}
                                     />      
 
                                     <SignInModal />

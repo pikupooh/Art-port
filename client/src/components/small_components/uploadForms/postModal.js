@@ -5,6 +5,7 @@ import TagComponent from "../tagComponent";
 import { createPost } from "../../../redux/thunk/fetchPostData";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import ChipInput from "material-ui-chip-input"
 
 class PostModal extends React.Component {
     constructor(props) {
@@ -20,7 +21,7 @@ class PostModal extends React.Component {
         this.fileInput = React.createRef();
     }
 
-    removeTag = (i) => {
+    removeTag = (tag, i) => {
         const newTags = [...this.state.tags];
         newTags.splice(i, 1);
         this.setState({ tags: newTags });
@@ -117,6 +118,14 @@ class PostModal extends React.Component {
     }
 
     render() {
+        const styles = {
+            input: {
+              color: "white"
+            },
+            label: {
+                color: "white"
+            }
+          };
         return (
             <Modal show={this.props.show} onHide={this.props.handleModalClose}>
                 <Modal.Body>
@@ -184,11 +193,12 @@ class PostModal extends React.Component {
                             </div>
                         </Form.Group>
                         <Form.Group>
-                            <Form.Label>Enter Tags</Form.Label>
-                            <TagComponent
-                                tags={this.state.tags}
-                                removeTag={this.removeTag}
-                                addTag={this.addTag}
+                            <Form.Label className="mr-2">Enter Tags: </Form.Label>
+                            <ChipInput className="text-white-color label-alpha-white" classes={{label:"label-alpha-white", input:"text-white-color"}}
+                                value={this.state.tags}
+                                onAdd={(chip) => this.addTag(chip)}
+                                onDelete={(chip, index) => this.removeTag(chip, index)}
+                                label="Enter tags for post"
                             />
                         </Form.Group>
                         <Form.Group>
