@@ -9,6 +9,7 @@ import ComicDescriptionDisplay from "../small_components/comicDataDisplayCompone
 import ComicChapterDisplay from "../small_components/comicDataDisplayComponents/comicChapterDisplay"
 import ComicDataComments from "../small_components/comicDataDisplayComponents/comments/comicDataComments"
 import ChapterModal from "../small_components/uploadForms/chapterModal"
+import ShareRow from "../small_components/ShareRow";
 class ComicData extends React.Component {
 
   constructor(props) {
@@ -46,6 +47,7 @@ class ComicData extends React.Component {
                             />
 
             <ComicDescriptionDisplay about = {this.props.about}/>
+            <ShareRow />
             {(this.props.author.userId === this.props.userId) && (<Button onClick = {this.handleFormModalShow}>+ Add Chapter</Button>)}
             <ComicChapterDisplay chapters ={this.props.chapters}/> 
             <ComicDataComments comments = {this.props.comments} mangaId = {this.props.mangaId}/>

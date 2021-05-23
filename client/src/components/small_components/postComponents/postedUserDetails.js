@@ -6,6 +6,7 @@ import PostComments from './postComments'
 import PostLikesModal from '../postLikesModal'
 import PostCommentSection from './postCommentSection'
 import PostLikeButton from '../likeButtons/postLikeButton'
+import ShareRow from '../ShareRow'
 class PostedUserDetails extends React.Component{
 
     constructor(props){
@@ -61,6 +62,7 @@ class PostedUserDetails extends React.Component{
                         className = "mt-3"
                         >Likes {this.props.info.likes.length}</p>
                 </div>
+                <ShareRow />
                 <div className = "my-4">
                     Posted in {this.props.info.uploadDate}
                 </div>
