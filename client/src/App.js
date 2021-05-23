@@ -21,6 +21,7 @@ import UploadBlogForm from "./components/sign_in_components/uploadBlogForm";
 import UploadComponent from "./components/main_components/uploadComponent";
 import ForgotPassword from "./components/small_components/forgotPassword";
 import ResetPassword from "./components/small_components/resetPassword";
+import SerachResults from "./components/main_components/searchResults";
 
 const NavbarwithRouter = withRouter(NavbarComponent);
 
@@ -81,6 +82,11 @@ class App extends React.Component {
                                         path="/resetPassword"
                                         component={ResetPassword}
                                     />
+                                    <Route
+                                         path = "/searchResults"
+                                         component ={SerachResults}
+                                    />      
+
                                     <SignInModal />
                                     <div className = "footer_head"></div>
                                 </div>

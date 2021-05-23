@@ -65,7 +65,6 @@ class About extends React.Component
           <Image src = {rohit} className= "display_pic" fluid ></Image>
           <Image src = {pratik} className= "display_pic" fluid ></Image>
           <Image src = {krishanu} className= "display_pic" fluid ></Image>
-        
         </Container>
       </div>
       )
