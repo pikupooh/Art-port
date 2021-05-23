@@ -2,9 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Image } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import {Button} from "react-bootstrap";
 
+import FollowButton from "../small_components/followButton"
 import fetchUserData from "../../redux/thunk/fetchUserData";
 import UserProfileNavbar from "../small_components/userProfileComponents/userProfileNavbar";
 import UserProfileExtras from "../small_components/userProfileComponents/userProfileExtras";
@@ -15,7 +14,6 @@ class UserProfile extends React.Component {
         let lastSlash = this.props.location.pathname.lastIndexOf("/");
 
         let id = lastSlash==5?this.props.location.pathname.slice(6):this.props.location.pathname.slice(6, lastSlash);
-        console.log(id);
         this.props.fetchProfileData(id);
         this.props.fetchUserData(id);
     }
@@ -41,10 +39,8 @@ class UserProfile extends React.Component {
                     <div className="profile_page_email">
                         <div>Contact: {this.props.user.email}</div>
                     </div>
-                    <div>{this.props.user.about}</div>
-                        
-                    {(this.props.id !== this.props.userId) && (<Button href="" className="follow_about_button">Follow</Button>)}                
-                   
+                    <div>{this.props.user.about}</div>   
+                    <FollowButton userId = {this.props.id} />
                 </div>
                 <UserProfileNavbar match={this.props.match} />
                 <UserProfileExtras match={this.props.match} />

@@ -88,6 +88,7 @@ const mapDispatchToProps = (dispatch) =>
     );
 
 const mapStateToProps = (state) => {
+    console.log(state.user);
     return {
         userId: state.auth.userId,
         likes: state.blogData.likes,

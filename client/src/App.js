@@ -1,5 +1,12 @@
 import React from "react";
-import { BrowserRouter, Route, Switch, withRouter } from "react-router-dom";
+import {
+    BrowserRouter,
+    Redirect,
+    Route,
+    Switch,
+    withRouter,
+} from "react-router-dom";
+import { connect } from "react-redux";
 
 import NavbarComponent from "./components/main_components/navbarComponent";
 import Home from "./components/main_components/home";
@@ -21,7 +28,8 @@ import UploadBlogForm from "./components/sign_in_components/uploadBlogForm";
 import UploadComponent from "./components/main_components/uploadComponent";
 import ForgotPassword from "./components/small_components/forgotPassword";
 import ResetPassword from "./components/small_components/resetPassword";
-import SerachResults from "./components/main_components/searchResults";
+import SearchResults from "./components/main_components/searchResults";
+
 
 const NavbarwithRouter = withRouter(NavbarComponent);
 
@@ -44,6 +52,10 @@ class App extends React.Component {
                                     <Route
                                         path="/user/:user_id"
                                         component={UserProfile}
+                                    />
+                                    <Route
+                                        path="/search/:val"
+                                        component={SearchResults}
                                     />
                                     <Route path="/post/:post_id" component={Post} />
                                     <Route
@@ -93,12 +105,18 @@ class App extends React.Component {
                             </>
                         </Switch>
                     </BrowserRouter>
-                    <UploadComponent />
                 </div>
+                {this.props.isAuthenticated ? <UploadComponent /> : null}
                 <FooterComponent /> 
             </div>
         );
     }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+    return {
+        isAuthenticated: state.auth.isAuthenticated,
+    };
+};
+
+export default connect(mapStateToProps, null)(App);

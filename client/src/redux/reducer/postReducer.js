@@ -16,7 +16,7 @@ const initState = {
     description: ''
 };
 
-export const PostReducer = (state = initState, action) => {
+export const postReducer = (state = initState, action) => {
     switch (action.type) {
         case ActionTypes.FETCH_POST_DATA:
             return {

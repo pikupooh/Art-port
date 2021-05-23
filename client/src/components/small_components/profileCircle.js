@@ -3,8 +3,6 @@ import { connect } from "react-redux";
 import { Button, Image, NavDropdown } from "react-bootstrap";
 import { bindActionCreators } from "redux";
 import { logoutUser } from "../../redux/thunk/loging";
-import fetchUserDataAction from "../../redux/thunk/fetchUserData";
-import { signOutUserAction } from "../../redux//actions/logActions";
 import { altImage } from "../../shared/categories";
 
 class ProfileCircle extends React.Component {
@@ -21,7 +19,6 @@ class ProfileCircle extends React.Component {
     };
 
     render() {
-        console.log(this.props.profilePhoto, this.props.userId);
         if (this.props.isAuthenticated === true) {
             return (
                 <div className="text-center">
@@ -36,10 +33,6 @@ class ProfileCircle extends React.Component {
                         <NavDropdown.Item href={"/user/" + this.props.userId}>
                             Profile
                         </NavDropdown.Item>
-                        <NavDropdown.Item>Add Post</NavDropdown.Item>
-                        <NavDropdown.Item>Add Blog</NavDropdown.Item>
-                        <NavDropdown.Item>Add Comic</NavDropdown.Item>
-                        <NavDropdown.Item>Add Manga</NavDropdown.Item>
                         <NavDropdown.Divider />
                         <NavDropdown.Item onClick={this.signOut}>
                             Logout
@@ -68,8 +61,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
-            fetchUserData: fetchUserDataAction,
-            logoutUser: logoutUser,
+            logoutUser,
             showSignInModal: () => dispatch({ type: "SHOW_MODAL" }),
         },
         dispatch

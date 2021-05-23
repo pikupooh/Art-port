@@ -3,7 +3,7 @@ import React from "react";
 import {connect} from "react-redux"
 import { bindActionCreators } from "redux";
 import fetchMangaChapterAction from "../../../redux/thunk/fetchMangaChapter";
-import BlogDataComments from "../blogDataComponent/blogDataComments"
+import ChapterDataComments from "../chapterComponents/chapterDataComments"
 class MangaIndividualChapter extends React.Component {
     componentDidMount() {
         let chapterId = this.props.location.pathname.slice(9);
@@ -13,7 +13,6 @@ class MangaIndividualChapter extends React.Component {
 
   render () {
     return ( 
-      
       <Container className = 'text-center'>
         <div className = "my-5 py-5 mangaChapterDetails">
           <div>
@@ -30,7 +29,7 @@ class MangaIndividualChapter extends React.Component {
             </div>
           )} 
         </div>
-        <BlogDataComments comments = {this.props.comments}/>
+        <ChapterDataComments comments = {this.props.comments} chapterId = {this.props.chapterId}/>
       </Container>
     
     );
@@ -50,7 +49,8 @@ const mapStateToProps = (state) => {
       photoDocument: state.mangaChapter.photoDocument,
       comments: state.mangaChapter.comments,
       chapterName: state.mangaChapter.chapterName,
-      chapterNo: state.mangaChapter.chapterNo
+      chapterNo: state.mangaChapter.chapterNo,
+      chapterId: state.mangaChapter.id,
     };
   };
  

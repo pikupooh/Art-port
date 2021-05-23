@@ -13,6 +13,7 @@ class Post extends React.Component {
   componentDidMount() {
     let postId = this.props.location.pathname.slice(6);
     this.props.fetchPostData(postId)
+    
     window.scrollTo(0, 0);
   }
 

@@ -6,6 +6,7 @@ import PostComments from './postComments'
 import PostLikesModal from '../postLikesModal'
 import PostCommentSection from './postCommentSection'
 import PostLikeButton from '../likeButtons/postLikeButton'
+import FollowButton from '../followButton'
 import ShareRow from '../ShareRow'
 class PostedUserDetails extends React.Component{
 
@@ -29,7 +30,6 @@ class PostedUserDetails extends React.Component{
     }
 
     render(){
-        console.log(this.props);
         return(
             <div>
                 <PostLikesModal show = {this.state.showLikesModal} 
@@ -50,12 +50,12 @@ class PostedUserDetails extends React.Component{
                             </Link>
                         </Col>
                     </Row>
-                    <Row >
-                        <Col md = {6} className = "mt-3">
-                            <Button>Follow</Button>
+                    <Row className = "mt-3">
+                        <Col md = {6}>
+                            <PostLikeButton postId = {this.props.info.id}/>
                         </Col>
                         <Col>
-                            <PostLikeButton postId = {this.props.info.id}/>
+                            <FollowButton userId = {this.props.info.user.userId}/>
                         </Col>
                     </Row>
                     <p onClick = {this.showLikesModal}

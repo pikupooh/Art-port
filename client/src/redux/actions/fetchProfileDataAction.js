@@ -12,7 +12,7 @@ export const fetchProfileDataAction = (profileData) => {
 export const fetchUserProfileAction = (profile) => {
     return {
         type: USER_PROFILE_FETCH,
-        profile: profile
+        payload: profile
     };
 };
 

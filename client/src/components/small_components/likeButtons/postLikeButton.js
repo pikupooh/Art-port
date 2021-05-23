@@ -9,10 +9,16 @@ import fetchUserData from "../../../redux/thunk/fetchUserData"
 class PostLikeButton extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            liked: false,
+        };
     }
 
     componentDidMount() {
         this.props.fetchUserData(this.props.userId)
+        setTimeout(() => {
+            this.updateButtonState();
+        }, 2000);
     }
 
     trimUser = () => {
@@ -39,7 +45,7 @@ class PostLikeButton extends React.Component {
         }
     };
 
-    blogLiked = () => {
+    postLiked = () => {
         if (this.props.userId === null) {
             this.props.showSignInModal();
             return;
@@ -60,15 +66,16 @@ class PostLikeButton extends React.Component {
     };
 
     render() {
+        console.log(this.props);
         if (this.updateButtonState() === false) {
             return (
-                <Button className="mt-3" onClick={this.blogLiked}>
+                <Button onClick={this.postLiked}>
                     Like
                 </Button>
             );
         } else {
             return (
-                <Button className="mt-3" onClick={this.removeLiked}>
+                <Button onClick={this.removeLiked}>
                     Unlike
                 </Button>
             );

@@ -1,11 +1,17 @@
 import * as ActionTypes from "../actions/actionTypes"
 
 export function searchPosts (tags) {
-
+   const token = localStorage.getItem("token");
+   console.log(tags);
+  
     return (dispatch) => {
-        fetch(`http://localhost:8080/search/posts/tags`, {
-            method: 'GET',
-            body: tags        
+        fetch(`http://localhost:8080/search/posts/tags`,{
+            method: 'POST',
+            body:  JSON.stringify(tags),
+         headers: {
+              "Content-Type": "application/json",
+                Authorization: token,
+            }, 
         })
             .then(
                 (res) => {
@@ -24,6 +30,7 @@ export function searchPosts (tags) {
             )
             .then((res) => res.json())
             .then((res) => {
+                console.log(res);
                 dispatch(searchResultAction(res));
 
                 return res;
@@ -33,13 +40,16 @@ export function searchPosts (tags) {
             });
     };
 }
-
 export function searchCategory (category) {
-
+     const token = localStorage.getItem("token");
     return (dispatch) => {
         fetch(`http://localhost:8080/search`, {
-            method: 'GET',
-            body: category        
+            method: 'POST',
+            body: category,
+           headers: {
+                "Content-Type": "application/json",
+                Authorization: token,
+            },     
         })
             .then(
                 (res) => {
