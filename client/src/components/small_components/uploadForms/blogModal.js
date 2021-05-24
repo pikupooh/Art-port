@@ -180,7 +180,7 @@ class BlogModal extends React.Component {
                                 value={this.state.categories}
                                 onAdd={(chip) => this.addCategory(chip)}
                                 onDelete={(chip, index) => this.removeCategory(chip, index)}
-                                label="Enter categories for post"
+                                label="Enter categories for blog"
                             />
                         </Form.Group>
                         <Form.Group>
