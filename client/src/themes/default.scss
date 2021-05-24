@@ -87,10 +87,6 @@ body {
     height: 30px;
     margin-right:10px;
     margin-left: 10px;
-    background-color: lighten(
-        $color: $background_color,
-        $amount: 10
-    ) !important;
 }
 
 .post_details_section {
@@ -557,6 +553,23 @@ footer {
 
 .label-alpha-white {
     color: rgba(248, 248, 248, 0.87) !important;
+}
+
+.search-tags-label{
+    color: rgba(248, 248, 248, 0.87) !important;
+}
+
+.search-tags{
+    color: rgba(248, 248, 248, 0.87) !important;
+}
+
+.search-tags-root{
+    color: rgba(248, 248, 248, 0.87) !important;
+    width: 100% !important;
+}
+
+.zeropadding{
+    padding: 0 !important;
 }
 
 @import "userprofile.scss";
