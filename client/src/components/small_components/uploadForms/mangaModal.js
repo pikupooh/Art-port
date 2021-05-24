@@ -4,6 +4,7 @@ import { categories } from "../../../shared/categories";
 import { createManga } from "../../../redux/thunk/fetchMangaData";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import ChipInput from "material-ui-chip-input"
 
 class MangaModal extends React.Component {
     constructor(props) {
@@ -37,6 +38,21 @@ class MangaModal extends React.Component {
         console.log(selected);
         this.setState({ categories: selected });
     }
+
+    removeCategory = (tag, i) => {
+        const newCategories = [...this.state.categories];
+        newCategories.splice(i, 1);
+        this.setState({
+            ...this.state,
+            categories: newCategories });
+    };
+
+    addCategory = (val) => {
+        this.setState({
+            ...this.state,
+            categories: [...this.state.categories, val],
+        });
+    };
 
     handleSubmit(e) {
         e.preventDefault();
@@ -105,6 +121,7 @@ class MangaModal extends React.Component {
         return (
             <Modal show={this.props.show} onHide={this.props.handleModalClose}>
                 <Modal.Body>
+                    <Modal.Header>Create a manga</Modal.Header>
                     <Form id="manga-form" onSubmit={(e) => this.handleSubmit(e)}>
                         <Form.Group>
                             <Form.Label>Title</Form.Label>
@@ -137,31 +154,13 @@ class MangaModal extends React.Component {
                             </div>
                         </Form.Group>
                         <Form.Group>
-                            <Form.Label>Categories</Form.Label>
-                            <Form.Control
-                                as="select"
-                                name="category"
-                                multiple
-                                onChange={(e) => {
-                                    this.handleCategoryChange(e);
-                                }}
-                            >
-                                {categories.map((category, i) => {
-                                    return (
-                                        <option value={category}>
-                                            {category}
-                                        </option>
-                                    );
-                                })}
-                            </Form.Control>
-                            <Form.Text muted>
-                                {" "}
-                                Hold ctrl or command for multiple selection{" "}
-                            </Form.Text>
-
-                            <div className="text-danger">
-                                {this.state.errors.categories}
-                            </div>
+                            <Form.Label className="mr-2">Enter Categories: </Form.Label>
+                            <ChipInput className="text-white-color label-alpha-white" classes={{label:"label-alpha-white", input:"text-white-color"}}
+                                value={this.state.categories}
+                                onAdd={(chip) => this.addCategory(chip)}
+                                onDelete={(chip, index) => this.removeCategory(chip, index)}
+                                label="Enter categories for post"
+                            />
                         </Form.Group>
                         <Form.Group>
                             <Form.File

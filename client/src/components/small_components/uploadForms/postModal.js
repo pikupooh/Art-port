@@ -24,11 +24,15 @@ class PostModal extends React.Component {
     removeTag = (tag, i) => {
         const newTags = [...this.state.tags];
         newTags.splice(i, 1);
-        this.setState({ tags: newTags });
+        this.setState({
+            ...this.state,
+            tags: newTags
+         });
     };
 
     addTag = (val) => {
         this.setState({
+            ...this.state,
             tags: [...this.state.tags, val],
         });
     };
@@ -129,6 +133,7 @@ class PostModal extends React.Component {
         return (
             <Modal show={this.props.show} onHide={this.props.handleModalClose}>
                 <Modal.Body>
+                <Modal.Header>Create a post</Modal.Header>
                     <Form id="post-form" onSubmit={(e) => this.handleSubmit(e)} onKeyDown={(e) => {
                         if(e.key==="Enter"){
                             console.log("Enter");
