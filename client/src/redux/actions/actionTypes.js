@@ -91,9 +91,7 @@ export const SEARCH_RESULT = "SEARCH_RESULT";
 export const ADD_FOLLOWING = "ADD_FOLLOWING";
 export const REMOVE_FOLLOWING = "REMOVE_FOLLOWING";
 
-<<<<<<< Updated upstream
 export const LOGIN_INTERRUPT = "LOGIN_INTERRUPT";
-=======
+
 export const CHANGE_POST_LAYOUT = "CHANGE_POST_LAYOUT"; 
 export const RESET_CATEGORY = "RESET_CATEGORY";
->>>>>>> Stashed changes
