@@ -20,9 +20,9 @@ public class Profile {
     @DBRef
     private List<Manga> userComics;
     @DBRef
-    private List<User> followers;
+    private Set<User> followers = new HashSet<>();
     @DBRef
-    private List<User> following;
+    private Set<User> following = new HashSet<>();
     @DBRef
     private List<Post> favoritePosts;
     @DBRef
@@ -36,8 +36,6 @@ public class Profile {
     public Profile() {
 
         this.userPosts = new ArrayList<>();
-        this.followers = new ArrayList<>();
-        this.following = new ArrayList<>();
         this.favoritePosts = new ArrayList<>();
         this.userBlogs = new ArrayList<>();
         this.favoriteBlogs = new ArrayList<>();
@@ -97,19 +95,19 @@ public class Profile {
 		this.favoriteComics = favoriteComics;
 	}
 
-	public List<User> getFollowers() {
+	public Set<User> getFollowers() {
         return followers;
     }
 
-    public void setFollowers(List<User> followers) {
+    public void setFollowers(Set<User> followers) {
         this.followers = followers;
     }
 
-    public List<User> getFollowing() {
+    public Set<User> getFollowing() {
         return following;
     }
 
-    public void setFollowing(List<User> following) {
+    public void setFollowing(Set<User> following) {
         this.following = following;
     }
 
