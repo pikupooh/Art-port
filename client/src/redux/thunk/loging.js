@@ -24,6 +24,7 @@ export default function signInUser(user, pass) {
                             "Error " + res.status + ": " + res.statusText
                         );
                         error.res = res;
+                        dispatch(loginError("Invalid username or password"));
                         throw error;
                     }
                 },
@@ -48,7 +49,7 @@ export default function signInUser(user, pass) {
     };
 }
 
-function setUserLogin({token, userId, profilePhoto}) {
+function setUserLogin({ token, userId, profilePhoto }) {
     return {
         type: ActionTypes.LOGIN_SUCCESS,
         token: token,
@@ -56,6 +57,13 @@ function setUserLogin({token, userId, profilePhoto}) {
         profilePhoto: profilePhoto,
     };
 }
+
+export const loginError = (message) => {
+    return {
+        type: ActionTypes.LOGIN_FAILURE,
+        message,
+    };
+};
 
 function requestLogout() {
     return {

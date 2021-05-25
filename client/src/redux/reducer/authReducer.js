@@ -6,6 +6,7 @@ const initState = {
     isAuthenticated: localStorage.getItem("token") ? true : false,
     profilePhoto: localStorage.getItem("profilePhoto"),
     profile: {},
+    errmess: "",
 };
 
 export const authReducer = (state = initState, action) => {
@@ -22,6 +23,12 @@ export const authReducer = (state = initState, action) => {
             return {
                 ...state,
                 isAuthenticated: false,
+                errmess: action.message,
+            };
+        case ActionTypes.LOGIN_INTERRUPT:
+            return {
+                ...state,
+                errmess: "",
             };
         case ActionTypes.LOGOUT_REQUEST:
             return {
