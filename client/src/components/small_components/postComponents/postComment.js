@@ -64,40 +64,51 @@ class PostComment extends Component{
     render(){
         return(
             <div className = "m-2">
-                <Row>
-                <Link to = {'/user/' + this.props.comment.user.userId}>
+                 <Row>
+                    <Link to = {'/user/' + this.props.comment.user.userId}>
                         <Col xs = {2}>
                             <Image src = {this.props.comment.user.profilePhoto.link} roundedCircle className = "comment_profile_photo"></Image>
                         </Col>
                     </Link>
                     <Col>
-                    <Link to = {'/user/' + this.props.comment.user.userId}>
-                        <Row >
-                            <p className = "username">
+                        <Row>
+                            
+                             <Link to = {'/user/' + this.props.comment.user.userId}>
+                               <p className="username">
                                 {this.props.comment.user.username}
-                            </p>
+                                </p>
+                                 </Link>  
                         </Row>
-                        </Link>
+                   
                         <Row>
-                            {this.props.comment.content}
+                        <p className= "post_comment_content my-1">
+                        {this.props.comment.content}
+                        </p>
                         </Row>
-                        <Row>
-                            <div onClick = {() => this.openReplyForm(this.props.comment.user.username)}>
+                        <Row id = "blog_comments_options">
+                            <div className = "blog_comment_reply" onClick = {() => this.openReplyForm(this.props.comment.user.username)}>
                                 <ReplyFill></ReplyFill> 
                                 Reply
                             </div>
+                            <p className= "showhidereplies_button" style= {{marginBottom :"0px"}}>
                             <ShowHideRepliesButton showReplies = {this.state.showReplies} 
                                                     toggleShowReplies = {this.toggleShowReplies} 
-                                                    repliesLength = {this.props.comment.replies.length}/>
+                                                    repliesLength = {this.props.comment.replies.length}
+                                                   /> </p>
+                                                   
+                            <p >
                             <EditButton id = {this.props.comment.user.userId}
                                         userId = {this.props.userId}
                                         openEditForm = {this.openEditForm}
                                         isEdit = {this.state.isEdit}
+                                   
                             />
                             <DeleteButton id = {this.props.comment.user.userId}
                                           userId = {this.props.userId}
                                           deleteComment = {this.deleteComment}
+                                           
                             />
+                           </p>
                         </Row>
                     </Col>
                 </Row>
@@ -166,7 +177,7 @@ function ShowHideRepliesButton(props) {
 function DeleteButton(props){
     if(props.id === props.userId){
         return(
-            <i className = "material-icons text-center ml-2" onClick = {props.deleteComment}>
+            <i className = "material-icons text-center ml-2" id = "delete_button"onClick = {props.deleteComment}>
                 delete
             </i>
         )
@@ -183,7 +194,7 @@ function DeleteButton(props){
 function EditButton(props){
     if(props.id === props.userId && props.isEdit === false){
         return(
-            <i className = "material-icons text-center ml-2" onClick = {props.openEditForm}>
+            <i className = "material-icons text-center ml-2" id = "edit_button" onClick = {props.openEditForm}>
                 edit
             </i>
         )

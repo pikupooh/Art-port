@@ -84,13 +84,14 @@
     overflow-y: scroll;
     background-color: lighten($color: $background-color, $amount: 10);
     padding-top: 10px;
+    border-radius:20px;
 }
     
 
 .manga_data_chapter_list_chapter{
 
     &:hover{
-        background-color: $background-color;
+        background-color: lighten($color: $background-color, $amount: 15);
     }
 }
 

@@ -14,7 +14,7 @@ class PostDataCommentReplies extends Component{
         }
 
         return(
-            <div className = "">
+            <div className = "post_replies">
                 {this.props.replies.map((reply) => 
                     <div  key = {reply.id}>
                         <PostDataCommentsReply reply = {reply} 

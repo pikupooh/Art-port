@@ -36,27 +36,25 @@ class PostDataCommentsReply extends Component{
 
     render(){
         return(
-            <div className = "ml-5">
+            <div className = "">
                 <Row>
                     <Link to = {'/user/' + this.props.reply.user.userid}>
                         <Col xs = {2}>
                             <Image src = {this.props.reply.user.profilePhoto.link} roundedCircle className = "comment_profile_photo"></Image>
                         </Col>
                     </Link>
-                    <Col>
-                    <Link to = {'/user/' + this.props.reply.user.userId}>
-                        <Row>
-                            <div className = "username">
-                                {this.props.reply.user.username}
-                            </div>
-                        </Row>
-                    </Link>
-                        <Row>
-                            <div>
-                                <span className = "username">@{this.props.reply.replyTo} &nbsp;</span>
-                                {this.props.reply.content}
-                            </div>
-                        </Row>
+                    <Col className= "mb-2">
+                   <Link to = {'/user/' + this.props.reply.user.userId}>
+                                <Row>
+                                    <div >
+                                        <span className="username" >{this.props.reply.user.username} &nbsp;</span>replying to
+                                        <span className="username" > @{this.props.reply.replyTo}</span>
+                                    </div>
+                                </Row>
+                            </Link>
+                                <Row>
+                                    {this.props.reply.content}
+                                </Row>
                         <Row>
                             <div className = "blog_comment_reply" onClick = {() => this.props.openReplyForm(this.props.reply.user.username)}>
                                 <ReplyFill></ReplyFill> 

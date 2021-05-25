@@ -100,6 +100,35 @@ manga_data_container{
 .carousel_message{
  font-weight:600;
 }
+/*post comment section css*/
+.post_data_comments {
+     background-color: lighten($color: $background-color, $amount: 15);
+    padding-top: 10px;
+    padding-bottom:10px;
+    margin-top: 10px;
+    margin-bottom:10px;
+    text-align: left !important;
+    border-radius:20px;
+}
+.post_comment_content{
+    background-color: lighten($color: $background-color, $amount: 20);
+        border-radius:10px;
+    padding-left:10px;
+    padding-right:10px;
+}
+.post_comment_buttons{
+    padding-left:17px;
+}
+.post_replies{
+    background-color:lighten($color: $background-color, $amount:20);
+    margin-left:40px;
+    margin-right:20px;
+    padding-top:10px;
+    padding-left:10px;
+    padding-bottom:10px;
+    border-radius:10px;
+    margin-bottom: 10px;
+}
 /* search Reuslt page css */
 .search{
     background-color: #000;

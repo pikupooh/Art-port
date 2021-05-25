@@ -36,8 +36,8 @@ class MangaDataCommentsReply extends Component{
 
     render(){
         return(    
-             <div className = "ml-5">
-                <div className = "ml-5">
+             <div className = "ml-2">
+                <div className = "ml-2">
                         <Row >
                        
                         <Link to = {'/user/' + this.props.reply.user.userid}>

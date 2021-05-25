@@ -33,30 +33,30 @@ class PostCommentEditForm extends Component{
     render(){
         if(this.props.isEdit === true){
             return(
-                <Col className = "mt-2">
-                    <Form>
-                        <Form.Group>
-                            <Form.Control as="textarea" rows = {1} 
-                                        placeholder = "Enter edited commment here" 
-                                        onChange = {this.handleOnChange} 
-                                        value = {this.state.message}>
-                            </Form.Control>
-                            <Row>
-                                <Col className = "comment_button" >
-                                    <Button className = "btn-sm" onClick = {this.edit}>
-                                        Edit
-                                    </Button>
-                                    <p onClick = {this.props.closeEditForm}>
+                 <div className="reply_form">
+                    <div className = "reply_on_comment">
+                        <Form>
+                            <Form.Group>
+                                <Form.Control as="textarea" rows = {1} 
+                                            placeholder = {"Enter edited reply " }
+                                            onChange = {this.handleOnChange} 
+                                            value = {this.state.message}
+                                          >
+                                </Form.Control>
+                                <Row>
+                                    <div className="post_comment_buttons">
+                                        <Button className = "btn-sm my-1" onClick = {() => this.edit()}>
+                                            Reply
+                                        </Button>
+                                        <Button className= "btn-sm my-1 mx-1" onClick = {this.props.closeEditForm}>
                                             Cancel
-                                        </p>
-                                </Col>
-                                <Col >
-                                    
-                                </Col>
-                            </Row>
-                        </Form.Group>
-                    </Form>
-                </Col>
+                                        </Button>
+                                   </div>
+                                </Row>
+                            </Form.Group>
+                        </Form>
+                    </div>
+                </div>
             )
         }
         else{
