@@ -118,12 +118,11 @@ public class MangaController {
     }
 
     @PutMapping("/manga/{mangaId}/rating")
-    public ResponseEntity<?> addLike(@RequestBody Rating rating, @PathVariable String mangaId, Principal principal){
+    public ResponseEntity<?> addRating(@RequestBody Rating rating, @PathVariable String mangaId, Principal principal){
 
-        Manga manga = mangaService.getManga(mangaId);
-        if(mangaId != rating.getMangaId())
+        if(!mangaId.equals(rating.getMangaId()))
         	return new ResponseEntity<String>("Error rating id", HttpStatus.NOT_FOUND);
-        if(manga== null)
+        if(!mangaService.findManga(mangaId))
             return new ResponseEntity<String>("Manga not found", HttpStatus.NOT_FOUND);
 
         User user = userService.getUserByName(principal.getName());
@@ -136,10 +135,10 @@ public class MangaController {
         
         if(profile == null)
         	return new ResponseEntity<String>("Internal Error Profile for User not defined", HttpStatus.NOT_FOUND);
-        
+        /*
         if(profile.getUserRatings().contains(rating)) {
         	int idx = profile.getUserRatings().indexOf(rating);
-        	int currRating = profile.getUserRatings().get(idx).getRating();
+        	double currRating = profile.getUserRatings().get(idx).getRating();
         	profile.getUserRatings().set(idx, rating);
         	mangaService.updateRating(rating.getRating(), currRating, mangaId);
         }
@@ -148,9 +147,7 @@ public class MangaController {
         	mangaService.updateRating(rating.getRating(), 0, mangaId);
         }
     	profileService.save(profile);
-        
-        mangaService.save(manga);
-
+*/
         return ResponseEntity.ok("Rating added.");
 
     }

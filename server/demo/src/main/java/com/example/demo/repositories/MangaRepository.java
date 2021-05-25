@@ -18,4 +18,7 @@ public interface MangaRepository extends MongoRepository<Manga, String> {
     @Query(value = "{ 'type': 'COMIC', 'category' : {$all : ?0 }}")
     List<Manga> findComicByCategory(String[] category);
 
+    @Query(fields = "{rating: 1, ratingCount: 1}")
+    Manga findRatingById(String id);
+
 }
