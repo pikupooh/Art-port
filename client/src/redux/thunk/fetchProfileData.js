@@ -53,7 +53,6 @@ export function fetchUserProfileData() {
                     throw error;
                 }
             )
-            //.then((res) => res.json())
             .then((res) => {
                 console.log(res);
                 dispatch(fetchUserProfileAction(res));

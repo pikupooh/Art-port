@@ -3,7 +3,7 @@ import { POST_COMIC_COMMENT } from "../../actions/actionTypes";
 function postComicComment(comicId, message) {
     
     const token = localStorage.getItem("token");
-
+    console.log(comicId, message);
     return (dispatch) => {
         fetch(`http://localhost:8080/manga/${comicId}/comment`, {
             method: "POST",

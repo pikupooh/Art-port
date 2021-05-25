@@ -95,7 +95,7 @@ class App extends React.Component {
                                         component={ResetPassword}
                                     />
                                     <Route
-                                         path = "/searchResults"
+                                         path = "/search"
                                          component ={SearchResults}
                                     />      
 

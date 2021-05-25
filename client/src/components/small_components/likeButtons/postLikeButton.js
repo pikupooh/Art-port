@@ -70,13 +70,23 @@ class PostLikeButton extends React.Component {
         if (this.updateButtonState() === false) {
             return (
                 <Button onClick={this.postLiked}>
-                    Like
+                        <div className = "like_button">
+                        Like
+                        <div className="material-icons ml-1">
+                            thumb_up_off_alt
+                        </div>
+                    </div>
                 </Button>
             );
         } else {
             return (
                 <Button onClick={this.removeLiked}>
-                    Unlike
+                    <div className = "like_button">
+                        Unlike
+                        <div className="material-icons ml-1">
+                            thumb_down_off_alt
+                        </div>
+                    </div>
                 </Button>
             );
         }

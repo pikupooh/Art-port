@@ -6,12 +6,19 @@
     background-color:  lighten($color: $background-color, $amount: 20);
     }
 }
+
+.comic_conatiner{
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
 .comic_list_title{
     padding-bottom: 20px;
-    color : gold;
-    font-size: 17px;
-    font-weight:800;
+    color : rgb(0, 162, 255);
+    font-size: 1.5rem;
+    font-weight: 800;
 }
+
 .comic_rating{
     padding-top:10px;
     font-size: 15px;

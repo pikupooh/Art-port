@@ -5,7 +5,7 @@ import { EmailIcon, FacebookIcon, RedditIcon, TwitterIcon, WhatsappIcon } from "
 import { ClipboardCopy } from "./ClipboardCopy"
 export function ShareRow(props){
     return(
-        <div>
+        <div className = "mt-5">
         <div className = "share_buttons"><EmailShareButton url={window.location.href}><EmailIcon size={32} round={true}></EmailIcon> </EmailShareButton></div>
         <div className = "share_buttons" ><FacebookShareButton url={window.location.href}><FacebookIcon size={32} round={true}></FacebookIcon></FacebookShareButton></div>
         <div className = "share_buttons"><RedditShareButton url={window.location.href}><RedditIcon size={32} round={true}></RedditIcon></RedditShareButton></div>

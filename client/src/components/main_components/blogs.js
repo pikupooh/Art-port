@@ -11,6 +11,7 @@ class blogs extends React.Component{
 
     componentDidMount() {
         this.props.fetchBlogList()
+        window.scrollTo(0, 0);
     }
     
     render(){

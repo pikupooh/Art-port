@@ -1,7 +1,10 @@
 import * as ActionTypes from "../actions/actionTypes";
 
 const initState = {
-    result: {}
+    posts: [],
+    blogs: [],
+    mangas: [],
+    comics:[]
 };
 
 export const searchReducer = (state = initState, action) => {
@@ -9,7 +12,10 @@ export const searchReducer = (state = initState, action) => {
         case ActionTypes.SEARCH_RESULT:
             return {
                 ...state,
-                result: action.result
+                posts: action.payload.posts,
+                blogs: action.payload.blogs,
+                mangas: action.payload.mangas,
+                comics: action.payload.comics,
             };
         default:
             return state;

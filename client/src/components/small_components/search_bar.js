@@ -1,10 +1,11 @@
 import React from 'react'
-import {Form, FormControl,Row,Col} from 'react-bootstrap'
-import {Link,withRouter} from 'react-router-dom'
+import {Form ,Row,Col} from 'react-bootstrap'
 import ChipInput from "material-ui-chip-input"
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
+import { searchTags } from "../../redux/thunk/fetchSearchResult";
 
- 
 class SearchBar extends React.Component{
  
 
@@ -14,6 +15,7 @@ class SearchBar extends React.Component{
             tags: [],
         }
     }
+
     handleOnChange = (e) => {
         
         this.setState({
@@ -22,11 +24,9 @@ class SearchBar extends React.Component{
     }
 
     handleOnSearch = () => {
-        if(this.state.val !== ''){
-        this.props.history.push('/search/' +this.state.val)
-        this.setState({
-            val: ''
-        })
+        if(this.state.tags.length !== ''){
+            this.props.history.push('/search/')
+            this.props.search(this.state.tags)
         }
     }
 
@@ -44,6 +44,7 @@ class SearchBar extends React.Component{
             ...this.state,
             tags: [...this.state.tags, val],
         });
+
     };
 
     render(){
@@ -69,4 +70,8 @@ class SearchBar extends React.Component{
     }
 }
 
-export default withRouter(SearchBar)
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+    search: searchTags
+}, dispatch)
+
+export default connect(null, mapDispatchToProps)(SearchBar)

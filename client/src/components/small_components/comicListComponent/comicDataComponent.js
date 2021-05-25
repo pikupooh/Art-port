@@ -6,11 +6,8 @@ import ComicListComicData from './comicListComicData'
 
 function ComicDataComponent(props){
     return(
-        <div className= "comic_list">
-            <Row className = "comic">
-            
+            <Row className = "comic" >
                 <Col md = {4} className="comic_image m-0">
-             
                     <ComicListComicImage image = {props.comic.coverPhoto}
                     /> 
                 </Col>
@@ -19,7 +16,6 @@ function ComicDataComponent(props){
                 <ComicListComicData comic = {props.comic} />
                 </div>
             </Row>
-        </div>
     )
 }
 

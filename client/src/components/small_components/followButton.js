@@ -10,17 +10,14 @@ class FollowButton extends React.Component {
     componentDidMount() {}
 
     notFollowed = () => {
+        
         if (Object.keys(this.props.profile).length === 0) {
             return true;
         }
 
-        console.log(this.props.profile.following);
-
         var foundUser = this.props.profile.following.filter(
             (user) => user.id === this.props.userId
         );
-
-        console.log(foundUser);
 
         if (foundUser.length !== 0) {
             return false;
@@ -30,16 +27,21 @@ class FollowButton extends React.Component {
     };
 
     followUser = () => {
+
+        if (this.props.logInId === null) {
+            this.props.showSignInModal();
+            return;
+        }
+
         this.props.addFollower(this.props.userId, this.props.logInId);
-    };
+    }
+
 
     unfollowUser = () => {
         this.props.unfollowUser(this.props.userId, this.props.logInId);
     };
 
     render() {
-        console.log(this.props);
-
         if (
             this.props.userId === "" ||
             this.props.userId === this.props.logInId
@@ -67,14 +69,12 @@ const mapStateToProps = (state) => {
     };
 };
 
-const mapDipatchToProps = (dispatch) =>
-    bindActionCreators(
-        {
-            fetchUserProfileData,
-            addFollower,
-            unfollowUser,
-        },
-        dispatch
-    );
+const mapDipatchToProps = (dispatch) => bindActionCreators({
+        fetchUserProfileData,
+        addFollower,
+        unfollowUser,
+        showSignInModal: () => dispatch({ type: "SHOW_MODAL" }),
+    },dispatch
+)
 
 export default connect(mapStateToProps, mapDipatchToProps)(FollowButton);

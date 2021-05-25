@@ -2,18 +2,20 @@ import { Component } from 'react';
 
 import ComicDataComment from './comicDataComment'
 import ComicCommentSection from './comicCommentSection'
+import CommentsTag from '../../commentsTag'
 
 class ComicDataComments extends Component{
 
     render(){
-    if(this.props.comments.length === 0){
+        console.log(this.props);
+    if( this.props.comments.length === 0){
         return(
               <div>
             <div className = "blog_data_comments" style ={{padding:"5px" ,justifyContent:"center"}}>
                <p style ={{paddingTop:"5px",paddingLeft:"5px"}}>Be the first to comment</p> 
              </div>
              <div>
-                <ComicCommentSection blogId = {this.props.mangaId}/>
+                <ComicCommentSection mangaId = {this.props.mangaId}/>
                 </div>
             </div>
         )  
@@ -21,6 +23,7 @@ class ComicDataComments extends Component{
     else{
         return(
              <div>
+                <CommentsTag length = {this.props.comments.length} />
                 <div className = "blog_data_comments">
                 {this.props.comments.map((comment) => 
                     <div  key = {comment.id}>
@@ -29,7 +32,7 @@ class ComicDataComments extends Component{
                     </div>
                 )}     
                 </div>
-             <div > <ComicCommentSection blogId = {this.props.blogId}/></div>
+             <div > <ComicCommentSection mangaId = {this.props.mangaId}/></div>
             </div>
         )
     }}

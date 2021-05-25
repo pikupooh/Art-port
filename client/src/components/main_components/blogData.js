@@ -8,6 +8,7 @@ import fetchBlogDataAction from "../../redux/thunk/fetchBlogData";
 import BlogDataComments from "../small_components/blogDataComponent/blogDataComments";
 import PostLikesModal from "../small_components/postLikesModal"
 import BlogLikeButton from "../small_components/likeButtons/blogLikeButton"
+import CommentsTag from "../small_components/commentsTag"
 
 import { ShareRow } from "../small_components/ShareRow"
 
@@ -92,9 +93,6 @@ class blogData extends React.Component {
             </Col>
           </Row>
           <Row className = "mx-2">
-            <ShareRow />
-          </Row>
-          <Row className = "mx-2">
             Tags
           </Row>
           <Row className = "mx-2">
@@ -109,6 +107,10 @@ class blogData extends React.Component {
           <div className = "mt-5">
             {this.props.content}
           </div>
+          <Row className = "mx-2">
+            <ShareRow />
+          </Row>
+          <CommentsTag length = {this.props.comments.length}/>
           <BlogDataComments blogId = {this.props.id} comments = {this.props.comments}/>
         </Container>
       </div>

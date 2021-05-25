@@ -9,6 +9,7 @@ import MangaDataComponent from '../small_components/mangaListComponent/mangaData
 class Manga extends React.Component{
     componentDidMount() {
         this.props.fetchMangaList()
+        window.scrollTo(0, 0);
     }
     render(){
         return(

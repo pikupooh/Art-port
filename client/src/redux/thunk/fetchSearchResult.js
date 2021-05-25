@@ -1,17 +1,19 @@
-import * as ActionTypes from "../actions/actionTypes"
+import { SEARCH_RESULT } from "../actions/actionTypes"
 
-export function searchPosts (tags) {
-   const token = localStorage.getItem("token");
-   console.log(tags);
-  
+export function searchTags (tags) {
+
+    console.log(tags);
+
+    let tagsBody = JSON.stringify(tags)
+    console.log(tagsBody);
+
     return (dispatch) => {
-        fetch(`http://localhost:8080/search/posts/tags`,{
+        fetch(`http://localhost:8080/search`, {
             method: 'POST',
-            body:  JSON.stringify(tags),
-         headers: {
-              "Content-Type": "application/json",
-                Authorization: token,
-            }, 
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: tagsBody,   
         })
             .then(
                 (res) => {
@@ -31,45 +33,10 @@ export function searchPosts (tags) {
             .then((res) => res.json())
             .then((res) => {
                 console.log(res);
-                dispatch(searchResultAction(res));
-
-                return res;
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    };
-}
-export function searchCategory (category) {
-     const token = localStorage.getItem("token");
-    return (dispatch) => {
-        fetch(`http://localhost:8080/search`, {
-            method: 'POST',
-            body: category,
-           headers: {
-                "Content-Type": "application/json",
-                Authorization: token,
-            },     
-        })
-            .then(
-                (res) => {
-                    if (res.ok) return res;
-                    else {
-                        var error = new Error(
-                            "Error " + res.status + ": " + res.statusText
-                        );
-                        error.res = res;
-                        throw error;
-                    }
-                },
-                (error) => {
-                    throw error;
-                }
-            )
-            .then((res) => res.json())
-            .then((res) => {
-                dispatch(searchResultAction(res));
-
+                dispatch({
+                    type: SEARCH_RESULT,
+                    payload: res
+                })
                 return res;
             })
             .catch((error) => {
@@ -78,11 +45,3 @@ export function searchCategory (category) {
     };
 }
 
-function searchResultAction (result) {
-    return {
-        type: ActionTypes.SEARCH_RESULT,
-        result: result
-    };
-}
-
-export default searchPosts;

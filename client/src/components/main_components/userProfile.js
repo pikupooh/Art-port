@@ -16,6 +16,7 @@ class UserProfile extends React.Component {
         let id = lastSlash==5?this.props.location.pathname.slice(6):this.props.location.pathname.slice(6, lastSlash);
         this.props.fetchProfileData(id);
         this.props.fetchUserData(id);
+        window.scrollTo(0, 0);
     }
 
     render() {

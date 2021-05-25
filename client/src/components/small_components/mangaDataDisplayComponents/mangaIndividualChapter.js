@@ -13,16 +13,16 @@ class MangaIndividualChapter extends React.Component {
 
   render () {
     return ( 
-      <Container className = 'text-center'>
-        <div className = "my-5 py-5 mangaChapterDetails">
-          <div>
+      <Container className = ''>
+        <div className = " text-center my-5 py-5 mangaChapterDetails">
+          <div >
             CHAPTER NO:   {this.props.chapterNo}
           </div>
           <div className = "manga_chapter_title">
             {this.props.chapterName}
           </div>
         </div>
-        <div className = "manga_chapter_images_container">
+        <div className = "manga_chapter_images_container text-center">
           {this.props.photoDocument.map((photo) => 
             <div key = {photo.id}> 
               <Image src ={photo.link} fluid className = "my-3"></Image>

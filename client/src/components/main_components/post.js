@@ -13,7 +13,6 @@ class Post extends React.Component {
   componentDidMount() {
     let postId = this.props.location.pathname.slice(6);
     this.props.fetchPostData(postId)
-    
     window.scrollTo(0, 0);
   }
 
@@ -54,7 +53,7 @@ const mapStateToProps = (state) => {
     tags: state.post.tags,
     type: state.post.type,
     user: state.post.user,
-    category: state.post.category,
+    categories: state.post.category,
     comments: state.post.comments,
     title: state.post.title,
     description: state.post.description

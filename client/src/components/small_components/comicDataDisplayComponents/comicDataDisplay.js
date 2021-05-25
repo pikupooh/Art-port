@@ -1,4 +1,4 @@
-import { Row, Col, Container, Image } from 'react-bootstrap' 
+import { Row, Col, Container, Image, Button } from 'react-bootstrap' 
 import { CardList, StarFill } from 'react-bootstrap-icons'
 import { Link } from 'react-router-dom';
 
@@ -25,7 +25,9 @@ function ComicDataDisplay (props) {
                             
                                 <CardList className = "my-auto mr-3 manga_data_chapters_cardlist"/>
                                 {"Chapters " + props.chaptersLength}
-                           
+                                <div className = "ml-auto mr-3" >
+                                    {(props.author.userId === props.userId) && (<Button id = "add_chapter_button" onClick = {props.handleFormModalShow}>+ Add Chapter</Button>)}
+                                </div>
                         </Row>
                         <div className = "manga_data_author_container">
                             <Row >
@@ -33,7 +35,7 @@ function ComicDataDisplay (props) {
                             </Row>
                             <Link to = {'/user/' + props.author.userId} > 
                             <div className = "manga_data_authors">
-                            {props.author.firstName} {props.author.lastName + ' '}
+                                {props.author.firstName} {props.author.lastName + ' '}
                             </div>
                               
                             </Link>

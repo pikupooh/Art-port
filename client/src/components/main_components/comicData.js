@@ -30,7 +30,8 @@ class ComicData extends React.Component {
 
   componentDidMount() {
     let comicId = this.props.location.pathname.slice(7);
-    this.props.fetchComicData(comicId)
+    this.props.fetchComicData(comicId);
+    window.scrollTo(0, 0);
   }
   
   render() {
@@ -44,12 +45,14 @@ class ComicData extends React.Component {
                             author= {this.props.author}
                             title = {this.props.title}
                             chaptersLength = {this.props.chapters.length}
+                            handleFormModalShow = {this.handleFormModalShow}
+                            userId = {this.props.userId}
                             />
 
             <ComicDescriptionDisplay about = {this.props.about}/>
-            <ShareRow />
-            {(this.props.author.userId === this.props.userId) && (<Button onClick = {this.handleFormModalShow}>+ Add Chapter</Button>)}
+            
             <ComicChapterDisplay chapters ={this.props.chapters}/> 
+            <ShareRow />
             <ComicDataComments comments = {this.props.comments} mangaId = {this.props.mangaId}/>
         </Container>
         <ChapterModal

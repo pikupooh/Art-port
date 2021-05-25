@@ -13,7 +13,7 @@ function MangaChaptersDisplay (props) {
     return ( 
         <div>
             <div className ="pb-2 manga_data_description_text text-center">
-                CHAPTERS:
+                CHAPTERS
             </div>
             <div className ="pb-2 manga_data_chater_list_container">
             {props.chapters.map((chapter) => 

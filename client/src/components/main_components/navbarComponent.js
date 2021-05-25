@@ -1,9 +1,10 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
 import ProfileCircle from '../small_components/profileCircle'
 
 import { Nav, NavItem, Navbar } from "react-bootstrap"
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import  SearchBar from '../small_components/search_bar'
+
+const SearchBarWithRouter = withRouter(SearchBar)
 
 const NavbarComponent = () => {
 
@@ -13,7 +14,7 @@ const NavbarComponent = () => {
                 <Navbar.Brand href="/"><strong>Art</strong> Port</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
-                    <SearchBar />
+                    <SearchBarWithRouter />
                     <Nav className="ml-auto">
                         <NavItem >
                             <Link to ="/comics" className = "nav-link">Comics</Link>

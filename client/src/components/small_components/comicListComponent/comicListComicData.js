@@ -21,9 +21,6 @@ function ComicListComicData(props){
             <Row className= "comic_chapters">
                 Chapters:  {props.comic.chapters.length } {chapter}
             </Row>
-            <Row>
-                Genre:
-            </Row> 
             </div> 
         </Container>
     )

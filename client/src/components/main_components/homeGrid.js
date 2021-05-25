@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import {Col,Image,Row} from 'react-bootstrap';
 import Slider from 'react-slick';
 import {categories, categoriesUrl} from '../../shared/categories'
+import { CHANGE_POST_LAYOUT, RESET_CATEGORY } from '../../redux/actions/actionTypes'
 
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
@@ -62,14 +63,28 @@ class HomeGrid extends React.Component{
         }
     }
 
+    componentDidMount(){
+        this.props.fetchPostList()
+    }
+
     changeCategory = (categoryName) => {
+
+        if(this.state.active === categoryName){
+            
+            this.props.resetCategory();
+
+            this.setState({
+                active: ''
+            })
+
+            return; 
+        }
+
         this.setState({
             active: categoryName
         })
-    }
-
-    componentDidMount(){
-        this.props.fetchPostList()
+        console.log(categoryName);
+        this.props.changePostList(categoryName)
     }
 
     render(){
@@ -103,20 +118,27 @@ class HomeGrid extends React.Component{
 const mapStateToProps = (state) => {
     
     return {
-        postList: state.grid.postList,
+        postList: state.grid.tempList,
         categoryList :state.category.categoryList
     }
 }
 
 const mapDispatchToProps = (dispatch) =>  bindActionCreators({
     fetchPostList: fetchPostListAction,
+    changePostList: (categoryName) => dispatch({
+        type: CHANGE_POST_LAYOUT,
+        payload: categoryName
+    }),
+    resetCategory: () => dispatch({
+        type: RESET_CATEGORY,
+    })
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeGrid);
 
-function CategoryContainer({category, url, activeCategory}){
+function CategoryContainer({category, url, activeCategory, changeCategory}){
     return(
-        <div className = "category_container">
+        <div className = "category_container" onClick = {() => changeCategory(category)}>
             <div className = "category_image_container">
                 <Image src = {url} alt = "img" className = "category_image"/>
             </div>
