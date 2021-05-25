@@ -6,7 +6,7 @@ import SignInForm from "./sign_in_form";
 import RegisterForm from "./register_form";
 
 import { Button } from "react-bootstrap";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
 class SignInModal extends React.Component {
     constructor(props) {
@@ -48,9 +48,9 @@ class SignInModal extends React.Component {
                         </div>
                         <div className="mt-3 text-center">
                             <Link to="/registration">
-                            <Button onClick={this.handleModalClose}>
-                                Don't have an account? Register
-                            </Button>
+                                <Button onClick={this.handleModalClose}>
+                                    Don't have an account? Register
+                                </Button>
                             </Link>
                         </div>
                     </Modal.Body>
@@ -97,7 +97,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        hideSignInModal: () => dispatch({ type: "HIDE_MODAL" }),
+        hideSignInModal: () => {
+            dispatch({ type: "HIDE_MODAL" });
+            dispatch({ type: "LOGIN_INTERRUPT" });
+        },
     };
 };
 

@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
 
 import signInUser from "../../redux/thunk/loging";
-import { fetchUserProfileData } from "../../redux/thunk/fetchProfileData"
+import { fetchUserProfileData } from "../../redux/thunk/fetchProfileData";
 import { Form, Button, Alert } from "react-bootstrap";
 
 class SignInForm extends React.Component {
@@ -14,7 +14,6 @@ class SignInForm extends React.Component {
             username: "",
             password: "",
             errors: {},
-            loginError: "",
         };
     }
 
@@ -54,30 +53,17 @@ class SignInForm extends React.Component {
         if (this.validate()) {
             this.props.signIn(this.state.username, this.state.password);
             console.log("yo");
-            setTimeout(() => {
-                console.log("so");
-                if (this.props.isAuthenticated) {
-                    console.log(this.props.isAuthenticated);
-                    this.props.handleModalClose();
-                    this.props.fetchUserProfile(this.props.id);
-                    return this.props.history.push("/");
-                } else {
-                    this.resetForm();
-                    this.setState({
-                        loginError: "Invalid username or password",
-                    });
-                }
-                console.log(this.state);
-            }, 1000);
-            // setTimeout(() => window.location.reload(), 4000);
         }
     };
 
     render() {
-        const { loginError } = this.state;
+        //const { loginError } = this.state;
         return (
             <div>
-                {loginError && <Alert variant="danger">{loginError}</Alert>}
+                {this.props.errmess !== "" && (
+                    <Alert variant="danger">{this.props.errmess}</Alert>
+                )}
+                {this.props.isAuthenticated && this.props.handleModalClose()}
                 <Form onSubmit={this.handleSignIn}>
                     <Form.Group>
                         <Form.Label>Username</Form.Label>
@@ -121,7 +107,8 @@ class SignInForm extends React.Component {
 const mapStateToProps = (state) => {
     return {
         isAuthenticated: state.auth.isAuthenticated,
-        id: state.auth.userId
+        id: state.auth.userId,
+        errmess: state.auth.errmess,
     };
 };
 
@@ -129,7 +116,7 @@ const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
             signIn: signInUser,
-            fetchUserProfile: fetchUserProfileData
+            fetchUserProfile: fetchUserProfileData,
         },
         dispatch
     );
