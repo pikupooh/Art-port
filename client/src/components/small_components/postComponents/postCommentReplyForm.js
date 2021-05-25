@@ -33,30 +33,33 @@ class PostCommentReplyForm extends Component{
     render(){
         if(this.props.isReply === true){
             return(
-                <Col className = "mt-2">
-                    <Form >
-                        <Form.Group>
-                            <Form.Control as="textarea" rows = {1} 
-                                        placeholder = {"Enter reply to " + this.props.replyToUser}
-                                        onChange = {this.handleOnChange} 
-                                        value = {this.state.message}>
-                            </Form.Control>
-                            <Row>
-                                <Col className = "comment_button" >
-                                    <Button className = "btn-sm" onClick = {() => this.reply()}>
-                                        Reply
-                                    </Button>
-                                    <p onClick = {this.props.closeReplyForm}>
-                                        Cancel
-                                    </p>
-                                </Col>
-                                <Col >
-                                    
-                                </Col>
-                            </Row>
-                        </Form.Group>
-                    </Form>
-                </Col>
+                <div className="reply_form">
+                    <div className = "reply_on_comment">
+                        <Form>
+                            <Form.Group>
+                                <Form.Control as="textarea" rows = {1} 
+                                            placeholder = {"Enter reply to " + this.props.replyToUser}
+                                            onChange = {this.handleOnChange} 
+                                            value = {this.state.message}
+                                          >
+                                </Form.Control>
+                                <Row>
+                                    <div className="post_comment_buttons">
+                                        <Button className = "btn-sm my-1" onClick = {() => this.reply()}>
+                                            Reply
+                                        </Button>
+                                        
+                                 
+                                  
+                                        <Button className= "btn-sm my-1 mx-1" onClick = {this.props.closeReplyForm}>
+                                            Cancel
+                                        </Button>
+                                   </div>
+                                </Row>
+                            </Form.Group>
+                        </Form>
+                    </div>
+                </div>
             )
         }
         else{
