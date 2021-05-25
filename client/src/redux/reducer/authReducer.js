@@ -5,7 +5,7 @@ const initState = {
     token: localStorage.getItem("token"),
     isAuthenticated: localStorage.getItem("token") ? true : false,
     profilePhoto: localStorage.getItem("profilePhoto"),
-    profile: {}
+    profile: {},
 };
 
 export const authReducer = (state = initState, action) => {
@@ -34,7 +34,7 @@ export const authReducer = (state = initState, action) => {
                 isAuthenticated: false,
                 userId: null,
                 token: null,
-                profile: {}
+                profile: {},
             };
         case ActionTypes.USER_PROFILE_FETCH:
             return {
@@ -43,25 +43,27 @@ export const authReducer = (state = initState, action) => {
             };
 
         case ActionTypes.REMOVE_FOLLOWING:
-            let newProfile = {...state.profile}
-            let newFollowing = state.profile.following.filter((user) => user.id != action.payload.userId)
-            newProfile.following = newFollowing
+            let newProfile = { ...state.profile };
+            let newFollowing = state.profile.following.filter(
+                (user) => user.id != action.payload.userId
+            );
+            newProfile.following = newFollowing;
             console.log(newProfile);
             return {
                 ...state,
-                profile: newProfile
-            }
+                profile: newProfile,
+            };
 
         case ActionTypes.ADD_FOLLOWING:
-            newProfile = state.profile
-            newProfile.following = [
+            let updateProfile = { ...state.profile };
+            updateProfile.following = [
                 ...state.profile.following,
-                action.payload
-            ]
+                action.payload,
+            ];
             return {
                 ...state,
-                profile: newProfile
-            }
+                profile: updateProfile,
+            };
         default:
             return state;
     }

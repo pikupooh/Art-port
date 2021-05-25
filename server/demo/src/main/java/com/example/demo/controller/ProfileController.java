@@ -13,10 +13,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 import java.util.List;
 
-@CrossOrigin
+//@CrossOrigin
 @RestController
 public class ProfileController {
 
@@ -173,20 +174,29 @@ public class ProfileController {
     }
     
     @PostMapping("/users/{userId}/follower/{followerId}")
-    public ResponseEntity<?> addFollower(@PathVariable String userId, @PathVariable String followerId, Principal principal){
+    public ResponseEntity<?> addFollower(@PathVariable String userId, @PathVariable String followerId, Principal principal, HttpServletRequest request){
+
+        long start = System.currentTimeMillis();
+        String test = request.getRequestURI();
+        System.out.println(test);
         System.out.println("hehe");
+
         User user = userService.getUserByName(principal.getName());
         if(user == null)
             return new ResponseEntity<String>("User not present.", HttpStatus.UNAUTHORIZED);
         if (!user.getId().equals(userId))
             return new ResponseEntity<String>("User invalid.", HttpStatus.UNAUTHORIZED);
 
+
         User following = profileService.addFollower(userId, followerId);
+        System.out.println(System.currentTimeMillis()-start);
         return ResponseEntity.ok(following);
     }
 
     @DeleteMapping("/users/{userId}/follower/{followerId}")
     public ResponseEntity<?> removeFollower(@PathVariable String userId, @PathVariable String followerId, Principal principal){
+
+        long start = System.currentTimeMillis();
         User user = userService.getUserByName(principal.getName());
         if(user == null)
             return new ResponseEntity<String>("User not present.", HttpStatus.UNAUTHORIZED);
@@ -194,6 +204,8 @@ public class ProfileController {
             return new ResponseEntity<String>("User invalid.", HttpStatus.UNAUTHORIZED);
 
         profileService.deleteFollower(userId, followerId);
+
+        System.out.println(System.currentTimeMillis()-start);
         return ResponseEntity.ok("Follower removed");
     }
 
