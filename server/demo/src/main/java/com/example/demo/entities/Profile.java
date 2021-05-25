@@ -242,19 +242,25 @@ public class Profile {
         this.favoriteComics.remove(manga);
     }
 
-	@Override
+    @Override
     public String toString() {
         return "Profile{" +
-                "userPosts=" + userPosts +
+                "id='" + id + '\'' +
+                ", userPosts=" + userPosts +
+                ", userBlogs=" + userBlogs +
+                ", userMangas=" + userMangas +
+                ", userComics=" + userComics +
                 ", followers=" + followers +
                 ", following=" + following +
                 ", favoritePosts=" + favoritePosts +
-                ", userBlogs=" + userBlogs +
                 ", favoriteBlogs=" + favoriteBlogs +
+                ", favoriteMangas=" + favoriteMangas +
+                ", favoriteComics=" + favoriteComics +
+                ", userRatings=" + userRatings +
                 '}';
     }
 
-	public List<Rating> getUserRatings() {
+    public List<Rating> getUserRatings() {
 		return userRatings;
 	}
 

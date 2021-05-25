@@ -8,8 +8,13 @@ import com.example.demo.entities.User;
 import com.example.demo.payload.response.UserDTO;
 import com.example.demo.repositories.ProfileRepository;
 import com.example.demo.repositories.UserRepository;
+import com.mongodb.client.result.UpdateResult;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -24,6 +29,9 @@ public class ProfileService {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    MongoTemplate mongoTemplate;
 
     public void createProfile(User user){
         Profile profile = new Profile();
@@ -117,6 +125,7 @@ public class ProfileService {
         Optional<User> user = userRepository.findById(userId);
         Optional<User> follower = userRepository.findById(followerId);
         System.out.println(follower.isPresent());
+        /*
         Profile profile = profileRepository.findById(userId).get();
         profile.addFollowing(follower.get());
         profileRepository.save(profile);
@@ -124,6 +133,42 @@ public class ProfileService {
         Profile profile1 = profileRepository.findById(followerId).get();
         profile1.addFollower(user.get());
         profileRepository.save(profile1);
+        */
+
+
+        Profile profile = profileRepository.findFollowingById(userId);
+
+        /*
+        Query query = new Query(Criteria.where("id").is(userId));
+        query.fields().include("following").exclude("id");
+        Profile profile = mongoTemplate.findOne(query, Profile.class);
+    */
+        Profile profile1 = profileRepository.findFollowersById(followerId);
+        /*query = new Query(Criteria.where("id").is(followerId));
+        query.fields().include("followers").exclude("id");
+        Profile profile1 = mongoTemplate.findOne(query, Profile.class);*/
+
+        System.out.println(profileRepository.findFollowingById(followerId));
+        profile.addFollowing(follower.get());
+        profile1.addFollower(user.get());
+
+        Query query = Query.query(Criteria.where("id").is(userId));
+        Update update = new Update();
+        update.set("following", profile.getFollowing());
+
+        UpdateResult updateResult = mongoTemplate.updateFirst(query, update, Profile.class);
+        System.out.println(updateResult);
+
+
+        System.out.println(profileRepository.findFollowingById(followerId));
+
+        query = Query.query(Criteria.where("id").is(followerId));
+        Update update1 = new Update();
+        update1.set("followers", profile1.getFollowers());
+        updateResult = mongoTemplate.updateFirst(query, update1, Profile.class);
+        System.out.println(updateResult);
+
+        System.out.println(profileRepository.findFollowingById(followerId));
 
         return follower.get();
     }
@@ -134,18 +179,28 @@ public class ProfileService {
         Optional<User> follower = userRepository.findById(followerId);
 
         System.out.println(follower.get());
-        Profile profile = profileRepository.findById(userId).get();
+        Profile profile = profileRepository.findFollowingById(userId);
 
         profile.removeFollowing(follower.get());
         System.out.println(profile.getFollowing());
-        profileRepository.save(profile);
 
-        Profile profile1 = profileRepository.findById(followerId).get();
+        Query query = Query.query(Criteria.where("id").is(userId));
+        Update update = new Update();
+        update.set("following", profile.getFollowing());
+
+        UpdateResult updateResult = mongoTemplate.updateFirst(query, update, Profile.class);
+        System.out.println(updateResult);
+
+        Profile profile1 = profileRepository.findFollowersById(followerId);
 
         profile1.removeFollower(user.get());
         System.out.println(profile1.getFollowers());
-        profileRepository.save(profile1);
 
+        query = Query.query(Criteria.where("id").is(followerId));
+        Update update1 = new Update();
+        update1.set("followers", profile1.getFollowers());
+        updateResult = mongoTemplate.updateFirst(query, update1, Profile.class);
+        System.out.println(updateResult);
 
     }
 
