@@ -121,28 +121,10 @@ public class ProfileService {
         Optional<User> user = userRepository.findById(userId);
         Optional<User> follower = userRepository.findById(followerId);
         System.out.println(follower.isPresent());
-        /*
-        Profile profile = profileRepository.findById(userId).get();
-        profile.addFollowing(follower.get());
-        profileRepository.save(profile);
-
-        Profile profile1 = profileRepository.findById(followerId).get();
-        profile1.addFollower(user.get());
-        profileRepository.save(profile1);
-        */
-
 
         Profile profile = profileRepository.findFollowingById(userId);
 
-        /*
-        Query query = new Query(Criteria.where("id").is(userId));
-        query.fields().include("following").exclude("id");
-        Profile profile = mongoTemplate.findOne(query, Profile.class);
-    */
         Profile profile1 = profileRepository.findFollowersById(followerId);
-        /*query = new Query(Criteria.where("id").is(followerId));
-        query.fields().include("followers").exclude("id");
-        Profile profile1 = mongoTemplate.findOne(query, Profile.class);*/
 
         System.out.println(profileRepository.findFollowingById(followerId));
         profile.addFollowing(follower.get());
@@ -315,10 +297,24 @@ public class ProfileService {
         profileRepository.save(profile);
     }
 
-    /*public double addRating(Rating rating, String id){
+    public double addRating(String mangaId, double rating, String id){
 
+        Profile profile = profileRepository.findUserRatingsById(id);
 
-    }*/
+        if(profile == null)
+            return -2.0;
+
+        double currRating = profile.addRating(mangaId, rating);
+
+        Query query = Query.query(Criteria.where("id").is(id));
+        Update update = new Update();
+        update.set("userRatings", profile.getUserRatings());
+
+        UpdateResult updateResult = mongoTemplate.updateFirst(query, update, Profile.class);
+        System.out.println(updateResult);
+
+        return currRating;
+    }
 
     
     public void save(Profile profile) {

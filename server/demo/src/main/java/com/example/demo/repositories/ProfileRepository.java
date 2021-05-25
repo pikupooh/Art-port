@@ -40,4 +40,7 @@ public interface ProfileRepository extends MongoRepository<Profile, String> {
     
     @Query(fields = "{favoriteComics: 1}")
     Profile findFavoriteComicsById(String id);
+
+    @Query(fields = "{userRatings: 1}")
+    Profile findUserRatingsById(String id);
 }

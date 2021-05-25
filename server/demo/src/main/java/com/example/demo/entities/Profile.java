@@ -4,10 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Document(collection = "user_profile")
 public class Profile {
@@ -34,7 +31,7 @@ public class Profile {
     private List<Manga> favoriteMangas;
     @DBRef
     private List<Manga> favoriteComics;
-    private Set<Rating> userRatings = new HashSet<>();
+    private Map<String, Double> userRatings = new HashMap<>();
 
     public Profile() {
 
@@ -244,17 +241,24 @@ public class Profile {
     }
 
 
-    public Set<Rating> getUserRatings() {
+    public Map<String, Double> getUserRatings() {
         return userRatings;
     }
 
-    public void setUserRatings(Set<Rating> userRatings) {
+    public void setUserRatings(Map<String, Double> userRatings) {
         this.userRatings = userRatings;
     }
 
-    public void addRating(Rating rating){
+    public double addRating(String id, double rating){
 
-        this.userRatings.add(rating);
+        double value = -1.0;
+        if(this.userRatings.containsKey(id)){
+            value = this.userRatings.get(id);
+        }
+
+        this.userRatings.put(id, rating);
+
+        return value;
     }
     @Override
     public String toString() {
