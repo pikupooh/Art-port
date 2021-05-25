@@ -15,4 +15,7 @@ public interface PostRepository extends MongoRepository<Post, String> {
 	
 	@Query(value = "{ 'tags' : {$all : ?0 }}")
     List<Post> findPostByTags(String[] tags);
+
+	@Query(fields = "{likes: 1}")
+	Post findLikesById(String id);
 }

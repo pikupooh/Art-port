@@ -1,5 +1,6 @@
 import fetchUserData from "./fetchUserData";
 import * as ActionTypes from "../actions/actionTypes";
+import { fetchUserProfileData } from "../../redux/thunk/fetchProfileData";
 
 export default function signInUser(user, pass) {
     var creds = {
@@ -44,6 +45,7 @@ export default function signInUser(user, pass) {
                 localStorage.setItem("profilePhoto", profilePhoto);
                 dispatch(setUserLogin({ token, userId, profilePhoto }));
                 dispatch(fetchUserData(userId));
+                dispatch(fetchUserProfileData());
             })
             .catch((error) => console.log(error));
     };
