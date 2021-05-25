@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class ProfileService {
@@ -72,7 +73,7 @@ public class ProfileService {
 
 
         List<UserDTO> userDTOList = new ArrayList<>();
-        List<User> followers = profileRepository.findFollowersById(id).getFollowers();
+        Set<User> followers = profileRepository.findFollowersById(id).getFollowers();
         followers.forEach((user) -> {
             UserDTO userDTO = new UserDTO(user.getId(), user.getUsername(), user.getFirstName(), user.getLastName(), user.getProfilePhoto());
             userDTOList.add(userDTO);
@@ -84,7 +85,7 @@ public class ProfileService {
     public List<UserDTO> getFollowing(String id){
 
         List<UserDTO> userDTOList = new ArrayList<>();
-        List<User> following = profileRepository.findFollowingById(id).getFollowing();
+        Set<User> following = profileRepository.findFollowingById(id).getFollowing();
         following.forEach((user) -> {
             UserDTO userDTO = new UserDTO(user.getId(), user.getUsername(), user.getFirstName(), user.getLastName(), user.getProfilePhoto());
             userDTOList.add(userDTO);
