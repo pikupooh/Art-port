@@ -24,7 +24,7 @@ public class Post {
     @DBRef
     private List<Comment> comments = Collections.emptyList();
     private UserDTO user;
-    private List<UserDTO> likes = Collections.emptyList();
+    private Set<UserDTO> likes = new HashSet<>();
     private List<String> tags = Collections.emptyList();
     private List<String> category = Collections.emptyList();
     @NotBlank
@@ -113,11 +113,11 @@ public class Post {
         this.user = user;
     }
 
-    public List<UserDTO> getLikes() {
+    public Set<UserDTO> getLikes() {
         return likes;
     }
 
-    public void setLikes(List<UserDTO> likes) {
+    public void setLikes(Set<UserDTO> likes) {
         this.likes = likes;
     }
 

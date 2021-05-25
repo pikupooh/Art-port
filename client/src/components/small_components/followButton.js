@@ -7,9 +7,7 @@ import addFollower from "../../redux/thunk/post/addFollower";
 import unfollowUser from "../../redux/thunk/delete/unfollowUser";
 
 class FollowButton extends React.Component {
-    componentDidMount() {
-        this.props.fetchUserProfileData();
-    }
+    componentDidMount() {}
 
     notFollowed = () => {
         if (Object.keys(this.props.profile).length === 0) {

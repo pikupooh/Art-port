@@ -95,19 +95,14 @@ public class PostController {
     @PutMapping("/post/{postId}/likes")
     public ResponseEntity<?> addLike(@PathVariable String postId, Principal principal){
 
-        Post post = postService.getPost(postId);
-
-        if(post== null)
-            return new ResponseEntity<String>("Post not found", HttpStatus.NOT_FOUND);
-
         User user = userService.getUserByName(principal.getName());
 
         UserDTO userDTO = new UserDTO(user.getId(), user.getUsername(), user.getFirstName(), user.getLastName(), user.getProfilePhoto());
-        if(post.getLikes().contains(userDTO))
-            return new ResponseEntity<String>("Already liked", HttpStatus.UNAUTHORIZED);
 
-        post.addLike(userDTO);
-        postService.save(post);
+        Post post = postService.addLike(postId, userDTO);
+
+        if(post== null)
+            return new ResponseEntity<String>("Post not found", HttpStatus.NOT_FOUND);
 
         return ResponseEntity.ok("Like added.");
 
@@ -116,15 +111,12 @@ public class PostController {
     @DeleteMapping("/post/{postId}/likes")
     public ResponseEntity<?> removeLike(@PathVariable String postId, Principal principal){
 
-        Post post = postService.getPost(postId);
+        User user = userService.getUserByName(principal.getName());
+
+        Post post = postService.removeLike(postId, new UserDTO(user.getId(), user.getUsername(), user.getFirstName(), user.getLastName(), user.getProfilePhoto()));
 
         if(post== null)
             return new ResponseEntity<String>("Post not found", HttpStatus.NOT_FOUND);
-
-        User user = userService.getUserByName(principal.getName());
-
-        post.removeLike(new UserDTO(user.getId(), user.getUsername(), user.getFirstName(), user.getLastName(), user.getProfilePhoto()));
-        postService.save(post);
 
         return ResponseEntity.ok("Like removed.");
 

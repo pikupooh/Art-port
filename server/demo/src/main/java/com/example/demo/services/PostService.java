@@ -1,10 +1,16 @@
 package com.example.demo.services;
 
 import com.example.demo.entities.Post;
+import com.example.demo.entities.Profile;
 import com.example.demo.entities.User;
 import com.example.demo.payload.response.UserDTO;
 import com.example.demo.repositories.PostRepository;
+import com.mongodb.client.result.UpdateResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -23,6 +29,9 @@ public class PostService {
 
     @Autowired
     ImageService imageService;
+
+    @Autowired
+    MongoTemplate mongoTemplate;
 
     public List<Post> getAllPosts(){
 
@@ -98,6 +107,43 @@ public class PostService {
     
     public List<Post> getPostByTags(String[] tags) {
     	return postRepository.findPostByTags(tags);
+    }
+
+    public Post addLike(String postId, UserDTO userDTO){
+
+        Post post = postRepository.findLikesById(postId);
+
+        if(post == null)
+            return null;
+
+        post.addLike(userDTO);
+
+        Query query = Query.query(Criteria.where("id").is(postId));
+        Update update = new Update();
+        update.set("likes", post.getLikes());
+
+        UpdateResult updateResult = mongoTemplate.updateFirst(query, update, Post.class);
+        System.out.println(updateResult);
+
+        return post;
+    }
+
+    public Post removeLike(String postId, UserDTO userDTO){
+
+        Post post = postRepository.findLikesById(postId);
+
+        if(post == null)
+            return null;
+        post.removeLike(userDTO);
+
+        Query query = Query.query(Criteria.where("id").is(postId));
+        Update update = new Update();
+        update.set("likes", post.getLikes());
+
+        UpdateResult updateResult = mongoTemplate.updateFirst(query, update, Post.class);
+        System.out.println(updateResult);
+
+        return post;
     }
 
     public void save(Post post){
