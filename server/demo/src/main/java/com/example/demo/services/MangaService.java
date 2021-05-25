@@ -1,12 +1,14 @@
 package com.example.demo.services;
 
-import com.example.demo.entities.Manga;
-import com.example.demo.entities.Post;
-import com.example.demo.entities.Type;
-import com.example.demo.entities.User;
+import com.example.demo.entities.*;
 import com.example.demo.payload.response.UserDTO;
 import com.example.demo.repositories.MangaRepository;
+import com.mongodb.client.result.UpdateResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -28,6 +30,9 @@ public class MangaService {
     
     @Autowired
     ChapterService chapterService;
+
+    @Autowired
+    MongoTemplate mongoTemplate;
 
     public List<Manga> getAll(){
 
@@ -106,18 +111,22 @@ public class MangaService {
         return newManga;
     }
     
-    public Manga updateRating(int rating, int currRating, String id) {
-    	Optional<Manga> manga1 = mangaRepository.findById(id);
-        if(!manga1.isPresent())
-            return null;
+    public void updateRating(double rating, double currRating, String id) {
 
-        Manga newManga = manga1.get();
-        newManga.setRating(newManga.getRating()+rating-currRating);
+
+        Manga manga = mangaRepository.findRatingById(id);
+
+        manga.setRating(manga.getRating()+rating-currRating);
         if(currRating == 0)
-        	newManga.setRatingCount(newManga.getRatingCount()+1);
-        mangaRepository.save(newManga);
+        	manga.setRatingCount(manga.getRatingCount()+1);
 
-        return newManga;
+        Query query = Query.query(Criteria.where("id").is(id));
+        Update update = new Update();
+        update.set("rating", manga.getRating());
+        update.set("ratingCount", manga.getRatingCount());
+
+        mongoTemplate.updateFirst(query, update, Manga.class);
+
     }
     
     public List<Manga> getMangaByCategory(String[] category) {
@@ -128,12 +137,12 @@ public class MangaService {
     	return mangaRepository.findComicByCategory(category);
     }
     
-    public int getMangaRating(String id) {
+    public double getMangaRating(String id) {
     	Optional<Manga> manga1 = mangaRepository.findById(id);
         if(!manga1.isPresent())
             return 0;
         Manga manga = manga1.get();
-        int currRating = manga.getRating();
+        double currRating = manga.getRating();
         int ratingCount = manga.getRatingCount();
         if(ratingCount == 0)
         	return 0;
@@ -143,5 +152,10 @@ public class MangaService {
     public void save(Manga manga){
 
         mangaRepository.save(manga);
+    }
+
+    public boolean findManga(String id){
+
+        return mangaRepository.existsById(id);
     }
 }

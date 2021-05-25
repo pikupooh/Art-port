@@ -1,10 +1,6 @@
 package com.example.demo.services;
 
-import com.example.demo.entities.Blog;
-import com.example.demo.entities.Manga;
-import com.example.demo.entities.Post;
-import com.example.demo.entities.Profile;
-import com.example.demo.entities.User;
+import com.example.demo.entities.*;
 import com.example.demo.payload.response.UserDTO;
 import com.example.demo.repositories.ProfileRepository;
 import com.example.demo.repositories.UserRepository;
@@ -318,6 +314,12 @@ public class ProfileService {
         profile.deleteComic(manga);
         profileRepository.save(profile);
     }
+
+    /*public double addRating(Rating rating, String id){
+
+
+    }*/
+
     
     public void save(Profile profile) {
     	profileRepository.save(profile);

@@ -5,7 +5,9 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Document(collection = "user_profile")
 public class Profile {
@@ -32,7 +34,7 @@ public class Profile {
     private List<Manga> favoriteMangas;
     @DBRef
     private List<Manga> favoriteComics;
-    private List<Rating> userRatings;
+    private Set<Rating> userRatings = new HashSet<>();
 
     public Profile() {
 
@@ -47,7 +49,6 @@ public class Profile {
         this.favoriteComics = new ArrayList<>();
         this.userBlogs = new ArrayList<>();
         this.userMangas = new ArrayList<>();
-        this.userRatings = new ArrayList<>();
     }
 
     public String getId() {
@@ -242,6 +243,19 @@ public class Profile {
         this.favoriteComics.remove(manga);
     }
 
+
+    public Set<Rating> getUserRatings() {
+        return userRatings;
+    }
+
+    public void setUserRatings(Set<Rating> userRatings) {
+        this.userRatings = userRatings;
+    }
+
+    public void addRating(Rating rating){
+
+        this.userRatings.add(rating);
+    }
     @Override
     public String toString() {
         return "Profile{" +
@@ -260,11 +274,4 @@ public class Profile {
                 '}';
     }
 
-    public List<Rating> getUserRatings() {
-		return userRatings;
-	}
-
-	public void setUserRatings(List<Rating> userRatings) {
-		this.userRatings = userRatings;
-	}
 }

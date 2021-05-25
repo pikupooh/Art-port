@@ -10,6 +10,7 @@ import com.example.demo.services.PostService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,13 +28,14 @@ public class SearchController {
     @Autowired
     BlogService blogService;
 
-    @GetMapping("/search")
-    public ResponseEntity<?> getResults(@RequestBody String[] category){
+    @PreAuthorize("permitAll()")
+    @PostMapping("/search")
+    public ResponseEntity<?> searchByTags(@RequestBody String[] tags){
 
-        List<Post> posts = postService.getPostByCategory(category);
-        List<Blog> blogs = blogService.getBlogByCategory(category);
-        List<Manga> manga = mangaService.getMangaByCategory(category);
-        List<Manga> comic = mangaService.getComicByCategory(category);
+        List<Post> posts = postService.getPostByTags(tags);
+        List<Blog> blogs = blogService.getBlogByCategory(tags);
+        List<Manga> manga = mangaService.getMangaByCategory(tags);
+        List<Manga> comic = mangaService.getComicByCategory(tags);
         
         return ResponseEntity.ok(new Searches(posts, manga, blogs, comic));
     }

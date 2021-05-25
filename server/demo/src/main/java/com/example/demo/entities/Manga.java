@@ -31,7 +31,7 @@ public class Manga {
     @NotBlank
     private String about;
     private List<String> category = Collections.emptyList();
-    int rating = 0;
+    double rating = 0.0;
     int ratingCount = 0;
     private Type type;
     
@@ -47,7 +47,7 @@ public class Manga {
 	}
 
 	public Manga(String id, String uploadDate, Image coverPhoto, List<Chapter> chapters, List<Comment> comments,
-			UserDTO userDTO, @NotBlank String title, @NotBlank String about, List<String> category, int rating, int ratingCount, Type type) {
+			UserDTO userDTO, @NotBlank String title, @NotBlank String about, List<String> category, double rating, int ratingCount, Type type) {
 		super();
 		this.id = id;
 		this.uploadDate = uploadDate;
@@ -125,11 +125,11 @@ public class Manga {
 		this.type = type;
 	}
 
-	public int getRating() {
+	public double getRating() {
 		return rating;
 	}
 
-	public void setRating(int rating) {
+	public void setRating(double rating) {
 		this.rating = rating;
 	}
 
@@ -159,6 +159,21 @@ public class Manga {
     public void removeChapter(Chapter chapter){
 
         this.chapters.remove(chapter);
-    } 
-   
+    }
+
+	@Override
+	public String toString() {
+		return "Manga{" +
+				"id='" + id + '\'' +
+				", uploadDate='" + uploadDate + '\'' +
+				", coverPhoto=" + coverPhoto +
+				", userDTO=" + userDTO +
+				", title='" + title + '\'' +
+				", about='" + about + '\'' +
+				", category=" + category +
+				", rating=" + rating +
+				", ratingCount=" + ratingCount +
+				", type=" + type +
+				'}';
+	}
 }
