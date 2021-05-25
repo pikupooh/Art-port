@@ -28,7 +28,6 @@ public class SearchController {
     @Autowired
     BlogService blogService;
 
-    @PreAuthorize("permitAll()")
     @PostMapping("/search")
     public ResponseEntity<?> searchByTags(@RequestBody String[] tags){
 

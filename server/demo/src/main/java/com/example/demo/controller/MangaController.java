@@ -129,25 +129,19 @@ public class MangaController {
         
         if(user == null)
         	return new ResponseEntity<String>("User not found", HttpStatus.NOT_FOUND);
-        	
 
-        Profile profile = profileService.getUserProfile(user.getId());
-        
-        if(profile == null)
-        	return new ResponseEntity<String>("Internal Error Profile for User not defined", HttpStatus.NOT_FOUND);
-        /*
-        if(profile.getUserRatings().contains(rating)) {
-        	int idx = profile.getUserRatings().indexOf(rating);
-        	double currRating = profile.getUserRatings().get(idx).getRating();
-        	profile.getUserRatings().set(idx, rating);
+        double currRating  = profileService.addRating(mangaId, rating.getRating(), user.getId());
+
+        if(currRating == -2)
+            return new ResponseEntity<String>("Profile not found", HttpStatus.NOT_FOUND);
+
+        if(currRating != -1) {
         	mangaService.updateRating(rating.getRating(), currRating, mangaId);
         }
         else {
-        	profile.getUserRatings().add(rating);
         	mangaService.updateRating(rating.getRating(), 0, mangaId);
         }
-    	profileService.save(profile);
-*/
+
         return ResponseEntity.ok("Rating added.");
 
     }
