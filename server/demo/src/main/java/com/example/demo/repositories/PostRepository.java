@@ -13,7 +13,7 @@ public interface PostRepository extends MongoRepository<Post, String> {
 	@Query(value = "{ 'category' : {$all : ?0 }}")
     List<Post> findPostByCategory(String[] category);
 	
-	@Query(value = "{ 'tags' : {$all : ?0 }}")
+	@Query(value = "{ 'tags' : {$in : ?0 }}")
     List<Post> findPostByTags(String[] tags);
 
 	@Query(fields = "{likes: 1}")

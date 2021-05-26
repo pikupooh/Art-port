@@ -12,10 +12,10 @@ public interface MangaRepository extends MongoRepository<Manga, String> {
     @Query(fields = "{'type': 0}")
     List<Manga> findMangaByType(Type type);
     
-    @Query(value = "{ 'type': 'MANGA', 'category' : {$all : ?0 }}")
+    @Query(value = "{ 'type': 'MANGA', 'category' : {$in : ?0 }}")
     List<Manga> findMangaByCategory(String[] category);
     
-    @Query(value = "{ 'type': 'COMIC', 'category' : {$all : ?0 }}")
+    @Query(value = "{ 'type': 'COMIC', 'category' : {$in : ?0 }}")
     List<Manga> findComicByCategory(String[] category);
 
     @Query(fields = "{rating: 1, ratingCount: 1}")

@@ -1,4 +1,5 @@
 import { SEARCH_RESULT } from "../actions/actionTypes"
+import { setLoadingAction } from "../actions/loadingActions"
 
 export function searchTags (tags) {
 
@@ -8,6 +9,7 @@ export function searchTags (tags) {
     console.log(tagsBody);
 
     return (dispatch) => {
+        dispatch(setLoadingAction(true, "Loading..."));
         fetch(`http://localhost:8080/search`, {
             method: 'POST',
             headers: {
@@ -37,6 +39,7 @@ export function searchTags (tags) {
                     type: SEARCH_RESULT,
                     payload: res
                 })
+                dispatch(setLoadingAction(false, "Loading..."));
                 return res;
             })
             .catch((error) => {
