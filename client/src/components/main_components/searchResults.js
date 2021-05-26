@@ -43,7 +43,11 @@ class SearchResults extends React.Component{
                             </div>
                             <div>
                             { this.props.posts.length > 2 && 
-                                <Button> Show All</Button>
+                                <Link to ="/searchedposts/">
+                                <p className="show_all_button">
+                                 SHOW ALL
+                                 </p>
+                                 </Link>
                             }
                             </div>
                         </div>
@@ -63,7 +67,11 @@ class SearchResults extends React.Component{
                             </div>
                             <div>
                                 { this.props.blogs.length > 2 && 
-                                    <Button> Show All</Button>
+                                  <Link to ="/searchedblogs/">
+                                    <p className="show_all_button">
+                                 SHOW ALL
+                                 </p>
+                                 </Link>
                                 }
                             </div>
                         </div>
@@ -83,7 +91,11 @@ class SearchResults extends React.Component{
                             </div>
                             <div>
                                 { this.props.blogs.length > 2 && 
-                                    <Button> Show All</Button>
+                                    <Link to ="/searchedmangas/">
+                                    <p className="show_all_button">
+                                 SHOW ALL
+                                 </p>
+                                 </Link>
                                 }
                             </div>
                         </div>
@@ -101,7 +113,11 @@ class SearchResults extends React.Component{
                             </div>
                             <div>
                                 { this.props.blogs.length > 2 && 
-                                    <Button> Show All</Button>
+                                 <Link to ="/searchedcomics/">
+                                    <p className="show_all_button">
+                                 SHOW ALL
+                                 </p>
+                                 </Link>
                                 }
                             </div>
                         </div>
