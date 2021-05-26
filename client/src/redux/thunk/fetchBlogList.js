@@ -1,8 +1,11 @@
 import { fetchBlogListAction } from '../actions/fetchBlogListAction'
+import { setLoadingAction } from "../actions/loadingActions";
 
 function fetchBlogList() {
     
     return dispatch => {
+        dispatch(setLoadingAction(true, "Loading..."));
+
         fetch(`http://localhost:8080/blogs`)
         .then(res => res.json())
         .then(res => {
@@ -20,6 +23,7 @@ function fetchBlogList() {
                 return blog;
             })
             dispatch(fetchBlogListAction(res))
+            dispatch(setLoadingAction(false, "Loading..."));
             return res;
         })
         .catch(error => {

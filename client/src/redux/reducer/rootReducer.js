@@ -16,6 +16,7 @@ import { mangaChapterReducer } from "./mangaChapterReducer";
 import { signInModalReducer } from "./signInModalReducer";
 import { registerReducer } from "./registerReducer";
 import { searchReducer } from "./searchReducer";
+import { loadingReducer } from "./loadingReducer";
 
 export default combineReducers({
     auth: authReducer,
@@ -34,5 +35,6 @@ export default combineReducers({
     mangaChapter: mangaChapterReducer,
     signInModal: signInModalReducer,
     register: registerReducer,
-    search: searchReducer
+    search: searchReducer,
+    loading: loadingReducer,
 });

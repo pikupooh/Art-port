@@ -29,6 +29,7 @@ import UploadComponent from "./components/main_components/uploadComponent";
 import ForgotPassword from "./components/small_components/forgotPassword";
 import ResetPassword from "./components/small_components/resetPassword";
 import SearchResults from "./components/main_components/searchResults";
+import Overlay from "./components/small_components/Overlay"
 
 
 const NavbarwithRouter = withRouter(NavbarComponent);
@@ -37,6 +38,7 @@ class App extends React.Component {
     render() {
         return (
             <div className = "main_wrapper">
+                <Overlay className="display-overlay"/>
                 <div className = "content_wrapper">
                     <div className="space_for_navbar"></div>
                     <BrowserRouter>

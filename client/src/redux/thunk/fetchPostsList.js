@@ -1,7 +1,9 @@
 import { fetchPostListAction } from '../actions/fetchPostListAction'
+import { setLoadingAction } from "../actions/loadingActions"
 
 function fetchPostList() {
     return dispatch => {
+        dispatch(setLoadingAction(true, "Loading..."));
         fetch("http://localhost:8080/post")
         .then(res => res.json())
         .then(res => {
@@ -20,6 +22,7 @@ function fetchPostList() {
                 return post;
             })
             dispatch(fetchPostListAction(res))
+            dispatch(setLoadingAction(false, "Loading..."));
             return res;
         })
         .catch(error => {

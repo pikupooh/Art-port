@@ -1,8 +1,10 @@
 import { fetchProfileDataAction, fetchUserProfileAction } from "../actions/fetchProfileDataAction";
-
+import { setLoadingAction } from "../actions/loadingActions"
 function fetchProfileData(id) {
 
     return (dispatch) => {
+        dispatch(setLoadingAction(true, "Loading..."));
+
         fetch(`http://localhost:8080/users/${id}/profile`)
             .then(
                 (res) => {
@@ -23,6 +25,7 @@ function fetchProfileData(id) {
             .then((res) => {
                 //res = res.filter((profile) => profile.user.UserId === id);
                 dispatch(fetchProfileDataAction(res));
+                dispatch(setLoadingAction(false, "Loading..."));
 
                 return res;
             })
@@ -37,6 +40,8 @@ export function fetchUserProfileData() {
     let id = localStorage.getItem('userId')
 
     return (dispatch) => {
+        dispatch(setLoadingAction(true, "Loading..."));
+
         fetch(`http://localhost:8080/users/${id}/profile`)
             .then(
                 (res) => {
@@ -56,6 +61,8 @@ export function fetchUserProfileData() {
             .then((res) => {
                 console.log(res);
                 dispatch(fetchUserProfileAction(res));
+                dispatch(setLoadingAction(false, "Loading..."));
+
                 return res;
             })
             .catch((error) => {

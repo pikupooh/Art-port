@@ -1,8 +1,10 @@
 import { fetchPostDataAction } from "../actions/fetchPostDataAction";
 import { addUserPost } from "../actions/fetchProfileDataAction";
+import { setLoadingAction } from "../actions/loadingActions";
 
 function fetchPostData(postId) {
-    return (dispatch) =>
+    return (dispatch) => {
+        dispatch(setLoadingAction(true, "Loading..."));
         fetch(`http://localhost:8080/post/${postId}`)
             .then((res) => { console.log(res); return res.json()})
             .then((res) => {
@@ -39,11 +41,13 @@ function fetchPostData(postId) {
                     }
                 }
                 dispatch(fetchPostDataAction(res));
+                dispatch(setLoadingAction(false, "Loading..."));
                 return res;
             })
             .catch((error) => {
                 console.log(error);
             });
+        }
     };
 
 
@@ -54,6 +58,7 @@ export const createPost = (userId, postFormData, imageFormData, profileId) => {
     const token = localStorage.getItem("token");
 
     return (dispatch) => {
+        dispatch(setLoadingAction(true, "Loading..."));
         fetch(`http://localhost:8080/users/${userId}/post`, {
             method: "POST",
             body: JSON.stringify(postFormData),
@@ -117,6 +122,7 @@ export const createPost = (userId, postFormData, imageFormData, profileId) => {
                             console.log("Same", response);
                             dispatch(addUserPost(response));
                         }
+                        dispatch(setLoadingAction(false, "Loading..."));
                     })
                     .catch((error) => {
                         console.log(error.message);

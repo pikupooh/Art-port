@@ -1,9 +1,11 @@
 import { fetchMangaDataAction } from '../actions/fetchMangaDataAction'
 import { addUserManga } from "../actions/fetchProfileDataAction";
+import { setLoadingAction } from "../actions/loadingActions";
 
 function fetchMangaData(id) {
 
     return dispatch => {
+        dispatch(setLoadingAction(true, "Loading..."));
         fetch('http://localhost:8080/manga/' + id)
         .then(res =>  res.json())
         .then(res => {
@@ -12,7 +14,7 @@ function fetchMangaData(id) {
             }
 
             dispatch(fetchMangaDataAction(res))
-         
+            dispatch(setLoadingAction(false, "Loading..."));
             return res;
         })
         .catch(error => {
@@ -28,6 +30,7 @@ export const createManga = (userId, postFormData, imageFormData, profileId) => {
     const token = localStorage.getItem("token");
 
     return (dispatch) => {
+        dispatch(setLoadingAction(true, "Loading..."));
         fetch(`http://localhost:8080/users/${userId}/manga`, {
             method: "POST",
             body: JSON.stringify(postFormData),
@@ -87,6 +90,7 @@ export const createManga = (userId, postFormData, imageFormData, profileId) => {
                         }
                     )
                     .then((response) => {
+                        dispatch(setLoadingAction(false, "Loading..."));
                         if (userId === profileId) {
                             console.log("Same");
                             dispatch(addUserManga(response));

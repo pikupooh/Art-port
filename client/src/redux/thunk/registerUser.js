@@ -1,4 +1,5 @@
 import * as ActionTypes from "../actions/actionTypes";
+import { setLoadingAction } from "../actions/loadingActions";
 
 export const requestSignUp = () => {
     return {
@@ -22,7 +23,7 @@ export const signUpError = (message) => {
 export default function registerUser(imageFormData) {
     return (dispatch) => {
         dispatch(requestSignUp());
-
+        dispatch(setLoadingAction(true, "Loading..."));
         fetch(`http://localhost:8080/api/auth/signup`, {
             method: "POST",
             body: imageFormData,
@@ -32,6 +33,7 @@ export default function registerUser(imageFormData) {
                     console.log(res);
                     if (res.ok) {
                         dispatch(receiveSignUp());
+                        dispatch(setLoadingAction(false, "Loading..."));
                     } else if (res.status === 409) {
                         return res.text();
                     } else {
@@ -48,7 +50,7 @@ export default function registerUser(imageFormData) {
             )
             .then((res) => {
                 console.log(res);
-
+                dispatch(setLoadingAction(false, "Loading..."));
                 if (res !== undefined) dispatch(signUpError(res));
             })
 

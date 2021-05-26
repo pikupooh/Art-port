@@ -1,8 +1,11 @@
 import { fetchComicDataAction } from '../actions/fetchComicDataAction'
 import { addUserComic } from "../actions/fetchProfileDataAction";
+import { setLoadingAction } from "../actions/loadingActions";
 
 function fetchComicData(comicId) {
     return dispatch => {
+        dispatch(setLoadingAction(true, "Loading..."));
+
         fetch('http://localhost:8080/manga/' + comicId)
         .then(res =>  res.json())
         .then(res => {
@@ -11,6 +14,8 @@ function fetchComicData(comicId) {
             }
 
             dispatch(fetchComicDataAction(res))
+            dispatch(setLoadingAction(false, "Loading..."));
+
             return res;
         })
         .catch(error => {
@@ -26,6 +31,8 @@ export const createComic = (userId, postFormData, imageFormData, profileId) => {
     const token = localStorage.getItem("token");
 
     return (dispatch) => {
+        dispatch(setLoadingAction(true, "Loading..."));
+
         fetch(`http://localhost:8080/users/${userId}/comic`, {
             method: "POST",
             body: JSON.stringify(postFormData),
@@ -85,6 +92,8 @@ export const createComic = (userId, postFormData, imageFormData, profileId) => {
                         }
                     )
                     .then((response) => {
+                        dispatch(setLoadingAction(false, "Loading..."));
+
                         if (userId === profileId) {
                             console.log("Same");
                             dispatch(addUserComic(response));

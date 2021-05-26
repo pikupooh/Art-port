@@ -1,10 +1,13 @@
 import { deleteUserPostAction } from '../actions/fetchProfileDataAction'
+import { setLoadingAction } from "../actions/loadingActions";
 
 function deleteUserPost(userId, postId){
 
     const token = localStorage.getItem("token")
     console.log(postId);
     return dispatch => {
+        dispatch(setLoadingAction(true, "Loading..."));
+
         fetch(`http://localhost:8080/users/${userId}/posts/${postId}`, {
             method: 'DELETE',
             headers: {
@@ -14,6 +17,8 @@ function deleteUserPost(userId, postId){
         })
         .then(response => {
             if(response.ok){
+                dispatch(setLoadingAction(false, "Loading..."));
+
                 dispatch(deleteUserPostAction(postId));
             }
         })

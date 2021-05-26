@@ -1,6 +1,7 @@
 import fetchUserData from "./fetchUserData";
 import * as ActionTypes from "../actions/actionTypes";
 import { fetchUserProfileData } from "../../redux/thunk/fetchProfileData";
+import { setLoadingAction } from "../actions/loadingActions";
 
 export default function signInUser(user, pass) {
     var creds = {
@@ -8,6 +9,7 @@ export default function signInUser(user, pass) {
         password: pass,
     };
     return (dispatch) => {
+        dispatch(setLoadingAction(true, "Loading..."));
         fetch("http://localhost:8080/api/auth/login", {
             method: "POST",
             headers: {
@@ -46,6 +48,7 @@ export default function signInUser(user, pass) {
                 dispatch(setUserLogin({ token, userId, profilePhoto }));
                 dispatch(fetchUserData(userId));
                 dispatch(fetchUserProfileData());
+                dispatch(setLoadingAction(false, "Loading..."));
             })
             .catch((error) => console.log(error));
     };

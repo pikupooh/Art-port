@@ -1,10 +1,13 @@
 import { deleteUserComicAction } from '../actions/fetchProfileDataAction'
+import { setLoadingAction } from "../actions/loadingActions";
 
 function deleteUserComic(userId, comicId){
 
     const token = localStorage.getItem("token")
     console.log(comicId);
     return dispatch => {
+        dispatch(setLoadingAction(true, "Loading..."));
+
         fetch(`http://localhost:8080/users/${userId}/manga/${comicId}`, {
             method: 'DELETE',
             headers: {
@@ -14,6 +17,8 @@ function deleteUserComic(userId, comicId){
         })
         .then(response => {
             if(response.ok){
+                dispatch(setLoadingAction(false, "Loading..."));
+
                 dispatch(deleteUserComicAction(comicId));
             }
         })

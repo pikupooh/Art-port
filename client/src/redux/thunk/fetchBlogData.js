@@ -1,8 +1,10 @@
 import { fetchBlogDataAction } from '../actions/fetchBlogDataAction'
 import { addUserBlog } from "../actions/fetchProfileDataAction";
+import { setLoadingAction } from "../actions/loadingActions";
 
 function fetchBlogData(id) {
     return dispatch => {
+        dispatch(setLoadingAction(true, "Loading..."));
         fetch(`http://localhost:8080/blog/${id}`)
         .then(res =>  res.json())
         .then(res => {
@@ -25,6 +27,7 @@ function fetchBlogData(id) {
             }
 
             dispatch(fetchBlogDataAction(res))
+            dispatch(setLoadingAction(false, "Loading..."));
             return res;
         })
         .catch(error => {
@@ -40,6 +43,7 @@ export const createBlog = (userId, postFormData, imageFormData, profileId) => {
     const token = localStorage.getItem("token");
 
     return (dispatch) => {
+        dispatch(setLoadingAction(true, "Loading..."));
         fetch(`http://localhost:8080/users/${userId}/blog`, {
             method: "POST",
             body: JSON.stringify(postFormData),
@@ -99,6 +103,7 @@ export const createBlog = (userId, postFormData, imageFormData, profileId) => {
                         }
                     )
                     .then((response) => {
+                        dispatch(setLoadingAction(false, "Loading..."));
                         if (userId === profileId) {
                             console.log("Same");
                             dispatch(addUserBlog(response));

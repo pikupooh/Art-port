@@ -1,10 +1,13 @@
 import { deleteUserMangaAction } from '../actions/fetchProfileDataAction'
+import { setLoadingAction } from "../actions/loadingActions";
 
 function deleteUserManga(userId, mangaId){
 
     const token = localStorage.getItem("token")
     console.log(mangaId);
     return dispatch => {
+        dispatch(setLoadingAction(true, "Loading..."));
+
         fetch(`http://localhost:8080/users/${userId}/manga/${mangaId}`, {
             method: 'DELETE',
             headers: {
@@ -15,6 +18,8 @@ function deleteUserManga(userId, mangaId){
         .then(response => {
             if(response.ok){
                 dispatch(deleteUserMangaAction(mangaId));
+                dispatch(setLoadingAction(false, "Loading..."));
+
             }
         })
         .catch((error) => console.log(error));

@@ -1,16 +1,21 @@
 import { fetchMangaChapterAction } from '../actions/fetchMangaChapterAction'
 import * as ActionTypes from "../actions/actionTypes"
+import { setLoadingAction } from "../actions/loadingActions";
 
 function fetchMangaChapter(id) {
 
     return dispatch => {
+        dispatch(setLoadingAction(true, "Loading..."));
+
         fetch('http://localhost:8080/chapter/' + id)
         .then(res =>  res.json())
         .then(res => {
             if(res.error) {
                 throw(res.error);
             }
-            dispatch(fetchMangaChapterAction(res))   
+            dispatch(fetchMangaChapterAction(res))  
+            dispatch(setLoadingAction(false, "Loading..."));
+
             return res;
         })
         .catch(error => {
@@ -25,6 +30,8 @@ export const createChapter = (mangaOrComic, chapterFormData, imageFormData, mang
     const token = localStorage.getItem("token");
 
     return (dispatch) => {
+        dispatch(setLoadingAction(true, "Loading..."));
+
         fetch(`http://localhost:8080/mangas/${mangaId}/chapter`, {
             method: "POST",
             body: JSON.stringify(chapterFormData),
@@ -85,6 +92,7 @@ export const createChapter = (mangaOrComic, chapterFormData, imageFormData, mang
                     )
                     .then((response) => {
                         console.log(response);
+                        dispatch(setLoadingAction(false, "Loading..."));
                         if(mangaOrComic === "MANGA")
                             dispatch(addMangaChapter(mangaId, response));
                         else
