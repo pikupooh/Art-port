@@ -86,18 +86,6 @@ class PostedUserDetails extends React.Component{
                         </Badge>
                     )}
                 </Row>
-                <div className = "my-2">
-                    <div>
-                        Categories
-                    </div>
-                    <Row>
-                        {this.props.info.categories && this.props.info.categories.map((category) => 
-                            <Badge pill className = "mx-3 mt-2">
-                                {category}
-                            </Badge>
-                        )}
-                    </Row>
-                </div>
                 <ShareRow />
                 <PostCommentSection postId = {this.props.info.id}/>
                 <CommentsTag length = {this.props.info.comments.length} />

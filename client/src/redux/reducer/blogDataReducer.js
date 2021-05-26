@@ -8,7 +8,7 @@ const initState = {
     likes: [],
     comments: [],
     img: {},
-    uploadTime: "",
+    uploadDate: "",
     tags: [],
     user: {
         profilePhoto: {},
@@ -27,7 +27,7 @@ export const blogDataReducer = (state = initState, action) => {
                 likes: action.payload.blog.likes,
                 comments: action.payload.blog.comments,
                 img: action.payload.blog.img,
-                uploadDate: action.payload.blog.createdDate,
+                uploadDate: action.payload.blog.uploadDate.substring(0, 10),
                 tags: action.payload.blog.category,
                 user: action.payload.blog.user,
             };

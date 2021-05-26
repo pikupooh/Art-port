@@ -77,7 +77,7 @@ class SearchResults extends React.Component{
                                 <h5 className = "top_result"> Mangas </h5>
                             </Row>
                             <div className="top_result_data">
-                                    {this.props.mangas && this.props.blogs.map((manga, i) => 
+                                    {this.props.mangas && this.props.mangas.map((manga, i) => 
                                         <MangaRow manga = {manga} index = {i}/> 
                                     )}
                             </div>
@@ -107,8 +107,8 @@ class SearchResults extends React.Component{
                         </div>
                     }
 
-                    {this.props.posts.length === 0 && this.props.posts.length === 0 
-                        && this.props.posts.length === 0 && this.props.posts.length === 0 
+                    {this.props.posts.length === 0 && this.props.blogs.length === 0 
+                        && this.props.mangas.length === 0 && this.props.comics.length === 0 
                         && 
                         <div> Nothing found</div>
                     }
@@ -132,9 +132,9 @@ const mapStateToProps = (state) => {
  export default connect(mapStateToProps)(SearchResults);
 
 
- function PostRow(props) {
+ function PostRow({post, index}) {
 
-    if( props.index > 2 ){
+    if( index > 2 ){
         return(
             <span></span>
         )
@@ -143,27 +143,28 @@ const mapStateToProps = (state) => {
      return(
         <Row className = "search_result_container">
             <Col sm ={1} className="A">
-                <Link to ="#">
-                    <div className = "search_image_container">
-                        <Image src = "https://i.ytimg.com/vi/xQzS3JnZQZM/maxresdefault.jpg" className="search_image" alt = "comic_cover_photo"></Image>
+                <Link to = {'/post/' + post.id}>
+                    {post.images.length !== 0 && <div className = "search_image_container">
+                        <Image src = {post.images[0].link} className="search_image" alt = "post_photo"></Image>
                     </div>
+                    }
                 </Link>
             </Col>
             <Col>
-                <Link to ="#">
-                    <div className ="search_result_heading">The Middle</div>
+                <Link to ={'/post/' + post.id}>
+                    <div className ="search_result_heading">{post.title}</div>
                 </Link>
                     <div className="result_description">
-                        Video |  Grey, Zedd & Maren Morris |  105M likes
+                        Post |  {post.user.username} |  {post.likes.length} likes
                     </div>
             </Col>
         </Row>
      )
  }
 
- function BlogRow(props) {
+ function BlogRow({blog, index}) {
 
-    if( props.index > 2 ){
+    if( index > 2 ){
         return(
             <span></span>
         )
@@ -172,27 +173,37 @@ const mapStateToProps = (state) => {
      return(
         <Row className = "search_result_container">
             <Col sm ={1} className="A">
-                <Link to ="#">
+                <Link to = {'/blog/' + blog.id}>
                     <div className = "search_image_container">
-                        <Image src = "https://i.ytimg.com/vi/xQzS3JnZQZM/maxresdefault.jpg" className="search_image" alt = "comic_cover_photo"></Image>
+                        <Image src = {blog.img.link} className="search_image" alt = "blog_cover_photo"></Image>
                     </div>
                 </Link>
             </Col>
             <Col>
-                <Link to ="#">
-                    <div className ="search_result_heading">The Middle</div>
+                <Link to ={'/blog/' + blog.id}>
+                    <div className ="search_result_heading">{blog.title}</div>
                 </Link>
                     <div className="result_description">
-                        Video |  Grey, Zedd & Maren Morris |  105M likes
+                        Blog |  {blog.user.username} |  {blog.likes.length} likes
                     </div>
             </Col>
         </Row>
      )
  }
 
- function MangaRow(props) {
+ function MangaRow({manga, index}) {
 
-    if( props.index > 2 ){
+    console.log(manga);
+
+    var rating
+    if(manga.ratingCount === 0){
+        rating = "No Ratings"
+    }
+    else{
+        rating = manga.rating/manga.ratingCount
+    }
+
+    if( index > 2 ){
         return(
             <span></span>
         )
@@ -201,27 +212,35 @@ const mapStateToProps = (state) => {
      return(
         <Row className = "search_result_container">
             <Col sm ={1} className="A">
-                <Link to ="#">
+                <Link to ={'/mangas/' + manga.id}>
                     <div className = "search_image_container">
-                        <Image src = "https://i.ytimg.com/vi/xQzS3JnZQZM/maxresdefault.jpg" className="search_image" alt = "comic_cover_photo"></Image>
+                        <Image src = {manga.coverPhoto.link} className="search_image" alt = "comic_cover_photo"></Image>
                     </div>
                 </Link>
             </Col>
             <Col>
-                <Link to ="#">
-                    <div className ="search_result_heading">The Middle</div>
+                <Link to ={'/mangas/' + manga.id}>
+                    <div className ="search_result_heading">{manga.title}</div>
                 </Link>
                     <div className="result_description">
-                        Video |  Grey, Zedd & Maren Morris |  105M likes
+                    Manga |  {manga.userDTO.username} | {rating}
                     </div>
             </Col>
         </Row>
      )
  }
 
- function ComicRow(props) {
+ function ComicRow({comic, index}) {
 
-    if( props.index > 2 ){
+    var rating
+    if(comic.ratingCount === 0){
+        rating = "No Ratings"
+    }
+    else{
+        rating = comic.rating/comic.ratingCount
+    }
+
+    if(index > 2 ){
         return(
             <span></span>
         )
@@ -230,18 +249,18 @@ const mapStateToProps = (state) => {
      return(
         <Row className = "search_result_container">
             <Col sm ={1} className="A">
-                <Link to ="#">
+                <Link to ={'/comic/' + comic.id}>
                     <div className = "search_image_container">
-                        <Image src = "https://i.ytimg.com/vi/xQzS3JnZQZM/maxresdefault.jpg" className="search_image" alt = "comic_cover_photo"></Image>
+                        <Image src = {comic.coverPhoto.link} className="search_image" alt = "comic_cover_photo"></Image>
                     </div>
                 </Link>
             </Col>
             <Col>
-                <Link to ="#">
-                    <div className ="search_result_heading">The Middle</div>
+                <Link to ={'/comic/' + comic.id}>
+                    <div className ="search_result_heading">{comic.title}</div>
                 </Link>
                     <div className="result_description">
-                        Video |  Grey, Zedd & Maren Morris |  105M likes
+                        Comic |  {comic.userDTO.username} | {rating}
                     </div>
             </Col>
         </Row>
