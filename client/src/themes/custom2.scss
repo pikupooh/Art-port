@@ -99,3 +99,30 @@ a i.material-icons {
         transform: rotate(0deg);
     }
 }
+
+.rating_button{
+    width: 100%;
+    height: 100%;
+    text-align: right !important;
+    font-size: 1rem;
+    
+}
+
+.rate_button{
+    display: flex !important;
+    justify-content: center !important;
+}
+
+.rate_button_star{
+    height: 100%;
+}
+
+.submit_rate_star{
+    height: 40px;
+    width: 40px;
+    color: rgb(233, 190, 0);
+
+    &:hover{
+        cursor: pointer;
+    }
+}

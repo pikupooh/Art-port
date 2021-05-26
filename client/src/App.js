@@ -7,6 +7,7 @@ import {
     withRouter,
 } from "react-router-dom";
 import { connect } from "react-redux";
+import { bindActionCreators } from 'redux'
 
 import NavbarComponent from "./components/main_components/navbarComponent";
 import Home from "./components/main_components/home";
@@ -29,16 +30,23 @@ import UploadComponent from "./components/main_components/uploadComponent";
 import ForgotPassword from "./components/small_components/forgotPassword";
 import ResetPassword from "./components/small_components/resetPassword";
 import SearchResults from "./components/main_components/searchResults";
+
 import Overlay from "./components/small_components/Overlay"
 import SearchedPosts from "./components/small_components/searchComponents/searchedPosts";
 import SearchedMangas from "./components/small_components/searchComponents/searchedMangas";
 import SearchedComics from "./components/small_components/searchComponents/searchedComics";
 import SearchedBlogs from "./components/small_components/searchComponents/searchedBlogs";
 
+import { fetchUserProfileData } from './redux/thunk/fetchProfileData'
 
 const NavbarwithRouter = withRouter(NavbarComponent);
 
 class App extends React.Component {
+
+    componentDidMount(){
+        this.props.fetchUserProfileData()
+    }
+
     render() {
         return (
             <div className = "main_wrapper">
@@ -142,4 +150,12 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps, null)(App);
+const mapDispatchToProps = (dispatch) =>
+    bindActionCreators(
+        {
+            fetchUserProfileData
+        },
+        dispatch
+    );
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

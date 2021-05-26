@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button, Container } from "react-bootstrap"
+import { Container } from "react-bootstrap"
 
 import fetchComicDataAction from "../../redux/thunk/fetchComicData";
 import ComicDataDisplay from "../small_components/comicDataDisplayComponents/comicDataDisplay";
@@ -10,6 +10,9 @@ import ComicChapterDisplay from "../small_components/comicDataDisplayComponents/
 import ComicDataComments from "../small_components/comicDataDisplayComponents/comments/comicDataComments"
 import ChapterModal from "../small_components/uploadForms/chapterModal"
 import ShareRow from "../small_components/ShareRow";
+import {fetchUserProfileData} from "../../redux/thunk/fetchProfileData"
+
+
 class ComicData extends React.Component {
 
   constructor(props) {
@@ -40,11 +43,13 @@ class ComicData extends React.Component {
         <Container>
           <ComicDataDisplay photo={this.props.coverPhoto} 
                             rating ={this.props.rating}
-                            noOfRating={this.props.noOfRating}
+                            ratingsCount={this.props.ratingsCount}
                             type ={this.props.type} 
                             author= {this.props.author}
                             title = {this.props.title}
                             chaptersLength = {this.props.chapters.length}
+                            mangaId = {this.props.mangaId}
+                            userRatings = {this.props.userRatings} 
                             handleFormModalShow = {this.handleFormModalShow}
                             userId = {this.props.userId}
                             />
@@ -69,18 +74,18 @@ class ComicData extends React.Component {
   bindActionCreators(
     {
       fetchComicData: fetchComicDataAction,
+      fetchUserProfile: fetchUserProfileData,
     },
     dispatch
   );
 
 const mapStateToProps = (state) => {
-   console.log(state.comicData, state.auth);
   return {
     userId: state.auth.userId,
     mangaId: state.comicData.id,
     chapters: state.comicData.chapters,
     rating: state.comicData.rating,
-    noOfRating: state.comicData.noOfRating,
+    ratingsCount: state.comicData.ratingsCount,
     title: state.comicData.title,
     about: state.comicData.about,
     type: state.comicData.type,
@@ -89,6 +94,7 @@ const mapStateToProps = (state) => {
     comments : state.comicData.comments,
     uploadDate : state.comicData.uploadDate,
     category : state.comicData.category,
+    userRatings: state.auth.profile.userRatings
   };
 };
 

@@ -83,7 +83,7 @@ class HomeGrid extends React.Component{
         this.setState({
             active: categoryName
         })
-        console.log(categoryName);
+
         this.props.changePostList(categoryName)
     }
 
@@ -116,10 +116,9 @@ class HomeGrid extends React.Component{
 }
 
 const mapStateToProps = (state) => {
-    
     return {
         postList: state.grid.tempList,
-        categoryList :state.category.categoryList
+        categoryList :state.category.categoryList,
     }
 }
 

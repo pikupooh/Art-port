@@ -1,8 +1,18 @@
 import { Row, Col, Container, Image, Button } from 'react-bootstrap' 
 import { CardList, StarFill } from 'react-bootstrap-icons'
 import { Link } from 'react-router-dom';
+import RateButton from '../rateButton';
+import StarComponent from "../starComponent"
 
 function ComicDataDisplay (props) {
+
+    var rate
+    
+    if(props.userRatings)
+        rate = props.userRatings[props.mangaId] === undefined ? 0 : props.userRatings[props.mangaId]
+    else{
+        rate = 0
+    }
 
     return (  
         <div className="manga_data_container">
@@ -18,8 +28,12 @@ function ComicDataDisplay (props) {
                             {props.title}
                         </Row>
                         <Row className = "manga_data_rating">
-                            <StarFill className = "my-auto mr-3 manga_data_rating_star"/>
-                            {props.rating}
+                            <Col className = "zeropadding">
+                                <StarComponent rating = {props.rating} ratingsCount = {props.ratingsCount}/>
+                            </Col>
+                            <Col>
+                                <RateButton rate = {rate} id = {props.mangaId}/>
+                            </Col>
                         </Row>
                         <Row className = "manga_data_rating">
                             

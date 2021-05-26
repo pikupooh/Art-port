@@ -16,9 +16,6 @@ class PostLikeButton extends React.Component {
 
     componentDidMount() {
         this.props.fetchUserData(this.props.userId)
-        setTimeout(() => {
-            this.updateButtonState();
-        }, 2000);
     }
 
     trimUser = () => {
@@ -66,7 +63,6 @@ class PostLikeButton extends React.Component {
     };
 
     render() {
-        console.log(this.props);
         if (this.updateButtonState() === false) {
             return (
                 <Button onClick={this.postLiked}>

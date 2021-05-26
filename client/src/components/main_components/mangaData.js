@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import {Button, Container} from "react-bootstrap"
+import { Container} from "react-bootstrap"
 
 import MangaDataDisplay from "../small_components/mangaDataDisplayComponents/mangaDataDisplay";
 import MangaDescriptionDisplay from "../small_components/mangaDataDisplayComponents/mangaDescriptionDisplay"
@@ -10,7 +10,7 @@ import MangaChaptersDisplay from "../small_components/mangaDataDisplayComponents
 import MangaDataComments from '../small_components/mangaDataDisplayComponents/comments/mangaDataComments'
 import ChapterModal from "../small_components/uploadForms/chapterModal"
 import ShareRow from "../small_components/ShareRow";
-
+import {fetchUserProfileData} from "../../redux/thunk/fetchProfileData"
 class MangaData extends React.Component {
 
   constructor(props) {
@@ -40,16 +40,20 @@ class MangaData extends React.Component {
           <Container>
             <MangaDataDisplay photo={this.props.coverPhoto} 
                              rating ={this.props.rating}
-                             noOfRating={this.props.noOfRating}
+                             ratingsCount={this.props.ratingsCount}
                              type ={this.props.type} 
                              author= {this.props.author}
                              title = {this.props.title}
-                            chaptersLength = {this.props.chapters.length}
+                             chaptersLength = {this.props.chapters.length}
+                             userRatings = {this.props.userRatings} 
+                             mangaId = {this.props.mangaId}
+                             handleFormModalShow = {this.handleFormModalShow}
+                             userId = {this.props.userId}
                              />
 
             <MangaDescriptionDisplay about = {this.props.about}/>
+            <MangaChaptersDisplay chapters ={this.props.chapters}/> 
             <ShareRow />
-            {(this.props.author.userId === this.props.userId) && (<Button onClick = {this.handleFormModalShow}>+ Add Chapter</Button>)}            <MangaChaptersDisplay chapters ={this.props.chapters}/> 
             <MangaDataComments comments = {this.props.comments} mangaId = {this.props.mangaId}/>
           </Container>
           <ChapterModal
@@ -66,6 +70,7 @@ class MangaData extends React.Component {
   bindActionCreators(
     {
       fetchMangaData: fetchMangaDataAction,
+      fetchUserProfile: fetchUserProfileData
     },
     dispatch
   );
@@ -77,7 +82,7 @@ const mapStateToProps = (state) => {
     mangaId: state.mangaData.id,
     chapters: state.mangaData.chapters,
     rating: state.mangaData.rating,
-    noOfRating: state.mangaData.noOfRating,
+    ratingsCount: state.mangaData.ratingsCount,
     title: state.mangaData.title,
     about: state.mangaData.about,
     type: state.mangaData.type,
@@ -86,6 +91,7 @@ const mapStateToProps = (state) => {
     comments : state.mangaData.comments,
     uploadDate : state.mangaData.uploadDate,
     category : state.mangaData.category,
+    userRatings: state.auth.profile.userRatings
   };
 };
 

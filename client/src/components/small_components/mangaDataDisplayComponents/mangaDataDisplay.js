@@ -1,8 +1,19 @@
-import { Row, Col, Container, Image } from 'react-bootstrap' 
-import { CardList, StarFill } from 'react-bootstrap-icons'
+import { Row, Col, Container, Image, Button } from 'react-bootstrap' 
+import { CardList } from 'react-bootstrap-icons'
 import { Link } from 'react-router-dom';
+import RateButton from '../rateButton';
+
+import StarComponent from "../starComponent"
 
 function MangaDataDisplay (props) {
+
+    var rate
+    
+    if(props.userRatings)
+        rate = props.userRatings[props.mangaId] === undefined ? 0 : props.userRatings[props.mangaId]
+    else{
+        rate = 0
+    }
 
     return (  
         <div className="manga_data_container">
@@ -18,14 +29,19 @@ function MangaDataDisplay (props) {
                             {props.title}
                         </Row>
                         <Row className = "manga_data_rating">
-                            <StarFill className = "my-auto mr-3 manga_data_rating_star"/>
-                            {props.rating}
+                            <Col>
+                                <StarComponent rating = {props.rating} ratingsCount = {props.ratingsCount}/>
+                            </Col>
+                            <Col>
+                                <RateButton rate = {rate} id = {props.mangaId}/>
+                            </Col>
                         </Row>
                         <Row className = "manga_data_rating">
-                            
-                                <CardList className = "my-auto mr-3 manga_data_chapters_cardlist"/>
+                        <CardList className = "my-auto mr-3 manga_data_chapters_cardlist"/>
                                 {"Chapters " + props.chaptersLength}
-                           
+                                <div className = "ml-auto mr-3" >
+                                    {(props.author.userId === props.userId) && (<Button id = "add_chapter_button" onClick = {props.handleFormModalShow}>+ Add Chapter</Button>)}
+                                </div>
                         </Row>
                         <div className = "manga_data_author_container">
                             <Row >

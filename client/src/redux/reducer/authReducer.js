@@ -41,9 +41,13 @@ export const authReducer = (state = initState, action) => {
                 isAuthenticated: false,
                 userId: null,
                 token: null,
-                profile: {},
+                profile: {
+                    
+                },
             };
         case ActionTypes.USER_PROFILE_FETCH:
+            console.log("fetchprofile", action);
+            
             return {
                 ...state,
                 profile: action.payload,
@@ -71,6 +75,21 @@ export const authReducer = (state = initState, action) => {
                 ...state,
                 profile: updateProfile,
             };
+
+        case ActionTypes.UPDATE_RATING:
+            console.log(action);
+            console.log(state.profile);
+            return{
+                ...state,
+                profile: {
+                    ...state.profile,
+                    userRatings: {
+                        ...state.profile.userRatings,
+                        [action.payload.id]: action.payload.rating 
+                    }
+                }
+            }
+
         default:
             return state;
     }

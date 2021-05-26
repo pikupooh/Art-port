@@ -63,6 +63,7 @@ class FollowButton extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+
     return {
         logInId: state.auth.userId,
         profile: state.auth.profile,

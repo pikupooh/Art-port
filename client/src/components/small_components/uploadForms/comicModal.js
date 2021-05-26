@@ -119,7 +119,7 @@ class ComicModal extends React.Component {
 
     render() {
         return (
-            <Modal show={this.props.show} onHide={this.props.handleModalClose}>
+            <Modal show={this.props.show} onHide={this.props.handleModalClose} centered = {true}>
                 <Modal.Body>
                 <Modal.Header>Create a comic</Modal.Header>
                     <Form id="comic-form" onSubmit={(e) => this.handleSubmit(e)}>

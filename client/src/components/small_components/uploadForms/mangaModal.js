@@ -119,7 +119,7 @@ class MangaModal extends React.Component {
 
     render() {
         return (
-            <Modal show={this.props.show} onHide={this.props.handleModalClose}>
+            <Modal show={this.props.show} onHide={this.props.handleModalClose} centered = {true}>
                 <Modal.Body>
                     <Modal.Header>Create a manga</Modal.Header>
                     <Form id="manga-form" onSubmit={(e) => this.handleSubmit(e)}>
@@ -159,7 +159,7 @@ class MangaModal extends React.Component {
                                 value={this.state.categories}
                                 onAdd={(chip) => this.addCategory(chip)}
                                 onDelete={(chip, index) => this.removeCategory(chip, index)}
-                                label="Enter categories for manga"
+                                
                             />
                         </Form.Group>
                         <Form.Group>

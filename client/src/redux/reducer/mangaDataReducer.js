@@ -3,8 +3,8 @@ import * as ActionTypes from "../actions/actionTypes";
 const initState = {
   id: '',
   chapters: [],
-  rating:'',
-  noOfRating:'',
+  rating: 0,
+  ratingsCount: 0,
   title:'',
   about:'',
   type:'',
@@ -23,7 +23,7 @@ export const mangaDataReducer = (state = initState, action) => {
         id: action.payload.mangaData.id,
         chapters: action.payload.mangaData.chapters,
         rating: action.payload.mangaData.rating,
-        noOfRating: action.payload.mangaData.ratingCount,
+        ratingsCount: action.payload.mangaData.ratingCount,
         title: action.payload.mangaData.title,
         about: action.payload.mangaData.about,
         type: action.payload.mangaData.type,
@@ -35,18 +35,13 @@ export const mangaDataReducer = (state = initState, action) => {
       };
 
     
-    case ActionTypes.RATE_MANGA:
+    case ActionTypes.UPDATE_RATING:
       return {
           ...state,
-          // likes: [...state.likes, action.payload.user],
+          ratingsCount: state.ratingsCount+1,
+          rating: state.rating + action.payload.rating
       };
 
-    case ActionTypes.REMOVE_MANGA_RATING:
-
-        return {
-            ...state,
-            // likes: newLikes,
-        };
 
     case ActionTypes.POST_MANGA_COMMENT:
         return {

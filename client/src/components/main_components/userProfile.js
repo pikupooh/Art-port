@@ -7,7 +7,7 @@ import FollowButton from "../small_components/followButton"
 import fetchUserData from "../../redux/thunk/fetchUserData";
 import UserProfileNavbar from "../small_components/userProfileComponents/userProfileNavbar";
 import UserProfileExtras from "../small_components/userProfileComponents/userProfileExtras";
-import fetchProfileData from "../../redux/thunk/fetchProfileData";
+import fetchProfileData, {fetchUserProfileData} from "../../redux/thunk/fetchProfileData";
 
 class UserProfile extends React.Component {
     componentDidMount() {
@@ -16,11 +16,12 @@ class UserProfile extends React.Component {
         let id = lastSlash==5?this.props.location.pathname.slice(6):this.props.location.pathname.slice(6, lastSlash);
         this.props.fetchProfileData(id);
         this.props.fetchUserData(id);
+        this.props.fetchUserProfileData();
         window.scrollTo(0, 0);
     }
 
     render() {
-        console.log(this.props);
+        console.log(this.props.profile);
         return (
             <div>
                 <div className="text-center profile_page_header">
@@ -55,12 +56,12 @@ const mapDispatchToProps = (dispatch) =>
         {
             fetchUserData: fetchUserData,
             fetchProfileData: fetchProfileData,
+            fetchUserProfileData
         },
         dispatch
     );
 
 const mapStateToProps = (state) => {
-    console.log(state);
     return {
         userId: state.auth.userId,
         user: state.user,
@@ -75,6 +76,7 @@ const mapStateToProps = (state) => {
         favouriteBlogs: state.profile.favouriteBlogs,
         favouriteComics: state.profile.favouriteComics,
         favouriteMangas: state.profile.favouriteMangas,
+        profile: state.auth.profile
     };
 };
 

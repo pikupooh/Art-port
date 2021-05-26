@@ -32,7 +32,7 @@ class SearchResults extends React.Component{
                     </Row>
 
                     {this.props.posts.length > 0 &&
-                        <div>     
+                        <div className = "search_result_container">     
                             <Row>
                                 <h5 className = "top_result"> Posts </h5>
                             </Row>
@@ -56,7 +56,7 @@ class SearchResults extends React.Component{
 
 
                     {this.props.blogs.length > 0 &&
-                        <div>     
+                        <div className = "search_result_container">     
                             <Row>
                                 <h5 className = "top_result"> Blogs </h5>
                             </Row>
@@ -80,7 +80,7 @@ class SearchResults extends React.Component{
                     
 
                     {this.props.mangas.length > 0 &&
-                        <div>     
+                        <div className = "search_result_container">     
                             <Row>
                                 <h5 className = "top_result"> Mangas </h5>
                             </Row>
@@ -102,7 +102,7 @@ class SearchResults extends React.Component{
                     }
 
                     {this.props.comics.length > 0 &&
-                        <div>     
+                        <div className = "search_result_container">     
                             <Row>
                                 <h5 className = "top_result"> Comics </h5>
                             </Row>
@@ -157,8 +157,8 @@ const mapStateToProps = (state) => {
     }
 
      return(
-        <Row className = "search_result_container">
-            <Col sm ={1} className="A">
+        <Row className = "my-1 A">
+            <Col sm ={1}>
                 <Link to = {'/post/' + post.id}>
                     {post.images.length !== 0 && <div className = "search_image_container">
                         <Image src = {post.images[0].link} className="search_image" alt = "post_photo"></Image>
@@ -187,8 +187,8 @@ const mapStateToProps = (state) => {
     }
 
      return(
-        <Row className = "search_result_container">
-            <Col sm ={1} className="A">
+        <Row className = "my-1 A">
+            <Col sm ={1} >
                 <Link to = {'/blog/' + blog.id}>
                     <div className = "search_image_container">
                         <Image src = {blog.img.link} className="search_image" alt = "blog_cover_photo"></Image>
@@ -226,8 +226,8 @@ const mapStateToProps = (state) => {
     }
 
      return(
-        <Row className = "search_result_container">
-            <Col sm ={1} className="A">
+        <Row className = "my-1 A">
+            <Col sm ={1} >
                 <Link to ={'/mangas/' + manga.id}>
                     <div className = "search_image_container">
                         <Image src = {manga.coverPhoto.link} className="search_image" alt = "comic_cover_photo"></Image>
@@ -263,8 +263,8 @@ const mapStateToProps = (state) => {
     }
 
      return(
-        <Row className = "search_result_container">
-            <Col sm ={1} className="A">
+        <Row className = "my-1 A">
+            <Col sm ={1} >
                 <Link to ={'/comic/' + comic.id}>
                     <div className = "search_image_container">
                         <Image src = {comic.coverPhoto.link} className="search_image" alt = "comic_cover_photo"></Image>

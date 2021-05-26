@@ -124,7 +124,7 @@ class BlogModal extends React.Component {
 
     render() {
         return (
-            <Modal show={this.props.show} onHide={this.props.handleModalClose}>
+            <Modal show={this.props.show} onHide={this.props.handleModalClose} centered = {true}>
                 <Modal.Body>
                 <Modal.Header>Create a blog</Modal.Header>
                     <Form id="blog-form" onSubmit={(e) => this.handleSubmit(e)}>

@@ -131,7 +131,7 @@ class PostModal extends React.Component {
             }
           };
         return (
-            <Modal show={this.props.show} onHide={this.props.handleModalClose}>
+            <Modal show={this.props.show} onHide={this.props.handleModalClose} centered = {true}>
                 <Modal.Body>
                 <Modal.Header>Create a post</Modal.Header>
                     <Form id="post-form" onSubmit={(e) => this.handleSubmit(e)} onKeyDown={(e) => {
