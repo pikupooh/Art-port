@@ -29,6 +29,10 @@ import UploadComponent from "./components/main_components/uploadComponent";
 import ForgotPassword from "./components/small_components/forgotPassword";
 import ResetPassword from "./components/small_components/resetPassword";
 import SearchResults from "./components/main_components/searchResults";
+import SearchedPosts from "./components/small_components/searchComponents/searchedPosts";
+import SearchedMangas from "./components/small_components/searchComponents/searchedMangas";
+import SearchedComics from "./components/small_components/searchComponents/searchedComics";
+import SearchedBlogs from "./components/small_components/searchComponents/searchedBlogs";
 
 
 const NavbarwithRouter = withRouter(NavbarComponent);
@@ -54,7 +58,7 @@ class App extends React.Component {
                                         component={UserProfile}
                                     />
                                     <Route
-                                        path="/search/:val"
+                                        exact path="/search/"
                                         component={SearchResults}
                                     />
                                     <Route path="/post/:post_id" component={Post} />
@@ -94,10 +98,27 @@ class App extends React.Component {
                                         path="/resetPassword"
                                         component={ResetPassword}
                                     />
-                                    <Route
+                                    {/* <Route
                                          path = "/search"
                                          component ={SearchResults}
-                                    />      
+                                    />   */}
+                                    <Route
+                                        path="/searchedposts/"
+                                        component = {SearchedPosts} 
+                                    />
+                                    <Route
+                                        path="/searchedmangas/"
+                                        component = {SearchedMangas} 
+                                    />
+                                    <Route
+                                        path="/searchedblogs/"
+                                        component = {SearchedBlogs} 
+                                    />
+                                    <Route
+                                        path="/searchedcomics/"
+                                        component = {SearchedComics} 
+                                    />
+                                        
 
                                     <SignInModal />
                                     <div className = "footer_head"></div>

@@ -179,8 +179,18 @@ manga_data_container{
 }
 .top_result_data{
     padding-top : 10px;
-    padding-bottom :10px;
-    margin-bottom :30px;
+    padding-bottom :7px;
+    margin-bottom :3px;
+}
+.show_all_button{
+    font-size: 16px;
+    font-weight: 600;
+    color:lighten($color :$background-color ,$amount : 60 );
+    max-width: 100px;
+    &:hover{
+        color :#fff;
+    }
+
 }
 .result_description{
     color :lighten($color :$background-color ,$amount : 40 )
