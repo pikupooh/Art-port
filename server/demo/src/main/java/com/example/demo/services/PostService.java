@@ -7,6 +7,7 @@ import com.example.demo.payload.response.UserDTO;
 import com.example.demo.repositories.PostRepository;
 import com.mongodb.client.result.UpdateResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -35,7 +36,7 @@ public class PostService {
 
     public List<Post> getAllPosts(){
 
-        return postRepository.findAll();
+        return postRepository.findAll(Sort.by(Sort.Direction.DESC, "uploadDate"));
     }
 
 

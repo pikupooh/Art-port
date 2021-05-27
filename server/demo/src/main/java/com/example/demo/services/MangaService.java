@@ -5,6 +5,7 @@ import com.example.demo.payload.response.UserDTO;
 import com.example.demo.repositories.MangaRepository;
 import com.mongodb.client.result.UpdateResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -36,7 +37,7 @@ public class MangaService {
 
     public List<Manga> getAll(){
 
-        return mangaRepository.findAll();
+        return mangaRepository.findAll(Sort.by(Sort.Direction.DESC, "uploadDate"));
     }
 
     public List<Manga> getAllComic(){
