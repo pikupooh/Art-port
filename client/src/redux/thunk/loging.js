@@ -28,7 +28,7 @@ export default function signInUser(user, pass) {
                         );
                         error.res = res;
                         dispatch(loginError("Invalid username or password"));
-                        dispatch( setLoadingAction(false, "Loading..."));
+                        dispatch( setLoadingAction(false, "Error..."));
                         throw error;
                     }
                 },
