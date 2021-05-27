@@ -11,6 +11,7 @@ import BlogLikeButton from "../small_components/likeButtons/blogLikeButton"
 import CommentsTag from "../small_components/commentsTag"
 
 import { ShareRow } from "../small_components/ShareRow"
+import SingleTag from "../small_components/singleTag";
 
 class blogData extends React.Component {
   
@@ -92,23 +93,22 @@ class blogData extends React.Component {
               </span>
             </Col>
           </Row>
-          <Row className = "mx-2">
-            Tags
-          </Row>
-          <Row className = "mx-2">
-            <div> 
-              {this.props.tags.map((tag, index) =>
-                <Fragment key = {index}>
-                  {tag + ' '}
-                </Fragment>
-              )}
-            </div>
-          </Row>
           <div className = "mt-5">
             {this.props.content}
           </div>
           <Row className = "mx-2">
             <ShareRow />
+          </Row>
+          <Row className = "mx-2 tags_text">
+            <i class="material-icons">
+              loyalty
+            </i>
+            Tags
+          </Row>
+          <Row className = "zeromargin"> 
+            {this.props.tags.map((tag) =>
+              <SingleTag tag = {tag} />
+            )}
           </Row>
           <CommentsTag length = {this.props.comments.length}/>
           <BlogDataComments blogId = {this.props.id} comments = {this.props.comments}/>

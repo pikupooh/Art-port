@@ -1,6 +1,6 @@
 function MangaDescriptionDisplay (props) {
     return (  
-        <div className = "">
+        <div>
             <div className ="pb-2 manga_data_description_text text-center">
                 Summary
             </div>

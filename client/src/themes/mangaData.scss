@@ -22,7 +22,8 @@
 }
 
 .manga_data_rating{
-    font-size: 30px;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
 }
 
 .manga_data_rating_star{
@@ -74,6 +75,10 @@
 .manga_data_description_contain{
     font-size: 20px;
     overflow-wrap: anywhere;
+    max-height: 100px;
+    overflow: auto;
+    background-color: lighten($color: $background-color, $amount: 5);
+    padding: 10px;
 }
 
 .manga_data_chater_list_container{
@@ -91,10 +96,19 @@
     padding-right: 10px;
     padding-bottom: 5px;
     padding-top: 5px;
+
+    margin-right: 10px;
     
     &:hover{
-        background-color: lighten($color: $background-color, $amount: 15);
+        background-color: lighten($color: $background-color, $amount: 2);
     }
+
+    border-radius: 20px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
 
 }
 

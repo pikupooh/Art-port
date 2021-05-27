@@ -9,6 +9,8 @@ import PostLikeButton from '../likeButtons/postLikeButton'
 import FollowButton from '../followButton'
 import ShareRow from '../ShareRow'
 import CommentsTag from "../../small_components/commentsTag"
+import SingleTag from "../../small_components/singleTag"
+
 class PostedUserDetails extends React.Component{
 
     constructor(props){
@@ -52,7 +54,7 @@ class PostedUserDetails extends React.Component{
                         </Col>
                     </Row>
                     <Row className = "mt-3">
-                        <Col md = {6}>
+                        <Col xs = {6}>
                             <PostLikeButton postId = {this.props.info.id}/>
                         </Col>
                         <Col>
@@ -69,21 +71,22 @@ class PostedUserDetails extends React.Component{
                 </div>
                 <div>
                     
-                    <div className = "my-2">
+                    <div className = "my-2 post_title">
                         {this.props.info.title}
                     </div>
-                    <div>
+                    <div className = "post_description">
                         {this.props.info.description}
                     </div>
                 </div>
-                <div>
+                <Row className = "mx-2 tags_text">
+                    <i class="material-icons">
+                    loyalty
+                    </i>
                     Tags
-                </div>
-                <Row>
-                    {this.props.info.tags && this.props.info.tags.map((tag) => 
-                        <Badge pill variant="primary" className = "mx-3 mt-2">
-                                {tag}
-                        </Badge>
+                </Row>
+                <Row className = "zeromargin"> 
+                    {this.props.info.tags.map((tag) =>
+                        <SingleTag tag = {tag} />
                     )}
                 </Row>
                 <ShareRow />

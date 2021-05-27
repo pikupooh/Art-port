@@ -14,6 +14,18 @@ class SearchBar extends React.Component{
         this.state = {
             tags: [],
         }
+        console.log('search_bar constructor');
+    }
+
+    componentDidUpdate(){
+        console.log('search_bar constructor');
+        
+        if(!!this.props.location.state){
+            this.setState({
+                tags: [this.props.location.state.tag]
+            }, this.handleOnSearch)
+            this.props.location.state = undefined
+        }
     }
 
     handleOnChange = (e) => {
@@ -24,15 +36,13 @@ class SearchBar extends React.Component{
     }
 
     handleOnSearch = (e) => {
+
         if(!!e)
             e.preventDefault();
         console.log("handleOnSearch", this.state.tags);
         if(this.state.tags.length !== 0){
             this.props.history.push('/search/')
             this.props.search(this.state.tags)
-        }
-        else{
-            this.props.history.push('/')
         }
     }
 
@@ -42,21 +52,22 @@ class SearchBar extends React.Component{
         this.setState({
             ...this.state,
             tags: newTags
-         }, this.handleOnSearch);
+         }
+        );
     };
 
     addTag = (val) => {
         this.setState({
             ...this.state,
             tags: [...this.state.tags, val],
-            }, this.handleOnSearch
+            }
         );
     };
 
     render(){
         return(
             <div className = "search_bar_wrapper">
-                <Form  className = "search_bar">
+                <Form  className = "search_bar" onSubmit = {(e) => {this.handleOnSearch(e)}}>
                   <Row>
                       <Col className="zeropadding">
                             <ChipInput className="search-tags-label search-tags-root search-tags" classes={{root:"search-tags-root", label:"search-tags-label", input:"search-tags"}}

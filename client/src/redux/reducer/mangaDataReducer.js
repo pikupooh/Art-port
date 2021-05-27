@@ -12,7 +12,7 @@ const initState = {
   author: {},
   comments:[],
   uploadDate: '',
-  category: [],
+  tags: [],
 };
 
 export const mangaDataReducer = (state = initState, action) => {
@@ -31,7 +31,7 @@ export const mangaDataReducer = (state = initState, action) => {
         author : action.payload.mangaData.userDTO,
         comments : action.payload.mangaData.comments,
         uploadDate: action.payload.mangaData.uploadDate,
-        category : action.payload.mangaData.category,
+        tags : action.payload.mangaData.category,
       };
 
     
