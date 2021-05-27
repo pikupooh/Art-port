@@ -1,8 +1,7 @@
 import React from 'react'
 import { connect } from  'react-redux';
-import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
-import { Row,Col,Container,Image,Button } from 'react-bootstrap';
+import { Row,Col,Container,Image } from 'react-bootstrap';
 
 class SearchResults extends React.Component{
     
@@ -18,16 +17,16 @@ class SearchResults extends React.Component{
 
                     <Row className = "pt-5">
                         <p>
-                            <a className = "search_button" href= "#">Posts </a>
+                            <a className = "search_button" href= "/">Posts </a>
                         </p>
                         <p>
-                            <a className = "search_button" href= "#">Blogs </a>
+                            <a className = "search_button" href= "/">Blogs </a>
                         </p>
                         <p>
-                        <a className = "search_button" href= "#">Comics </a> 
+                        <a className = "search_button" href= "/">Comics </a> 
                         </p>
                         <p>
-                            <a className = "search_button" href= "#">Mangas </a>
+                            <a className = "search_button" href= "/">Mangas </a>
                         </p>
                     </Row>
 
@@ -38,7 +37,7 @@ class SearchResults extends React.Component{
                             </Row>
                             <div className="top_result_data">
                                     {this.props.posts && this.props.posts.map((post, i) => 
-                                        <PostRow post = {post} index = {i}/> 
+                                        <PostRow key={post.id} post = {post} index = {i}/> 
                                     )}
                             </div>
                             <div>
@@ -62,7 +61,7 @@ class SearchResults extends React.Component{
                             </Row>
                             <div className="top_result_data">
                                     {this.props.blogs && this.props.blogs.map((blog, i) => 
-                                        <BlogRow blog = {blog} index = {i}/> 
+                                        <BlogRow key={blog.id} blog = {blog} index = {i}/> 
                                     )}
                             </div>
                             <div>
@@ -86,7 +85,7 @@ class SearchResults extends React.Component{
                             </Row>
                             <div className="top_result_data">
                                     {this.props.mangas && this.props.mangas.map((manga, i) => 
-                                        <MangaRow manga = {manga} index = {i}/> 
+                                        <MangaRow key={manga.id} manga = {manga} index = {i}/> 
                                     )}
                             </div>
                             <div>
@@ -108,7 +107,7 @@ class SearchResults extends React.Component{
                             </Row>
                             <div className="top_result_data">
                                     {this.props.comics && this.props.comics.map((comic, i) => 
-                                        <ComicRow comic = {comic} index = {i}/> 
+                                        <ComicRow key={comic.id} comic = {comic} index = {i}/> 
                                     )}
                             </div>
                             <div>

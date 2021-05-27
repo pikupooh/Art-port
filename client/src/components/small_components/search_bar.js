@@ -30,7 +30,10 @@ class SearchBar extends React.Component{
             this.props.history.push('/search/')
             this.props.search(this.state.tags)
         }
-        this.state.tags = []
+        this.setState({
+            ...this.state,
+            tags:[]
+        })
     }
 
     removeTag = (tag, i) => {

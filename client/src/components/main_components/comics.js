@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from  'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
-import {Row,Col,Container} from 'react-bootstrap';
+import {Row,Col} from 'react-bootstrap';
 
 import fetchComicListAction from '../../redux/thunk/fetchComicList '
 import ComicDataComponent from '../small_components/comicListComponent/comicDataComponent'

@@ -2,7 +2,7 @@ import { fetchUserDataAction } from "../actions/fetchUserDataAction";
 
 function fetchUserData(userId) {
     return (dispatch) => {
-        fetch(`/api//api/auth/users/${userId}`, {})
+        fetch(`/api/auth/users/${userId}`, {})
             .then(
                 (res) => {
                     if (res.ok) return res;

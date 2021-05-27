@@ -1,8 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Spinner } from "react-bootstrap";
-import { bindActionCreators } from "redux";
-import { logoutUser } from "../../redux/thunk/loging";
 
 class Overlay extends React.Component {
 

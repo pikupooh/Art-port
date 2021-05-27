@@ -1,6 +1,5 @@
 import React from "react";
 import { Modal, Form, Button } from "react-bootstrap";
-import { categories } from "../../../shared/categories";
 import { createComic } from "../../../redux/thunk/fetchComicData";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";

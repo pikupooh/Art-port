@@ -3,7 +3,6 @@ import { Star, StarFill } from "react-bootstrap-icons";
 import { Modal, Button, Row, Col } from "react-bootstrap";
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux'
-import ReactStars from "react-rating-stars-component";
 
 import rate from "../../redux/thunk/put/rate"
 
@@ -27,7 +26,7 @@ class RateModal extends React.Component{
         for(var i=0;  i<=index ; i++){
             stars.push(<StarFill className = "submit_rate_star mx-1"/>)
         }
-        for(var i = index+1 ; i<5 ; i++){
+        for(i = index+1 ; i<5 ; i++){
             stars.push(<Star className = "submit_rate_star mx-1"/>)
         }
 

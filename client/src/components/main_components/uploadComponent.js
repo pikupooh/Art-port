@@ -39,26 +39,30 @@ class UploadComponent extends React.Component {
         this.setState({ mangaShow: false });
     };
 
-    handlePostModalShow = () => {
+    handlePostModalShow = (e) => {
+        e.preventDefault();
         this.setState({ postShow: true });
     };
 
-    handleBlogModalShow = () => {
+    handleBlogModalShow = (e) => {
+        e.preventDefault();
         this.setState({ blogShow: true });
     };
 
-    handleComicModalShow = () => {
+    handleComicModalShow = (e) => {
+        e.preventDefault();
         this.setState({ comicShow: true });
     };
 
-    handleMangaModalShow = () => {
+    handleMangaModalShow = (e) => {
+        e.preventDefault();
         this.setState({ mangaShow: true });
     };
 
     render() {
         return (
             <div>
-                <a href="#" className="float fab">
+                <a href="/" className="float fab" onClick={e=>e.preventDefault()}>
                     <i className="material-icons upload_icon">add</i>
                 </a>
                 <ul className="submenu upload_buttons_container">
@@ -68,9 +72,9 @@ class UploadComponent extends React.Component {
                             delay={{ show: 250, hide: 350 }}
                             overlay={this.renderTooltip("post")}
                         >
-                            <a
+                            <a href="/"
                                 className="submenu_a"
-                                onClick={this.handlePostModalShow}
+                                onClick={e => this.handlePostModalShow(e)}
                             >
                                 <i className="material-icons upload_icon">post_add</i>
                             </a>
@@ -82,9 +86,9 @@ class UploadComponent extends React.Component {
                             delay={{ show: 250, hide: 350 }}
                             overlay={this.renderTooltip("blog")}
                         >
-                            <a
+                            <a href="/"
                                 className="submenu_a"
-                                onClick={this.handleBlogModalShow}
+                                onClick={e => this.handleBlogModalShow(e)}
                             >
                                 <i className="material-icons upload_icon">attach_file</i>
                             </a>
@@ -96,9 +100,9 @@ class UploadComponent extends React.Component {
                             delay={{ show: 250, hide: 350 }}
                             overlay={this.renderTooltip("manga")}
                         >
-                            <a
+                            <a href="/"
                                 className="submenu_a"
-                                onClick={this.handleMangaModalShow}
+                                onClick={e => this.handleMangaModalShow(e)}
                             >
                                 <i className="material-icons upload_icon">
                                     insert_drive_file
@@ -112,9 +116,9 @@ class UploadComponent extends React.Component {
                             delay={{ show: 250, hide: 350 }}
                             overlay={this.renderTooltip("comic")}
                         >
-                            <a
+                            <a href="/"
                                 className="submenu_a"
-                                onClick={this.handleComicModalShow}
+                                onClick={e => this.handleComicModalShow(e)}
                             >
                                 <i className="material-icons upload_icon">face</i>
                             </a>

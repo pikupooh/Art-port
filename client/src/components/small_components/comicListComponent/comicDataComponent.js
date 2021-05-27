@@ -1,4 +1,4 @@
-import { Row, Col,Container } from 'react-bootstrap'
+import { Row, Col } from 'react-bootstrap'
 
 import ComicListComicImage from './comicListComicImage'
 import ComicListComicData from './comicListComicData'

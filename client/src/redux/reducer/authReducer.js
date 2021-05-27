@@ -56,7 +56,7 @@ export const authReducer = (state = initState, action) => {
         case ActionTypes.REMOVE_FOLLOWING:
             let newProfile = { ...state.profile };
             let newFollowing = state.profile.following.filter(
-                (user) => user.id != action.payload.userId
+                (user) => user.id !== action.payload.userId
             );
             newProfile.following = newFollowing;
             console.log(newProfile);

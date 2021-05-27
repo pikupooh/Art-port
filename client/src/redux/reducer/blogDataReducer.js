@@ -79,6 +79,7 @@ export const blogDataReducer = (state = initState, action) => {
                     tempComment.replies.push(newReply)
                     newComments.push(tempComment)
                 }
+                return comment;
             })
      
         
@@ -113,6 +114,7 @@ export const blogDataReducer = (state = initState, action) => {
                     }
                     newComments.push(tempComment)
                 }
+                return comment;
             })
             return {
                 ...state,
@@ -145,9 +147,11 @@ export const blogDataReducer = (state = initState, action) => {
                         else{
                             tempComment.replies.push(reply)
                         }
+                        return reply;
                     })
                     newComments.push(tempComment)
                 }
+                return comment;
             })
         
             return {
@@ -169,9 +173,11 @@ export const blogDataReducer = (state = initState, action) => {
                         if(reply.id !== action.payload.replyId){
                             tempComment.replies.push(reply)
                         }
+                        return reply;
                     })
                     newComments.push(tempComment)
                 }
+                return comment;
             })
         
             return {

@@ -7,7 +7,7 @@ class UserProfileFollowers extends React.Component {
         return(
             <div>
                 {this.props.followerList.map((follower) => 
-                    <Row className = "m-2 mt-4">
+                    <Row key={follower.id} className = "m-2 mt-4">
                     <Col sm = {2} >
                       <Image fluid src = {follower.profilePhoto.link} roundedCircle></Image>
                     </Col>
