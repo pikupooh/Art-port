@@ -3,9 +3,9 @@ import { ADD_FOLLOWING } from "../../actions/actionTypes";
 function addFollower(userId, logInId) {
     const token = localStorage.getItem("token");
     console.log("yayy", logInId, userId);
-    console.log(`http://localhost:8080/users/${logInId}/follower/${userId}`);
+    console.log(`/api/users/${logInId}/follower/${userId}`);
     return (dispatch) => {
-        fetch(`http://localhost:8080/users/${logInId}/follower/${userId}`, {
+        fetch(`/api/users/${logInId}/follower/${userId}`, {
             method: "POST",
             headers: {
                 Authorization: token,

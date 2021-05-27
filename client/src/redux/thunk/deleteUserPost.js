@@ -1,29 +1,28 @@
-import { deleteUserPostAction } from '../actions/fetchProfileDataAction'
+import { deleteUserPostAction } from "../actions/fetchProfileDataAction";
 import { setLoadingAction } from "../actions/loadingActions";
 
-function deleteUserPost(userId, postId){
-
-    const token = localStorage.getItem("token")
+function deleteUserPost(userId, postId) {
+    const token = localStorage.getItem("token");
     console.log(postId);
-    return dispatch => {
+    return (dispatch) => {
         dispatch(setLoadingAction(true, "Loading..."));
 
-        fetch(`http://localhost:8080/users/${userId}/posts/${postId}`, {
-            method: 'DELETE',
+        fetch(`/api/users/${userId}/posts/${postId}`, {
+            method: "DELETE",
             headers: {
                 Authorization: token,
             },
-            body: ""
+            body: "",
         })
-        .then(response => {
-            if(response.ok){
-                dispatch(setLoadingAction(false, "Loading..."));
+            .then((response) => {
+                if (response.ok) {
+                    dispatch(setLoadingAction(false, "Loading..."));
 
-                dispatch(deleteUserPostAction(postId));
-            }
-        })
-        .catch((error) => console.log(error));
-    }
+                    dispatch(deleteUserPostAction(postId));
+                }
+            })
+            .catch((error) => console.log(error));
+    };
 }
 
-export default deleteUserPost
+export default deleteUserPost;

@@ -1,14 +1,13 @@
 import { EDIT_POST_REPLY } from "../../actions/actionTypes";
 
 function editPostReply(replyId, message) {
-    
     const token = localStorage.getItem("token");
     console.log(replyId, message);
     return (dispatch) => {
-        fetch(`http://localhost:8080/reply/${replyId}`, {
+        fetch(`/api/reply/${replyId}`, {
             method: "PUT",
             body: JSON.stringify({
-                content: message
+                content: message,
             }),
             headers: {
                 "Content-Type": "application/json",
@@ -17,14 +16,14 @@ function editPostReply(replyId, message) {
         })
             .then((response) => {
                 if (response.ok) {
-                    return response.json()
+                    return response.json();
                 }
             })
             .then((response) => {
                 dispatch({
                     type: EDIT_POST_REPLY,
-                    payload: {response}
-                })
+                    payload: { response },
+                });
             })
             .catch((err) => console.error(err));
     };

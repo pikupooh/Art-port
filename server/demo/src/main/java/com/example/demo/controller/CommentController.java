@@ -17,6 +17,7 @@ import java.security.Principal;
 
 @CrossOrigin
 @RestController
+@RequestMapping("/api")
 public class CommentController {
 
     @Autowired

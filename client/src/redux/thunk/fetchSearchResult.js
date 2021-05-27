@@ -1,21 +1,20 @@
-import { SEARCH_RESULT } from "../actions/actionTypes"
-import { setLoadingAction } from "../actions/loadingActions"
+import { SEARCH_RESULT } from "../actions/actionTypes";
+import { setLoadingAction } from "../actions/loadingActions";
 
-export function searchTags (tags) {
-
+export function searchTags(tags) {
     console.log(tags);
 
-    let tagsBody = JSON.stringify(tags)
+    let tagsBody = JSON.stringify(tags);
     console.log(tagsBody);
 
     return (dispatch) => {
         dispatch(setLoadingAction(true, "Loading..."));
-        fetch(`http://localhost:8080/search`, {
-            method: 'POST',
+        fetch(`/api/search`, {
+            method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
             },
-            body: tagsBody,   
+            body: tagsBody,
         })
             .then(
                 (res) => {
@@ -37,8 +36,8 @@ export function searchTags (tags) {
                 console.log(res);
                 dispatch({
                     type: SEARCH_RESULT,
-                    payload: res
-                })
+                    payload: res,
+                });
                 dispatch(setLoadingAction(false, "Loading..."));
                 return res;
             })
@@ -47,4 +46,3 @@ export function searchTags (tags) {
             });
     };
 }
-

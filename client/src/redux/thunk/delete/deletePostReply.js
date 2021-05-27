@@ -1,32 +1,29 @@
-import { DELETE_POST_REPLY } from '../../actions/actionTypes'
+import { DELETE_POST_REPLY } from "../../actions/actionTypes";
 
-function deletePostReply(replyId, commentId){
+function deletePostReply(replyId, commentId) {
+    const token = localStorage.getItem("token");
 
-    const token = localStorage.getItem("token")
-
-    return dispatch => {
-        fetch(`http://localhost:8080/reply/${replyId}`, {
-            method: 'DELETE',
+    return (dispatch) => {
+        fetch(`/api/reply/${replyId}`, {
+            method: "DELETE",
             headers: {
                 Authorization: token,
             },
-            body: ""
+            body: "",
         })
-        .then(response => {
-            if(response.ok){
-                dispatch(
-                    {
+            .then((response) => {
+                if (response.ok) {
+                    dispatch({
                         type: DELETE_POST_REPLY,
                         payload: {
                             replyId,
-                            commentId
-                        }
-                    }
-                );
-            }
-        })
-        .catch((error) => console.log(error));
-    }
+                            commentId,
+                        },
+                    });
+                }
+            })
+            .catch((error) => console.log(error));
+    };
 }
 
-export default deletePostReply
+export default deletePostReply;

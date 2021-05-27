@@ -19,6 +19,7 @@ import com.example.demo.services.UserService;
 
 @CrossOrigin
 @RestController
+@RequestMapping("/api")
 public class BlogController {
     @Autowired
     BlogService blogService;

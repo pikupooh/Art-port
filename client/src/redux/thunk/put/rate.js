@@ -1,16 +1,14 @@
 import { UPDATE_RATING } from "../../actions/actionTypes";
 
 function rate(rating, mangaId) {
-    
     const token = localStorage.getItem("token");
 
-    var tempObject = {rating,
-                    mangaId}
-    tempObject = JSON.stringify(tempObject)
+    var tempObject = { rating, mangaId };
+    tempObject = JSON.stringify(tempObject);
     console.log(tempObject);
 
     return (dispatch) => {
-        fetch(`http://localhost:8080/manga/${mangaId}/rating`, {
+        fetch(`/api/manga/${mangaId}/rating`, {
             method: "PUT",
             body: tempObject,
             headers: {
@@ -20,7 +18,7 @@ function rate(rating, mangaId) {
         })
             .then((response) => {
                 if (response.ok) {
-                    return response.text()
+                    return response.text();
                 }
             })
             .then((response) => {
@@ -29,9 +27,9 @@ function rate(rating, mangaId) {
                     type: UPDATE_RATING,
                     payload: {
                         id: mangaId,
-                        rating
-                    }
-                })
+                        rating,
+                    },
+                });
             })
             .catch((err) => console.error(err));
     };
