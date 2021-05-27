@@ -126,3 +126,25 @@ a i.material-icons {
         cursor: pointer;
     }
 }
+
+.search_result_heading{
+    overflow: hidden;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.modal-content{
+    color: #63c5ff
+}
+
+.upload_modal_tags_input{
+    width: 100%
+}
+
+.no_chapters{
+    margin-top: 10px;
+    font-size: 2rem;
+    color: red;
+    
+}

@@ -1,10 +1,6 @@
-.manga_data_container{
-    background-color: lighten($color: $background-color, $amount: 5);
-}
-
 .manga_data_manga_image_container{
     width: 100%;
-    height: 50vh;
+    height: 350px
     
 }
 
@@ -16,12 +12,12 @@
 
 .manga_data_title{
     font-weight: 800;
-    font-size: 3rem;
+    font-size: 2rem;
     color: rgb(235, 131, 33);
     height: 150px;
     overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical; 
 }
 
@@ -77,6 +73,7 @@
 
 .manga_data_description_contain{
     font-size: 20px;
+    overflow-wrap: anywhere;
 }
 
 .manga_data_chater_list_container{

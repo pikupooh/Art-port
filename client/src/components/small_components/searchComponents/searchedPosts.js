@@ -20,7 +20,8 @@ class SearchedPosts extends React.Component{
                                           <Row className = "search_result_container">
             <Col sm ={1} className="A">
                 <Link to = {'/post/' + post.id}>
-                    {post.images.length !== 0 && <div className = "search_image_container">
+                    {
+                        post.images.length !== 0 && <div className = "search_image_container">
                         <Image src = {post.images[0].link} className="search_image" alt = "post_photo"></Image>
                     </div>
                     }

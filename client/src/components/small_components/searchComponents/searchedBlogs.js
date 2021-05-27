@@ -21,7 +21,7 @@ class SearchedBlogs extends React.Component{
             <Col sm ={1} className="A">
                 <Link to = {'/blog/' + blog.id}>
                     <div className = "search_image_container">
-                        <Image src = {blog.img.link} className="search_image" alt = "blog_cover_photo"></Image>
+                        {blog.img && <Image src = {blog.img.link} className="search_image" alt = "blog_cover_photo"></Image>}
                     </div>
                 </Link>
             </Col>

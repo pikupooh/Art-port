@@ -24,13 +24,16 @@ class SearchBar extends React.Component{
     }
 
     handleOnSearch = (e) => {
-        e.preventDefault();
+        if(!!e)
+            e.preventDefault();
         console.log("handleOnSearch", this.state.tags);
-        if(this.state.tags.length !== ''){
+        if(this.state.tags.length !== 0){
             this.props.history.push('/search/')
             this.props.search(this.state.tags)
         }
-        this.state.tags = []
+        else{
+            this.props.history.push('/')
+        }
     }
 
     removeTag = (tag, i) => {
@@ -39,23 +42,23 @@ class SearchBar extends React.Component{
         this.setState({
             ...this.state,
             tags: newTags
-         });
+         }, this.handleOnSearch);
     };
 
     addTag = (val) => {
         this.setState({
             ...this.state,
             tags: [...this.state.tags, val],
-        });
-
+            }, this.handleOnSearch
+        );
     };
 
     render(){
-          
         return(
-                <Form  className = "search_bar" onSubmit={(e) => this.handleOnSearch(e)}>
+            <div className = "search_bar_wrapper">
+                <Form  className = "search_bar">
                   <Row>
-                      <Col className="zeropadding" xs={11}>
+                      <Col className="zeropadding">
                             <ChipInput className="search-tags-label search-tags-root search-tags" classes={{root:"search-tags-root", label:"search-tags-label", input:"search-tags"}}
                                 value={this.state.tags}
                                 onAdd={(chip) => this.addTag(chip)}
@@ -63,12 +66,9 @@ class SearchBar extends React.Component{
                                 placeholder="Enter your search tags"
                             />
                         </Col>
-                        <Col className="zeropadding" xs={1}>
-                                <i className = "material-icons text-center ml-2" id = "search_button" onClick={(e) => this.handleOnSearch(e)}>  search</i>
-                            </Col>
                     </Row>
                 </Form>
-   
+            </div>
         )
     }
 }

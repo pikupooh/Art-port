@@ -13,7 +13,7 @@ class Manga extends React.Component{
     }
     render(){
         return(
-            <div className = "container-fluid m-3">
+            <div className = "container-fluid">
                 <Row>
                     {this.props.mangaList.map((manga) => 
                         <Col sm = {6} xl = {4} key ={manga.id} className = "manga_list_manga">

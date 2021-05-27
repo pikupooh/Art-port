@@ -22,7 +22,9 @@ class SearchedComics extends React.Component{
             <Col sm ={1} className="A">
                 <Link to ={'/comic/' + comic.id}>
                     <div className = "search_image_container">
-                        <Image src = {comic.coverPhoto.link} className="search_image" alt = "comic_cover_photo"></Image>
+                        {
+                            comic.coverPhoto && <Image src = {comic.coverPhoto.link} className="search_image" alt = "comic_cover_photo"></Image>
+                        }
                     </div>
                 </Link>
             </Col>

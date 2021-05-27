@@ -19,9 +19,11 @@ function MangaDataDisplay (props) {
         <div className="manga_data_container">
             <Row className = "my-4">
                 <Col md = {3} >
-                    <div className = "manga_data_manga_image_container">
-                        <Image src ={props.photo.link} className="manga_data_manga_image" alt = "manga_cover_photo"></Image>
-                    </div>
+                   {props.photo && 
+                        <div className = "manga_data_manga_image_container">
+                            <Image src ={props.photo.link} className="manga_data_manga_image" alt = "manga_cover_photo"></Image>
+                        </div>
+                   }
                 </Col>
                 <Col>
                     <Container>

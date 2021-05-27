@@ -6,15 +6,14 @@ import ComicListComicData from './comicListComicData'
 
 function ComicDataComponent(props){
     return(
-            <Row className = "comic" >
-                <Col md = {4} className="comic_image m-0">
-                    <ComicListComicImage image = {props.comic.coverPhoto}
-                    /> 
+            <Row className = "zeropadding" >
+                <Col md = {3} className="comic_list_comic_data m-0 zeropadding max_height">
+                    <ComicListComicImage image = {props.comic.coverPhoto}/> 
                 </Col>
-                <div className= "data_container">
+                <Col className= "data_container">
                    <div className ="comic_list_title">{props.comic.title}</div>
-                <ComicListComicData comic = {props.comic} />
-                </div>
+                    <ComicListComicData comic = {props.comic} />
+                </Col>
             </Row>
     )
 }

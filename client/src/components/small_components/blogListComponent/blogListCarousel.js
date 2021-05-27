@@ -3,6 +3,14 @@ import { Link } from 'react-router-dom';
 
 function BlogListCarousel(props){
 
+    if(props.bloglist.length === 0){
+        return(
+            <div>
+                
+            </div>
+        )
+    }
+
     return(
         <div className = "">
             <Carousel className = "blog_list_carousel my-2">

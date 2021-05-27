@@ -13,7 +13,7 @@ html, #root{
 
 body {
     font-family: "Work Sans", sans-serif !important;
-    height: 100%;
+    height: 100%;  
 }
 
 @mixin btn_color {
@@ -82,11 +82,31 @@ body {
     size: 20px;
 }
 
+.search_bar_wrapper{
+    position: relative;
+    width: 100%;
+}
+
 .search_bar {
     width: 100%;
     height: 30px;
-    margin-right:10px;
-    margin-left: 10px;
+    margin-right: 20px;
+    margin-left: 20px;
+    position: absolute;
+    bottom: -12px;
+    padding-right: 50px;
+}
+
+@media (max-width: 575px){
+    .search_bar{
+        position: relative;
+        bottom: auto;
+    }
+
+    .nav_profile{
+        margin-left: 0;
+        width: 50px;
+    }
 }
 
 .post_details_section {
@@ -162,7 +182,7 @@ body {
 }
 
 .blog_list_blog {
-    height: 80vh;
+    height: 500px;
     background-color: lighten($color: $background_color, $amount: 5);
     padding-left: 0px !important;
     padding-right: 0px !important;
@@ -180,7 +200,7 @@ body {
 
 .blog_list_blog_image_container {
     width: 100%;
-    height: 40vh;
+    height: 300px;
     overflow: hidden;
 }
 
@@ -203,11 +223,21 @@ body {
 
 .blog_list_blog_data {
     padding: 10px !important;
+    overflow-wrap: anywhere;
 }
 
 .blog_list_blog_title {
-    font-size: 25px;
     margin-bottom: 10px;
+
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: #c9e7e1;
+    height: 85px;
+    overflow: hidden;
+    display: -webkit-box !important ;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical; 
+    
 }
 
 .carousel-inner {
@@ -337,11 +367,7 @@ footer {
     padding: 20px;
     font-size: 20px;
     border-top: 1px solid rgb(70, 68, 68);
-    height: 50px;
-}
-
-.footer_container{
-
+    height: 114px
 }
 
 .container_head{
@@ -349,7 +375,7 @@ footer {
 }
 
 .content_wrapper{
-    min-height: 89vh;
+    min-height: 85vh;
     display: flex;
     flex-direction: column;
 }
@@ -359,7 +385,8 @@ footer {
 }
 
 .copyright_statement {
-    color: #888;
+    color: rgb(221, 221, 221);
+    background-color: #1a1919;
     text-align: center;
     font-size: small;
 }

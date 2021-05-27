@@ -121,7 +121,7 @@ class MangaModal extends React.Component {
         return (
             <Modal show={this.props.show} onHide={this.props.handleModalClose} centered = {true}>
                 <Modal.Body>
-                    <Modal.Header>Create a manga</Modal.Header>
+                    <h3 className = "text-center"> Create ypur Manga</h3>
                     <Form id="manga-form" onSubmit={(e) => this.handleSubmit(e)}>
                         <Form.Group>
                             <Form.Label>Title</Form.Label>
@@ -154,11 +154,12 @@ class MangaModal extends React.Component {
                             </div>
                         </Form.Group>
                         <Form.Group>
-                            <Form.Label className="mr-2">Enter Categories: </Form.Label>
-                            <ChipInput className="text-white-color label-alpha-white" classes={{label:"label-alpha-white", input:"text-white-color"}}
+                            <p className="mr-2">Tags </p>
+                            <ChipInput className="text-white-color label-alpha-white upload_modal_tags_input" classes={{label:"label-alpha-white", input:"text-white-color"}}
                                 value={this.state.categories}
                                 onAdd={(chip) => this.addCategory(chip)}
                                 onDelete={(chip, index) => this.removeCategory(chip, index)}
+                                placeholder = "Enter tags for post here"
                                 
                             />
                         </Form.Group>

@@ -37,7 +37,7 @@ class MangaData extends React.Component {
     render() {
       return(
         <div>
-          <Container>
+          <Container className = "manga_data_container">
             <MangaDataDisplay photo={this.props.coverPhoto} 
                              rating ={this.props.rating}
                              ratingsCount={this.props.ratingsCount}

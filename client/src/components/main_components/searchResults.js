@@ -17,18 +17,10 @@ class SearchResults extends React.Component{
                 <Container style = {{paddingLeft : "100px", paddingRight: "100px"}}>
 
                     <Row className = "pt-5">
-                        <p>
-                            <a className = "search_button" href= "#">Posts </a>
-                        </p>
-                        <p>
-                            <a className = "search_button" href= "#">Blogs </a>
-                        </p>
-                        <p>
-                        <a className = "search_button" href= "#">Comics </a> 
-                        </p>
-                        <p>
-                            <a className = "search_button" href= "#">Mangas </a>
-                        </p>
+                        <p className = "search_button" >Posts {this.props.posts.length}</p>
+                        <p className = "search_button" >Blogs {this.props.blogs.length}</p>
+                        <p className = "search_button" >Mangas {this.props.mangas.length}</p>
+                        <p className = "search_button" >Comics {this.props.comics.length}</p>
                     </Row>
 
                     {this.props.posts.length > 0 &&
@@ -42,7 +34,7 @@ class SearchResults extends React.Component{
                                     )}
                             </div>
                             <div>
-                            { this.props.posts.length > 2 && 
+                            { this.props.posts.length > 3 && 
                                 <Link to ="/searchedposts/">
                                 <p className="show_all_button">
                                  SHOW ALL
@@ -66,7 +58,7 @@ class SearchResults extends React.Component{
                                     )}
                             </div>
                             <div>
-                                { this.props.blogs.length > 2 && 
+                                { this.props.blogs.length > 3 && 
                                   <Link to ="/searchedblogs/">
                                     <p className="show_all_button">
                                  SHOW ALL
@@ -90,7 +82,7 @@ class SearchResults extends React.Component{
                                     )}
                             </div>
                             <div>
-                                { this.props.blogs.length > 2 && 
+                                { this.props.blogs.length > 3 && 
                                     <Link to ="/searchedmangas/">
                                     <p className="show_all_button">
                                  SHOW ALL
@@ -112,7 +104,7 @@ class SearchResults extends React.Component{
                                     )}
                             </div>
                             <div>
-                                { this.props.blogs.length > 2 && 
+                                { this.props.blogs.length > 3 && 
                                  <Link to ="/searchedcomics/">
                                     <p className="show_all_button">
                                  SHOW ALL
@@ -157,24 +149,22 @@ const mapStateToProps = (state) => {
     }
 
      return(
-        <Row className = "my-1 A">
-            <Col sm ={1}>
-                <Link to = {'/post/' + post.id}>
+        <Link to = {'/post/' + post.id}>
+            <Row className = "my-1 A">
+                <Col sm ={1}>
                     {post.images.length !== 0 && <div className = "search_image_container">
                         <Image src = {post.images[0].link} className="search_image" alt = "post_photo"></Image>
                     </div>
                     }
-                </Link>
-            </Col>
-            <Col>
-                <Link to ={'/post/' + post.id}>
+                </Col>
+                <Col>
                     <div className ="search_result_heading">{post.title}</div>
-                </Link>
                     <div className="result_description">
                         Post |  {post.user.username} |  {post.likes.length} likes
                     </div>
-            </Col>
-        </Row>
+                </Col>
+            </Row>
+        </Link>
      )
  }
 
@@ -187,23 +177,21 @@ const mapStateToProps = (state) => {
     }
 
      return(
-        <Row className = "my-1 A">
-            <Col sm ={1} >
-                <Link to = {'/blog/' + blog.id}>
+        <Link to ={'/blog/' + blog.id}>
+            <Row className = "my-1 A">
+                <Col sm ={1} >
                     <div className = "search_image_container">
                         <Image src = {blog.img.link} className="search_image" alt = "blog_cover_photo"></Image>
                     </div>
-                </Link>
-            </Col>
-            <Col>
-                <Link to ={'/blog/' + blog.id}>
+                </Col>
+                <Col>
                     <div className ="search_result_heading">{blog.title}</div>
-                </Link>
                     <div className="result_description">
                         Blog |  {blog.user.username} |  {blog.likes.length} likes
                     </div>
-            </Col>
-        </Row>
+                </Col>
+            </Row>
+        </Link>
      )
  }
 
@@ -226,23 +214,21 @@ const mapStateToProps = (state) => {
     }
 
      return(
-        <Row className = "my-1 A">
-            <Col sm ={1} >
-                <Link to ={'/mangas/' + manga.id}>
+        <Link to ={'/mangas/' + manga.id}>
+            <Row className = "my-1 A">
+                <Col sm ={1} >
                     <div className = "search_image_container">
                         <Image src = {manga.coverPhoto.link} className="search_image" alt = "comic_cover_photo"></Image>
                     </div>
-                </Link>
-            </Col>
-            <Col>
-                <Link to ={'/mangas/' + manga.id}>
+                </Col>
+                <Col>
                     <div className ="search_result_heading">{manga.title}</div>
-                </Link>
                     <div className="result_description">
                     Manga |  {manga.userDTO.username} | {rating}
                     </div>
-            </Col>
-        </Row>
+                </Col>
+            </Row>
+        </Link>
      )
  }
 
@@ -263,22 +249,22 @@ const mapStateToProps = (state) => {
     }
 
      return(
-        <Row className = "my-1 A">
-            <Col sm ={1} >
-                <Link to ={'/comic/' + comic.id}>
-                    <div className = "search_image_container">
-                        <Image src = {comic.coverPhoto.link} className="search_image" alt = "comic_cover_photo"></Image>
-                    </div>
-                </Link>
-            </Col>
-            <Col>
-                <Link to ={'/comic/' + comic.id}>
-                    <div className ="search_result_heading">{comic.title}</div>
-                </Link>
-                    <div className="result_description">
-                        Comic |  {comic.userDTO.username} | {rating}
-                    </div>
-            </Col>
-        </Row>
+        <div>
+            <Link to ={'/comic/' + comic.id}>
+                <Row className = "my-1 A">
+                    <Col sm ={1} >
+                        <div className = "search_image_container">
+                            <Image src = {comic.coverPhoto.link} className="search_image" alt = "comic_cover_photo"></Image>
+                        </div>
+                    </Col>                
+                    <Col>
+                        <div className ="search_result_heading">{comic.title}</div>
+                        <div className="result_description">
+                            Comic |  {comic.userDTO.username} | {rating}
+                        </div>
+                    </Col>
+                </Row>
+            </Link>
+        </div>
      )
  }

@@ -29,7 +29,9 @@ class SearchedMangas extends React.Component{
             <Col sm ={1} className="A">
                 <Link to ={'/mangas/' + manga.id}>
                     <div className = "search_image_container">
-                        <Image src = {manga.coverPhoto.link} className="search_image" alt = "comic_cover_photo"></Image>
+                    {
+                        manga.coverPhoto && <Image src = {manga.coverPhoto.link} className="search_image" alt = "comic_cover_photo"></Image>
+                    }
                     </div>
                 </Link>
             </Col>
