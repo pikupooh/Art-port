@@ -44,7 +44,8 @@ const NavbarwithRouter = withRouter(NavbarComponent);
 class App extends React.Component {
 
     componentDidMount(){
-        this.props.fetchUserProfileData()
+        if(this.props.isAuthenticated)
+            this.props.fetchUserProfileData()
     }
 
     render() {
