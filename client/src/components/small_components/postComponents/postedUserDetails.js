@@ -1,5 +1,5 @@
 import React from 'react'
-import { Image, Row, Col, Button, Badge } from 'react-bootstrap'
+import { Image, Row, Col, Badge } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 import PostComments from './postComments'
@@ -80,8 +80,8 @@ class PostedUserDetails extends React.Component{
                     Tags
                 </div>
                 <Row>
-                    {this.props.info.tags && this.props.info.tags.map((tag) => 
-                        <Badge pill variant="primary" className = "mx-3 mt-2">
+                    {this.props.info.tags && this.props.info.tags.map((tag, i) => 
+                        <Badge key={i} pill variant="primary" className = "mx-3 mt-2">
                                 {tag}
                         </Badge>
                     )}

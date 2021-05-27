@@ -51,7 +51,7 @@ class ResetPassword extends React.Component {
             typeof this.state.password !== "undefined" &&
             typeof this.state.confirm_password !== "undefined"
         ) {
-            if (this.state.password != this.state.confirm_password) {
+            if (this.state.password !== this.state.confirm_password) {
                 isValid = false;
                 errors["password"] = "Passwords don't match.";
             }

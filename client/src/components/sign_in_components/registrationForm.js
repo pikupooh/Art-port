@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Button, Toast, Alert } from "react-bootstrap";
+import { Form, Button, Alert } from "react-bootstrap";
 import { withRouter, Link } from "react-router-dom";
 
 import { connect } from "react-redux";

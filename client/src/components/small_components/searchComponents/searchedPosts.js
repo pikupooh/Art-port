@@ -1,8 +1,7 @@
 import React from 'react'
 import { connect } from  'react-redux';
-import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
-import { Row,Col,Container,Image,Button } from 'react-bootstrap';
+import { Row,Col,Container,Image } from 'react-bootstrap';
 
 class SearchedPosts extends React.Component{
     
@@ -17,7 +16,7 @@ class SearchedPosts extends React.Component{
                 <Container style = {{paddingLeft : "100px", paddingRight: "100px"}}>
                      <div className="top_result_data">
                                     { this.props.posts && this.props.posts.map((post, i) => 
-                                          <Row className = "search_result_container">
+                                          <Row key={post.id} className = "search_result_container">
             <Col sm ={1} className="A">
                 <Link to = {'/post/' + post.id}>
                     {post.images.length !== 0 && <div className = "search_image_container">

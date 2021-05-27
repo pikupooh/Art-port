@@ -17,7 +17,8 @@ class BlogLikeButton extends React.Component {
     }
 
     componentDidMount() {
-        this.props.fetchUserData(this.props.userId)
+        if(this.props.isAuthenticated)
+            this.props.fetchUserData(this.props.userId)
         setTimeout(() => {
             this.updateButtonState();
         }, 2000);
@@ -93,6 +94,7 @@ const mapStateToProps = (state) => {
         userId: state.auth.userId,
         likes: state.blogData.likes,
         user: state.user,
+        isAuthenticated: state.auth.isAuthenticated
     };
 };
 
