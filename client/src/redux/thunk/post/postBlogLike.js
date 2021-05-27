@@ -5,7 +5,7 @@ function postBlogLike(user, blogId) {
     console.log(user, blogId);
 
     return (dispatch) => {
-        fetch(`http://localhost:8080/blog/${blogId}/likes`, {
+        fetch(`/api/blog/${blogId}/likes`, {
             method: "PUT",
             headers: {
                 Authorization: token,
@@ -14,7 +14,7 @@ function postBlogLike(user, blogId) {
             .then((response) => {
                 console.log(response);
                 if (response.ok) {
-                    return response.text()
+                    return response.text();
                 }
             })
             .then((response) => {
@@ -24,7 +24,7 @@ function postBlogLike(user, blogId) {
                         user,
                     },
                 });
-                return response
+                return response;
             })
             .catch((err) => console.error(err));
     };

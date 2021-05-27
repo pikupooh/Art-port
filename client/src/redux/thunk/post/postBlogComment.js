@@ -1,14 +1,13 @@
 import { POST_BLOG_COMMENT } from "../../actions/actionTypes";
 
 function postBlogComment(blogId, message) {
-    
     const token = localStorage.getItem("token");
 
     return (dispatch) => {
-        fetch(`http://localhost:8080/blog/${blogId}/comment`, {
+        fetch(`/api/blog/${blogId}/comment`, {
             method: "POST",
             body: JSON.stringify({
-                content: message
+                content: message,
             }),
             headers: {
                 "Content-Type": "application/json",
@@ -18,15 +17,15 @@ function postBlogComment(blogId, message) {
             .then((response) => {
                 console.log(response);
                 if (response.ok) {
-                    return response.json()
+                    return response.json();
                 }
             })
             .then((response) => {
                 console.log(response);
                 dispatch({
                     type: POST_BLOG_COMMENT,
-                    payload: response
-                })
+                    payload: response,
+                });
             })
             .catch((err) => console.error(err));
     };

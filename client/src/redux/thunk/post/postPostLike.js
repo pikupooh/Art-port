@@ -4,7 +4,7 @@ function postPostLike(user, postId) {
     const token = localStorage.getItem("token");
 
     return (dispatch) => {
-        fetch(`http://localhost:8080/post/${postId}/likes`, {
+        fetch(`/api/post/${postId}/likes`, {
             method: "PUT",
             headers: {
                 Authorization: token,

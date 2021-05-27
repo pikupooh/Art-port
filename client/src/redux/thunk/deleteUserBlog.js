@@ -1,29 +1,27 @@
-import { deleteUserBlogAction } from '../actions/fetchProfileDataAction'
+import { deleteUserBlogAction } from "../actions/fetchProfileDataAction";
 import { setLoadingAction } from "../actions/loadingActions";
 
-function deleteUserBlog(blogId){
-
-    const token = localStorage.getItem("token")
+function deleteUserBlog(blogId) {
+    const token = localStorage.getItem("token");
     console.log(blogId);
-    return dispatch => {
+    return (dispatch) => {
         dispatch(setLoadingAction(true, "Loading..."));
 
-        fetch(`http://localhost:8080/blog/${blogId}`, {
-            method: 'DELETE',
+        fetch(`/api/blog/${blogId}`, {
+            method: "DELETE",
             headers: {
                 Authorization: token,
             },
-            body: ""
+            body: "",
         })
-        .then(response => {
-            if(response.ok){
-                dispatch(deleteUserBlogAction(blogId));
-                dispatch(setLoadingAction(false, "Loading..."));
-
-            }
-        })
-        .catch((error) => console.log(error));
-    }
+            .then((response) => {
+                if (response.ok) {
+                    dispatch(deleteUserBlogAction(blogId));
+                    dispatch(setLoadingAction(false, "Loading..."));
+                }
+            })
+            .catch((error) => console.log(error));
+    };
 }
 
-export default deleteUserBlog
+export default deleteUserBlog;

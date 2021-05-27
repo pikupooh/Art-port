@@ -1,15 +1,14 @@
 import { POST_MANGA_REPLY } from "../../actions/actionTypes";
 
-function postMangaReply(parentCommentId, message, replyTo) {    
-
+function postMangaReply(parentCommentId, message, replyTo) {
     const token = localStorage.getItem("token");
 
     return (dispatch) => {
-        fetch(`http://localhost:8080/comment/${parentCommentId}/reply`, {
+        fetch(`/api/comment/${parentCommentId}/reply`, {
             method: "POST",
             body: JSON.stringify({
                 replyTo,
-                content: message
+                content: message,
             }),
             headers: {
                 "Content-Type": "application/json",
@@ -18,7 +17,7 @@ function postMangaReply(parentCommentId, message, replyTo) {
         })
             .then((response) => {
                 if (response.ok) {
-                    return response.json()
+                    return response.json();
                 }
             })
             .then((response) => {
@@ -26,9 +25,9 @@ function postMangaReply(parentCommentId, message, replyTo) {
                     type: POST_MANGA_REPLY,
                     payload: {
                         response,
-                        parentCommentId
-                    }
-                })
+                        parentCommentId,
+                    },
+                });
             })
             .catch((err) => console.error(err));
     };

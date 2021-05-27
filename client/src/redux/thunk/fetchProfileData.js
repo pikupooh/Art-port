@@ -1,11 +1,13 @@
-import { fetchProfileDataAction, fetchUserProfileAction } from "../actions/fetchProfileDataAction";
-import { setLoadingAction } from "../actions/loadingActions"
+import {
+    fetchProfileDataAction,
+    fetchUserProfileAction,
+} from "../actions/fetchProfileDataAction";
+import { setLoadingAction } from "../actions/loadingActions";
 function fetchProfileData(id) {
-
     return (dispatch) => {
         dispatch(setLoadingAction(true, "Loading..."));
 
-        fetch(`http://localhost:8080/users/${id}/profile`)
+        fetch(`/api/users/${id}/profile`)
             .then(
                 (res) => {
                     if (res.ok) return res.json();
@@ -36,13 +38,12 @@ function fetchProfileData(id) {
 }
 
 export function fetchUserProfileData() {
+    let id = localStorage.getItem("userId");
 
-    let id = localStorage.getItem('userId')
-    
     return (dispatch) => {
         dispatch(setLoadingAction(true, "Loading..."));
 
-        fetch(`http://localhost:8080/users/${id}/profile`)
+        fetch(`/api/users/${id}/profile`)
             .then(
                 (res) => {
                     if (res.ok) return res.json();

@@ -1,31 +1,28 @@
-import { UNLIKE_BLOG } from '../../actions/actionTypes'
+import { UNLIKE_BLOG } from "../../actions/actionTypes";
 
-function deleteBlogLike(userId, blogId){
+function deleteBlogLike(userId, blogId) {
+    const token = localStorage.getItem("token");
 
-    const token = localStorage.getItem("token")
-
-    return dispatch => {
-        fetch(`http://localhost:8080/blog/${blogId}/likes`, {
-            method: 'DELETE',
+    return (dispatch) => {
+        fetch(`/api/blog/${blogId}/likes`, {
+            method: "DELETE",
             headers: {
                 Authorization: token,
             },
-            body: ""
+            body: "",
         })
-        .then(response => {
-            if(response.ok){
-                dispatch(
-                    {
+            .then((response) => {
+                if (response.ok) {
+                    dispatch({
                         type: UNLIKE_BLOG,
                         payload: {
-                            userId
-                        }
-                    }
-                );
-            }
-        })
-        .catch((error) => console.log(error));
-    }
+                            userId,
+                        },
+                    });
+                }
+            })
+            .catch((error) => console.log(error));
+    };
 }
 
-export default deleteBlogLike
+export default deleteBlogLike;
