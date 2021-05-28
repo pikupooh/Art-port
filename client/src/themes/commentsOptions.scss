@@ -47,6 +47,8 @@
 }
 #delete_button{
     font-size:medium;
+    position: relative;
+    top: 0;
     &:hover{
         cursor:pointer;
     }

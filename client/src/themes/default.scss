@@ -164,8 +164,15 @@ body {
 }
 
 .blog_list_carousel_item {
-    height: 70vh;
+    height: 500px;
     width: 100vw;
+}
+
+@media (max-width: "580px") {
+    .blog_list_carousel_item {
+        height: 200px;
+        width: 100vw;
+    }
 }
 
 .blog_list_carousel_title {

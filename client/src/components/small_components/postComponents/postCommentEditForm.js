@@ -38,7 +38,7 @@ class PostCommentEditForm extends Component{
                         <Form>
                             <Form.Group>
                                 <Form.Control as="textarea" rows = {1} 
-                                            placeholder = {"Enter edited reply " }
+                                            placeholder = {"Enter edited comment " }
                                             onChange = {this.handleOnChange} 
                                             value = {this.state.message}
                                           >

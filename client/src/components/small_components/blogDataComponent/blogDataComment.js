@@ -200,9 +200,9 @@ function EditButton(props){
     }
     else if(props.isEdit === true){
         return(
-            <p>
+            <span>
                 
-            </p>
+            </span>
         )
     }
     else{

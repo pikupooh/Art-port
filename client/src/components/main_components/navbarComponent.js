@@ -1,32 +1,32 @@
 import ProfileCircle from '../small_components/profileCircle'
 
-import { Nav, NavItem, Navbar } from "react-bootstrap"
-import { Link, withRouter } from 'react-router-dom'
+import { Nav, Navbar, NavItem } from "react-bootstrap"
+import { NavLink, withRouter } from 'react-router-dom'
 import  SearchBar from '../small_components/search_bar'
+// import { NavLink } from "react-router-dom"
 
 const SearchBarWithRouter = withRouter(SearchBar)
 
-const NavbarComponent = () => {
-
+const NavbarComponent = (props) => {
+    
     return(
-        <div>
-            <Navbar bg="dark" expand="sm" fixed='top' variant = "dark">
+            <Navbar bg="dark" expand="sm" fixed = "top" variant = "dark" >
                 <Navbar.Brand href="/"><strong>Art</strong> Port</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <SearchBarWithRouter />
                     <Nav className="ml-auto">
-                        <NavItem >
-                            <Link to ="/comics" className = "nav-link">Comics</Link>
+                        <NavItem>
+                            <NavLink to ="/comics" className = "nav-link" activeClassName = "active_nav_item">Comics</NavLink>
                         </NavItem>
                         <NavItem>
-                            <Link to ="/blogs" className = "nav-link">Blogs</Link>
+                            <NavLink to ="/blogs" className = "nav-link" activeClassName = "active_nav_item">Blogs</NavLink>
                         </NavItem>
                         <NavItem>
-                            <Link to="/manga" className = "nav-link">Manga</Link>
+                            <NavLink to="/manga" className = "nav-link" activeClassName = "active_nav_item">Manga</NavLink>
                         </NavItem>
                         <NavItem>
-                            <Link to = "/about" className = "nav-link">About</Link>
+                            <NavLink to = "/about" className = "nav-link" activeClassName = "active_nav_item">About</NavLink>
                         </NavItem>
                         <NavItem className = "nav_profile">
                             <ProfileCircle />
@@ -34,7 +34,6 @@ const NavbarComponent = () => {
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
-        </div>
     )
 }
 

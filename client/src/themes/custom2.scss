@@ -170,3 +170,59 @@ a i.material-icons {
 .zeromargin{
     margin: 0 !important; 
 }
+
+.user_profile_extras_navbar{
+    position: sticky !important;
+    top: 50px ;
+    width: 100% ;
+    z-index: 1;
+}
+
+.no_user_post_text{
+    text-align: center;
+    margin-top: 50px;
+    color: #e2e5e2bb;
+}
+
+.extra_navbar_show_button{
+    margin-left: auto;
+}
+
+.user_profile_follow{
+    width: 100px !important;
+    height: 100px !important;
+    object-fit: cover;
+    
+}
+
+.user_extras_user_details{
+    text-align: left;
+}
+
+@media (max-width: "580px"){
+
+    .user_extras_user_details{
+        text-align: center;
+    }
+
+    .small_screen_center_text{
+        text-align: center;
+        display: block !important;
+    }
+}
+
+.active_nav_item{
+    background-color: lighten($color: $background-color , $amount: 30);
+    border-radius: 10px;
+}
+
+.nav_link_active{
+    background-color: lighten($color: $background-color , $amount: 30);
+    border-radius: 10px;
+}
+
+@media (max-width: "580px") {
+    .active_nav_item{
+        margin-top: 11px;
+    }
+}

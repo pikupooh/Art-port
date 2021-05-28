@@ -5,6 +5,15 @@ import UserMangaGridLayout from './userMangaGridLayout'
 
 class MangaGrid extends React.Component{
     render(){
+
+        if(this.props.mangaList.length === 0){
+            return(
+                <div className = "no_user_post_text">
+                    No manga uploaded by the user
+                </div>
+            )
+        }
+
         return(
             <div>
                 <Row className = "home_grid_container">

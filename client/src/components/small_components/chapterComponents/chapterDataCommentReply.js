@@ -131,9 +131,9 @@ function EditButton(props){
     }
     else if(props.isEdit === true){
         return(
-            <p onClick = {props.closeEditReplyForm} className = "ml-2">
+            <span>
                 
-            </p>
+            </span>
         )
     }
     else{
