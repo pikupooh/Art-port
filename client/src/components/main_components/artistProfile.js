@@ -18,11 +18,12 @@ class ArtistProfile extends React.Component {
       <div>
         <div className="text-center profile_page_header">
           <div className="text-center profile_photo">
-            <Image
+            {this.props.profilePhoto && <Image
               src={this.props.profilePhoto}
               roundedCircle
               className="profile_page_photo"
             ></Image>
+            }
           </div>
           <div className="profile_page_full_name">
             <div>

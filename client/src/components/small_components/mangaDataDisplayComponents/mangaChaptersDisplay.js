@@ -4,7 +4,7 @@ function MangaChaptersDisplay (props) {
     
     if(props.chapters.length === 0){
         return(
-            <div>
+            <div className = "no_chapters">
                 No chapters present
             </div>
         )

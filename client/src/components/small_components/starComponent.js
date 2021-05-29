@@ -35,17 +35,17 @@ function StarComponent(props){
         <div> 
             {fullStars.map((component, index) => 
                 <span key = {index}>
-                    <StarFill />
+                    <StarFill className = "rating_stars m-1"/>
                 </span>
             )}
             {halfStars.map((component, index) => 
                 <span key = {index}>
-                    <StarHalf />
+                    <StarHalf className = "rating_stars m-1"/>
                 </span>
             )}
             {emptyStars.map((component, index) => 
                 <span key = {index}>
-                    <Star />
+                    <Star className = "m-1"/>
                 </span>
             )}
         </div>

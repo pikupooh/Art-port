@@ -1,55 +1,65 @@
 import React from "react";
 
-import { Nav, NavItem } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Nav, Navbar, NavItem } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
+
+import UserProfileExtras from './userProfileExtras'
 
 class UserProfileNavbar extends React.Component {
+
+  constructor(props){
+    super(props);
+    this.state = {
+      isHome: true
+    }
+  }
+
   render() {
     return (
-      <Nav
-        className="navbar navbar-expand-sm bg-dark navbar-dark fixed-top"
-        id="profile_navbar"
-        style={{ zIndex: 1 }}
-      >
-        <span className="navbar-nav mx-auto">
-          <NavItem>
-            <Link to={this.props.match.url} className="nav-link">
-              Portfolio
-            </Link>
-          </NavItem>
-          <NavItem>
-            <Link to={this.props.match.url + "/followers"} className="nav-link">
-              Followers
-            </Link>
-          </NavItem>
-          <NavItem>
-            <Link to={this.props.match.url + "/following"} className="nav-link">
-              Following
-            </Link>
-          </NavItem>
-          <NavItem>
-            <Link to={this.props.match.url + "/manga"} className="nav-link">
-              Manga
-            </Link>
-          </NavItem>
-          <NavItem>
-            <Link to={this.props.match.url + "/comics"} className="nav-link">
-              Comic
-            </Link>
-          </NavItem>
-          <NavItem>
-            <Link to={this.props.match.url + "/blogs"} className="nav-link">
-              Blogs
-            </Link>
-          </NavItem>
-          {/* <NavItem>
-            <Link to={this.props.match.url + "/about"} className="nav-link">
-              About
-            </Link>
-          </NavItem> */}
-        </span>
-      </Nav>
-    );
+      <div>
+            <Navbar bg="dark" expand="sm" className = "user_profile_extras_navbar" variant = "dark">
+                <Navbar.Toggle aria-controls="extras-navbar-nav" className = "extra_navbar_show_button" />
+                <Navbar.Collapse id="extras-navbar-nav">
+                    <Nav className="mx-auto">
+                        <NavItem>
+                          <NavLink exact to={this.props.match.url} className = "nav-link" activeClassName="nav_link_active">
+                            Portfolio
+                          </NavLink>
+                        </NavItem>
+                        <NavItem>
+                          <NavLink to={this.props.match.url + "/followers"} className = "nav-link" exact activeClassName="nav_link_active">
+                            Followers
+                          </NavLink>
+                        </NavItem>
+                        <NavItem>
+                          <NavLink to={this.props.match.url + "/following"} className = "nav-link" activeClassName="nav_link_active">
+                            Following
+                          </NavLink>
+                        </NavItem>
+                        <NavItem>
+                          <NavLink to={this.props.match.url + "/manga"} className = "nav-link" activeClassName="nav_link_active">
+                            Manga
+                          </NavLink>
+                        </NavItem>
+                        <NavItem>
+                          <NavLink to={this.props.match.url + "/comics"} className = "nav-link" activeClassName="nav_link_active">
+                            Comic
+                          </NavLink>
+                        </NavItem>
+                        <NavItem>
+                          <NavLink to={this.props.match.url + "/blogs"} className = "nav-link" activeClassName="nav_link_active">
+                            Blogs
+                          </NavLink>
+                        </NavItem>
+                    </Nav>
+                </Navbar.Collapse>
+            </Navbar>
+            
+            <div  className = "container-fluid">
+              <UserProfileExtras match={this.props.match} />
+            </div>
+        </div>
+    )
   }
 }
 

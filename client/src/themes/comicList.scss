@@ -1,9 +1,13 @@
 .data_container{
-    width:50%;
+    height: 250px;
+    overflow: hidden;
 }
 .comic_list{
+    
+    margin-top: 10px;
+    margin-bottom: 10px;
     &:hover{
-    background-color:  lighten($color: $background-color, $amount: 20);
+        background-color:  lighten($color: $background-color, $amount: 20);
     }
 }
 
@@ -17,6 +21,11 @@
     color : rgb(0, 162, 255);
     font-size: 1.5rem;
     font-weight: 800;
+    height: 80px;
+    overflow: hidden;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 
 .comic_rating{
@@ -30,17 +39,16 @@
     padding-top:10px;
 }
 .comic_list_comic_image{
-    object-fit: cover;
-    width: 80%;
+    object-fit: cover;    
+    width: 100%;
     height: 100%;
-    padding-left: 20px;
 }
-.comic_image{
-    max-width: 40%;
-}
+
 .comic_list_comic_image_container{
     width: 100%;
-    height: 20vh;   
+    height: 100%;
+    overflow: hidden;
+    
 }
 .comic_authors{
     padding-left: 10px;
@@ -60,6 +68,29 @@
     color: white !important;
 }
 }
+
+.max_height{
+    height: 100% !important;
+}
+
+.rating_stars{
+    color: rgb(255, 187, 0);
+}
+
+.comic_list_comic_data{
+    height: 250px !important;
+}
+
+.comic_list_comic_description{
+    color: rgb(190, 190, 190);
+    margin-top: 18px;
+    height: 75px;
+    overflow: hidden;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
 /*.comic_author_name{
     border-radius: 20px;
     border: 2px solid #3c82d1;

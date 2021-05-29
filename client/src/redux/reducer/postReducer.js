@@ -22,7 +22,7 @@ export const postReducer = (state = initState, action) => {
             return {
                 ...state,
                 id: action.payload.postData.id,
-                uploadDate: action.payload.postData.uploadDate,
+                uploadDate: action.payload.postData.uploadDate.substring(0, 10),
                 likes: action.payload.postData.likes,
                 images: action.payload.postData.images,
                 tags: action.payload.postData.tags,

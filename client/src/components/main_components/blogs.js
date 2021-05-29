@@ -16,7 +16,7 @@ class blogs extends React.Component{
     
     render(){
         return(
-            <div>
+            <div className = "container-fluid">
                 <BlogListCarousel bloglist = {this.props.carouselBlogList} />
                 <div className = "blog_list_blogs_container ">
                     <Row className = "container-fluid blog_list_container">

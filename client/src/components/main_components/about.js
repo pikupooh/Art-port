@@ -19,7 +19,7 @@ class About extends React.Component
       <div className="mx-3 my-3">
         <Carousel>
           <Carousel.Item className ="about_carousel_item">
-            <Image className = "about_carousel_image"alt ="image" src ="https://static.wixstatic.com/media/ea6ac8_460f0c2349c44ac7b7aa7cbec1948d21~mv2.jpg/v1/fill/w_1000,h_572,al_c,q_90,usm_0.66_1.00_0.01/ea6ac8_460f0c2349c44ac7b7aa7cbec1948d21~mv2.jpg"></Image>
+            <Image className = "about_carousel_image" alt ="image" src ="https://static.wixstatic.com/media/ea6ac8_460f0c2349c44ac7b7aa7cbec1948d21~mv2.jpg/v1/fill/w_1000,h_572,al_c,q_90,usm_0.66_1.00_0.01/ea6ac8_460f0c2349c44ac7b7aa7cbec1948d21~mv2.jpg"></Image>
             <Carousel.Caption>
               <h1>Build your own portfolio</h1>
             </Carousel.Caption>

@@ -11,6 +11,7 @@ import BlogLikeButton from "../small_components/likeButtons/blogLikeButton"
 import CommentsTag from "../small_components/commentsTag"
 
 import { ShareRow } from "../small_components/ShareRow"
+import SingleTag from "../small_components/singleTag";
 
 class blogData extends React.Component {
   
@@ -43,7 +44,7 @@ class blogData extends React.Component {
   
   render() {
     return(
-      <div>
+      <div >
         <PostLikesModal show = {this.state.showLikesModal} 
                           hideLikesModal = {this.hideLikesModal}
                           likes = {this.props.likes}/>
@@ -53,12 +54,12 @@ class blogData extends React.Component {
               <Image src = {this.props.img.link} fluid className = "blog_header_image"></Image>
             </div>
             <div className = "blog_page_text_over_image">
-              <p className = "blog_page_title">
+              <Col className = "blog_page_title zeropadding">
                 {this.props.title}
-              </p>
-              <p className = "blog_page_description">
+              </Col>
+              <Col className = "blog_page_description zeropadding">
                 {this.props.description}
-              </p>
+              </Col>
             </div>
           </div>
         </div>
@@ -92,23 +93,22 @@ class blogData extends React.Component {
               </span>
             </Col>
           </Row>
-          <Row className = "mx-2">
-            Tags
-          </Row>
-          <Row className = "mx-2">
-            <div> 
-              {this.props.tags.map((tag, index) =>
-                <Fragment key = {index}>
-                  {tag + ' '}
-                </Fragment>
-              )}
-            </div>
-          </Row>
-          <div className = "mt-5">
+          <Col className = "mt-5 blog_page_content" xs = {12}>
             {this.props.content}
-          </div>
+          </Col>
           <Row className = "mx-2">
             <ShareRow />
+          </Row>
+          <Row className = "mx-2 tags_text">
+            <i class="material-icons">
+              loyalty
+            </i>
+            Tags
+          </Row>
+          <Row className = "zeromargin"> 
+            {this.props.tags.map((tag) =>
+              <SingleTag tag = {tag} />
+            )}
           </Row>
           <CommentsTag length = {this.props.comments.length}/>
           <BlogDataComments blogId = {this.props.id} comments = {this.props.comments}/>

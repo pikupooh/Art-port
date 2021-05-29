@@ -124,7 +124,7 @@ class PostModal extends React.Component {
         return (
             <Modal show={this.props.show} onHide={this.props.handleModalClose} centered = {true}>
                 <Modal.Body>
-                <Modal.Header>Create a post</Modal.Header>
+                    <h3 className = "text-center"> Create your post</h3>
                     <Form id="post-form" onSubmit={(e) => this.handleSubmit(e)} onKeyDown={(e) => {
                         if(e.key==="Enter"){
                             console.log("Enter");
@@ -189,12 +189,12 @@ class PostModal extends React.Component {
                             </div>
                         </Form.Group>
                         <Form.Group>
-                            <Form.Label className="mr-2">Enter Tags: </Form.Label>
-                            <ChipInput className="text-white-color label-alpha-white" classes={{label:"label-alpha-white", input:"text-white-color"}}
+                            <p className="mr-2">Tags </p>
+                            <ChipInput className="text-white-color label-alpha-white upload_modal_tags_input" classes={{label:"label-alpha-white", input:"text-white-color"}}
                                 value={this.state.tags}
                                 onAdd={(chip) => this.addTag(chip)}
                                 onDelete={(chip, index) => this.removeTag(chip, index)}
-                                label="Enter tags for post"
+                                placeholder = "Enter tags for post here"
                             />
                         </Form.Group>
                         <Form.Group>
