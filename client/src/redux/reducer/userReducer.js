@@ -14,7 +14,6 @@ const initState = {
 export const userReducer = (state = initState, action) => {
     switch (action.type) {
         case ActionTypes.FETCH_USER_DATA:
-            console.log("user reducer called");
             return {
                 ...state,
                 userId: action.payload.userData.id,

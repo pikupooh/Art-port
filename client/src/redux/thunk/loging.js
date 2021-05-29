@@ -3,7 +3,11 @@ import * as ActionTypes from "../actions/actionTypes";
 import { fetchUserProfileData } from "../../redux/thunk/fetchProfileData";
 import { setLoadingAction } from "../actions/loadingActions";
 
-export default function signInUser(user, pass) {
+export default function signInUser(user, pass, pathname = "") {
+
+    pathname = pathname.substring(1, 5)
+    console.log(pathname);
+
     var creds = {
         username: user,
         password: pass,
@@ -47,7 +51,9 @@ export default function signInUser(user, pass) {
                 localStorage.setItem("userId", userId);
                 localStorage.setItem("profilePhoto", profilePhoto);
                 dispatch(setUserLogin({ token, userId, profilePhoto }));
-                dispatch(fetchUserData(userId));
+                if(pathname !== "user"){
+                    dispatch(fetchUserData(userId));
+                }
                 dispatch(fetchUserProfileData());
                 dispatch(setLoadingAction(false, "Loading..."));
             })

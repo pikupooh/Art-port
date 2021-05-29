@@ -51,21 +51,21 @@ class blogData extends React.Component {
         <div className = "blog_page_header">
           <div >
             <div className = "blog_header_image_container">
-              <Image src = {this.props.img.link} fluid className = "blog_header_image"></Image>
+              <Image src = {this.props.img.link} className = "blog_header_image"></Image>
             </div>
             <div className = "blog_page_text_over_image">
-              <Col className = "blog_page_title zeropadding">
+              <Col className = "blog_page_title">
                 {this.props.title}
               </Col>
-              <Col className = "blog_page_description zeropadding">
+              <Col className = "blog_page_description">
                 {this.props.description}
               </Col>
             </div>
           </div>
         </div>
         <Container className = "container-fluid">
-          <Row className = "m-2 mt-4">
-            <Col sm = {2} >
+          <Row className = "m-2 mt-4 text-left">
+            <Col sm = {4} md = {3} lg = {2}>
               <Image fluid src = {this.props.user.profilePhoto.link} className = "blog_page_uploader" roundedCircle></Image>
             </Col>
             <Col className = "text-left my-auto">

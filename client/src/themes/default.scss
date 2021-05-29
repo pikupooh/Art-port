@@ -37,6 +37,7 @@ body {
 
 .nav_profile {
     width: 100px;
+    text-align: center;
 }
 
 .nav_profile_img {
@@ -51,6 +52,14 @@ body {
     bottom: 2px;
     left: 35px;
     opacity: 0;
+    width: 40px;
+    height: 40px;
+}
+
+@media (max-width: "580px"){
+    #nav-dropdown{
+        left: 0px;
+    }
 }
 
 .dropdown-menu {
@@ -106,6 +115,7 @@ body {
     .nav_profile{
         margin-left: 0;
         width: 50px;
+        text-align: left;
     }
 }
 
@@ -170,8 +180,7 @@ body {
 
 @media (max-width: "580px") {
     .blog_list_carousel_item {
-        height: 200px;
-        width: 100vw;
+        height: 0px !important;
     }
 
     .blog_header_image {
@@ -179,6 +188,33 @@ body {
         height: 300px !important;
         overflow: hidden;
     }
+
+    .blog_list_carousel{
+        opacity: 0;
+    }
+}
+
+.blog_list_carousel_title{
+    overflow: hidden;
+    text-overflow: ellipsis;   
+}
+
+.blog_list_carousel_description{
+    overflow-wrap: anywhere;
+
+    color: #c9e7e1;
+    max-height: 300px;
+    overflow: hidden;
+    display: -webkit-box !important ;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical; 
+}
+
+.blog_carousel_caption{
+    background-color: rgba($color: $background-color, $alpha: 0.7);
+    border-radius: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .blog_list_carousel_title {
@@ -186,6 +222,14 @@ body {
     font-weight: 800;
     line-height: 1.2;
     font-size: 2rem;
+    overflow-wrap: anywhere;
+
+    color: #c9e7e1;
+    max-height: 300px;
+    overflow: hidden;
+    display: -webkit-box !important ;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical; 
 }
 
 .blog_list_blogs_container {
@@ -283,35 +327,45 @@ body {
 }
 
 .blog_page_title {
-    position: absolute !important;
-    bottom: 18rem;
-    margin: 10px;
+    overflow-wrap: anywhere;
+
+    position: absolute ;
+    bottom: 13rem;
     font-size: 2.3rem;
     font-weight: 800;
     overflow: hidden;
-    height: 100px !important;
-    width: 95% !important;
+    max-height: 100px !important;
 
     // color: rgb(235, 131, 33);
-    overflow: hidden;
     display: -webkit-box !important;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical; 
+
+    background-color: rgba($color: $background-color, $alpha: 0.5);
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    border-radius: 20px;
+    margin-bottom: 20px;
 }
 
 .blog_page_description {
+    overflow-wrap: anywhere;
+
     position: absolute;
-    bottom: 6rem;
-    margin: 10px;
+    bottom: 12rem;
     font-size: 1.3rem;
     font-weight: 400;
-    width: 100%;
 
-    height: 70px;
+    max-height: 70px;
     overflow: hidden;
     display: -webkit-box !important;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical; 
+
+    background-color: rgba($color: $background-color, $alpha: 0.5);
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    border-radius: 20px;
 }
 
 .blog_page_content{
@@ -342,6 +396,7 @@ body {
 .blog_page_text_over_image {
     padding-left: 20px;
     padding-right: 20px;
+    height: 0 !important;
 }
 
 .carousel-inner {
@@ -399,6 +454,12 @@ footer {
     font-size: 20px;
     border-top: 1px solid rgb(70, 68, 68);
     height: 114px
+}
+
+@media (max-width: "580px"){
+    footer{
+        height: 250px !important;
+    }
 }
 
 .container_head{

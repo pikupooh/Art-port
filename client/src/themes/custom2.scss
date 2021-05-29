@@ -226,3 +226,9 @@ a i.material-icons {
         margin-top: 11px;
     }
 }
+
+.carousel-control-prev, .carousel-control-next{
+    &:hover{
+        background-color: rgba($color: $background_color, $alpha: 0.2)
+    }
+}

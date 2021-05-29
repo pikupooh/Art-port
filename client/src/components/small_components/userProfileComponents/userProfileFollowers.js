@@ -20,15 +20,15 @@ class UserProfileFollowers extends React.Component {
                   <Col md = {6} lg = {4}>
                     <Row className = "m-2 mt-4">
                     <Col sm = {4} lg = {5} className = "text-center">
-                      <Link href = {'/user/' + follower.id}>
+                      <a href = {'/user/' + follower.id}>
                         <Image fluid src = {follower.profilePhoto.link} roundedCircle className = "user_profile_follow"></Image>
-                      </Link>
+                      </a>
                     </Col>
                     <Col className = "user_extras_user_details my-auto">
                       <Row className = " blog_page_username small_screen_center_text">
-                        <Link href = {'/user/' + follower.id}>
+                        <a href = {'/user/' + follower.id}>
                           <span className = "username">{follower.username}</span>
-                        </Link>
+                        </a>
                       </Row>
                       <Row className = "small_screen_center_text">
                         {follower.about}

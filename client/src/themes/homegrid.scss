@@ -12,11 +12,18 @@
 
 .home_grid_posts{
     position: relative;
+    height: 250px;
+}
+
+@media (max-width: "580px"){
+    .home_grid_posts{
+        height: 150px;
+    }   
 }
 
 .home_grid_posts_image_container{
     width: 100%;
-    height: 250px;
+    height: 100%;
 }
 
 .home_grid_posts_details_overlay{

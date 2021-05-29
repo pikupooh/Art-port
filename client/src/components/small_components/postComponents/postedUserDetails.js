@@ -82,7 +82,9 @@ class PostedUserDetails extends React.Component{
                     <i class="material-icons" id = "tags">
                     loyalty
                     </i>
-                    Tags
+                    <span id = "tags">
+                        Tags
+                    </span>
                 </Row>
                 <Row className = "zeromargin"> 
                     {this.props.info.tags.map((tag) =>

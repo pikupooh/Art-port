@@ -21,6 +21,23 @@ h2{
     border: none !important
 }
 
+#tags{
+    color:#11a2f0;
+}
+
+#comments_color{
+    color: #46d746
+}
+
+#follow_button{
+    background-color: #5464c9 !important;
+    border-color: #5464c9 !important;
+    &:hover 
+    {
+        background-color: lighten($color: #5464c9, $amount: 10)  !important;
+    }
+}
+
 .btn-primary{
 
     @include btn_color(); 
@@ -234,10 +251,5 @@ h2{
         color: rgba(112, 147, 241, 0.8);
     }
 }
-#follow_button{
-    background-color:#11a2f0 !important;
-    border-color: #11a2f0 !important;
-}
-#tags{
-     color:#11a2f0;
-}
+
+

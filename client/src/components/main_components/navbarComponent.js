@@ -3,7 +3,6 @@ import ProfileCircle from '../small_components/profileCircle'
 import { Nav, Navbar, NavItem } from "react-bootstrap"
 import { NavLink, withRouter } from 'react-router-dom'
 import  SearchBar from '../small_components/search_bar'
-// import { NavLink } from "react-router-dom"
 
 const SearchBarWithRouter = withRouter(SearchBar)
 

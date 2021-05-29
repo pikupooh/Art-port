@@ -49,14 +49,20 @@ class FollowButton extends React.Component {
             return <div></div>;
         } else if (this.notFollowed()) {
             return (
-                <Button id = "follow_button" onClick={this.followUser}>
+                <Button className = "" id = "follow_button" onClick={this.followUser}>
                     Follow
+                    {/* <i class="material-icons">
+                        person_add
+                    </i> */}
                 </Button>
             );
         }
         return (
             <Button id="follow_button" onClick={this.unfollowUser}>
                 Unfollow
+                {/* <i class="material-icons">
+                    person_remove
+                </i> */}
             </Button>
         );
     }

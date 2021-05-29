@@ -105,7 +105,7 @@ class HomeGrid extends React.Component{
                 </div>
                 <Row className = "home_grid_container">
                     {this.props.postList.map((post) => 
-                    <Col key={post.id} sm = {6} md = {4} lg = {2} className = "home_grid_posts_container">
+                    <Col key={post.id} xs = {6} md = {4} lg = {2} className = "home_grid_posts_container">
                         <HomeGridLayout  post = {post}/>
                     </Col>
                     )}
