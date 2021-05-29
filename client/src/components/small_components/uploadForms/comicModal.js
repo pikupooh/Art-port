@@ -96,9 +96,19 @@ class ComicModal extends React.Component {
             errors["title"] = "Please enter a title to your comic.";
         }
 
+        if (input["title"].length > 30) {
+            isValid = false;
+            errors["title"] = "Title of blog should be within 30 characters.";
+        }
+
         if (!input["about"]) {
             isValid = false;
             errors["about"] = "Please add a about.";
+        }
+
+        if (input["about"].length > 100) {
+            isValid = false;
+            errors["about"] = "Length of about should be within 100 characters.";
         }
 
         if (!this.state.categories.length) {

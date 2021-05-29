@@ -51,7 +51,7 @@ public class FileService {
         return image.getLink();
     }
 
-    public String uploadToImgur(byte[] file) {
+    public String uploadToImgur(byte[] file) throws Exception{
 		final String uri = "https://api.imgur.com/3/image";
 
 		MultiValueMap<String, Object> bodyMap = new LinkedMultiValueMap<>();
@@ -62,7 +62,23 @@ public class FileService {
 		HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(bodyMap, headers);
 
 		RestTemplate restTemplate = new RestTemplate();
-		ResponseEntity<ImgurRes> response = restTemplate.exchange(uri, HttpMethod.POST, requestEntity, ImgurRes.class);
+		ResponseEntity<ImgurRes> response;
+		try {
+			response = restTemplate.exchange(uri, HttpMethod.POST, requestEntity, ImgurRes.class);
+		}
+		catch(Exception e) {
+			try {
+				response = restTemplate.exchange(uri, HttpMethod.POST, requestEntity, ImgurRes.class);
+			}
+			catch(Exception e1) {
+				try {
+					response = restTemplate.exchange(uri, HttpMethod.POST, requestEntity, ImgurRes.class);
+				}
+				catch(Exception e2) {
+					throw e2;
+				}
+			}
+		}
 		System.out.println("response status: " + response.getStatusCode()); // it should return 200
 		System.out.println("response body: " + response.getBody().getData().getLink()); // it should return link of your uploaded image
 		
