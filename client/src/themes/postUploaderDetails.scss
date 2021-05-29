@@ -7,3 +7,32 @@
     height: 60px !important;
     object-fit: cover;
 }
+
+@media(max-width: "580px"){
+    .post_profile_photo{
+        width: 40px !important;
+        height: 40px !important;
+        display: flex;
+        justify-content: center;
+    }
+}
+
+.post_description{
+    background-color:  lighten($color: $background-color, $amount: 5);
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    padding-bottom: 5px;
+    border-radius: 5px;
+
+    margin-bottom: 10px;
+}
+
+.likes_modal_follow_button{
+    text-align: end;
+}
+
+.likes_modal_username{
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}

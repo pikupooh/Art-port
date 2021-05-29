@@ -5,6 +5,14 @@ import UserPostGridLayout from './userPostGridLayout'
 
 class PostGrid extends React.Component{
     render(){
+        if(this.props.postList.length === 0){
+            return(
+                <div className = "no_user_post_text">
+                    No post uploaded by the user
+                </div>
+            )
+        }
+
         return(
             <div className = "container-fluid">
                 <Row className = "home_grid_container">

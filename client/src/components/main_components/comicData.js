@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Container } from "react-bootstrap"
+import { Container, Row } from "react-bootstrap"
 
 import fetchComicDataAction from "../../redux/thunk/fetchComicData";
 import ComicDataDisplay from "../small_components/comicDataDisplayComponents/comicDataDisplay";
@@ -11,6 +11,7 @@ import ComicDataComments from "../small_components/comicDataDisplayComponents/co
 import ChapterModal from "../small_components/uploadForms/chapterModal"
 import ShareRow from "../small_components/ShareRow";
 import {fetchUserProfileData} from "../../redux/thunk/fetchProfileData"
+import SingleTag from '../small_components/singleTag'
 
 
 class ComicData extends React.Component {
@@ -57,6 +58,17 @@ class ComicData extends React.Component {
             <ComicDescriptionDisplay about = {this.props.about}/>
             
             <ComicChapterDisplay chapters ={this.props.chapters}/> 
+            <Row className = "mx-2 tags_text">
+              <i class="material-icons">
+                loyalty
+              </i>
+              Tags
+            </Row>
+            <Row className = "zeromargin"> 
+              {this.props.tags.map((tag) =>
+                <SingleTag tag = {tag} />
+              )}
+            </Row>
             <ShareRow />
             <ComicDataComments comments = {this.props.comments} mangaId = {this.props.mangaId}/>
         </Container>
@@ -93,7 +105,7 @@ const mapStateToProps = (state) => {
     author : state.comicData.author,
     comments : state.comicData.comments,
     uploadDate : state.comicData.uploadDate,
-    category : state.comicData.category,
+    tags : state.comicData.category,
     userRatings: state.auth.profile.userRatings
   };
 };

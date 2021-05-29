@@ -15,13 +15,18 @@
     padding-right: 0px !important;
 }
 
-.manga-list_manga_data{
+.manga_list_manga_data{
+    
     width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 250px;
+    overflow-wrap: anywhere
 }
 
 .manga_list_manga_image_container{
     width: 100%;
-    height: 40vh;
+    height: 250px;
     
 }
 
@@ -32,6 +37,7 @@
 }
 
 .manga_list_manga_data_title{
+
     font-weight: 800;
     font-size: 1.2rem;
     color: rgb(235, 154, 33);
@@ -53,12 +59,15 @@
 .manga_list_manga_data_author_container{
     position: absolute;
     bottom: 0px;
+    left: 45px;
 }
 
 @media (max-width: 763px)
 {
     .manga_list_manga_data_author_container{
         position:  relative;
+        left: 17px;
+        bottom: 10px;
     }
 }
 
@@ -78,4 +87,13 @@
         background-color: #3c82d1;
         color: white !important;
     }
+}
+
+.wrap_text{
+    overflow-wrap: anywhere;
+    overflow-x: hidden;
+}
+
+.col{
+    overflow-wrap: anywhere !important;
 }

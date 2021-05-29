@@ -5,6 +5,15 @@ import UserComicGridLayout from './userComicGridLayout'
 
 class ComicGrid extends React.Component{
     render(){
+
+        if(this.props.comicList.length === 0){
+            return(
+                <div className = "no_user_post_text">
+                    No comic uploaded by the user
+                </div>
+            )
+        }
+
         return(
             <div>
                 <Row className = "home_grid_container">
@@ -20,7 +29,6 @@ class ComicGrid extends React.Component{
 }
 
 const mapStateToProps = (state) => {
-    console.log(state);
     return {
         comicList: state.profile.userComics,
     }

@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Container} from "react-bootstrap"
+import { Container, Row} from "react-bootstrap"
 
 import MangaDataDisplay from "../small_components/mangaDataDisplayComponents/mangaDataDisplay";
 import MangaDescriptionDisplay from "../small_components/mangaDataDisplayComponents/mangaDescriptionDisplay"
@@ -11,6 +11,7 @@ import MangaDataComments from '../small_components/mangaDataDisplayComponents/co
 import ChapterModal from "../small_components/uploadForms/chapterModal"
 import ShareRow from "../small_components/ShareRow";
 import {fetchUserProfileData} from "../../redux/thunk/fetchProfileData"
+import SingleTag from "../small_components/singleTag"
 class MangaData extends React.Component {
 
   constructor(props) {
@@ -53,6 +54,17 @@ class MangaData extends React.Component {
 
             <MangaDescriptionDisplay about = {this.props.about}/>
             <MangaChaptersDisplay chapters ={this.props.chapters}/> 
+            <Row className = "mx-2 tags_text">
+              <i class="material-icons">
+                loyalty
+              </i>
+              Tags
+            </Row>
+            <Row className = "zeromargin"> 
+              {this.props.tags.map((tag) =>
+                <SingleTag tag = {tag} />
+              )}
+            </Row>
             <ShareRow />
             <MangaDataComments comments = {this.props.comments} mangaId = {this.props.mangaId}/>
           </Container>
@@ -90,7 +102,7 @@ const mapStateToProps = (state) => {
     author : state.mangaData.author,
     comments : state.mangaData.comments,
     uploadDate : state.mangaData.uploadDate,
-    category : state.mangaData.category,
+    tags : state.mangaData.tags,
     userRatings: state.auth.profile.userRatings
   };
 };

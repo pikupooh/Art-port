@@ -41,8 +41,10 @@ h2{
     }
 }
 
-manga_data_container{
+.manga_data_container{
     width:100%;
+    background-color: lighten($color: $background-color, $amount: 5);
+
 }
 .chapters{
     max-height : 20px;
@@ -174,9 +176,17 @@ manga_data_container{
         background-color: #fff;
     }
 }
+
 .search_image_container{
-    height:6vh;  
+    height: 50px;  
 }
+
+@media(max-width: "580px"){
+    .search_image_container{
+        height: 70px;  
+    }
+}
+
 .top_result_data{
     padding-top : 10px;
     padding-bottom :7px;

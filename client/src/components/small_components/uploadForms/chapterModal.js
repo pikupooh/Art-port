@@ -79,6 +79,7 @@ class ChapterModal extends React.Component {
     render() {
         return (
             <Modal show={this.props.show} onHide={this.props.handleModalClose} centered = {true}>
+                <h3 className = "text-center"> Add a chapter</h3>
                 <Modal.Body>
                     <Form id="chapter-form" onSubmit={(e) => this.handleSubmit(e)} onKeyDown={(e) => {
                         if(e.key==="Enter"){

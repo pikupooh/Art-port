@@ -5,6 +5,15 @@ import UserBlogGridLayout from './userBlogGridLayout'
 
 class BlogGrid extends React.Component{
     render(){
+
+        if(this.props.blogList.length === 0){
+            return(
+                <div className = "no_user_post_text">
+                    No blog uploaded by the user
+                </div>
+            )
+        }
+
         return(
             <div>
                 <Row className = "home_grid_container">
@@ -20,7 +29,6 @@ class BlogGrid extends React.Component{
 }
 
 const mapStateToProps = (state) => {
-    console.log(state);
     return {
         blogList: state.profile.userBlogs,
     }

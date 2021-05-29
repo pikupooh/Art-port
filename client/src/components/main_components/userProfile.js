@@ -21,7 +21,6 @@ class UserProfile extends React.Component {
     }
 
     render() {
-        console.log(this.props.profile);
         return (
             <div>
                 <div className="text-center profile_page_header">
@@ -45,7 +44,7 @@ class UserProfile extends React.Component {
                     <FollowButton userId = {this.props.id} />
                 </div>
                 <UserProfileNavbar match={this.props.match} />
-                <UserProfileExtras match={this.props.match} />
+                
             </div>
         );
     }
