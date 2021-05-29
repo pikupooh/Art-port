@@ -1,7 +1,6 @@
 import React from "react";
 import { Modal, Form, Button } from "react-bootstrap";
 import { categories } from "../../../shared/categories";
-import TagComponent from "../tagComponent";
 import { createPost } from "../../../redux/thunk/fetchPostData";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -122,14 +121,6 @@ class PostModal extends React.Component {
     }
 
     render() {
-        const styles = {
-            input: {
-              color: "white"
-            },
-            label: {
-                color: "white"
-            }
-          };
         return (
             <Modal show={this.props.show} onHide={this.props.handleModalClose} centered = {true}>
                 <Modal.Body>
@@ -182,7 +173,7 @@ class PostModal extends React.Component {
                             >
                                 {categories.map((category, i) => {
                                     return (
-                                        <option value={category}>
+                                        <option key={i} value={category}>
                                             {category}
                                         </option>
                                     );

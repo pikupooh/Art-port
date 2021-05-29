@@ -1,5 +1,4 @@
-import { Row,Container } from 'react-bootstrap'
-import { StarFill } from 'react-bootstrap-icons'
+import { Container } from 'react-bootstrap'
 import StarComponent from '../starComponent'
 
 function ComicListComicData(props){

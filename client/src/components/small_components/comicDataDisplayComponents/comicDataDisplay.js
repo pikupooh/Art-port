@@ -1,5 +1,5 @@
 import { Row, Col, Container, Image, Button } from 'react-bootstrap' 
-import { CardList, StarFill } from 'react-bootstrap-icons'
+import { CardList } from 'react-bootstrap-icons'
 import { Link } from 'react-router-dom';
 import RateButton from '../rateButton';
 import StarComponent from "../starComponent"

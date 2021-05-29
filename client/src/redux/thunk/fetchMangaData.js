@@ -1,26 +1,25 @@
-import { fetchMangaDataAction } from '../actions/fetchMangaDataAction'
+import { fetchMangaDataAction } from "../actions/fetchMangaDataAction";
 import { addUserManga } from "../actions/fetchProfileDataAction";
 import { setLoadingAction } from "../actions/loadingActions";
 
 function fetchMangaData(id) {
-
-    return dispatch => {
+    return (dispatch) => {
         dispatch(setLoadingAction(true, "Loading..."));
-        fetch('http://localhost:8080/manga/' + id)
-        .then(res =>  res.json())
-        .then(res => {
-            if(res.error) {
-                throw(res.error);
-            }
+        fetch("/api/manga/" + id)
+            .then((res) => res.json())
+            .then((res) => {
+                if (res.error) {
+                    throw res.error;
+                }
 
-            dispatch(fetchMangaDataAction(res))
-            dispatch(setLoadingAction(false, "Loading..."));
-            return res;
-        })
-        .catch(error => {
-            console.log(error)
-        })
-    }
+                dispatch(fetchMangaDataAction(res));
+                dispatch(setLoadingAction(false, "Loading..."));
+                return res;
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
 }
 
 export const createManga = (userId, postFormData, imageFormData, profileId) => {
@@ -31,7 +30,7 @@ export const createManga = (userId, postFormData, imageFormData, profileId) => {
 
     return (dispatch) => {
         dispatch(setLoadingAction(true, "Loading..."));
-        fetch(`http://localhost:8080/users/${userId}/manga`, {
+        fetch(`/api/users/${userId}/manga`, {
             method: "POST",
             body: JSON.stringify(postFormData),
             headers: {
@@ -63,7 +62,7 @@ export const createManga = (userId, postFormData, imageFormData, profileId) => {
                 console.log(response);
                 let mangaId = response.id;
 
-                fetch(`http://localhost:8080/mangas/${mangaId}/images/upload`, {
+                fetch(`/api/mangas/${mangaId}/images/upload`, {
                     method: "POST",
                     body: imageFormData,
                     headers: {

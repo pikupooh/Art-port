@@ -1,27 +1,27 @@
-import { fetchComicDataAction } from '../actions/fetchComicDataAction'
+import { fetchComicDataAction } from "../actions/fetchComicDataAction";
 import { addUserComic } from "../actions/fetchProfileDataAction";
 import { setLoadingAction } from "../actions/loadingActions";
 
 function fetchComicData(comicId) {
-    return dispatch => {
+    return (dispatch) => {
         dispatch(setLoadingAction(true, "Loading..."));
 
-        fetch('http://localhost:8080/manga/' + comicId)
-        .then(res =>  res.json())
-        .then(res => {
-            if(res.error) {
-                throw(res.error);
-            }
+        fetch("/api/manga/" + comicId)
+            .then((res) => res.json())
+            .then((res) => {
+                if (res.error) {
+                    throw res.error;
+                }
 
-            dispatch(fetchComicDataAction(res))
-            dispatch(setLoadingAction(false, "Loading..."));
+                dispatch(fetchComicDataAction(res));
+                dispatch(setLoadingAction(false, "Loading..."));
 
-            return res;
-        })
-        .catch(error => {
-            console.log(error)
-        })
-    }
+                return res;
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
 }
 
 export const createComic = (userId, postFormData, imageFormData, profileId) => {
@@ -33,7 +33,7 @@ export const createComic = (userId, postFormData, imageFormData, profileId) => {
     return (dispatch) => {
         dispatch(setLoadingAction(true, "Loading..."));
 
-        fetch(`http://localhost:8080/users/${userId}/comic`, {
+        fetch(`/api/users/${userId}/comic`, {
             method: "POST",
             body: JSON.stringify(postFormData),
             headers: {
@@ -65,7 +65,7 @@ export const createComic = (userId, postFormData, imageFormData, profileId) => {
                 console.log(response);
                 let comicId = response.id;
 
-                fetch(`http://localhost:8080/mangas/${comicId}/images/upload`, {
+                fetch(`/api/mangas/${comicId}/images/upload`, {
                     method: "POST",
                     body: imageFormData,
                     headers: {

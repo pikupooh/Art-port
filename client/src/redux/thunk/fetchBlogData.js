@@ -1,39 +1,39 @@
-import { fetchBlogDataAction } from '../actions/fetchBlogDataAction'
+import { fetchBlogDataAction } from "../actions/fetchBlogDataAction";
 import { addUserBlog } from "../actions/fetchProfileDataAction";
 import { setLoadingAction } from "../actions/loadingActions";
 
 function fetchBlogData(id) {
-    return dispatch => {
+    return (dispatch) => {
         dispatch(setLoadingAction(true, "Loading..."));
-        fetch(`http://localhost:8080/blog/${id}`)
-        .then(res =>  res.json())
-        .then(res => {
-            if(res.error) {
-                throw(res.error);
-            }
-            if(res.img == null) {
-                res.img = {
-                    id: "fail",
-                    name: "fail",
-                    link: "https://via.placeholder.com/300/09f/fff.png"
+        fetch(`/api/blog/${id}`)
+            .then((res) => res.json())
+            .then((res) => {
+                if (res.error) {
+                    throw res.error;
                 }
-            }
-            if(res.user.profilePhoto == null) {
-                res.user.profilePhoto = {
-                    id: "fail",
-                    name: "fail",
-                    link: "https://via.placeholder.com/300/09f/fff.png"
+                if (res.img == null) {
+                    res.img = {
+                        id: "fail",
+                        name: "fail",
+                        link: "https://via.placeholder.com/300/09f/fff.png",
+                    };
                 }
-            }
+                if (res.user.profilePhoto == null) {
+                    res.user.profilePhoto = {
+                        id: "fail",
+                        name: "fail",
+                        link: "https://via.placeholder.com/300/09f/fff.png",
+                    };
+                }
 
-            dispatch(fetchBlogDataAction(res))
-            dispatch(setLoadingAction(false, "Loading..."));
-            return res;
-        })
-        .catch(error => {
-            console.log(error)
-        })
-    }
+                dispatch(fetchBlogDataAction(res));
+                dispatch(setLoadingAction(false, "Loading..."));
+                return res;
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
 }
 
 export const createBlog = (userId, postFormData, imageFormData, profileId) => {
@@ -44,7 +44,7 @@ export const createBlog = (userId, postFormData, imageFormData, profileId) => {
 
     return (dispatch) => {
         dispatch(setLoadingAction(true, "Loading..."));
-        fetch(`http://localhost:8080/users/${userId}/blog`, {
+        fetch(`/api/users/${userId}/blog`, {
             method: "POST",
             body: JSON.stringify(postFormData),
             headers: {
@@ -76,7 +76,7 @@ export const createBlog = (userId, postFormData, imageFormData, profileId) => {
                 console.log(response);
                 let blogId = response.id;
 
-                fetch(`http://localhost:8080/blogs/${blogId}/images/upload`, {
+                fetch(`/api/blogs/${blogId}/images/upload`, {
                     method: "POST",
                     body: imageFormData,
                     headers: {

@@ -16,10 +16,10 @@ function StarComponent(props){
     for(var index=0 ; index<fullStarsCount ; index++){
         fullStars.push('f')
     }
-    for(var index=0 ; index<halfStarsCount ; index++){
+    for(index=0 ; index<halfStarsCount ; index++){
         halfStars.push('h')
     }
-    for(var index=0 ; index<emptyStarsCount ; index++){
+    for(index=0 ; index<emptyStarsCount ; index++){
         emptyStars.push('e')
     }
 

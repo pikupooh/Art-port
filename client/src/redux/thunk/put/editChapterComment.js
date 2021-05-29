@@ -1,13 +1,12 @@
 import { EDIT_CHAPTER_COMMENT } from "../../actions/actionTypes";
 
 function editChapterComment(commentId, message) {
-    
     const token = localStorage.getItem("token");
     return (dispatch) => {
-        fetch(`http://localhost:8080/comment/${commentId}`, {
+        fetch(`/api/comment/${commentId}`, {
             method: "PUT",
             body: JSON.stringify({
-                content: message
+                content: message,
             }),
             headers: {
                 "Content-Type": "application/json",
@@ -16,7 +15,7 @@ function editChapterComment(commentId, message) {
         })
             .then((response) => {
                 if (response.ok) {
-                    return response.json()
+                    return response.json();
                 }
             })
             .then((response) => {
@@ -24,9 +23,9 @@ function editChapterComment(commentId, message) {
                 dispatch({
                     type: EDIT_CHAPTER_COMMENT,
                     payload: {
-                        response
-                    }
-                })
+                        response,
+                    },
+                });
             })
             .catch((err) => console.error(err));
     };

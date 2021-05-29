@@ -1,13 +1,12 @@
 import { EDIT_COMIC_COMMENT } from "../../actions/actionTypes";
 
 function editComicComment(commentId, message) {
-    
     const token = localStorage.getItem("token");
     return (dispatch) => {
-        fetch(`http://localhost:8080/comment/${commentId}`, {
+        fetch(`/api/comment/${commentId}`, {
             method: "PUT",
             body: JSON.stringify({
-                content: message
+                content: message,
             }),
             headers: {
                 "Content-Type": "application/json",
@@ -16,16 +15,16 @@ function editComicComment(commentId, message) {
         })
             .then((response) => {
                 if (response.ok) {
-                    return response.json()
+                    return response.json();
                 }
             })
             .then((response) => {
                 dispatch({
                     type: EDIT_COMIC_COMMENT,
                     payload: {
-                        response
-                    }
-                })
+                        response,
+                    },
+                });
             })
             .catch((err) => console.error(err));
     };

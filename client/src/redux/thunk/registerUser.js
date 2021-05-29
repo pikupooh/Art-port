@@ -24,7 +24,7 @@ export default function registerUser(imageFormData) {
     return (dispatch) => {
         dispatch(requestSignUp());
         dispatch(setLoadingAction(true, "Loading..."));
-        fetch(`http://localhost:8080/api/auth/signup`, {
+        fetch(`/api/auth/signup`, {
             method: "POST",
             body: imageFormData,
         })

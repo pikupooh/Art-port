@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { Form, Button, Row, Col } from 'react-bootstrap'
+import { Form, Button, Row } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { bindActionCreators } from "redux";
 

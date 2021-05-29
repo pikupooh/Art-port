@@ -1,4 +1,4 @@
-import { Image, Row, Col, Button } from 'react-bootstrap'
+import { Image, Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import FollowButton from './followButton'
 

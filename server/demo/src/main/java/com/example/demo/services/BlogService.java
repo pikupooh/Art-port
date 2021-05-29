@@ -6,6 +6,7 @@ import com.example.demo.payload.response.UserDTO;
 import com.example.demo.repositories.BlogRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -26,7 +27,7 @@ public class BlogService {
 
     public List<Blog> getAllBlogs(){
 
-        return blogRepository.findAll();
+        return blogRepository.findAll(Sort.by(Sort.Direction.DESC, "uploadDate"));
     }
 
     public Blog getBlog(String id) {

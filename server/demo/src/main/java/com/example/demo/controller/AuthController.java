@@ -116,7 +116,7 @@ public class AuthController {
         mailMessage.setTo(user.getEmail());
         mailMessage.setSubject("Complete Your Registration!");
         mailMessage.setText("To confirm your account, please click here: " +
-                "http://localhost:8080/api/auth/confirm-account?token=" + verificationToken.getToken());
+                "api/api/auth/confirm-account?token=" + verificationToken.getToken());
 
         emailService.sendEmail(mailMessage);
 

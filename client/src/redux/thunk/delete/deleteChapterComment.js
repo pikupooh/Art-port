@@ -1,31 +1,28 @@
-import { DELETE_CHAPTER_COMMENT } from '../../actions/actionTypes'
+import { DELETE_CHAPTER_COMMENT } from "../../actions/actionTypes";
 
-function deleteChapterComment(commentId){
+function deleteChapterComment(commentId) {
+    const token = localStorage.getItem("token");
 
-    const token = localStorage.getItem("token")
-
-    return dispatch => {
-        fetch(`http://localhost:8080/comment/${commentId}`, {
-            method: 'DELETE',
+    return (dispatch) => {
+        fetch(`/api/comment/${commentId}`, {
+            method: "DELETE",
             headers: {
                 Authorization: token,
             },
-            body: ""
+            body: "",
         })
-        .then(response => {
-            if(response.ok){
-                dispatch(
-                    {
+            .then((response) => {
+                if (response.ok) {
+                    dispatch({
                         type: DELETE_CHAPTER_COMMENT,
                         payload: {
-                            commentId
-                        }
-                    }
-                );
-            }
-        })
-        .catch((error) => console.log(error));
-    }
+                            commentId,
+                        },
+                    });
+                }
+            })
+            .catch((error) => console.log(error));
+    };
 }
 
-export default deleteChapterComment
+export default deleteChapterComment;

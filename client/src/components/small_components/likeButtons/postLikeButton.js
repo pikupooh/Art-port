@@ -15,7 +15,8 @@ class PostLikeButton extends React.Component {
     }
 
     componentDidMount() {
-        this.props.fetchUserData(this.props.userId)
+        if(this.props.isAuthenticated)
+            this.props.fetchUserData(this.props.userId)
     }
 
     trimUser = () => {
@@ -105,6 +106,7 @@ const mapStateToProps = (state) => {
         userId: state.auth.userId,
         likes: state.post.likes,
         user: state.user,
+        isAuthenticated: state.auth.isAuthenticated,
     };
 };
 

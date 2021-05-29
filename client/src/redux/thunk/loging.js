@@ -10,7 +10,7 @@ export default function signInUser(user, pass) {
     };
     return (dispatch) => {
         dispatch(setLoadingAction(true, "Loading..."));
-        fetch("http://localhost:8080/api/auth/login", {
+        fetch("/api/auth/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -28,6 +28,7 @@ export default function signInUser(user, pass) {
                         );
                         error.res = res;
                         dispatch(loginError("Invalid username or password"));
+                        dispatch( setLoadingAction(false, "Error..."));
                         throw error;
                     }
                 },

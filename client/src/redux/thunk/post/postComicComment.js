@@ -1,14 +1,13 @@
 import { POST_COMIC_COMMENT } from "../../actions/actionTypes";
 
 function postComicComment(comicId, message) {
-    
     const token = localStorage.getItem("token");
     console.log(comicId, message);
     return (dispatch) => {
-        fetch(`http://localhost:8080/manga/${comicId}/comment`, {
+        fetch(`/api/manga/${comicId}/comment`, {
             method: "POST",
             body: JSON.stringify({
-                content: message
+                content: message,
             }),
             headers: {
                 "Content-Type": "application/json",
@@ -17,15 +16,15 @@ function postComicComment(comicId, message) {
         })
             .then((response) => {
                 if (response.ok) {
-                    return response.json()
+                    return response.json();
                 }
             })
             .then((response) => {
                 console.log(response);
                 dispatch({
                     type: POST_COMIC_COMMENT,
-                    payload: response
-                })
+                    payload: response,
+                });
             })
             .catch((err) => console.error(err));
     };

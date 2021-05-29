@@ -1,7 +1,6 @@
 import React from "react";
 import {
     BrowserRouter,
-    Redirect,
     Route,
     Switch,
     withRouter,
@@ -44,7 +43,8 @@ const NavbarwithRouter = withRouter(NavbarComponent);
 class App extends React.Component {
 
     componentDidMount(){
-        this.props.fetchUserProfileData()
+        // if(this.props.isAuthenticated)
+            this.props.fetchUserProfileData()
     }
 
     render() {

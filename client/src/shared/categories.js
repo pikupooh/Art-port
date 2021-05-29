@@ -8,7 +8,7 @@ export const categories = [
     "Environmental Concept",
     "Graphic Design",
     "Horror",
-    "Potraits",
+    "Portraits",
     "Realism",
 ];
 

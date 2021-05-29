@@ -1,29 +1,28 @@
-import { deleteUserComicAction } from '../actions/fetchProfileDataAction'
+import { deleteUserComicAction } from "../actions/fetchProfileDataAction";
 import { setLoadingAction } from "../actions/loadingActions";
 
-function deleteUserComic(userId, comicId){
-
-    const token = localStorage.getItem("token")
+function deleteUserComic(userId, comicId) {
+    const token = localStorage.getItem("token");
     console.log(comicId);
-    return dispatch => {
+    return (dispatch) => {
         dispatch(setLoadingAction(true, "Loading..."));
 
-        fetch(`http://localhost:8080/users/${userId}/manga/${comicId}`, {
-            method: 'DELETE',
+        fetch(`/api/users/${userId}/manga/${comicId}`, {
+            method: "DELETE",
             headers: {
                 Authorization: token,
             },
-            body: ""
+            body: "",
         })
-        .then(response => {
-            if(response.ok){
-                dispatch(setLoadingAction(false, "Loading..."));
+            .then((response) => {
+                if (response.ok) {
+                    dispatch(setLoadingAction(false, "Loading..."));
 
-                dispatch(deleteUserComicAction(comicId));
-            }
-        })
-        .catch((error) => console.log(error));
-    }
+                    dispatch(deleteUserComicAction(comicId));
+                }
+            })
+            .catch((error) => console.log(error));
+    };
 }
 
-export default deleteUserComic
+export default deleteUserComic;

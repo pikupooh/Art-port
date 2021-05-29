@@ -1,31 +1,28 @@
-import { DELETE_BLOG_COMMENT } from '../../actions/actionTypes'
+import { DELETE_BLOG_COMMENT } from "../../actions/actionTypes";
 
-function deleteBlogComment(commentId){
-
-    const token = localStorage.getItem("token")
+function deleteBlogComment(commentId) {
+    const token = localStorage.getItem("token");
     console.log(commentId);
-    return dispatch => {
-        fetch(`http://localhost:8080/comment/${commentId}`, {
-            method: 'DELETE',
+    return (dispatch) => {
+        fetch(`/api/comment/${commentId}`, {
+            method: "DELETE",
             headers: {
                 Authorization: token,
             },
-            body: ""
+            body: "",
         })
-        .then(response => {
-            if(response.ok){
-                dispatch(
-                    {
+            .then((response) => {
+                if (response.ok) {
+                    dispatch({
                         type: DELETE_BLOG_COMMENT,
                         payload: {
-                            commentId
-                        }
-                    }
-                );
-            }
-        })
-        .catch((error) => console.log(error));
-    }
+                            commentId,
+                        },
+                    });
+                }
+            })
+            .catch((error) => console.log(error));
+    };
 }
 
-export default deleteBlogComment
+export default deleteBlogComment;
