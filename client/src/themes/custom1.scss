@@ -176,9 +176,17 @@ h2{
         background-color: #fff;
     }
 }
+
 .search_image_container{
-    height:6vh;  
+    height: 50px;  
 }
+
+@media(max-width: "580px"){
+    .search_image_container{
+        height: 70px;  
+    }
+}
+
 .top_result_data{
     padding-top : 10px;
     padding-bottom :7px;

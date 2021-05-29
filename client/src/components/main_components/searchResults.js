@@ -94,7 +94,7 @@ class SearchResults extends React.Component{
                     }
 
                     {this.props.comics.length > 0 &&
-                        <div className = "search_result_container">     
+                        <div className = "">     
                             <Row>
                                 <h5 className = "top_result"> Comics </h5>
                             </Row>

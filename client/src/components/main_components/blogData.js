@@ -44,7 +44,7 @@ class blogData extends React.Component {
   
   render() {
     return(
-      <div>
+      <div >
         <PostLikesModal show = {this.state.showLikesModal} 
                           hideLikesModal = {this.hideLikesModal}
                           likes = {this.props.likes}/>
@@ -54,12 +54,12 @@ class blogData extends React.Component {
               <Image src = {this.props.img.link} fluid className = "blog_header_image"></Image>
             </div>
             <div className = "blog_page_text_over_image">
-              <p className = "blog_page_title">
+              <Col className = "blog_page_title zeropadding">
                 {this.props.title}
-              </p>
-              <p className = "blog_page_description">
+              </Col>
+              <Col className = "blog_page_description zeropadding">
                 {this.props.description}
-              </p>
+              </Col>
             </div>
           </div>
         </div>
@@ -93,9 +93,9 @@ class blogData extends React.Component {
               </span>
             </Col>
           </Row>
-          <div className = "mt-5">
+          <Col className = "mt-5 blog_page_content" xs = {12}>
             {this.props.content}
-          </div>
+          </Col>
           <Row className = "mx-2">
             <ShareRow />
           </Row>
