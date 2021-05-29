@@ -5,7 +5,7 @@
     border-radius : 25px;
 }
 .user_name{
-     background-color: lighten($color: $background-color, $amount: 15);
+     background-color: lighten($color: $background-color, $amount: 5);
     border-radius:10px;
     padding-left:5px;
     padding-right:5px;
@@ -16,7 +16,7 @@
     }
 }
 .comment_content{
-    background-color: lighten($color: $background-color, $amount: 15);
+    background-color: lighten($color: $background-color, $amount: 10);
     border-radius:10px;
     padding-left:10px;
     padding-right:10px;
@@ -25,12 +25,22 @@
     overflow-wrap: anywhere;
 }
 .replies{
-     background-color: lighten($color: $background-color, $amount: 15);
+     background-color: lighten($color: $background-color, $amount: 5);
     border-radius:10px;
-     padding-left:10px;
+     padding-left:5px;
+    padding-right:5px;
+    margin-bottom:4px;
+    overflow-wrap: anywhere;
+
+}
+.replies_container{
+     background-color: lighten($color: $background-color, $amount: 5);
+    border-radius:10px;
+ 
     padding-right:10px;
     margin-bottom:4px;
     overflow-wrap: anywhere;
+    max-width:90% !important;
 
 }
 .reply_button{

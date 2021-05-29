@@ -45,8 +45,9 @@ class BlogDataCommentsReply extends Component{
                                     <Image src = {this.props.reply.user.profilePhoto.link} roundedCircle className = "comment_profile_photo"></Image>
                                 </Col>
                             </Link>
+                            <Col className="replies_container" sm={10}>
                              <p className="replies">
-                            <Col>
+                            
                             <Link to = {'/user/' + this.props.reply.user.userId}>
                                 <Row>
                                     <div >
@@ -59,8 +60,9 @@ class BlogDataCommentsReply extends Component{
                                     {this.props.reply.content}
                                 </Row>
                                 
-                            </Col>
+        
                             </p>
+                            </Col>
                             
                         </Row>
                         <Row className="reply_button">

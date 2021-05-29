@@ -45,8 +45,8 @@ class BlogCommentEditForm extends Component{
                                 </Form.Control>
                                 <Row>
                                     <Col className = "comment_button" >
-                                        <Button className = "btn-sm my-1" onClick = {() => this.edit}>
-                                            Reply
+                                        <Button className = "btn-sm my-1" onClick = {() => this.edit()}>
+                                            Edit
                                         </Button>
                                         <Button className= "btn-sm my-1 mx-1"  onClick = {this.props.closeEditForm}>
                                             Cancel

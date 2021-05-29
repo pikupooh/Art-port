@@ -370,7 +370,8 @@ body {
 }
 .social_links {
     list-style: none;
-    float: right;
+    text-align:center;
+    padding-left:40px;
 }
 .footer_nav li,
 .social_links li {
@@ -595,7 +596,7 @@ max-width: 600px;
  margin-right:60px;
  padding : 20px 10px;
  border-radius: 25px;
- background-color:lighten($color: $background-color, $amount:10);
+ background-color:lighten($color: $background-color, $amount:7);
 }
 
 .share_buttons {

@@ -79,7 +79,7 @@ class PostedUserDetails extends React.Component{
                     </div>
                 </div>
                 <Row className = "mx-2 tags_text">
-                    <i class="material-icons">
+                    <i class="material-icons" id = "tags">
                     loyalty
                     </i>
                     Tags
