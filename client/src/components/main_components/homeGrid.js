@@ -103,6 +103,11 @@ class HomeGrid extends React.Component{
                         )}
                     </Slider>
                 </div>
+                {this.props.postList.length === 0 && 
+                    <div className = "no_post_text">
+                        No Posts
+                    </div>
+                }
                 <Row className = "home_grid_container">
                     {this.props.postList.map((post) => 
                     <Col key={post.id} xs = {6} md = {4} lg = {2} className = "home_grid_posts_container">

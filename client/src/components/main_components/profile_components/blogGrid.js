@@ -18,7 +18,7 @@ class BlogGrid extends React.Component{
             <div>
                 <Row className = "home_grid_container">
                     {this.props.blogList.map((blog) => 
-                    <Col key={blog.id} sm = {6} md = {4} lg = {2} className = "home_grid_posts_container">
+                    <Col key={blog.id} xs = {6} md = {4} lg = {2} className = "home_grid_posts_container">
                         <UserBlogGridLayout  blog = {blog}/>
                     </Col>
                     )}

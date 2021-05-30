@@ -54,8 +54,7 @@ class RateButton extends React.Component {
         }
 
         return(
-            <div className = "rating_button">
-                <RateModal show = {this.state.show} id = {this.props.id} onHide = {this.handleModalClose}/>
+            <div className = "rating_button_text">
                  You rated {this.props.rate}
             </div>
         )

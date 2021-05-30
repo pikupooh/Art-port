@@ -506,7 +506,7 @@ footer {
     border-radius:50px;
 }
 
-#blog_data_comment_btn {
+#comment_button {
     background-color: rgb(43, 136, 58) !important;
     border-color: rgb(43, 136, 58) !important;
     text-align: left !important;
@@ -573,6 +573,12 @@ footer {
     
     &:hover{
         cursor: pointer;
+    }
+}
+
+@media(max-width: "580px"){
+    .category_container{
+        margin-left: 50px;
     }
 }
 

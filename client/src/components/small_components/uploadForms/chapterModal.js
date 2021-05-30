@@ -53,7 +53,6 @@ class ChapterModal extends React.Component {
                 this.props.mangaId
             );
         }
-        console.log(this.state);
     }
 
     validate() {
@@ -117,8 +116,8 @@ class ChapterModal extends React.Component {
                                 {this.state.errors.files}
                             </div>
                         </Form.Group>
-                        <Button variant="primary" type="submit">
-                            Submit
+                        <Button variant="primary" type="submit" id = "upload_button"> 
+                            Upload
                         </Button>
                     </Form>
                 </Modal.Body>

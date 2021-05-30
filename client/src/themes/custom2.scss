@@ -104,8 +104,15 @@ a i.material-icons {
     width: 100%;
     height: 100%;
     text-align: right !important;
+}
+
+.rating_button_text{
+    text-align: right !important;
     font-size: 1rem;
-    
+    display: flex;
+    justify-content: end;
+    flex-direction: column;
+    margin-top: 5px;
 }
 
 .rate_button{
@@ -116,6 +123,7 @@ a i.material-icons {
 .rate_button_star{
     height: 100%;
 }
+
 
 .submit_rate_star{
     height: 40px;
@@ -221,14 +229,38 @@ a i.material-icons {
     border-radius: 10px;
 }
 
-@media (max-width: "580px") {
-    .active_nav_item{
-        margin-top: 11px;
-    }
-}
-
 .carousel-control-prev, .carousel-control-next{
     &:hover{
         background-color: rgba($color: $background_color, $alpha: 0.2)
     }
+}
+
+@media (max-width: "580px"){
+    .mobile_screen_search_bar{
+        margin-top: 70px;
+        margin-bottom: 20px;
+        visibility: visible !important;
+        width: 95vw !important;
+        height: auto !important;
+    }
+
+    .desktop_screen_search_bar{
+        visibility: hidden !important;
+        width: 0px !important;
+        height: 0px !important;
+    }
+
+    .space_for_navbar{
+        height: 0 !important;
+    }
+}
+
+.mobile_screen_search_bar{
+    visibility: hidden;
+    width: 0px;
+    height: 0px;
+}
+
+.desktop_screen_search_bar{
+    width: 100%;
 }

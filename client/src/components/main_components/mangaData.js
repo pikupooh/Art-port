@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Container, Row} from "react-bootstrap"
+import { Container, Row, Button} from "react-bootstrap"
 
 import MangaDataDisplay from "../small_components/mangaDataDisplayComponents/mangaDataDisplay";
 import MangaDescriptionDisplay from "../small_components/mangaDataDisplayComponents/mangaDescriptionDisplay"
@@ -12,6 +12,7 @@ import ChapterModal from "../small_components/uploadForms/chapterModal"
 import ShareRow from "../small_components/ShareRow";
 import {fetchUserProfileData} from "../../redux/thunk/fetchProfileData"
 import SingleTag from "../small_components/singleTag"
+import deleteLastChapter from "../../redux/thunk/delete/deleteLastChapter"
 class MangaData extends React.Component {
 
   constructor(props) {
@@ -53,8 +54,15 @@ class MangaData extends React.Component {
                              />
 
             <MangaDescriptionDisplay about = {this.props.about}/>
-            <MangaChaptersDisplay chapters ={this.props.chapters}/> 
-            <Row className = "mx-2 tags_text">
+            <MangaChaptersDisplay chapters ={this.props.chapters}/>
+            {this.props.userId === this.props.author.userId && 
+              <div className = "delete_button_container">
+                <Button id = "delete_chapter_button" onClick = {() => this.props.deleteLastChapter(this.props.mangaId)}>
+                    Delete last chapter
+                </Button>
+              </div>
+            } 
+            <Row className = "mx-2 tags_text" id = "tags">
               <i class="material-icons">
                 loyalty
               </i>
@@ -82,7 +90,8 @@ class MangaData extends React.Component {
   bindActionCreators(
     {
       fetchMangaData: fetchMangaDataAction,
-      fetchUserProfile: fetchUserProfileData
+      fetchUserProfile: fetchUserProfileData,
+      deleteLastChapter,
     },
     dispatch
   );

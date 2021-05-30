@@ -33,10 +33,12 @@ import SearchedPosts from "./components/small_components/searchComponents/search
 import SearchedMangas from "./components/small_components/searchComponents/searchedMangas";
 import SearchedComics from "./components/small_components/searchComponents/searchedComics";
 import SearchedBlogs from "./components/small_components/searchComponents/searchedBlogs";
+import SearchBar from "./components/small_components/search_bar"
 
 import { fetchUserProfileData } from './redux/thunk/fetchProfileData'
 
 const NavbarwithRouter = withRouter(NavbarComponent);
+const SearchBarWithRouter = withRouter(SearchBar)
 
 class App extends React.Component {
 
@@ -56,6 +58,9 @@ class App extends React.Component {
                             <>
                                 <div>
                                     <NavbarwithRouter />
+                                    <div className = "mobile_screen_search_bar">
+                                        <SearchBarWithRouter />
+                                    </div>
                                     <Route exact path="/" component={Home} />
                                     <Route path="/comics" component={Comics} />
                                     <Route path="/blogs" component={Blogs} />

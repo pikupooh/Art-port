@@ -18,7 +18,11 @@ h2{
 
 #add_chapter_button{
     background-color: rgb(50, 148, 240) !important;
-    border: none !important
+    border: none !important;
+    &:hover 
+    {
+        background-color: lighten($color: rgb(50, 148, 240), $amount: 10)  !important;
+    }
 }
 
 #tags{
@@ -26,7 +30,7 @@ h2{
 }
 
 #comments_color{
-    color: #46d746
+    color: #53be64
 }
 
 #follow_button{
@@ -35,6 +39,24 @@ h2{
     &:hover 
     {
         background-color: lighten($color: #5464c9, $amount: 10)  !important;
+    }
+}
+
+#delete_chapter_button{
+    background-color: #e84d4d !important;
+    border-color: #e84d4d !important;
+    &:hover 
+    {
+        background-color: lighten($color: #e84d4d, $amount: 5)  !important;
+    }
+}
+
+#upload_button{
+    background-color: darken($color: #63c5ff, $amount: 20)  !important;
+    border-color: darken($color: #63c5ff, $amount: 20)  !important;
+    &:hover 
+    {
+        background-color: darken($color: #63c5ff, $amount: 5)  !important;
     }
 }
 

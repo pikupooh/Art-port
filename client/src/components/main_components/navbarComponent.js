@@ -6,14 +6,16 @@ import  SearchBar from '../small_components/search_bar'
 
 const SearchBarWithRouter = withRouter(SearchBar)
 
-const NavbarComponent = (props) => {
+const NavbarComponent = () => {
     
     return(
             <Navbar bg="dark" expand="sm" fixed = "top" variant = "dark" >
                 <Navbar.Brand href="/"><strong>Art</strong> Port</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
-                    <SearchBarWithRouter />
+                    <div className = "desktop_screen_search_bar">
+                                        <SearchBarWithRouter />
+                    </div>
                     <Nav className="ml-auto">
                         <NavItem>
                             <NavLink to ="/comics" className = "nav-link" activeClassName = "active_nav_item">Comics</NavLink>
@@ -27,7 +29,7 @@ const NavbarComponent = (props) => {
                         <NavItem>
                             <NavLink to = "/about" className = "nav-link" activeClassName = "active_nav_item">About</NavLink>
                         </NavItem>
-                        <NavItem className = "nav_profile">
+                        <NavItem className = "">
                             <ProfileCircle />
                         </NavItem>
                     </Nav>

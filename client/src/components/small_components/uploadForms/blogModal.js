@@ -198,8 +198,8 @@ class BlogModal extends React.Component {
                                 {this.state.errors.files}
                             </div>
                         </Form.Group>
-                        <Button variant="primary" type="submit">
-                            Submit
+                        <Button variant="primary" type="submit" id = "upload_button">
+                            Upload
                         </Button>
                     </Form>
                 </Modal.Body>

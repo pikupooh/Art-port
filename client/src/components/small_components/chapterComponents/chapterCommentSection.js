@@ -50,7 +50,7 @@ class ChapterCommentSection extends React.Component{
                         </Form.Control>
                         <Row>
                             <Col  >
-                                <Button className = "btn-sm mx-2 my-1" id = "blog_data_comment_btn" onClick = {this.comment}>
+                                <Button className = "btn-sm mx-2 my-1" id = "comment_button" onClick = {this.comment}>
                                     Comment
                                 </Button>
                             </Col>

@@ -14,10 +14,10 @@ class PostGrid extends React.Component{
         }
 
         return(
-            <div className = "container-fluid">
+            <div className = "">
                 <Row className = "home_grid_container">
                     {this.props.postList.map((post) => 
-                    <Col key={post.id} sm = {6} md = {4} lg = {2} className = "home_grid_posts_container">
+                    <Col key={post.id} xs = {6} md = {4} lg = {2} className = "home_grid_posts_container">
                         <UserPostGridLayout  post = {post}/>
                     </Col>
                     )}

@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Container, Row } from "react-bootstrap"
+import { Container, Row, Button } from "react-bootstrap"
 
 import fetchComicDataAction from "../../redux/thunk/fetchComicData";
 import ComicDataDisplay from "../small_components/comicDataDisplayComponents/comicDataDisplay";
@@ -12,6 +12,7 @@ import ChapterModal from "../small_components/uploadForms/chapterModal"
 import ShareRow from "../small_components/ShareRow";
 import {fetchUserProfileData} from "../../redux/thunk/fetchProfileData"
 import SingleTag from '../small_components/singleTag'
+import deleteLastChapter from '../../redux/thunk/delete/deleteLastChapter'
 
 
 class ComicData extends React.Component {
@@ -58,7 +59,14 @@ class ComicData extends React.Component {
             <ComicDescriptionDisplay about = {this.props.about}/>
             
             <ComicChapterDisplay chapters ={this.props.chapters}/> 
-            <Row className = "mx-2 tags_text">
+            {this.props.userId === this.props.author.userId && 
+              <div className = "delete_button_container">
+                <Button id = "delete_chapter_button" onClick = {() => this.props.deleteLastChapter(this.props.mangaId)}>
+                    Delete last chapter
+                </Button>
+              </div>
+            } 
+            <Row className = "mx-2 tags_text" id = "tags">
               <i class="material-icons">
                 loyalty
               </i>
@@ -87,6 +95,7 @@ class ComicData extends React.Component {
     {
       fetchComicData: fetchComicDataAction,
       fetchUserProfile: fetchUserProfileData,
+      deleteLastChapter
     },
     dispatch
   );

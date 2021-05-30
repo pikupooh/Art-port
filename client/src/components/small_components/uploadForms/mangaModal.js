@@ -126,7 +126,7 @@ class MangaModal extends React.Component {
         return (
             <Modal show={this.props.show} onHide={this.props.handleModalClose} centered = {true}>
                 <Modal.Body>
-                    <h3 className = "text-center"> Create ypur Manga</h3>
+                    <h3 className = "text-center"> Create your Manga</h3>
                     <Form id="manga-form" onSubmit={(e) => this.handleSubmit(e)}>
                         <Form.Group>
                             <Form.Label>Title</Form.Label>
@@ -178,8 +178,8 @@ class MangaModal extends React.Component {
                                 {this.state.errors.files}
                             </div>
                         </Form.Group>
-                        <Button variant="primary" type="submit">
-                            Submit
+                        <Button variant="primary" type="submit" id = "upload_button">
+                            Upload
                         </Button>
                     </Form>
                 </Modal.Body>
