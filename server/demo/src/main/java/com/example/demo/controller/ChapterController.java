@@ -8,7 +8,13 @@ import com.example.demo.services.ChapterService;
 import com.example.demo.services.MangaService;
 import com.example.demo.services.ProfileService;
 import com.example.demo.services.UserService;
+import com.mongodb.client.result.DeleteResult;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +26,9 @@ import java.util.List;
 @RequestMapping("/api")
 public class ChapterController {
 
+	@Autowired
+	MongoTemplate mongoTemplate;
+	
     @Autowired
     ChapterService chapterService;
 
@@ -88,6 +97,29 @@ public class ChapterController {
         if (chapter == null)
             return new ResponseEntity<String>("Chapterdoes not exist.", HttpStatus.NOT_FOUND);
         return ResponseEntity.ok(chapter);
+    }
+    
+    @DeleteMapping("mangas/{mangaId}")
+    public ResponseEntity<?> deleteLastChapter(@PathVariable String mangaId, Principal principal) {
+
+        String name = principal.getName();
+        User user = userService.getUserByName(name);
+        Query query = new Query(Criteria.where("id").is(mangaId));
+        query.fields().include("userDTO");
+        
+        Manga m = mongoTemplate.findOne(query, Manga.class);
+        if (user == null)
+            return new ResponseEntity<String>("User not present.", HttpStatus.UNAUTHORIZED);
+        if (!user.getId().equals(m.getUserDTO().getUserId()))
+            return new ResponseEntity<String>("User invalid.", HttpStatus.UNAUTHORIZED);
+        
+        query = new Query(Criteria.where("mangaId").is(mangaId));
+        query.with(Sort.by(Sort.Direction.DESC, "no"));
+        query.limit(1);
+        DeleteResult chap = mongoTemplate.remove(query, Chapter.class);
+        
+        System.out.println(chap);
+        return ResponseEntity.ok(chap);
     }
 
     @PutMapping("/users/{id}/chapter/{chapterId}")
