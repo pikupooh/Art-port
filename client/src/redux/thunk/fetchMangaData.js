@@ -63,7 +63,7 @@ export const createManga = (userId, postFormData, imageFormData, profileId) => {
                 console.log(response);
                 let mangaId = response.id;
 
-                fetch(`/api/mangas/${mangaId}/images/upload`, {
+                customfetch(`/api/mangas/${mangaId}/images/upload`, {
                     method: "POST",
                     body: imageFormData,
                     headers: {

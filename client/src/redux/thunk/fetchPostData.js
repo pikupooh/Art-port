@@ -94,7 +94,7 @@ export const createPost = (userId, postFormData, imageFormData, profileId) => {
                 console.log(response);
                 let postId = response.id;
 
-                fetch(`/api/posts/${postId}/images/upload`, {
+                customfetch(`/api/posts/${postId}/images/upload`, {
                     method: "POST",
                     body: imageFormData,
                     headers: {

@@ -1,4 +1,5 @@
 import { DELETE_MANGA_LAST_CHAPTER } from "../../actions/actionTypes";
+import {customfetch} from "../customFetch"
 
 function deleteLastChapter(mangaId) {
 
@@ -6,7 +7,7 @@ function deleteLastChapter(mangaId) {
     console.log(mangaId);
 
     return (dispatch) => {
-        fetch(`/api/mangas/${mangaId}`, {
+        customfetch(`/api/mangas/${mangaId}`, {
             method: "DELETE",
             headers: {
                 Authorization: token,
