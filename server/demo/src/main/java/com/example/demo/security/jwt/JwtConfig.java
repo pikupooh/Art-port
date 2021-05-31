@@ -26,8 +26,13 @@ public class JwtConfig {
 
         UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
 
+        return generateTokenFromUsername(userPrincipal.getUsername());
+    }
+
+    public String generateTokenFromUsername(String username){
+
         return Jwts.builder()
-                .setSubject(userPrincipal.getUsername())
+                .setSubject(username)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(new Date().getTime() + jwtExpirationInMilliseconds))
                 .signWith(SignatureAlgorithm.HS512, secretKey)

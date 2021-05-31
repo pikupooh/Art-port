@@ -49,7 +49,7 @@ public class ProfileController {
 
         User user = userService.getUser(userId);
         if(user == null)
-            return new ResponseEntity<String>("User not present.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("User not present.", HttpStatus.NOT_FOUND);
 
         return ResponseEntity.ok(profileService.getUserProfile(userId));
     }
@@ -59,9 +59,9 @@ public class ProfileController {
 
         User user = userService.getUserByName(principal.getName());
         if(user == null)
-            return new ResponseEntity<String>("User not present.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("User not present.", HttpStatus.NOT_FOUND);
         if (!user.getId().equals(userId))
-            return new ResponseEntity<String>("User invalid.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("User invalid.", HttpStatus.BAD_REQUEST);
 
         return ResponseEntity.ok(profileService.getUserPosts(userId));
     }
@@ -71,9 +71,9 @@ public class ProfileController {
 
         User user = userService.getUserByName(principal.getName());
         if(user == null)
-            return new ResponseEntity<String>("User not present.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("User not present.", HttpStatus.NOT_FOUND);
         if (!user.getId().equals(userId))
-            return new ResponseEntity<String>("User invalid.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("User invalid.", HttpStatus.BAD_REQUEST);
 
         return ResponseEntity.ok(profileService.getUserBlogs(userId));
     }
@@ -83,9 +83,9 @@ public class ProfileController {
 
         User user = userService.getUserByName(principal.getName());
         if(user == null)
-            return new ResponseEntity<String>("User not present.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("User not present.", HttpStatus.NOT_FOUND);
         if (!user.getId().equals(userId))
-            return new ResponseEntity<String>("User invalid.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("User invalid.", HttpStatus.BAD_REQUEST);
 
         return ResponseEntity.ok(profileService.getUserMangas(userId));
     }
@@ -95,9 +95,9 @@ public class ProfileController {
 
         User user = userService.getUserByName(principal.getName());
         if(user == null)
-            return new ResponseEntity<String>("User not present.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("User not present.", HttpStatus.NOT_FOUND);
         if (!user.getId().equals(userId))
-            return new ResponseEntity<String>("User invalid.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("User invalid.", HttpStatus.BAD_REQUEST);
 
         return ResponseEntity.ok(profileService.getUserComics(userId));
     }
@@ -107,9 +107,9 @@ public class ProfileController {
 
         User user = userService.getUserByName(principal.getName());
         if(user == null)
-            return new ResponseEntity<String>("User not present.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("User not present.", HttpStatus.NOT_FOUND);
         if (!user.getId().equals(userId))
-            return new ResponseEntity<String>("User invalid.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("User invalid.", HttpStatus.BAD_REQUEST);
 
         return ResponseEntity.ok(profileService.getFollowers(userId));
     }
@@ -119,9 +119,9 @@ public class ProfileController {
 
         User user = userService.getUserByName(principal.getName());
         if(user == null)
-            return new ResponseEntity<String>("User not present.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("User not present.", HttpStatus.NOT_FOUND);
         if (!user.getId().equals(userId))
-            return new ResponseEntity<String>("User invalid.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("User invalid.", HttpStatus.BAD_REQUEST);
 
         return ResponseEntity.ok(profileService.getFollowing(userId));
     }
@@ -131,9 +131,9 @@ public class ProfileController {
 
         User user = userService.getUserByName(principal.getName());
         if(user == null)
-            return new ResponseEntity<String>("User not present.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("User not present.", HttpStatus.NOT_FOUND);
         if (!user.getId().equals(userId))
-            return new ResponseEntity<String>("User invalid.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("User invalid.", HttpStatus.BAD_REQUEST);
 
         return ResponseEntity.ok(profileService.getFavoritePosts(userId));
     }
@@ -143,9 +143,9 @@ public class ProfileController {
 
         User user = userService.getUserByName(principal.getName());
         if(user == null)
-            return new ResponseEntity<String>("User not present.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("User not present.", HttpStatus.NOT_FOUND);
         if (!user.getId().equals(userId))
-            return new ResponseEntity<String>("User invalid.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("User invalid.", HttpStatus.BAD_REQUEST);
 
         return ResponseEntity.ok(profileService.getFavoriteBlogs(userId));
     }
@@ -155,9 +155,9 @@ public class ProfileController {
 
         User user = userService.getUserByName(principal.getName());
         if(user == null)
-            return new ResponseEntity<String>("User not present.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("User not present.", HttpStatus.NOT_FOUND);
         if (!user.getId().equals(userId))
-            return new ResponseEntity<String>("User invalid.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("User invalid.", HttpStatus.BAD_REQUEST);
 
         return ResponseEntity.ok(profileService.getFavoriteMangas(userId));
     }
@@ -167,9 +167,9 @@ public class ProfileController {
 
         User user = userService.getUserByName(principal.getName());
         if(user == null)
-            return new ResponseEntity<String>("User not present.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("User not present.", HttpStatus.NOT_FOUND);
         if (!user.getId().equals(userId))
-            return new ResponseEntity<String>("User invalid.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("User invalid.", HttpStatus.BAD_REQUEST);
 
         return ResponseEntity.ok(profileService.getFavoriteComics(userId));
     }
@@ -184,9 +184,9 @@ public class ProfileController {
 
         User user = userService.getUserByName(principal.getName());
         if(user == null)
-            return new ResponseEntity<String>("User not present.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("User not present.", HttpStatus.NOT_FOUND);
         if (!user.getId().equals(userId))
-            return new ResponseEntity<String>("User invalid.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("User invalid.", HttpStatus.BAD_REQUEST);
 
 
         User following = profileService.addFollower(userId, followerId);
@@ -200,9 +200,9 @@ public class ProfileController {
         long start = System.currentTimeMillis();
         User user = userService.getUserByName(principal.getName());
         if(user == null)
-            return new ResponseEntity<String>("User not present.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("User not present.", HttpStatus.NOT_FOUND);
         if (!user.getId().equals(userId))
-            return new ResponseEntity<String>("User invalid.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("User invalid.", HttpStatus.BAD_REQUEST);
 
         profileService.deleteFollower(userId, followerId);
 
@@ -216,9 +216,9 @@ public class ProfileController {
 
         User user = userService.getUserByName(principal.getName());
         if(user == null)
-            return new ResponseEntity<String>("User not present.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("User not present.", HttpStatus.NOT_FOUND);
         if (!user.getId().equals(userId))
-            return new ResponseEntity<String>("User invalid.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("User invalid.", HttpStatus.BAD_REQUEST);
 
         profileService.addFavoritePost(userId, postService.getPost(postId));
         return ResponseEntity.ok("Post added as favorite");
@@ -229,9 +229,9 @@ public class ProfileController {
 
         User user = userService.getUserByName(principal.getName());
         if(user == null)
-            return new ResponseEntity<String>("User not present.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("User not present.", HttpStatus.NOT_FOUND);
         if (!user.getId().equals(userId))
-            return new ResponseEntity<String>("User invalid.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("User invalid.", HttpStatus.BAD_REQUEST);
 
         profileService.deleteFavoritePost(userId, postService.getPost(postId));
         return ResponseEntity.ok("Post added as favorite");
@@ -242,9 +242,9 @@ public class ProfileController {
 
         User user = userService.getUserByName(principal.getName());
         if(user == null)
-            return new ResponseEntity<String>("User not present.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("User not present.", HttpStatus.NOT_FOUND);
         if (!user.getId().equals(userId))
-            return new ResponseEntity<String>("User invalid.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("User invalid.", HttpStatus.BAD_REQUEST);
 
         profileService.addFavoriteBlog(userId, blogService.getBlog(blogId));
         return ResponseEntity.ok("Post added as favorite");
@@ -255,9 +255,9 @@ public class ProfileController {
 
         User user = userService.getUserByName(principal.getName());
         if(user == null)
-            return new ResponseEntity<String>("User not present.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("User not present.", HttpStatus.NOT_FOUND);
         if (!user.getId().equals(userId))
-            return new ResponseEntity<String>("User invalid.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("User invalid.", HttpStatus.BAD_REQUEST);
 
         profileService.deleteFavoriteBlog(userId, blogService.getBlog(blogId));
         return ResponseEntity.ok("Post added as favorite");
@@ -268,9 +268,9 @@ public class ProfileController {
 
         User user = userService.getUserByName(principal.getName());
         if(user == null)
-            return new ResponseEntity<String>("User not present.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("User not present.", HttpStatus.NOT_FOUND);
         if (!user.getId().equals(userId))
-            return new ResponseEntity<String>("User invalid.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("User invalid.", HttpStatus.BAD_REQUEST);
 
         profileService.addFavoriteManga(userId, mangaService.getManga(mangaId));
         return ResponseEntity.ok("Manga added as favorite");
@@ -281,9 +281,9 @@ public class ProfileController {
 
         User user = userService.getUserByName(principal.getName());
         if(user == null)
-            return new ResponseEntity<String>("User not present.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("User not present.", HttpStatus.NOT_FOUND);
         if (!user.getId().equals(userId))
-            return new ResponseEntity<String>("User invalid.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("User invalid.", HttpStatus.BAD_REQUEST);
 
         profileService.deleteFavoriteManga(userId, mangaService.getManga(mangaId));
         return ResponseEntity.ok("Manga deleted as favorite");
@@ -294,9 +294,9 @@ public class ProfileController {
 
         User user = userService.getUserByName(principal.getName());
         if(user == null)
-            return new ResponseEntity<String>("User not present.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("User not present.", HttpStatus.NOT_FOUND);
         if (!user.getId().equals(userId))
-            return new ResponseEntity<String>("User invalid.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("User invalid.", HttpStatus.BAD_REQUEST);
 
         profileService.addFavoriteComic(userId, mangaService.getManga(mangaId));
         return ResponseEntity.ok("Manga added as favorite");
@@ -307,9 +307,9 @@ public class ProfileController {
 
         User user = userService.getUserByName(principal.getName());
         if(user == null)
-            return new ResponseEntity<String>("User not present.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("User not present.", HttpStatus.NOT_FOUND);
         if (!user.getId().equals(userId))
-            return new ResponseEntity<String>("User invalid.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("User invalid.", HttpStatus.BAD_REQUEST);
 
         profileService.deleteFavoriteComic(userId, mangaService.getManga(mangaId));
         return ResponseEntity.ok("Comic deleted as favorite");

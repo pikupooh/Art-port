@@ -2,7 +2,6 @@ import fetchUserData from "./fetchUserData";
 import * as ActionTypes from "../actions/actionTypes";
 import { fetchUserProfileData } from "../../redux/thunk/fetchProfileData";
 import { setLoadingAction } from "../actions/loadingActions";
-
 export default function signInUser(user, pass) {
     var creds = {
         username: user,
@@ -28,7 +27,7 @@ export default function signInUser(user, pass) {
                         );
                         error.res = res;
                         dispatch(loginError("Invalid username or password"));
-                        dispatch( setLoadingAction(false, "Error..."));
+                        dispatch(setLoadingAction(false, "Error..."));
                         throw error;
                     }
                 },
@@ -44,6 +43,7 @@ export default function signInUser(user, pass) {
                 let profilePhoto = res.profilePhoto;
 
                 localStorage.setItem("token", token);
+                localStorage.setItem("refreshToken", res.refreshToken);
                 localStorage.setItem("userId", userId);
                 localStorage.setItem("profilePhoto", profilePhoto);
                 dispatch(setUserLogin({ token, userId, profilePhoto }));
@@ -84,6 +84,7 @@ function successLogout() {
 }
 
 export function logoutUser() {
+    console.log("yo");
     return (dispatch) => {
         dispatch(requestLogout());
 

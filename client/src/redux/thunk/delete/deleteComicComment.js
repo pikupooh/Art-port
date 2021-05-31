@@ -1,10 +1,11 @@
 import { DELETE_COMIC_COMMENT } from "../../actions/actionTypes";
+import { customfetch } from "../customFetch";
 
 function deleteMangaComment(commentId) {
     const token = localStorage.getItem("token");
 
     return (dispatch) => {
-        fetch(`/api/comment/${commentId}`, {
+        customfetch(`/api/comment/${commentId}`, {
             method: "DELETE",
             headers: {
                 Authorization: token,

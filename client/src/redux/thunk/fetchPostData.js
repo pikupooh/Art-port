@@ -1,6 +1,7 @@
 import { fetchPostDataAction } from "../actions/fetchPostDataAction";
 import { addUserPost } from "../actions/fetchProfileDataAction";
 import { setLoadingAction } from "../actions/loadingActions";
+import { customfetch } from "./customFetch";
 
 function fetchPostData(postId) {
     return (dispatch) => {
@@ -61,7 +62,7 @@ export const createPost = (userId, postFormData, imageFormData, profileId) => {
 
     return (dispatch) => {
         dispatch(setLoadingAction(true, "Loading..."));
-        fetch(`/api/users/${userId}/post`, {
+        customfetch(`/api/users/${userId}/post`, {
             method: "POST",
             body: JSON.stringify(postFormData),
             headers: {

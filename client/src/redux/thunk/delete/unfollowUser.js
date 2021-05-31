@@ -1,12 +1,12 @@
 import { REMOVE_FOLLOWING } from "../../actions/actionTypes";
-
+import { customfetch } from "../customFetch";
 function unfollowUser(userId, logInId) {
     const token = localStorage.getItem("token");
 
     console.log(logInId, userId);
 
     return (dispatch) => {
-        fetch(`/api/users/${logInId}/follower/${userId}`, {
+        customfetch(`/api/users/${logInId}/follower/${userId}`, {
             method: "DELETE",
             headers: {
                 Authorization: token,

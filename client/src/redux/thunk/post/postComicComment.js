@@ -1,10 +1,11 @@
 import { POST_COMIC_COMMENT } from "../../actions/actionTypes";
+import { customfetch } from "../customFetch";
 
 function postComicComment(comicId, message) {
     const token = localStorage.getItem("token");
     console.log(comicId, message);
     return (dispatch) => {
-        fetch(`/api/manga/${comicId}/comment`, {
+        customfetch(`/api/manga/${comicId}/comment`, {
             method: "POST",
             body: JSON.stringify({
                 content: message,

@@ -1,5 +1,6 @@
 import { deleteUserComicAction } from "../actions/fetchProfileDataAction";
 import { setLoadingAction } from "../actions/loadingActions";
+import { customfetch } from "./customFetch";
 
 function deleteUserComic(userId, comicId) {
     const token = localStorage.getItem("token");
@@ -7,7 +8,7 @@ function deleteUserComic(userId, comicId) {
     return (dispatch) => {
         dispatch(setLoadingAction(true, "Loading..."));
 
-        fetch(`/api/users/${userId}/manga/${comicId}`, {
+        customfetch(`/api/users/${userId}/manga/${comicId}`, {
             method: "DELETE",
             headers: {
                 Authorization: token,

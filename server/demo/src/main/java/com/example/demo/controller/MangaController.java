@@ -55,9 +55,9 @@ public class MangaController {
         String name = principal.getName();
         User user = userService.getUserByName(name);
         if (user == null)
-            return new ResponseEntity<String>("User not present.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("User not present.", HttpStatus.NOT_FOUND);
         if (!user.getId().equals(userId))
-            return new ResponseEntity<String>("User invalid.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("User invalid.", HttpStatus.BAD_REQUEST);
         manga.setType(Type.valueOf("MANGA"));
         Manga manga1 = mangaService.createManga(manga, user);
         profileService.addManga(userId, manga);
@@ -71,9 +71,9 @@ public class MangaController {
         String name = principal.getName();
         User user = userService.getUserByName(name);
         if (user == null)
-            return new ResponseEntity<String>("User not present.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("User not present.", HttpStatus.NOT_FOUND);
         if (!user.getId().equals(userId))
-            return new ResponseEntity<String>("User invalid.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("User invalid.", HttpStatus.BAD_REQUEST);
         manga.setType(Type.valueOf("COMIC"));
         Manga manga1 = mangaService.createManga(manga, user);
         profileService.addComic(userId, manga);
@@ -86,9 +86,9 @@ public class MangaController {
         String name = principal.getName();
         User user = userService.getUserByName(name);
         if (user == null)
-            return new ResponseEntity<String>("User not present.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("User not present.", HttpStatus.NOT_FOUND);
         if (!user.getId().equals(userId))
-            return new ResponseEntity<String>("User invalid.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("User invalid.", HttpStatus.BAD_REQUEST);
 
         Manga manga = mangaService.deleteManga(mangaId);
         if (manga == null)
@@ -106,9 +106,9 @@ public class MangaController {
         String name = principal.getName();
         User user = userService.getUserByName(name);
         if(user == null)
-            return new ResponseEntity<String>("User not present.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("User not present.", HttpStatus.NOT_FOUND);
         if(!user.getId().equals(id))
-            return new ResponseEntity<String>("User invalid.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("User invalid.", HttpStatus.BAD_REQUEST);
 
         Manga manga1 = mangaService.updateManga(manga, mangaId);
 

@@ -1,10 +1,11 @@
 import { DELETE_COMIC_REPLY } from "../../actions/actionTypes";
+import { customfetch } from "../customFetch";
 
 function deleteComicReply(replyId, commentId) {
     const token = localStorage.getItem("token");
 
     return (dispatch) => {
-        fetch(`/api/reply/${replyId}`, {
+        customfetch(`/api/reply/${replyId}`, {
             method: "DELETE",
             headers: {
                 Authorization: token,

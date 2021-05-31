@@ -1,6 +1,7 @@
 import { fetchMangaChapterAction } from "../actions/fetchMangaChapterAction";
 import * as ActionTypes from "../actions/actionTypes";
 import { setLoadingAction } from "../actions/loadingActions";
+import { customfetch } from "./customFetch";
 
 function fetchMangaChapter(id) {
     return (dispatch) => {
@@ -36,7 +37,7 @@ export const createChapter = (
     return (dispatch) => {
         dispatch(setLoadingAction(true, "Loading..."));
 
-        fetch(`/api/mangas/${mangaId}/chapter`, {
+        customfetch(`/api/mangas/${mangaId}/chapter`, {
             method: "POST",
             body: JSON.stringify(chapterFormData),
             headers: {

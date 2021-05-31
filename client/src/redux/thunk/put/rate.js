@@ -1,4 +1,5 @@
 import { UPDATE_RATING } from "../../actions/actionTypes";
+import { customfetch } from "../customFetch";
 
 function rate(rating, mangaId) {
     const token = localStorage.getItem("token");
@@ -8,7 +9,7 @@ function rate(rating, mangaId) {
     console.log(tempObject);
 
     return (dispatch) => {
-        fetch(`/api/manga/${mangaId}/rating`, {
+        customfetch(`/api/manga/${mangaId}/rating`, {
             method: "PUT",
             body: tempObject,
             headers: {

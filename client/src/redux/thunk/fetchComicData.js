@@ -1,6 +1,7 @@
 import { fetchComicDataAction } from "../actions/fetchComicDataAction";
 import { addUserComic } from "../actions/fetchProfileDataAction";
 import { setLoadingAction } from "../actions/loadingActions";
+import { customfetch } from "./customFetch";
 
 function fetchComicData(comicId) {
     return (dispatch) => {
@@ -33,7 +34,7 @@ export const createComic = (userId, postFormData, imageFormData, profileId) => {
     return (dispatch) => {
         dispatch(setLoadingAction(true, "Loading..."));
 
-        fetch(`/api/users/${userId}/comic`, {
+        customfetch(`/api/users/${userId}/comic`, {
             method: "POST",
             body: JSON.stringify(postFormData),
             headers: {
