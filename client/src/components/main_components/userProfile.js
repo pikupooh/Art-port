@@ -11,6 +11,7 @@ import fetchProfileData, {fetchUserProfileData} from "../../redux/thunk/fetchPro
 
 class UserProfile extends React.Component {
     componentDidMount() {
+
         let lastSlash = this.props.location.pathname.lastIndexOf("/");
 
         let id = lastSlash===5?this.props.location.pathname.slice(6):this.props.location.pathname.slice(6, lastSlash);

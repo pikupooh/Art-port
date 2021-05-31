@@ -14,12 +14,9 @@ class SearchBar extends React.Component{
         this.state = {
             tags: [],
         }
-        console.log('search_bar constructor');
     }
 
-    componentDidUpdate(){
-        console.log('search_bar constructor');
-        
+    componentDidUpdate(){        
         if(!!this.props.location.state){
             this.setState({
                 tags: [this.props.location.state.tag]

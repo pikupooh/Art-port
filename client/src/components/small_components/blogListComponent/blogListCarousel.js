@@ -21,9 +21,9 @@ function BlogListCarousel(props){
                             <Image className = "blog_list_carousel_image"
                                     src= {blog.img.link}
                                     alt="slide"/>
-                            <Carousel.Caption>
-                            <p className = "blog_list_carousel_title">{blog.title}</p>
-                            <p>{blog.description}</p>
+                            <Carousel.Caption className = "blog_carousel_caption">
+                            <div className = "blog_list_carousel_title">{blog.title}</div>
+                            <div className = "blog_list_carousel_description">{blog.description}</div>
                             </Carousel.Caption>
                         </Link>
                     </Carousel.Item>

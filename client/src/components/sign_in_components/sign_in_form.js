@@ -51,13 +51,12 @@ class SignInForm extends React.Component {
     handleSignIn = (e) => {
         e.preventDefault();
         if (this.validate()) {
-            this.props.signIn(this.state.username, this.state.password);
-            console.log("yo");
+            this.props.signIn(this.state.username, this.state.password, this.props.location.pathname);
         }
     };
 
     render() {
-        //const { loginError } = this.state;
+        console.log(this.props);
         return (
             <div>
                 {this.props.errmess !== "" && (

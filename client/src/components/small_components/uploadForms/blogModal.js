@@ -94,11 +94,17 @@ class BlogModal extends React.Component {
         if (!input["title"]) {
             isValid = false;
             errors["title"] = "Please enter a title to your blog.";
+        } else if (input["title"].length > 30) {
+            isValid = false;
+            errors["title"] = "Title of blog should be within 30 characters.";
         }
 
         if (!input["description"]) {
             isValid = false;
             errors["description"] = "Please add a description.";
+        } else if (input["description"].length > 100) {
+            isValid = false;
+            errors["description"] = "Length of description should be within 100 characters.";
         }
 
         if (!this.state.categories.length) {
@@ -192,8 +198,8 @@ class BlogModal extends React.Component {
                                 {this.state.errors.files}
                             </div>
                         </Form.Group>
-                        <Button variant="primary" type="submit">
-                            Submit
+                        <Button variant="primary" type="submit" id = "upload_button">
+                            Upload
                         </Button>
                     </Form>
                 </Modal.Body>

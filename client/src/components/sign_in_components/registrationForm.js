@@ -101,9 +101,9 @@ class RegistrationForm extends React.Component {
         if (!input["username"]) {
             isValid = false;
             errors["username"] = "Please enter your username.";
-        } else if (input["username"].length < 3) {
+        } else if (input["username"].length < 3 || input["username"].length > 15) {
             isValid = false;
-            errors["username"] = "Username must be atleast 3 characters long.";
+            errors["username"] = "Username must be more than 3 and less than 15 characters long.";
         }
 
         if (!input["firstName"]) {
@@ -160,6 +160,11 @@ class RegistrationForm extends React.Component {
         }
 
         if (!input["about"]) {
+            isValid = false;
+            errors["about"] = "Please enter a short description.";
+        }
+
+        if (input["about"].length > 150) {
             isValid = false;
             errors["about"] = "Please enter a short description.";
         }

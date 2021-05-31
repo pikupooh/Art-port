@@ -94,11 +94,17 @@ class MangaModal extends React.Component {
         if (!input["title"]) {
             isValid = false;
             errors["title"] = "Please enter a title to your manga.";
+        } else if (input["title"].length > 30) {
+            isValid = false;
+            errors["title"] = "Title of blog should be within 30 characters.";
         }
 
         if (!input["about"]) {
             isValid = false;
             errors["about"] = "Please add a about.";
+        } else if (input["about"].length > 100) {
+            isValid = false;
+            errors["about"] = "Length of about should be within 100 characters.";
         }
 
         if (!this.state.categories.length) {
@@ -120,7 +126,7 @@ class MangaModal extends React.Component {
         return (
             <Modal show={this.props.show} onHide={this.props.handleModalClose} centered = {true}>
                 <Modal.Body>
-                    <h3 className = "text-center"> Create ypur Manga</h3>
+                    <h3 className = "text-center"> Create your Manga</h3>
                     <Form id="manga-form" onSubmit={(e) => this.handleSubmit(e)}>
                         <Form.Group>
                             <Form.Label>Title</Form.Label>
@@ -172,8 +178,8 @@ class MangaModal extends React.Component {
                                 {this.state.errors.files}
                             </div>
                         </Form.Group>
-                        <Button variant="primary" type="submit">
-                            Submit
+                        <Button variant="primary" type="submit" id = "upload_button">
+                            Upload
                         </Button>
                     </Form>
                 </Modal.Body>

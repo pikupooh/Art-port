@@ -53,7 +53,6 @@ class ChapterModal extends React.Component {
                 this.props.mangaId
             );
         }
-        console.log(this.state);
     }
 
     validate() {
@@ -64,7 +63,11 @@ class ChapterModal extends React.Component {
         if (!input["name"]) {
             isValid = false;
             errors["name"] = "Please enter a name to your chapter.";
+        }else if (input["name"].length > 30) {
+            isValid = false;
+            errors["name"] = "Name of chapter should be less than 30 characters";
         }
+        
         if (this.fileInput.current.files.length === 0) {
             isValid = false;
             errors["files"] = "Please upload some images.";
@@ -113,8 +116,8 @@ class ChapterModal extends React.Component {
                                 {this.state.errors.files}
                             </div>
                         </Form.Group>
-                        <Button variant="primary" type="submit">
-                            Submit
+                        <Button variant="primary" type="submit" id = "upload_button"> 
+                            Upload
                         </Button>
                     </Form>
                 </Modal.Body>

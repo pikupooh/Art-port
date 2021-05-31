@@ -18,7 +18,7 @@ class MangaGrid extends React.Component{
             <div>
                 <Row className = "home_grid_container">
                     {this.props.mangaList.map((manga) => 
-                    <Col key={manga.id} sm = {6} md = {4} lg = {2} className = "home_grid_posts_container">
+                    <Col key={manga.id} xs = {6} md = {4} lg = {2} className = "home_grid_posts_container">
                         <UserMangaGridLayout  manga = {manga}/>
                     </Col>
                     )}

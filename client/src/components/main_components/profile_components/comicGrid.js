@@ -18,7 +18,7 @@ class ComicGrid extends React.Component{
             <div>
                 <Row className = "home_grid_container">
                     {this.props.comicList.map((comic) => 
-                    <Col key={comic.id} sm = {6} md = {4} lg = {2} className = "home_grid_posts_container">
+                    <Col key={comic.id} xs = {6} md = {4} lg = {2} className = "home_grid_posts_container">
                         <UserComicGridLayout  comic = {comic}/>
                     </Col>
                     )}

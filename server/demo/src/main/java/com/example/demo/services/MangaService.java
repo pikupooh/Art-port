@@ -42,12 +42,12 @@ public class MangaService {
 
     public List<Manga> getAllComic(){
 
-        return mangaRepository.findMangaByType(Type.valueOf("COMIC"));
+        return mangaRepository.findMangaByType(Type.valueOf("COMIC"), Sort.by(Sort.Direction.DESC, "rating"));
     }
 
     public List<Manga> getAllManga(){
 
-        return mangaRepository.findMangaByType(Type.valueOf("MANGA"));
+        return mangaRepository.findMangaByType(Type.valueOf("MANGA"), Sort.by(Sort.Direction.DESC, "rating"));
     }
 
     public Manga getManga(String id) {

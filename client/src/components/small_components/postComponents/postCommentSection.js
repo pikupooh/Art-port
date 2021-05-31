@@ -50,7 +50,7 @@ class PostCommentSection extends React.Component{
                         </Form.Control>
                         <Row>
                             <Col className = "add_background_color">
-                                <Button className = "btn-sm mt-2" onClick = {this.comment}>
+                                <Button className = "btn-sm mt-2" id = "comment_button" onClick = {this.comment}>
                                     Comment
                                 </Button>
                             </Col>

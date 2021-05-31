@@ -14,7 +14,7 @@ class FooterComponent extends React.Component{
         <footer>
         <Row>
             <Col ml= {20} pl ={30}>
-            <ul className="footer_nav">
+            <ul className="footer_nav"> 
                         <li><a href="/about">About us</a></li>
                         <li><a href="/blogs">Blog</a></li>
                         <li><a href="/comics">Comic</a></li>

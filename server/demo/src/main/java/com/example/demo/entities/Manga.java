@@ -176,4 +176,17 @@ public class Manga {
 				", type=" + type +
 				'}';
 	}
+
+	@Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Manga manga = (Manga) o;
+        return id.equals(manga.id);
+    }
+
+	@Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 }

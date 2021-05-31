@@ -20,7 +20,7 @@ class Post extends React.Component {
     return(
       <div className = "container-fluid">
       <Row >
-        <Col lg = {9} >
+        <Col xl = {9} >
           <div>
             {this.props.images.map((doc) => 
               <PostImage key={doc.id} imageDoc = {doc}/>

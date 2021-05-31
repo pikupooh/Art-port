@@ -1,10 +1,12 @@
 package com.example.demo.services;
 
 import com.example.demo.entities.Image;
-// import com.example.demo.payload.response.ImgBBRes;
+import com.example.demo.payload.response.ImgBBRes;
 import com.example.demo.payload.response.ImgurRes;
 import com.example.demo.repositories.ImageRepository;
 import com.example.demo.repositories.PostRepository;
+
+import java.util.Base64;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -35,7 +37,7 @@ public class FileService {
 
     public String save(byte[] bytes, String fileName) throws Exception {
 
-        String link = uploadToImgur(bytes);
+        String link = uploadToImgBB(bytes);
         Image image = new Image();
         image.setName(fileName);
         image.setLink(link);
@@ -51,7 +53,7 @@ public class FileService {
         return image.getLink();
     }
 
-    public String uploadToImgur(byte[] file) {
+    public String uploadToImgur(byte[] file) throws Exception{
 		final String uri = "https://api.imgur.com/3/image";
 
 		MultiValueMap<String, Object> bodyMap = new LinkedMultiValueMap<>();
@@ -62,26 +64,61 @@ public class FileService {
 		HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(bodyMap, headers);
 
 		RestTemplate restTemplate = new RestTemplate();
-		ResponseEntity<ImgurRes> response = restTemplate.exchange(uri, HttpMethod.POST, requestEntity, ImgurRes.class);
+		ResponseEntity<ImgurRes> response;
+		try {
+			response = restTemplate.exchange(uri, HttpMethod.POST, requestEntity, ImgurRes.class);
+		}
+		catch(Exception e) {
+			try {
+				response = restTemplate.exchange(uri, HttpMethod.POST, requestEntity, ImgurRes.class);
+			}
+			catch(Exception e1) {
+				try {
+					response = restTemplate.exchange(uri, HttpMethod.POST, requestEntity, ImgurRes.class);
+				}
+				catch(Exception e2) {
+					throw e2;
+				}
+			}
+		}
 		System.out.println("response status: " + response.getStatusCode()); // it should return 200
 		System.out.println("response body: " + response.getBody().getData().getLink()); // it should return link of your uploaded image
 		
 		return response.getBody().getData().getLink();
-    	
-//    	String url = "https://api.imgbb.com/1/upload?key=ea599885273b467df62aa25bbc4805b8";
-//    	MultiValueMap<String, Object> bodyMap = new LinkedMultiValueMap<>();
-//    	bodyMap.add("image", Base64.getEncoder().encode(file));
-//    	HttpHeaders headers = new HttpHeaders();
-//    	headers.setContentType(MediaType.MULTIPART_FORM_DATA);
-//    	HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(bodyMap, headers);
-//
-//    	RestTemplate restTemplate = new RestTemplate();
-//    	ResponseEntity<ImgBBRes> response = restTemplate.exchange(url, HttpMethod.POST, requestEntity, ImgBBRes.class);
-//    	System.out.println(response.getBody().getData());
-//    	return response.getBody().getData().getUrl();
     }
     
-    
+    public String uploadToImgBB(byte[] file) throws Exception {
+
+		String url = "https://api.imgbb.com/1/upload?key=ea599885273b467df62aa25bbc4805b8";
+		MultiValueMap<String, Object> bodyMap = new LinkedMultiValueMap<>();
+		bodyMap.add("image", Base64.getEncoder().encode(file));
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+		HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(bodyMap, headers);
+
+		RestTemplate restTemplate = new RestTemplate();
+		ResponseEntity<ImgBBRes> response;
+		try {
+			response = restTemplate.exchange(url, HttpMethod.POST, requestEntity, ImgBBRes.class);
+		}
+		catch(Exception e) {
+			try {
+				response = restTemplate.exchange(url, HttpMethod.POST, requestEntity, ImgBBRes.class);
+			}
+			catch(Exception e1) {
+				try {
+					response = restTemplate.exchange(url, HttpMethod.POST, requestEntity, ImgBBRes.class);
+				}
+				catch(Exception e2) {
+					throw e2;
+				}
+			}
+		}
+		System.out.println("response status: " + response.getStatusCode()); // it should return 200
+		System.out.println("response body: " + response.getBody().getData().getUrl()); // it should return link of your uploaded image
+
+		return response.getBody().getData().getUrl();
+	}
 }
 
 

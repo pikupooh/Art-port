@@ -45,6 +45,7 @@ class MangaDataCommentsReply extends Component{
                                     <Image src = {this.props.reply.user.profilePhoto.link} roundedCircle className = "comment_profile_photo"></Image>
                                 </Col>
                             </Link>
+                            <Col className="replies_container" sm={10}>
                              <p className="replies">
                             <Col>
                             <Link to = {'/user/' + this.props.reply.user.userId}>
@@ -61,6 +62,7 @@ class MangaDataCommentsReply extends Component{
                                 
                             </Col>
                             </p>
+                            </Col>
                             
                         </Row>
                         <Row className="reply_button">
@@ -107,7 +109,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(MangaDataCommentsRep
 function DeleteButton(props){
     if(props.id === props.userId){
         return(
-            <i className = "material-icons text-center ml-2" id = "delete_button"onClick = {props.deleteReply}>
+            <i className = "material-icons text-center ml-2" id = "delete_button" onClick = {props.deleteReply}>
                 delete
             </i>
         )
@@ -124,7 +126,7 @@ function DeleteButton(props){
 function EditButton(props){
     if(props.id === props.userId && props.isEdit === false){
         return(
-            <i className = "material-icons text-center ml-2"  id = "edit_button"onClick = {props.openEditReplyForm}>
+            <i className = "material-icons text-center ml-2"  id = "edit_button"   onClick = {props.openEditReplyForm}>
                 edit
             </i>
         )

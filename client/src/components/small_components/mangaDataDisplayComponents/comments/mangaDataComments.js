@@ -10,11 +10,13 @@ class MangaDataComments extends Component{
         console.log(this.props);
         if(this.props.comments.length === 0){
         return(
-            <div>
-                <CommentsTag length = {this.props.comments.length} />
-                <div className = "blog_data_comments">
-                    Be the first to comment
-                    <MangaCommentSection mangaId = {this.props.mangaId}/>
+             <div>
+                 <CommentsTag length = {this.props.comments.length} />
+            <div className = "blog_data_comments" style ={{padding:"5px" ,justifyContent:"center"}}>
+               <p style ={{paddingTop:"5px",paddingLeft:"5px"}}>Be the first to comment</p> 
+             </div>
+             <div>
+                <MangaCommentSection blogId = {this.props.blogId}/>
                 </div>
             </div>
         )

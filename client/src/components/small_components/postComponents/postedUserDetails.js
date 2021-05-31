@@ -40,7 +40,7 @@ class PostedUserDetails extends React.Component{
                                 likes = {this.props.info.likes}/>
                 <div className = "post_page_uploader_info">
                     <Row>
-                        <Col lg = {4} xl = {3} >
+                    <Col  xs = {2} md = {1} xl = {3} >
                             <Link to = {'/user/' + this.props.info.user.userId}>
                                 <Image className = "post_profile_photo" src = {this.props.info.user.profilePhoto.link} roundedCircle></Image>
                             </Link>
@@ -54,7 +54,7 @@ class PostedUserDetails extends React.Component{
                         </Col>
                     </Row>
                     <Row className = "mt-3">
-                        <Col xs = {6}>
+                        <Col xs = {6} sm = {3} md = {3} lg = {2} xl = {6}>
                             <PostLikeButton postId = {this.props.info.id}/>
                         </Col>
                         <Col>
@@ -79,10 +79,12 @@ class PostedUserDetails extends React.Component{
                     </div>
                 </div>
                 <Row className = "mx-2 tags_text">
-                    <i class="material-icons">
+                    <i class="material-icons" id = "tags">
                     loyalty
                     </i>
-                    Tags
+                    <span id = "tags">
+                        Tags
+                    </span>
                 </Row>
                 <Row className = "zeromargin"> 
                     {this.props.info.tags.map((tag) =>

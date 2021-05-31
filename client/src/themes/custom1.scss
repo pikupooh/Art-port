@@ -18,7 +18,46 @@ h2{
 
 #add_chapter_button{
     background-color: rgb(50, 148, 240) !important;
-    border: none !important
+    border: none !important;
+    &:hover 
+    {
+        background-color: lighten($color: rgb(50, 148, 240), $amount: 10)  !important;
+    }
+}
+
+#tags{
+    color:#11a2f0;
+}
+
+#comments_color{
+    color: #53be64
+}
+
+#follow_button{
+    background-color: #5464c9 !important;
+    border-color: #5464c9 !important;
+    &:hover 
+    {
+        background-color: lighten($color: #5464c9, $amount: 10)  !important;
+    }
+}
+
+#delete_chapter_button{
+    background-color: #e84d4d !important;
+    border-color: #e84d4d !important;
+    &:hover 
+    {
+        background-color: lighten($color: #e84d4d, $amount: 5)  !important;
+    }
+}
+
+#upload_button{
+    background-color: darken($color: #63c5ff, $amount: 20)  !important;
+    border-color: darken($color: #63c5ff, $amount: 20)  !important;
+    &:hover 
+    {
+        background-color: darken($color: #63c5ff, $amount: 5)  !important;
+    }
 }
 
 .btn-primary{
@@ -234,3 +273,5 @@ h2{
         color: rgba(112, 147, 241, 0.8);
     }
 }
+
+

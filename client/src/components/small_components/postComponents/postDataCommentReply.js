@@ -56,7 +56,8 @@ class PostDataCommentsReply extends Component{
                                     {this.props.reply.content}
                                 </Row>
                         <Row>
-                            <div className = "blog_comment_reply" onClick = {() => this.props.openReplyForm(this.props.reply.user.username)}>
+                            <div className = "blog_comment_reply" onClick = {() => {this.props.openReplyForm(this.props.reply.user.username)
+                                                                                    this.closeEditReplyForm() }}>
                                 <ReplyFill></ReplyFill> 
                                 Reply
                             </div>
@@ -100,7 +101,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(PostDataCommentsRepl
 function DeleteButton(props){
     if(props.id === props.userId){
         return(
-            <i className = "material-icons text-center ml-2" onClick = {props.deleteReply}>
+            <i className = "material-icons text-center ml-2" id="delete_button" onClick = {props.deleteReply}>
                 delete
             </i>
         )
@@ -117,16 +118,9 @@ function DeleteButton(props){
 function EditButton(props){
     if(props.id === props.userId && props.isEdit === false){
         return(
-            <i className = "material-icons text-center ml-2" onClick = {props.openEditReplyForm}>
+            <i className = "material-icons text-center ml-2" id = "edit_button" onClick = {props.openEditReplyForm}>
                 edit
             </i>
-        )
-    }
-    else if(props.isEdit === true){
-        return(
-            <p onClick = {props.closeEditReplyForm} className = "ml-2">
-                
-            </p>
         )
     }
     else{

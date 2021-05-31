@@ -190,6 +190,12 @@ export const comicDataReducer = (state = initState, action) => {
             chapters: [...state.chapters, action.chapter]
         }
 
+    case ActionTypes.DELETE_MANGA_LAST_CHAPTER:
+        return{
+            ...state,
+            chapters: state.chapters.slice(0, -1)
+        }
+
     default:
       return state;
   }

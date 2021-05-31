@@ -23,8 +23,6 @@ import MangaData from "./components/main_components/mangaData";
 import FooterComponent from "./components/small_components/footerComponent";
 import MangaIndividualChapter from "./components/small_components/mangaDataDisplayComponents/mangaIndividualChapter";
 import RegistrationForm from "./components/sign_in_components/registrationForm";
-import UploadPostForm from "./components/sign_in_components/uploadPostForm";
-import UploadBlogForm from "./components/sign_in_components/uploadBlogForm";
 import UploadComponent from "./components/main_components/uploadComponent";
 import ForgotPassword from "./components/small_components/forgotPassword";
 import ResetPassword from "./components/small_components/resetPassword";
@@ -35,10 +33,12 @@ import SearchedPosts from "./components/small_components/searchComponents/search
 import SearchedMangas from "./components/small_components/searchComponents/searchedMangas";
 import SearchedComics from "./components/small_components/searchComponents/searchedComics";
 import SearchedBlogs from "./components/small_components/searchComponents/searchedBlogs";
+import SearchBar from "./components/small_components/search_bar"
 
 import { fetchUserProfileData } from './redux/thunk/fetchProfileData'
 
 const NavbarwithRouter = withRouter(NavbarComponent);
+const SearchBarWithRouter = withRouter(SearchBar)
 
 class App extends React.Component {
 
@@ -58,6 +58,9 @@ class App extends React.Component {
                             <>
                                 <div>
                                     <NavbarwithRouter />
+                                    <div className = "mobile_screen_search_bar">
+                                        <SearchBarWithRouter />
+                                    </div>
                                     <Route exact path="/" component={Home} />
                                     <Route path="/comics" component={Comics} />
                                     <Route path="/blogs" component={Blogs} />
@@ -93,14 +96,6 @@ class App extends React.Component {
                                         component={RegistrationForm}
                                     />
                                     <Route
-                                        path="/postuploadform/"
-                                        component={UploadPostForm}
-                                    />
-                                    <Route
-                                        path="/bloguploadform/"
-                                        component={UploadBlogForm}
-                                    />
-                                    <Route
                                         path="/forgotPassword"
                                         component={ForgotPassword}
                                     />
@@ -108,10 +103,6 @@ class App extends React.Component {
                                         path="/resetPassword"
                                         component={ResetPassword}
                                     />
-                                    {/* <Route
-                                         path = "/search"
-                                         component ={SearchResults}
-                                    />   */}
                                     <Route
                                         path="/searchedposts/"
                                         component = {SearchedPosts} 

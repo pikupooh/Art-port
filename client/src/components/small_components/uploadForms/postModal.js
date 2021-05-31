@@ -87,7 +87,6 @@ class PostModal extends React.Component {
                 this.props.profileId
             );
         }
-        console.log(this.state);
     }
 
     validate() {
@@ -100,9 +99,15 @@ class PostModal extends React.Component {
             errors["title"] = "Please enter a title to your post.";
         }
 
-        if (!input["description"]) {
+        if (input["title"].length > 30) {
+            isValid = false;
+            errors["title"] = "Title of blog should be within 30 characters.";
+        } else if (!input["description"]) {
             isValid = false;
             errors["description"] = "Please add a description.";
+        } else if (input["description"].length > 100) {
+            isValid = false;
+            errors["description"] = "Length of description should be within 100 characters.";
         }
 
         if (!this.state.categories.length) {
@@ -208,8 +213,8 @@ class PostModal extends React.Component {
                                 {this.state.errors.files}
                             </div>
                         </Form.Group>
-                        <Button variant="primary" type="submit">
-                            Submit
+                        <Button variant="primary" type="submit" id = "upload_button">
+                            Upload
                         </Button>
                     </Form>
                 </Modal.Body>

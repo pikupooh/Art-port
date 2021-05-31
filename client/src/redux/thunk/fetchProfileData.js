@@ -39,7 +39,8 @@ function fetchProfileData(id) {
 
 export function fetchUserProfileData() {
     let id = localStorage.getItem("userId");
-
+    if(!id)
+        return (dispatch) => {};
     return (dispatch) => {
         dispatch(setLoadingAction(true, "Loading..."));
 

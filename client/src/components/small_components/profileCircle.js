@@ -21,7 +21,7 @@ class ProfileCircle extends React.Component {
     render() {
         if (this.props.isAuthenticated === true) {
             return (
-                <div className="text-center">
+                <div className="nav_profile">
                     <Image
                         roundedCircle
                         fluid
@@ -42,7 +42,7 @@ class ProfileCircle extends React.Component {
             );
         } else {
             return (
-                <Button className="ml-3 my-auto" onClick={this.showModal}>
+                <Button className="my-auto" onClick={this.showModal}>
                     Sign In
                 </Button>
             );

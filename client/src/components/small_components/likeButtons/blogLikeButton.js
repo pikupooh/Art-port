@@ -41,6 +41,7 @@ class BlogLikeButton extends React.Component {
     };
 
     blogLiked = () => {
+
         if (this.props.userId === null) {
             this.props.showSignInModal();
             return;
@@ -89,7 +90,6 @@ const mapDispatchToProps = (dispatch) =>
     );
 
 const mapStateToProps = (state) => {
-    console.log(state.user);
     return {
         userId: state.auth.userId,
         likes: state.blogData.likes,

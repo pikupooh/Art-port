@@ -18,7 +18,7 @@ function MangaListMangaData(props){
             </div>
             <div className = "manga_list_manga_data_author_container">
                 <Row className = "mb-2">
-                    Authors
+                    Author
                 </Row>
                 <Row >
                     <Link to = {'/user/' + props.manga.userDTO.userId} className = "manga_list_manga_data_authors">

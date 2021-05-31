@@ -31,11 +31,14 @@
 }
 
 .manga_data_chapters_cardlist{
-    color: rgb(255, 196, 0);
+    color: rgb(116, 145, 240);
+    width: 35px;
+    height: 35px;
 }
 
-.manga_data_chapters_cardlist{
-    color: rgb(116, 145, 240)
+.chapters_text{
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
 .manga_data_author_container{
@@ -125,4 +128,9 @@
 .manga_chapter_title{
     color: $custom_color_1;
     font-size: 1.5rem;
+}
+
+.delete_button_container{
+    text-align: end;
+    margin-top: 10px;
 }
