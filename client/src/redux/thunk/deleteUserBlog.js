@@ -1,5 +1,6 @@
 import { deleteUserBlogAction } from "../actions/fetchProfileDataAction";
 import { setLoadingAction } from "../actions/loadingActions";
+import { customfetch } from "./customFetch";
 
 function deleteUserBlog(blogId) {
     const token = localStorage.getItem("token");
@@ -7,7 +8,7 @@ function deleteUserBlog(blogId) {
     return (dispatch) => {
         dispatch(setLoadingAction(true, "Loading..."));
 
-        fetch(`/api/blog/${blogId}`, {
+        customfetch(`/api/blog/${blogId}`, {
             method: "DELETE",
             headers: {
                 Authorization: token,

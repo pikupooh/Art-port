@@ -1,10 +1,11 @@
 import { POST_BLOG_REPLY } from "../../actions/actionTypes";
+import { customfetch } from "../customFetch";
 
 function postBlogReply(parentCommentId, message, replyTo) {
     const token = localStorage.getItem("token");
 
     return (dispatch) => {
-        fetch(`/api/comment/${parentCommentId}/reply`, {
+        customfetch(`/api/comment/${parentCommentId}/reply`, {
             method: "POST",
             body: JSON.stringify({
                 replyTo,

@@ -1,6 +1,7 @@
 import { fetchBlogDataAction } from "../actions/fetchBlogDataAction";
 import { addUserBlog } from "../actions/fetchProfileDataAction";
 import { setLoadingAction } from "../actions/loadingActions";
+import { customfetch } from "./customFetch";
 
 function fetchBlogData(id) {
     return (dispatch) => {
@@ -44,7 +45,7 @@ export const createBlog = (userId, postFormData, imageFormData, profileId) => {
 
     return (dispatch) => {
         dispatch(setLoadingAction(true, "Loading..."));
-        fetch(`/api/users/${userId}/blog`, {
+        customfetch(`/api/users/${userId}/blog`, {
             method: "POST",
             body: JSON.stringify(postFormData),
             headers: {

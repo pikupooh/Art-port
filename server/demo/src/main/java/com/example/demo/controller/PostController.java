@@ -48,9 +48,9 @@ public class PostController {
         String name = principal.getName();
         User user = userService.getUserByName(name);
         if (user == null)
-            return new ResponseEntity<String>("User not present.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("User not present.", HttpStatus.NOT_FOUND);
         if (!user.getId().equals(userId))
-            return new ResponseEntity<String>("User invalid.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("User invalid.", HttpStatus.BAD_REQUEST);
 
         Post post1 = postService.createPost(post, user);
         profileService.addPost(userId, post);
@@ -64,9 +64,9 @@ public class PostController {
         String name = principal.getName();
         User user = userService.getUserByName(name);
         if (user == null)
-            return new ResponseEntity<String>("User not present.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("User not present.", HttpStatus.NOT_FOUND);
         if (!user.getId().equals(userId))
-            return new ResponseEntity<String>("User invalid.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("User invalid.", HttpStatus.BAD_REQUEST);
 
         Post post = postService.deletePost(postId);
         if (post == null)
@@ -81,9 +81,9 @@ public class PostController {
         String name = principal.getName();
         User user = userService.getUserByName(name);
         if(user == null)
-            return new ResponseEntity<String>("User not present.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("User not present.", HttpStatus.NOT_FOUND);
         if(!user.getId().equals(id))
-            return new ResponseEntity<String>("User invalid.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("User invalid.", HttpStatus.BAD_REQUEST);
 
         Post post1 = postService.updatePost(post, postId);
 

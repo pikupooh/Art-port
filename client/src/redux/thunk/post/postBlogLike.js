@@ -1,11 +1,12 @@
 import { LIKE_BLOG } from "../../actions/actionTypes";
+import { customfetch } from "../customFetch";
 
 function postBlogLike(user, blogId) {
     const token = localStorage.getItem("token");
     console.log(user, blogId);
 
     return (dispatch) => {
-        fetch(`/api/blog/${blogId}/likes`, {
+        customfetch(`/api/blog/${blogId}/likes`, {
             method: "PUT",
             headers: {
                 Authorization: token,

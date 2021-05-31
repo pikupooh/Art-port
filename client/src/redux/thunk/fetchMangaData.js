@@ -1,6 +1,7 @@
 import { fetchMangaDataAction } from "../actions/fetchMangaDataAction";
 import { addUserManga } from "../actions/fetchProfileDataAction";
 import { setLoadingAction } from "../actions/loadingActions";
+import { customfetch } from "./customFetch";
 
 function fetchMangaData(id) {
     return (dispatch) => {
@@ -30,7 +31,7 @@ export const createManga = (userId, postFormData, imageFormData, profileId) => {
 
     return (dispatch) => {
         dispatch(setLoadingAction(true, "Loading..."));
-        fetch(`/api/users/${userId}/manga`, {
+        customfetch(`/api/users/${userId}/manga`, {
             method: "POST",
             body: JSON.stringify(postFormData),
             headers: {

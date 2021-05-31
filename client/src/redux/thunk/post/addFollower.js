@@ -1,11 +1,13 @@
 import { ADD_FOLLOWING } from "../../actions/actionTypes";
+import { customfetch } from "../customFetch";
+import { logoutUser } from "../loging";
 
 function addFollower(userId, logInId) {
     const token = localStorage.getItem("token");
     console.log("yayy", logInId, userId);
     console.log(`/api/users/${logInId}/follower/${userId}`);
     return (dispatch) => {
-        fetch(`/api/users/${logInId}/follower/${userId}`, {
+        customfetch(`/api/users/${logInId}/follower/${userId}`, {
             method: "POST",
             headers: {
                 Authorization: token,
@@ -13,9 +15,9 @@ function addFollower(userId, logInId) {
         })
             .then((response) => {
                 console.log(response);
-                if (response.ok) {
-                    return response.json();
-                }
+                return response.json();
+
+                //return {};
             })
             .then((response) => {
                 console.log(response);

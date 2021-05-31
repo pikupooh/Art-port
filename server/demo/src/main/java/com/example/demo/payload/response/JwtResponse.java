@@ -4,17 +4,19 @@ public class JwtResponse {
 
     private String token;
     private String type = "Bearer";
+    private String refreshToken;
     private String id;
     private String username;
     private String email;
     private String profilePhoto;
 
-    public JwtResponse(String token, String id, String username, String email, String profilePhoto) {
+    public JwtResponse(String token, String id, String username, String email, String profilePhoto, String refreshToken) {
         this.token = token;
         this.id = id;
         this.username = username;
         this.email = email;
         this.profilePhoto = profilePhoto;
+        this.refreshToken = refreshToken;
     }
 
     public String getAccessToken() {
@@ -64,5 +66,13 @@ public class JwtResponse {
 
     public void setProfilePhoto(String profilePhoto) {
         this.profilePhoto = profilePhoto;
+    }
+
+    public String getRefreshToken() {
+        return refreshToken;
+    }
+
+    public void setRefreshToken(String refreshToken) {
+        this.refreshToken = refreshToken;
     }
 }

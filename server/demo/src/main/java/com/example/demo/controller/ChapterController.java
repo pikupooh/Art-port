@@ -60,13 +60,13 @@ public class ChapterController {
         String name = principal.getName();
         User user = userService.getUserByName(name);
         if (user == null)
-            return new ResponseEntity<String>("User not present.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("User not present.", HttpStatus.NOT_FOUND);
         Manga manga = mangaService.getManga(mangaId);
         if (manga == null)
-            return new ResponseEntity<String>("Manga not present.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("Manga not present.", HttpStatus.NOT_FOUND);
         
         if (!user.getId().equals(manga.getUserDTO().getUserId()))
-            return new ResponseEntity<String>("Owner Invalid", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("Owner Invalid", HttpStatus.BAD_REQUEST);
         
         chapter.setMangaId(mangaId);
         chapter.setNo(manga.getChapters().size()+1);
@@ -82,17 +82,17 @@ public class ChapterController {
         String name = principal.getName();
         User user = userService.getUserByName(name);
         if (user == null)
-            return new ResponseEntity<String>("User not present.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("User not present.", HttpStatus.NOT_FOUND);
         if (!user.getId().equals(userId))
-            return new ResponseEntity<String>("User invalid.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("User invalid.", HttpStatus.BAD_REQUEST);
         
         Chapter chap = chapterService.getChapter(chapterId);
         
         if(chap == null)
-            return new ResponseEntity<String>("Chapter not present.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("Chapter not present.", HttpStatus.NOT_FOUND);
         
         if(!isChapterUsers(chap, user))
-        	return new ResponseEntity<String>("Chapter owner invalid.", HttpStatus.UNAUTHORIZED);
+        	return new ResponseEntity<String>("Chapter owner invalid.", HttpStatus.BAD_REQUEST);
         Chapter chapter = chapterService.deleteChapter(chapterId);
         if (chapter == null)
             return new ResponseEntity<String>("Chapterdoes not exist.", HttpStatus.NOT_FOUND);
@@ -128,16 +128,16 @@ public class ChapterController {
         String name = principal.getName();
         User user = userService.getUserByName(name);
         if(user == null)
-            return new ResponseEntity<String>("User not present.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("User not present.", HttpStatus.NOT_FOUND);
         if(!user.getId().equals(id))
-            return new ResponseEntity<String>("User invalid.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("User invalid.", HttpStatus.BAD_REQUEST);
         Chapter chap = chapterService.getChapter(chapterId);
         
         if(chap == null)
-            return new ResponseEntity<String>("Chapter not present.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("Chapter not present.", HttpStatus.NOT_FOUND);
         
         if(!isChapterUsers(chap, user))
-        	return new ResponseEntity<String>("Chapter owner invalid.", HttpStatus.UNAUTHORIZED);
+        	return new ResponseEntity<String>("Chapter owner invalid.", HttpStatus.BAD_REQUEST);
         Chapter chapter1 = chapterService.updateChapter(chapter, chapterId);
 
         if(chapter1 == null)

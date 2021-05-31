@@ -1,10 +1,11 @@
 import { EDIT_POST_REPLY } from "../../actions/actionTypes";
+import { customfetch } from "../customFetch";
 
 function editPostReply(replyId, message) {
     const token = localStorage.getItem("token");
     console.log(replyId, message);
     return (dispatch) => {
-        fetch(`/api/reply/${replyId}`, {
+        customfetch(`/api/reply/${replyId}`, {
             method: "PUT",
             body: JSON.stringify({
                 content: message,

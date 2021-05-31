@@ -1,9 +1,10 @@
 import { EDIT_COMIC_COMMENT } from "../../actions/actionTypes";
+import { customfetch } from "../customFetch";
 
 function editComicComment(commentId, message) {
     const token = localStorage.getItem("token");
     return (dispatch) => {
-        fetch(`/api/comment/${commentId}`, {
+        customfetch(`/api/comment/${commentId}`, {
             method: "PUT",
             body: JSON.stringify({
                 content: message,

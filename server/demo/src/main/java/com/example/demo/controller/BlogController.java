@@ -49,9 +49,9 @@ public class BlogController {
         String name = principal.getName();
         User user = userService.getUserByName(name);
         if (user == null)
-            return new ResponseEntity<String>("User not present.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("User not present.", HttpStatus.NOT_FOUND);
         if (!user.getId().equals(userId))
-            return new ResponseEntity<String>("User invalid.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("User invalid.", HttpStatus.BAD_REQUEST);
         Blog blog1 = blogService.createBlog(blog, userId);
         profileService.addBlog(userId, blog1);
 
@@ -66,7 +66,7 @@ public class BlogController {
 			return new ResponseEntity<String>("Blog not found", HttpStatus.NOT_FOUND);
 		}
 		if(!(principal.getName().equals(blog.getUser().getUsername())))
-			return new ResponseEntity<String>("Unauthorized", HttpStatus.UNAUTHORIZED);
+			return new ResponseEntity<String>("Unauthorized", HttpStatus.BAD_REQUEST);
 		blog.setTitle(updatedBlog.getTitle());
 		blog.setImg(updatedBlog.getImg());
 		blog.setContent(updatedBlog.getContent());
@@ -84,7 +84,7 @@ public class BlogController {
 		if(blog == null)
 			return new ResponseEntity<String>("Post not found", HttpStatus.NOT_FOUND);
 		if(!(principal.getName().equals(blog.getUser().getUsername())))
-			return new ResponseEntity<String>("Unauthorized", HttpStatus.UNAUTHORIZED);
+			return new ResponseEntity<String>("Unauthorized", HttpStatus.BAD_REQUEST);
 		blogRepository.delete(blog);
 		return ResponseEntity.ok("DELETED:"+blog.getId());
 	}
@@ -101,7 +101,7 @@ public class BlogController {
 
         UserDTO userDTO = new UserDTO(user.getId(), user.getUsername(), user.getFirstName(), user.getLastName(), user.getProfilePhoto());
         if(blog.getLikes().contains(userDTO))
-            return new ResponseEntity<String>("Already liked", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("Already liked", HttpStatus.BAD_REQUEST);
 
         blog.addLike(userDTO);
         blogService.save(blog);
@@ -116,7 +116,7 @@ public class BlogController {
         Blog blog = blogService.getBlog(blogId);
 
         if(blog== null)
-            return new ResponseEntity<String>("Blog not found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<String>("Blog not found", HttpStatus.BAD_REQUEST);
 
         User user = userService.getUserByName(principal.getName());
 

@@ -1,10 +1,11 @@
 import { DELETE_CHAPTER_COMMENT } from "../../actions/actionTypes";
+import { customfetch } from "../customFetch";
 
 function deleteChapterComment(commentId) {
     const token = localStorage.getItem("token");
 
     return (dispatch) => {
-        fetch(`/api/comment/${commentId}`, {
+        customfetch(`/api/comment/${commentId}`, {
             method: "DELETE",
             headers: {
                 Authorization: token,

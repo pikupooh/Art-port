@@ -48,6 +48,7 @@ export default function signInUser(user, pass, pathname = "") {
                 let profilePhoto = res.profilePhoto;
 
                 localStorage.setItem("token", token);
+                localStorage.setItem("refreshToken", res.refreshToken);
                 localStorage.setItem("userId", userId);
                 localStorage.setItem("profilePhoto", profilePhoto);
                 dispatch(setUserLogin({ token, userId, profilePhoto }));

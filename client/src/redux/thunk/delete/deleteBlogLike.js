@@ -1,10 +1,10 @@
 import { UNLIKE_BLOG } from "../../actions/actionTypes";
-
+import {customfetch} from "../customFetch"
 function deleteBlogLike(userId, blogId) {
     const token = localStorage.getItem("token");
 
     return (dispatch) => {
-        fetch(`/api/blog/${blogId}/likes`, {
+        customfetch(`/api/blog/${blogId}/likes`, {
             method: "DELETE",
             headers: {
                 Authorization: token,

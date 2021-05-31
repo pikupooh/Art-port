@@ -1,10 +1,11 @@
 import { EDIT_COMIC_REPLY } from "../../actions/actionTypes";
+import { customfetch } from "../customFetch";
 
 function editComicReply(replyId, message) {
     const token = localStorage.getItem("token");
     console.log(replyId, message);
     return (dispatch) => {
-        fetch(`/api/reply/${replyId}`, {
+        customfetch(`/api/reply/${replyId}`, {
             method: "PUT",
             body: JSON.stringify({
                 content: message,

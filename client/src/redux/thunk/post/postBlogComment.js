@@ -1,10 +1,11 @@
 import { POST_BLOG_COMMENT } from "../../actions/actionTypes";
+import { customfetch } from "../customFetch";
 
 function postBlogComment(blogId, message) {
     const token = localStorage.getItem("token");
 
     return (dispatch) => {
-        fetch(`/api/blog/${blogId}/comment`, {
+        customfetch(`/api/blog/${blogId}/comment`, {
             method: "POST",
             body: JSON.stringify({
                 content: message,
