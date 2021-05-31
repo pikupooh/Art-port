@@ -69,7 +69,7 @@ export const createChapter = (
                 console.log(response);
                 let chapid = response.id;
 
-                fetch(`/api/chapters/${chapid}/images/upload`, {
+                customfetch(`/api/chapters/${chapid}/images/upload`, {
                     method: "POST",
                     body: imageFormData,
                     headers: {

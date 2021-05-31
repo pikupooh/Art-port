@@ -77,7 +77,7 @@ export const createBlog = (userId, postFormData, imageFormData, profileId) => {
                 console.log(response);
                 let blogId = response.id;
 
-                fetch(`/api/blogs/${blogId}/images/upload`, {
+                customfetch(`/api/blogs/${blogId}/images/upload`, {
                     method: "POST",
                     body: imageFormData,
                     headers: {

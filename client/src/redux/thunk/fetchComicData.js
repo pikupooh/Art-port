@@ -66,7 +66,7 @@ export const createComic = (userId, postFormData, imageFormData, profileId) => {
                 console.log(response);
                 let comicId = response.id;
 
-                fetch(`/api/mangas/${comicId}/images/upload`, {
+                customfetch(`/api/mangas/${comicId}/images/upload`, {
                     method: "POST",
                     body: imageFormData,
                     headers: {
