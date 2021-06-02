@@ -90,17 +90,17 @@ public class AuthController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<?> registerUser(@Valid @ModelAttribute SignUpRequest signUpRequest) throws Exception {
+    public ResponseEntity<?> registerUser(@Valid @ModelAttribute SignUpRequest signUpRequest,HttpServletRequest servletRequest) throws Exception {
 
         System.out.println(signUpRequest.getEmail());
         if(userRepository.existsByUsername((signUpRequest.getUsername()))){
 
-            return new ResponseEntity<String>("Username is already taken", HttpStatus.CONFLICT);
+            return new ResponseEntity<>("Username is already taken", HttpStatus.CONFLICT);
         }
 
         if(userRepository.existsByEmail(signUpRequest.getEmail())){
 
-            return new ResponseEntity<String>("Email is already in use", HttpStatus.CONFLICT);
+            return new ResponseEntity<>("Email is already in use", HttpStatus.CONFLICT);
 
         }
 
@@ -116,11 +116,13 @@ public class AuthController {
         VerificationToken verificationToken = new VerificationToken(user);
         verificationTokenRepository.save(verificationToken);
 
+        String appUrl = "https://" + servletRequest.getServerName() + servletRequest.getContextPath();
+
         SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setTo(user.getEmail());
         mailMessage.setSubject("Complete Your Registration!");
-        mailMessage.setText("To confirm your account, please click here: " +
-                "api/api/auth/confirm-account?token=" + verificationToken.getToken());
+        mailMessage.setText("To confirm your account, please click here: " + appUrl +
+                "/api/auth/confirm-account?token=" + verificationToken.getToken());
 
         emailService.sendEmail(mailMessage);
 
@@ -135,14 +137,14 @@ public class AuthController {
 
         if(verificationToken == null) {
 
-            return new ResponseEntity<String>("Invalid Token.", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Invalid Token.", HttpStatus.NOT_FOUND);
         }
 
         User user = verificationToken.getUser();
         Calendar calendar = Calendar.getInstance();
         if((verificationToken.getExpiryDate().getTime() - calendar.getTime().getTime()) <= 0){
 
-            return  new ResponseEntity<String>("Token has expired.", HttpStatus.UNAUTHORIZED);
+            return  new ResponseEntity<>("Token has expired.", HttpStatus.UNAUTHORIZED);
         }
 
         user.setEnabled(true);
@@ -171,7 +173,7 @@ public class AuthController {
         User existingUser = userRepository.findByEmailIgnoreCase(user.getEmail());
 
         if(existingUser == null)
-            return new ResponseEntity<String>("Email invalid", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Email invalid", HttpStatus.NOT_FOUND);
 
         VerificationToken verificationToken = new VerificationToken(existingUser);
         verificationTokenRepository.save(verificationToken);
@@ -181,7 +183,7 @@ public class AuthController {
         mailMessage.setTo(existingUser.getEmail());
         mailMessage.setSubject("Complete Password Reset!");
         mailMessage.setText("To complete the password reset process, please click here: "
-                + appUrl + "/confirm-reset?token="+verificationToken.getToken());
+                + appUrl + "api/auth/confirm-reset?token="+verificationToken.getToken());
 
         emailService.sendEmail(mailMessage);
 
