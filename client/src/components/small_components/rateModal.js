@@ -52,7 +52,6 @@ class RateModal extends React.Component{
         if(this.state.active === 0){
             return;
         }
-        console.log(this.state.active, this.props.id);
         this.props.rate(this.state.active, this.props.id)
         this.props.onHide()
     }

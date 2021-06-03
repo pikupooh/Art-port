@@ -3,7 +3,7 @@ import { customfetch } from "../customFetch";
 function unfollowUser(userId, logInId) {
     const token = localStorage.getItem("token");
 
-    console.log(logInId, userId);
+    
 
     return (dispatch) => {
         customfetch(`/api/users/${logInId}/follower/${userId}`, {
@@ -14,7 +14,7 @@ function unfollowUser(userId, logInId) {
         })
             .then((response) => {
                 if (response.ok) {
-                    console.log(response);
+                    
                     dispatch({
                         type: REMOVE_FOLLOWING,
                         payload: {

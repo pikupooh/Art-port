@@ -3,7 +3,7 @@ import { customfetch } from "../customFetch";
 
 function deletePostComment(commentId) {
     const token = localStorage.getItem("token");
-    console.log(commentId);
+ 
     return (dispatch) => {
         customfetch(`/api/comment/${commentId}`, {
             method: "DELETE",

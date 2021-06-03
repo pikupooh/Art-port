@@ -49,7 +49,7 @@ class ComicModal extends React.Component {
         for (let i = 0; i < selectedOption.length; i++) {
             selected.push(selectedOption.item(i).value);
         }
-        console.log(selected);
+        
         this.setState({ categories: selected });
     }
 
@@ -66,10 +66,10 @@ class ComicModal extends React.Component {
                     this.fileInput.current.files[i].name
                 );
             }
-            console.log(this.fileInput.current.files);
+         
             let postFormData = Object.assign({}, this.state.input);
             postFormData["category"] = this.state.categories;
-            console.log(postFormData);
+            
 
             this.setState({ input: {}, errors: {}, categories: [] });
 
@@ -83,7 +83,7 @@ class ComicModal extends React.Component {
                 this.props.profileId
             );
         }
-        console.log(this.state);
+        
     }
 
     validate() {

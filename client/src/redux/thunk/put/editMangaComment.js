@@ -20,7 +20,7 @@ function editMangaComment(commentId, message) {
                 }
             })
             .then((response) => {
-                console.log(response);
+                
                 dispatch({
                     type: EDIT_MANGA_COMMENT,
                     payload: {

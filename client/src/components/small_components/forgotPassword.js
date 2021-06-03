@@ -36,14 +36,14 @@ class ForgotPassword extends React.Component {
         e.preventDefault();
 
         if (this.validate()) {
-            console.log(this.state);
+      
             this.setState({
                 email: "",
                 error: "",
             });
         }
 
-        console.log(this.state);
+     
     }
 
     render() {

@@ -3,7 +3,7 @@ import { customfetch } from "../customFetch";
 
 function postBlogLike(user, blogId) {
     const token = localStorage.getItem("token");
-    console.log(user, blogId);
+   
 
     return (dispatch) => {
         customfetch(`/api/blog/${blogId}/likes`, {
@@ -13,7 +13,7 @@ function postBlogLike(user, blogId) {
             },
         })
             .then((response) => {
-                console.log(response);
+                
                 if (response.ok) {
                     return response.text();
                 }

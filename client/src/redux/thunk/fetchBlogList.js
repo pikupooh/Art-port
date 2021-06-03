@@ -26,7 +26,7 @@ function fetchBlogList() {
                 return res;
             })
             .catch((error) => {
-                console.log(error);
+                
             });
     };
 }

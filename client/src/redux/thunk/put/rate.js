@@ -6,7 +6,7 @@ function rate(rating, mangaId) {
 
     var tempObject = { rating, mangaId };
     tempObject = JSON.stringify(tempObject);
-    console.log(tempObject);
+   
 
     return (dispatch) => {
         customfetch(`/api/manga/${mangaId}/rating`, {
@@ -23,7 +23,7 @@ function rate(rating, mangaId) {
                 }
             })
             .then((response) => {
-                console.log(response);
+                
                 dispatch({
                     type: UPDATE_RATING,
                     payload: {

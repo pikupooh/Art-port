@@ -8,7 +8,7 @@ import deleteUserManga from '../../../redux/thunk/deleteUserManga'
 class UserMangaGridLayout extends React.Component{
 
     deleteManga = () => {
-        console.log("delete")
+        
         this.props.deleteUserManga(this.props.userId, this.props.manga.id);
     }
 

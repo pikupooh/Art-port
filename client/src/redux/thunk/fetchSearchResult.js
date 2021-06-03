@@ -2,10 +2,10 @@ import { SEARCH_RESULT } from "../actions/actionTypes";
 import { setLoadingAction } from "../actions/loadingActions";
 
 export function searchTags(tags) {
-    console.log(tags);
+  
 
     let tagsBody = JSON.stringify(tags);
-    console.log(tagsBody);
+
 
     return (dispatch) => {
         dispatch(setLoadingAction(true, "Loading..."));
@@ -33,7 +33,7 @@ export function searchTags(tags) {
             )
             .then((res) => res.json())
             .then((res) => {
-                console.log(res);
+                
                 dispatch({
                     type: SEARCH_RESULT,
                     payload: res,
@@ -42,7 +42,7 @@ export function searchTags(tags) {
                 return res;
             })
             .catch((error) => {
-                console.log(error);
+                
             });
     };
 }

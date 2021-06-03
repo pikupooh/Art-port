@@ -24,7 +24,7 @@ export const registerReducer = (
                 errmess: "",
             };
         case ActionTypes.SIGNUP_FAILURE:
-            console.log(action.message);
+          
             return {
                 ...state,
                 isLoading: false,

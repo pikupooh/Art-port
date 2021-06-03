@@ -4,8 +4,7 @@ import { logoutUser } from "../loging";
 
 function addFollower(userId, logInId) {
     const token = localStorage.getItem("token");
-    console.log("yayy", logInId, userId);
-    console.log(`/api/users/${logInId}/follower/${userId}`);
+    
     return (dispatch) => {
         customfetch(`/api/users/${logInId}/follower/${userId}`, {
             method: "POST",
@@ -14,13 +13,13 @@ function addFollower(userId, logInId) {
             },
         })
             .then((response) => {
-                console.log(response);
+                
                 return response.json();
 
                 //return {};
             })
             .then((response) => {
-                console.log(response);
+                
                 dispatch({
                     type: ADD_FOLLOWING,
                     payload: response,

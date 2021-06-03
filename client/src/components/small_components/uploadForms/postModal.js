@@ -52,7 +52,7 @@ class PostModal extends React.Component {
         for (let i = 0; i < selectedOption.length; i++) {
             selected.push(selectedOption.item(i).value);
         }
-        console.log(selected);
+        
         this.setState({ categories: selected });
     }
 
@@ -69,11 +69,11 @@ class PostModal extends React.Component {
                     this.fileInput.current.files[i].name
                 );
             }
-            console.log(this.fileInput.current.files);
+          
             let postFormData = Object.assign({}, this.state.input);
             postFormData["tags"] = this.state.tags;
             postFormData["category"] = this.state.categories;
-            console.log(postFormData);
+            
 
             this.setState({ tags: [], input: {}, errors: {}, categories: [] });
 
@@ -132,7 +132,7 @@ class PostModal extends React.Component {
                     <h3 className = "text-center"> Create your post</h3>
                     <Form id="post-form" onSubmit={(e) => this.handleSubmit(e)} onKeyDown={(e) => {
                         if(e.key==="Enter"){
-                            console.log("Enter");
+                          
                             e.preventDefault();
                         }
                     }}>

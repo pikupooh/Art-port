@@ -22,7 +22,7 @@ class PostComment extends Component{
     }
 
     openReplyForm = (username) => {
-        console.log(username);
+        
         this.setState({
             isReply: true,
             replyToUser: username,

@@ -32,15 +32,13 @@ function fetchBlogData(id) {
                 return res;
             })
             .catch((error) => {
-                console.log(error);
+                
             });
     };
 }
 
 export const createBlog = (userId, postFormData, imageFormData, profileId) => {
-    console.log("hello blog");
-
-    console.log(userId, profileId);
+   
     const token = localStorage.getItem("token");
 
     return (dispatch) => {
@@ -74,7 +72,7 @@ export const createBlog = (userId, postFormData, imageFormData, profileId) => {
             )
             .then((response) => response.json())
             .then((response) => {
-                console.log(response);
+              
                 let blogId = response.id;
 
                 customfetch(`/api/blogs/${blogId}/images/upload`, {
@@ -106,7 +104,7 @@ export const createBlog = (userId, postFormData, imageFormData, profileId) => {
                     .then((response) => {
                         dispatch(setLoadingAction(false, "Loading..."));
                         if (userId === profileId) {
-                            console.log("Same");
+                        
                             dispatch(addUserBlog(response));
                         }
                     })

@@ -2,7 +2,7 @@ import { Container } from 'react-bootstrap'
 import StarComponent from '../starComponent'
 
 function ComicListComicData(props){
-    console.log(props);
+    
 
     return(
         

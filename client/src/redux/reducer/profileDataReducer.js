@@ -17,7 +17,7 @@ const initState = {
 export const profileDataReducer = (state = initState, action) => {
     switch (action.type) {
         case ActionTypes.FETCH_PROFILE_DATA:
-            console.log("fetchprofiledata", action.payload.profileData);
+           
             return {
                 ...state,
                 id: action.payload.profileData.id,
@@ -44,7 +44,7 @@ export const profileDataReducer = (state = initState, action) => {
                 userBlogs: [...state.userBlogs, action.payload],
             };
         case ActionTypes.ADD_MANGA:
-            console.log(action.payload)
+         
             return {
                 ...state,
                 userMangas: [...state.userMangas, action.payload],

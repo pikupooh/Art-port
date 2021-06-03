@@ -36,7 +36,6 @@ class SearchBar extends React.Component{
 
         if(!!e)
             e.preventDefault();
-        console.log("handleOnSearch", this.state.tags);
         if(this.state.tags.length !== 0){
             this.props.history.push('/search/')
             this.props.search(this.state.tags)

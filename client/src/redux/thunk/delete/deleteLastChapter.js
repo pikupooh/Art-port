@@ -4,7 +4,7 @@ import {customfetch} from "../customFetch"
 function deleteLastChapter(mangaId) {
 
     const token = localStorage.getItem("token");
-    console.log(mangaId);
+   
 
     return (dispatch) => {
         customfetch(`/api/mangas/${mangaId}`, {

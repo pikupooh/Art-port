@@ -46,7 +46,7 @@ export const authReducer = (state = initState, action) => {
                 },
             };
         case ActionTypes.USER_PROFILE_FETCH:
-            console.log("fetchprofile", action);
+          
             
             return {
                 ...state,
@@ -59,7 +59,7 @@ export const authReducer = (state = initState, action) => {
                 (user) => user.id !== action.payload.userId
             );
             newProfile.following = newFollowing;
-            console.log(newProfile);
+      
             return {
                 ...state,
                 profile: newProfile,
@@ -77,8 +77,7 @@ export const authReducer = (state = initState, action) => {
             };
 
         case ActionTypes.UPDATE_RATING:
-            console.log(action);
-            console.log(state.profile);
+           
             return{
                 ...state,
                 profile: {

@@ -4,7 +4,6 @@ import { customfetch } from "./customFetch";
 
 function deleteUserBlog(blogId) {
     const token = localStorage.getItem("token");
-    console.log(blogId);
     return (dispatch) => {
         dispatch(setLoadingAction(true, "Loading..."));
 

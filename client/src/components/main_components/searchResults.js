@@ -11,7 +11,7 @@ class SearchResults extends React.Component{
     }
 
     render(){
-        console.log(this.props);
+      
         return(
             <div className="search">
                 <Container style = {{paddingLeft : "100px", paddingRight: "100px"}}>
@@ -197,7 +197,6 @@ const mapStateToProps = (state) => {
 
  function MangaRow({manga, index}) {
 
-    console.log(manga);
 
     var rating
     if(manga.ratingCount === 0){

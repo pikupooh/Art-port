@@ -23,7 +23,6 @@ class PostCommentSection extends React.Component{
     comment = () => {
         const token = localStorage.getItem('token')
         
-        console.log('post comment');
         if(token === null){
             this.props.showSignInModal()
             return;

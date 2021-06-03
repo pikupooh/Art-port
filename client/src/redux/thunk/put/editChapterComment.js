@@ -20,7 +20,7 @@ function editChapterComment(commentId, message) {
                 }
             })
             .then((response) => {
-                console.log(response);
+                
                 dispatch({
                     type: EDIT_CHAPTER_COMMENT,
                     payload: {

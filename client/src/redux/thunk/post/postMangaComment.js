@@ -21,7 +21,7 @@ function postMangaComment(mangaId, message) {
                 }
             })
             .then((response) => {
-                console.log(response);
+                
                 dispatch({
                     type: POST_MANGA_COMMENT,
                     payload: response,

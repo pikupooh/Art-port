@@ -17,7 +17,7 @@ function fetchComicList() {
                 return res;
             })
             .catch((error) => {
-                console.log(error);
+                
             });
     };
 }

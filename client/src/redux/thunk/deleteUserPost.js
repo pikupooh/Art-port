@@ -4,7 +4,7 @@ import { customfetch } from "./customFetch";
 
 function deleteUserPost(userId, postId) {
     const token = localStorage.getItem("token");
-    console.log(postId);
+    
     return (dispatch) => {
         dispatch(setLoadingAction(true, "Loading..."));
 

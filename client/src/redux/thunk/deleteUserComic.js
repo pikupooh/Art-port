@@ -4,7 +4,7 @@ import { customfetch } from "./customFetch";
 
 function deleteUserComic(userId, comicId) {
     const token = localStorage.getItem("token");
-    console.log(comicId);
+  
     return (dispatch) => {
         dispatch(setLoadingAction(true, "Loading..."));
 

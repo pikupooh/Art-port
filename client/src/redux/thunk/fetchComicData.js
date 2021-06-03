@@ -20,15 +20,13 @@ function fetchComicData(comicId) {
                 return res;
             })
             .catch((error) => {
-                console.log(error);
+                
             });
     };
 }
 
 export const createComic = (userId, postFormData, imageFormData, profileId) => {
-    console.log("hello comic");
-
-    console.log(userId, profileId);
+   
     const token = localStorage.getItem("token");
 
     return (dispatch) => {
@@ -63,7 +61,7 @@ export const createComic = (userId, postFormData, imageFormData, profileId) => {
             )
             .then((response) => response.json())
             .then((response) => {
-                console.log(response);
+               
                 let comicId = response.id;
 
                 customfetch(`/api/mangas/${comicId}/images/upload`, {
@@ -96,7 +94,7 @@ export const createComic = (userId, postFormData, imageFormData, profileId) => {
                         dispatch(setLoadingAction(false, "Loading..."));
 
                         if (userId === profileId) {
-                            console.log("Same");
+                          
                             dispatch(addUserComic(response));
                         }
                     })

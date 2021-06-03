@@ -20,7 +20,7 @@ function editBlogComment(commentId, message) {
                 }
             })
             .then((response) => {
-                console.log(response);
+                
                 dispatch({
                     type: EDIT_BLOG_COMMENT,
                     payload: {

@@ -8,7 +8,7 @@ function fetchPostData(postId) {
         dispatch(setLoadingAction(true, "Loading..."));
         fetch(`/api/post/${postId}`)
             .then((res) => {
-                console.log(res);
+              
                 return res.json();
             })
             .then((res) => {
@@ -28,7 +28,7 @@ function fetchPostData(postId) {
                         name: "fail",
                         link: "https://via.placeholder.com/300/09f/fff.png",
                     };
-                    console.log(res);
+                    
                     if (res.images.length === 0) {
                         res.images.push({
                             id: "fail",
@@ -49,15 +49,13 @@ function fetchPostData(postId) {
                 return res;
             })
             .catch((error) => {
-                console.log(error);
+                
             });
     };
 }
 
 export const createPost = (userId, postFormData, imageFormData, profileId) => {
-    console.log("hello");
-
-    console.log(userId, profileId);
+   
     const token = localStorage.getItem("token");
 
     return (dispatch) => {
@@ -91,7 +89,7 @@ export const createPost = (userId, postFormData, imageFormData, profileId) => {
             )
             .then((response) => response.json())
             .then((response) => {
-                console.log(response);
+                
                 let postId = response.id;
 
                 customfetch(`/api/posts/${postId}/images/upload`, {
@@ -122,7 +120,7 @@ export const createPost = (userId, postFormData, imageFormData, profileId) => {
                     )
                     .then((response) => {
                         if (userId === profileId) {
-                            console.log("Same", response);
+                            
                             dispatch(addUserPost(response));
                         }
                         dispatch(setLoadingAction(false, "Loading..."));

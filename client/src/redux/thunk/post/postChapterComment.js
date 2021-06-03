@@ -4,7 +4,7 @@ import { customfetch } from "../customFetch";
 function postChapterComment(chapterId, mangaId, message) {
     const token = localStorage.getItem("token");
 
-    console.log(chapterId, mangaId, message);
+   
 
     return (dispatch) => {
         customfetch(`/api/manga/${mangaId}/chapter/${chapterId}/comment`, {
@@ -23,7 +23,7 @@ function postChapterComment(chapterId, mangaId, message) {
                 }
             })
             .then((response) => {
-                console.log(response);
+                
                 dispatch({
                     type: POST_CHAPTER_COMMENT,
                     payload: response,

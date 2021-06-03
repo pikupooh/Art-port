@@ -29,7 +29,7 @@ class MangaGrid extends React.Component{
 }
 
 const mapStateToProps = (state) => {
-    console.log(state);
+
     return {
         mangaList: state.profile.userMangas,
     }

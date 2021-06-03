@@ -8,7 +8,6 @@ import deleteUserComic from '../../../redux/thunk/deleteUserComic'
 class UserComicGridLayout extends React.Component{
 
     deleteComic = () => {
-        console.log("delete")
         this.props.deleteUserComic(this.props.userId, this.props.comic.id);
     }
 

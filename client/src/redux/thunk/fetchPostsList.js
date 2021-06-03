@@ -10,7 +10,7 @@ function fetchPostList() {
                 if (res.error) {
                     throw res.error;
                 }
-                console.log(res);
+               
                 res.map((post) => {
                     if (post.images.length === 0) {
                         post.images.push({
@@ -26,7 +26,7 @@ function fetchPostList() {
                 return res;
             })
             .catch((error) => {
-                console.log(error);
+                
             });
     };
 }

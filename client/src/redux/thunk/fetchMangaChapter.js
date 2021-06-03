@@ -19,7 +19,7 @@ function fetchMangaChapter(id) {
                 return res;
             })
             .catch((error) => {
-                console.log(error);
+                
             });
     };
 }
@@ -30,7 +30,7 @@ export const createChapter = (
     imageFormData,
     mangaId
 ) => {
-    console.log("createChapter");
+   
 
     const token = localStorage.getItem("token");
 
@@ -66,7 +66,7 @@ export const createChapter = (
             )
             .then((response) => response.json())
             .then((response) => {
-                console.log(response);
+              
                 let chapid = response.id;
 
                 customfetch(`/api/chapters/${chapid}/images/upload`, {
@@ -96,7 +96,7 @@ export const createChapter = (
                         }
                     )
                     .then((response) => {
-                        console.log(response);
+                      
                         dispatch(setLoadingAction(false, "Loading..."));
                         if (mangaOrComic === "MANGA")
                             dispatch(addMangaChapter(mangaId, response));

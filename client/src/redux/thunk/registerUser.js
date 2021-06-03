@@ -30,7 +30,7 @@ export default function registerUser(imageFormData) {
         })
             .then(
                 (res) => {
-                    console.log(res);
+                    
                     if (res.ok) {
                         dispatch(receiveSignUp());
                         dispatch(setLoadingAction(false, "Loading..."));
@@ -49,7 +49,7 @@ export default function registerUser(imageFormData) {
                 }
             )
             .then((res) => {
-                console.log(res);
+                
                 dispatch(setLoadingAction(false, "Loading..."));
                 if (res !== undefined) dispatch(signUpError(res));
             })

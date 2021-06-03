@@ -8,7 +8,7 @@ import deleteUserBlog from '../../../redux/thunk/deleteUserBlog'
 class UserBlogGridLayout extends React.Component{
 
     deleteBlog = () => {
-        console.log("delete")
+  
         this.props.deleteUserBlog(this.props.blog.id);
     }
 

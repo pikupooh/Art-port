@@ -8,7 +8,7 @@ const initState = {
 export const loadingReducer = (state = initState, action) => {
     switch(action.type){
         case ActionTypes.SET_LOADING:
-            console.log(action.status, action.message)
+           
             return {
                 ...state,
                 status: action.status,

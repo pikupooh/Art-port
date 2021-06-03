@@ -6,7 +6,7 @@ import { setLoadingAction } from "../actions/loadingActions";
 export default function signInUser(user, pass, pathname = "") {
 
     pathname = pathname.substring(1, 5)
-    console.log(pathname);
+  
 
     var creds = {
         username: user,
@@ -23,7 +23,7 @@ export default function signInUser(user, pass, pathname = "") {
         })
             .then(
                 (res) => {
-                    console.log(res);
+                    
                     if (res.ok) {
                         return res;
                     } else {
@@ -42,7 +42,7 @@ export default function signInUser(user, pass, pathname = "") {
             )
             .then((res) => res.json())
             .then((res) => {
-                console.log(res);
+                
                 var token = res.tokenType + " " + res.accessToken;
                 var userId = res.id;
                 let profilePhoto = res.profilePhoto;

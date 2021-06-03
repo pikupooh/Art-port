@@ -3,7 +3,7 @@ import { customfetch } from "../customFetch";
 
 function editComicReply(replyId, message) {
     const token = localStorage.getItem("token");
-    console.log(replyId, message);
+    
     return (dispatch) => {
         customfetch(`/api/reply/${replyId}`, {
             method: "PUT",
@@ -21,7 +21,7 @@ function editComicReply(replyId, message) {
                 }
             })
             .then((response) => {
-                console.log(response);
+                
                 dispatch({
                     type: EDIT_COMIC_REPLY,
                     payload: { response },

@@ -3,7 +3,7 @@ import { customfetch } from "../customFetch";
 
 function editPostReply(replyId, message) {
     const token = localStorage.getItem("token");
-    console.log(replyId, message);
+    
     return (dispatch) => {
         customfetch(`/api/reply/${replyId}`, {
             method: "PUT",

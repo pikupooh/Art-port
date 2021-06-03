@@ -37,9 +37,9 @@ class ChapterModal extends React.Component {
                     this.fileInput.current.files[i].name
                 );
             }
-            console.log(this.fileInput.current.files);
+           
             let chapterFormData = Object.assign({}, this.state.input);
-            console.log(chapterFormData);
+          
 
             this.setState({ input: {}, errors: {} });
 
@@ -86,7 +86,7 @@ class ChapterModal extends React.Component {
                 <Modal.Body>
                     <Form id="chapter-form" onSubmit={(e) => this.handleSubmit(e)} onKeyDown={(e) => {
                         if(e.key==="Enter"){
-                            console.log("Enter");
+                            
                             e.preventDefault();
                         }
                     }}>

@@ -22,7 +22,7 @@ class ResetPassword extends React.Component {
         e.preventDefault();
 
         if (this.validate()) {
-            console.log(this.state);
+         
 
             this.setState({
                 password: "",
@@ -31,7 +31,6 @@ class ResetPassword extends React.Component {
             });
         }
 
-        console.log(this.state);
     }
 
     validate() {

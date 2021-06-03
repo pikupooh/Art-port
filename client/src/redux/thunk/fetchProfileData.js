@@ -32,7 +32,7 @@ function fetchProfileData(id) {
                 return res;
             })
             .catch((error) => {
-                console.log(error);
+                
             });
     };
 }
@@ -61,14 +61,14 @@ export function fetchUserProfileData() {
                 }
             )
             .then((res) => {
-                console.log(res);
+                
                 dispatch(fetchUserProfileAction(res));
                 dispatch(setLoadingAction(false, "Loading..."));
 
                 return res;
             })
             .catch((error) => {
-                console.log(error);
+                
             });
     };
 }

@@ -21,7 +21,7 @@ class BlogCommentEditForm extends Component{
     }
 
     edit = () => {
-        console.log("edit");
+ 
         if(this.state.message !== ''){
             this.props.editBlogComment(this.props.commentId, this.state.message)
             this.setState({

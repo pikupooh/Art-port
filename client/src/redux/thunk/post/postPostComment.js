@@ -4,7 +4,7 @@ import { customfetch } from "../customFetch";
 function postPostComment(postId, message) {
     const token = localStorage.getItem("token");
 
-    console.log(postId, message);
+  
     return (dispatch) => {
         customfetch(`/api/post/${postId}/comment`, {
             method: "POST",
@@ -17,13 +17,13 @@ function postPostComment(postId, message) {
             },
         })
             .then((response) => {
-                console.log(response)
+             
                 if (response.ok) {
                     return response.json();
                 }
             })
             .then((response) => {
-                console.log(response);
+                
                 dispatch({
                     type: POST_POST_COMMENT,
                     payload: response,

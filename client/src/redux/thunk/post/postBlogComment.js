@@ -16,13 +16,13 @@ function postBlogComment(blogId, message) {
             },
         })
             .then((response) => {
-                console.log(response);
+                
                 if (response.ok) {
                     return response.json();
                 }
             })
             .then((response) => {
-                console.log(response);
+                
                 dispatch({
                     type: POST_BLOG_COMMENT,
                     payload: response,

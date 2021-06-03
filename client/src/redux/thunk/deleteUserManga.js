@@ -4,7 +4,7 @@ import { customfetch } from "./customFetch";
 
 function deleteUserManga(userId, mangaId) {
     const token = localStorage.getItem("token");
-    console.log(mangaId);
+ 
     return (dispatch) => {
         dispatch(setLoadingAction(true, "Loading..."));
 

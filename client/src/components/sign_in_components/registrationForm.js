@@ -55,7 +55,7 @@ class RegistrationForm extends React.Component {
         if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
             age_now--;
         }
-        console.log(age_now);
+       
         return age_now;
     };
 
@@ -72,7 +72,7 @@ class RegistrationForm extends React.Component {
         e.preventDefault();
 
         if (this.validate()) {
-            console.log(this.state);
+          
 
             let imageFormData = new FormData();
             imageFormData.append(

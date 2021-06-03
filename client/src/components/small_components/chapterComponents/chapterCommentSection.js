@@ -37,7 +37,7 @@ class ChapterCommentSection extends React.Component{
     }
 
     render(){
-        console.log(this.props);
+        
         return(
             <div className = "my-2 blog_page_comment_section">
                 <Form>
