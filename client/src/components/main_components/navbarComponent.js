@@ -13,9 +13,9 @@ const NavbarComponent = () => {
                 <Navbar.Brand href="/"><strong>Art</strong> Port</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
-                    <div className = "desktop_screen_search_bar">
+                
                                         <SearchBarWithRouter />
-                    </div>
+                    
                     <Nav className="ml-auto">
                         <NavItem>
                             <NavLink to ="/comics" className = "nav-link" activeClassName = "active_nav_item">Comics</NavLink>
