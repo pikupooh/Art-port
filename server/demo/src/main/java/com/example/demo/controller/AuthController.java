@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.entities.Image;
+
 import com.example.demo.entities.RefreshToken;
 import com.example.demo.entities.User;
 import com.example.demo.entities.VerificationToken;
@@ -18,11 +18,9 @@ import com.example.demo.security.services.EmailService;
 import com.example.demo.security.services.UserDetailsImpl;
 import com.example.demo.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpCookie;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -34,7 +32,6 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.io.IOException;
 import java.util.Calendar;
 
 @CrossOrigin
@@ -220,6 +217,13 @@ public class AuthController {
                 })
                 .orElseThrow(() -> new TokenRefreshException(requestRefreshToken,
                         "Refresh token is not in database!"));
+    }
+
+    @PutMapping("/users/{userId}")
+    public ResponseEntity<?> updateUserDetails(@PathVariable String userId, @RequestBody User user){
+
+        userService.updateUser(user, userId);
+        return ResponseEntity.ok("User details updated.");
     }
 
 }
