@@ -47,13 +47,15 @@ public class UserService {
 
     public User updateUser(User user, String id){
 
-        Optional<User> user1 = userRepository.findById(id);
-        if(!user1.isPresent())
+        User user1 = userRepository.findById(id).get();
+        if(user1 == null)
             return null;
 
-        user.setId(id);
-        userRepository.save(user);
+        user1.setFirstName(user.getFirstName());
+        user1.setLastName(user.getLastName());
+        user1.setAbout(user.getAbout());
 
+        userRepository.save(user1);
         return user;
     }
 
