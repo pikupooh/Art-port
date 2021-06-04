@@ -102,9 +102,6 @@ class MangaModal extends React.Component {
         if (!input["about"]) {
             isValid = false;
             errors["about"] = "Please add a about.";
-        } else if (input["about"].length > 100) {
-            isValid = false;
-            errors["about"] = "Length of about should be within 100 characters.";
         }
 
         if (!this.state.categories.length) {

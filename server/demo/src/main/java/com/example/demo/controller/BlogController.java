@@ -77,15 +77,20 @@ public class BlogController {
 		return ResponseEntity.ok(updateBlog);
 	}
 	
-	@DeleteMapping("/blog/{id}")
-	public ResponseEntity<?> deleteBlog(@PathVariable String id, Principal principal){
-		Blog blog = blogRepository.findById(id)
-				.orElse(null);
+	@DeleteMapping("/users/{userId}/blog/{id}")
+	public ResponseEntity<?> deleteBlog(@PathVariable String userId, @PathVariable String id, Principal principal){
+        String name = principal.getName();
+        User user = userService.getUserByName(name);
+        if (user == null)
+            return new ResponseEntity<String>("User not present.", HttpStatus.NOT_FOUND);
+        if (!user.getId().equals(userId))
+            return new ResponseEntity<String>("User invalid.", HttpStatus.BAD_REQUEST);
+
+		Blog blog = blogService.deleteBlog(id);
+
 		if(blog == null)
 			return new ResponseEntity<String>("Post not found", HttpStatus.NOT_FOUND);
-		if(!(principal.getName().equals(blog.getUser().getUsername())))
-			return new ResponseEntity<String>("Unauthorized", HttpStatus.BAD_REQUEST);
-		blogRepository.delete(blog);
+        profileService.removeBlog(userId, blog);
 		return ResponseEntity.ok("DELETED:"+blog.getId());
 	}
 	

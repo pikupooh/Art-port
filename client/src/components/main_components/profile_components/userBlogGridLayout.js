@@ -9,7 +9,7 @@ class UserBlogGridLayout extends React.Component{
 
     deleteBlog = () => {
   
-        this.props.deleteUserBlog(this.props.blog.id);
+        this.props.deleteUserBlog(this.props.userId, this.props.blog.id);
     }
 
     render() {

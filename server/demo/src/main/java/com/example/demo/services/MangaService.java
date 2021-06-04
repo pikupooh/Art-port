@@ -159,4 +159,12 @@ public class MangaService {
 
         return mangaRepository.existsById(id);
     }
+
+	public void removeChapter(Chapter chapter) {
+		Manga manga = mangaRepository.findById(chapter.getMangaId()).get();
+		
+		manga.removeChapter(chapter);
+		mangaRepository.save(manga);
+		
+	}
 }

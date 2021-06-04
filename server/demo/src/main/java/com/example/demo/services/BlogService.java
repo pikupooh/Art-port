@@ -20,6 +20,9 @@ public class BlogService {
     BlogRepository blogRepository;
     
     @Autowired
+    CommentService commentService;
+    
+    @Autowired
     ImageService imageService;
     
     @Autowired
@@ -55,8 +58,17 @@ public class BlogService {
         Optional<Blog> blog = blogRepository.findById(id);
         if(!blog.isPresent())
             return null;
+
+        Blog blog1 = blog.get();
+
+        blog1.getComments().forEach((comment) ->{
+            commentService.deleteComment(comment.getId());
+        });
+
+        imageService.deleteimage(blog1.getImg().getId());
+
         blogRepository.deleteById(id);
-        return blog.get();
+        return blog1;
     }
 
     public Blog updateBlog(Blog blog, String id){

@@ -106,11 +106,6 @@ class ComicModal extends React.Component {
             errors["about"] = "Please add a about.";
         }
 
-        if (input["about"].length > 100) {
-            isValid = false;
-            errors["about"] = "Length of about should be within 100 characters.";
-        }
-
         if (!this.state.categories.length) {
             isValid = false;
             errors["categories"] = "Please select some categories.";

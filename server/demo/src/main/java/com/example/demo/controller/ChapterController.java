@@ -42,7 +42,7 @@ public class ChapterController {
     MangaService mangaService;
     
     @GetMapping("/chapter")
-    public List<Chapter> getAllPosts() {
+    public List<Chapter> getAllChapters() {
 
         return chapterService.getAll();
     }
@@ -77,7 +77,7 @@ public class ChapterController {
     }
   
     @DeleteMapping("users/{userId}/chapters/{chapterId}")
-    public ResponseEntity<?> deletePost(@PathVariable String userId, @PathVariable String chapterId, Principal principal) {
+    public ResponseEntity<?> deleteChapter(@PathVariable String userId, @PathVariable String chapterId, Principal principal) {
 
         String name = principal.getName();
         User user = userService.getUserByName(name);
@@ -86,16 +86,10 @@ public class ChapterController {
         if (!user.getId().equals(userId))
             return new ResponseEntity<String>("User invalid.", HttpStatus.BAD_REQUEST);
         
-        Chapter chap = chapterService.getChapter(chapterId);
-        
-        if(chap == null)
-            return new ResponseEntity<String>("Chapter not present.", HttpStatus.NOT_FOUND);
-        
-        if(!isChapterUsers(chap, user))
-        	return new ResponseEntity<String>("Chapter owner invalid.", HttpStatus.BAD_REQUEST);
         Chapter chapter = chapterService.deleteChapter(chapterId);
         if (chapter == null)
-            return new ResponseEntity<String>("Chapterdoes not exist.", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<String>("Chapter does not exist.", HttpStatus.NOT_FOUND);
+        mangaService.removeChapter(chapter);
         return ResponseEntity.ok(chapter);
     }
     
@@ -105,25 +99,37 @@ public class ChapterController {
         String name = principal.getName();
         User user = userService.getUserByName(name);
         Query query = new Query(Criteria.where("id").is(mangaId));
-        query.fields().include("userDTO");
+        query.fields().include("UserDTO", "chapters");
         
         Manga m = mongoTemplate.findOne(query, Manga.class);
         if (user == null)
-            return new ResponseEntity<String>("User not present.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("User not present.", HttpStatus.NOT_FOUND);
         if (!user.getId().equals(m.getUserDTO().getUserId()))
-            return new ResponseEntity<String>("User invalid.", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("User invalid.", HttpStatus.BAD_REQUEST);
         
-        query = new Query(Criteria.where("mangaId").is(mangaId));
-        query.with(Sort.by(Sort.Direction.DESC, "no"));
-        query.limit(1);
-        DeleteResult chap = mongoTemplate.remove(query, Chapter.class);
+        Chapter chap = null;
+        if(m.getChapters().size()>0)
+        	chap = m.getChapters().get(m.getChapters().size()-1);
         
-        System.out.println(chap);
-        return ResponseEntity.ok(chap);
+        if(chap == null)
+        	return new ResponseEntity<String>("Chapter does not exist.", HttpStatus.NOT_FOUND);
+        
+        Chapter chap1 = chapterService.deleteChapter(chap.getId());
+        
+        if(chap1 == null)
+        	return new ResponseEntity<String>("Chapter does not exist.", HttpStatus.NOT_FOUND);
+        
+        mangaService.removeChapter(chap1);
+//        query = new Query(Criteria.where("mangaId").is(mangaId));
+//        query.with(Sort.by(Sort.Direction.DESC, "no"));
+//        query.limit(1);
+//        DeleteResult chap = mongoTemplate.remove(query, Chapter.class);
+        
+        return ResponseEntity.ok(chap1);
     }
 
     @PutMapping("/users/{id}/chapter/{chapterId}")
-    public ResponseEntity<?> updatePost(@RequestBody Chapter chapter, @PathVariable String id, @PathVariable String chapterId, Principal principal){
+    public ResponseEntity<?> updateChapter(@RequestBody Chapter chapter, @PathVariable String id, @PathVariable String chapterId, Principal principal){
 
         String name = principal.getName();
         User user = userService.getUserByName(name);

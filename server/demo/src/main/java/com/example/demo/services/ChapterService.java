@@ -65,9 +65,8 @@ ChapterService {
             imageService.deleteimage(image.getId());
         });
         
-        Manga manga = mangaService.getManga(chapter1.getMangaId());
-        manga.removeChapter(chapter1);
         chapterRepository.deleteById(id);
+
         return chapter1;
     }
 
