@@ -34,11 +34,11 @@ class ProfileEditForm extends React.Component {
           
 
             let imageFormData = new FormData();
-            if(this.fileInput.current.files.length !== 0){
+            for (let i = 0; i < this.fileInput.current.files.length; i++) {
                 imageFormData.append(
-                    "image",
-                    this.fileInput.current.files[0],
-                    this.fileInput.current.files[0].name
+                    "files",
+                    this.fileInput.current.files[i],
+                    this.fileInput.current.files[i].name
                 );
             }
             

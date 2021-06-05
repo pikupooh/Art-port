@@ -20,12 +20,11 @@ export default function registerUser(postFormData, imageFormData, userId) {
                     if (res.ok) {
                         console.log(res);
 
-                        if(imageFormData.has("image")){
+                        if(imageFormData.has("files")){
                             fetch(`/api/users/${userId}/upload`, {
                                 method: "POST",
                                 body: imageFormData,
                                 headers: {
-                                    "Content-Type": "application/json",
                                     Authorization: token,
                                 },
                             })

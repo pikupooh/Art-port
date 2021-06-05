@@ -15,7 +15,9 @@ import com.example.demo.services.ImageService;
 import com.example.demo.services.MangaService;
 import com.example.demo.services.PostService;
 import com.example.demo.services.UserService;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -127,8 +129,10 @@ public class FileUploadController {
     }
 
     @PostMapping("/users/{userId}/upload")
-    String profilePhoto(@PathVariable String userId, @RequestParam("files") MultipartFile[] multipartFile, Principal principal) throws Exception {
-    	User user = userService.getUser(userId);
+    ResponseEntity<?> profilePhoto(@PathVariable String userId, @RequestParam("files") MultipartFile[] multipartFile, Principal principal) throws Exception {
+    	User user = userService.getUserByName(principal.getName());
+    	if(user == null)
+    		return new ResponseEntity<>("Invalid user", HttpStatus.NOT_FOUND);
     	if(user.getProfilePhoto() == null) {
 
 	        Arrays.asList(multipartFile).stream().forEach(file -> {
@@ -139,23 +143,30 @@ public class FileUploadController {
 	                e.printStackTrace();
 	            }
 	            user.setProfilePhoto(imageService.getimage(imageId));
-	            userService.updateUser(user, userId);
+	            userService.save(user);
 	        });
-	        return "Image uploaded successfully";
+	        return ResponseEntity.ok(user);
     	}
-    	
+            	
     	Arrays.asList(multipartFile).stream().forEach(file -> {
-            String link = null;
+    		String link = null;
             try {
-                link = fileService.uploadToImgur(file.getBytes());
+                link = fileService.uploadToImgBB(file.getBytes());
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            if(link == null)
+            	return;
             Image img = user.getProfilePhoto();
+            if(img == null)
+            	return;
             img.setLink(link);
             imageService.save(img);
+            user.setProfilePhoto(img);
+            userService.save(user);
         });
-        return "Image updated successfully";
+
+    	return ResponseEntity.ok(user);
 
     }
     
