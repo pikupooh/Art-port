@@ -99,7 +99,7 @@ class blogData extends React.Component {
           <Row className = "mx-2">
             <ShareRow />
           </Row>
-          <Row className = "mx-2 tags_text">
+          <Row className = "mx-2 tags_text" id = "tags">
             <i class="material-icons">
               loyalty
             </i>

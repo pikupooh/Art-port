@@ -3,7 +3,7 @@ import { Form, Button, Modal } from "react-bootstrap";
 
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-// import editProfile from "../../redux/thunk/editProfile";
+import editProfile from "../../../redux/thunk/editProfile";
 
 class ProfileEditForm extends React.Component {
     constructor(props) {
@@ -12,6 +12,7 @@ class ProfileEditForm extends React.Component {
         this.state = {
             input: {},
             errors: {},
+            loaded: false
         };
 
         this.fileInput = React.createRef();
@@ -44,9 +45,8 @@ class ProfileEditForm extends React.Component {
             imageFormData.append("about", this.state.input.about);
             
             this.props.handleModalClose();
-            document.getElementById("post-form").reset();
-
-            // this.props.editProfile(imageFormData);
+            // document.getElementById("profile_edit_form").reset();
+            this.props.editProfile(imageFormData, this.props.user.userId);
         }
     }
 
@@ -86,6 +86,22 @@ class ProfileEditForm extends React.Component {
 
         return isValid;
     }
+
+    componentDidUpdate(){
+        if(this.state.loaded === false && (this.state.input.firstName !== this.props.user.firstName || 
+            this.state.input.lastName !== this.props.user.lastName ||
+            this.state.input.about !== this.props.user.about)){
+            this.setState({
+                input: {
+                    firstName: this.props.user.firstName,
+                    lastName: this.props.user.lastName,
+                    about: this.props.user.about,
+                },
+                loaded: true
+            })
+        }
+    }
+
     render() {
         return (
             <Modal show={this.props.show} onHide={this.props.handleModalClose} centered = {true}>
@@ -95,7 +111,7 @@ class ProfileEditForm extends React.Component {
                     className="login_form"
                     onSubmit={(e) => this.handleSubmit(e)}
                 >
-                    <h2 className="heading">Edit your profile</h2>
+                    <h3 className="text-center">Edit your profile</h3>
 
                     <Form.Group controlId="firstName">
                         <Form.Label className="label">First Name</Form.Label>
@@ -153,7 +169,7 @@ class ProfileEditForm extends React.Component {
                         </div>
                     </Form.Group>
                     <Button variant="primary" type="submit" id = "upload_button">
-                            Submit
+                            Update
                         </Button>
                 </Form>
                 </Modal.Body>
@@ -165,7 +181,7 @@ class ProfileEditForm extends React.Component {
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
-            // editProfile: editProfile,
+            editProfile,
         },
         dispatch
     );

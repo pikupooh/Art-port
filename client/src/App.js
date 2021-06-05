@@ -36,6 +36,7 @@ import SearchedBlogs from "./components/small_components/searchComponents/search
 import SearchBar from "./components/small_components/search_bar"
 
 import { fetchUserProfileData } from './redux/thunk/fetchProfileData'
+import DeleteModal from "./components/small_components/deleteModal";
 
 const NavbarwithRouter = withRouter(NavbarComponent);
 const SearchBarWithRouter = withRouter(SearchBar)
@@ -122,6 +123,7 @@ class App extends React.Component {
                                         
 
                                     <SignInModal />
+                                    <DeleteModal />
                                     <div className = "footer_head"></div>
                                 </div>
                             </>

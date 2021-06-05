@@ -21,10 +21,10 @@ class ProfileCircle extends React.Component {
     render() {
         if (this.props.isAuthenticated === true) {
             return (
-                <div className="text-center">
+                <div>
                     <Image
                         roundedCircle
-                        fluid
+                        
                         className="nav_profile_img"
                         alt={altImage}
                         src={this.props.profilePhoto}

@@ -42,8 +42,9 @@
 }
 
 @media(max-width: "580px"){
-    .home_grid_posts_details_overlay{
-        visibility: hidden;
+    #user_profile_grid{
+        background-color: transparent;
+        opacity: 1
     }
 }
 

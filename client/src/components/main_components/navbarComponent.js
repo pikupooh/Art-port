@@ -14,7 +14,7 @@ const NavbarComponent = () => {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                 <div className = "desktop_screen_search_bar">
-                                        <SearchBarWithRouter />
+                        <SearchBarWithRouter />
                     </div>
                     <Nav className="ml-auto">
                         <NavItem>

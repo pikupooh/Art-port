@@ -17,6 +17,7 @@ import { signInModalReducer } from "./signInModalReducer";
 import { registerReducer } from "./registerReducer";
 import { searchReducer } from "./searchReducer";
 import { loadingReducer } from "./loadingReducer";
+import { deleteModalReducer } from "./deleteModalReducer";
 
 export default combineReducers({
     auth: authReducer,
@@ -37,4 +38,5 @@ export default combineReducers({
     register: registerReducer,
     search: searchReducer,
     loading: loadingReducer,
+    deleteModal: deleteModalReducer
 });

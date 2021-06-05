@@ -4,6 +4,7 @@ import React from 'react';
 import { connect } from  'react-redux';
 import { bindActionCreators } from 'redux';
 import deleteUserManga from '../../../redux/thunk/deleteUserManga'
+import { SHOW_DELETE_MODAL } from "../../../redux/actions/actionTypes"
 
 class UserMangaGridLayout extends React.Component{
 
@@ -26,13 +27,15 @@ class UserMangaGridLayout extends React.Component{
                     <div className = "home_grid_posts_image_container">
                             <Image src = {this.props.manga.coverPhoto.link} className = "home_grid_posts_image" />
                     </div>
-                    <div className = "home_grid_posts_details_overlay">
+                    <div className = "home_grid_posts_details_overlay" id = "user_profile_grid">
                         <Row className = "home_grid_posts_details_container">
                             <Col className = "home_grid_posts_details_container_username ml-2 my-auto">
                                 <Link to = {'/user/' + this.props.manga.userDTO.userId + '/manga'} >
                                     <DeleteButton id = {this.props.manga.userDTO.userId}
                                                         userId = {this.props.userId}
-                                                        deleteManga = {this.deleteManga}/>
+                                                        deleteManga = {this.deleteManga}
+                                                        showDeleteModal = {this.props.showDeleteModal}
+                                                        />
                                 </Link>
                             </Col>
                         </Row>
@@ -52,6 +55,14 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => bindActionCreators(
     {
       deleteUserManga: deleteUserManga,
+      showDeleteModal: (deleteFunction) => 
+            dispatch({
+                type: SHOW_DELETE_MODAL,
+                payload: {
+                    message: "Manga",
+                    delete: deleteFunction
+                }
+            })
     },
     dispatch
 )
@@ -61,7 +72,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(UserMangaGridLayout)
 function DeleteButton(props){
     if(props.id === props.userId){
         return(
-            <i className = "material-icons text-center ml-2" onClick = {props.deleteManga}>
+            <i className = "material-icons text-center ml-2" onClick = {() => props.showDeleteModal(props.deleteManga)}>
                 delete
             </i>
         )

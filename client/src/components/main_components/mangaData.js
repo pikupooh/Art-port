@@ -13,6 +13,7 @@ import ShareRow from "../small_components/ShareRow";
 import {fetchUserProfileData} from "../../redux/thunk/fetchProfileData"
 import SingleTag from "../small_components/singleTag"
 import deleteLastChapter from "../../redux/thunk/delete/deleteLastChapter"
+import { SHOW_DELETE_MODAL } from "../../redux/actions/actionTypes"
 class MangaData extends React.Component {
 
   constructor(props) {
@@ -36,6 +37,10 @@ class MangaData extends React.Component {
       this.setState({ formShow: true });
     };
 
+    deleteChapter = () => {
+      this.props.deleteLastChapter(this.props.mangaId)
+    }
+
     render() {
       return(
         <div>
@@ -55,9 +60,9 @@ class MangaData extends React.Component {
 
             <MangaDescriptionDisplay about = {this.props.about}/>
             <MangaChaptersDisplay chapters ={this.props.chapters}/>
-            {this.props.userId === this.props.author.userId && 
+            {this.props.userId === this.props.author.userId && this.props.chapters.length !== 0 &&
               <div className = "delete_button_container">
-                <Button id = "delete_chapter_button" onClick = {() => this.props.deleteLastChapter(this.props.mangaId)}>
+                <Button id = "delete_chapter_button" onClick = {() => this.props.showDeleteModal(this.deleteChapter)}>
                     Delete last chapter
                 </Button>
               </div>
@@ -92,6 +97,14 @@ class MangaData extends React.Component {
       fetchMangaData: fetchMangaDataAction,
       fetchUserProfile: fetchUserProfileData,
       deleteLastChapter,
+      showDeleteModal: (deleteFunction) => 
+            dispatch({
+                type: SHOW_DELETE_MODAL,
+                payload: {
+                    message: "Last Chapter",
+                    delete: deleteFunction
+                }
+            })
     },
     dispatch
   );

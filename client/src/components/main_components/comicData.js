@@ -13,7 +13,7 @@ import ShareRow from "../small_components/ShareRow";
 import {fetchUserProfileData} from "../../redux/thunk/fetchProfileData"
 import SingleTag from '../small_components/singleTag'
 import deleteLastChapter from '../../redux/thunk/delete/deleteLastChapter'
-
+import { SHOW_DELETE_MODAL } from "../../redux/actions/actionTypes"
 
 class ComicData extends React.Component {
 
@@ -32,6 +32,10 @@ class ComicData extends React.Component {
   handleFormModalShow = () => {
     this.setState({ formShow: true });
   };
+
+  deleteChapter = () => {
+    this.props.deleteLastChapter(this.props.mangaId)
+  }
 
   componentDidMount() {
     let comicId = this.props.location.pathname.slice(7);
@@ -59,9 +63,9 @@ class ComicData extends React.Component {
             <ComicDescriptionDisplay about = {this.props.about}/>
             
             <ComicChapterDisplay chapters ={this.props.chapters}/> 
-            {this.props.userId === this.props.author.userId && 
+            {this.props.userId === this.props.author.userId && this.props.chapters.length !== 0 &&
               <div className = "delete_button_container">
-                <Button id = "delete_chapter_button" onClick = {() => this.props.deleteLastChapter(this.props.mangaId)}>
+                <Button id = "delete_chapter_button" onClick = {() => this.props.showDeleteModal(this.deleteChapter)}>
                     Delete last chapter
                 </Button>
               </div>
@@ -95,7 +99,15 @@ class ComicData extends React.Component {
     {
       fetchComicData: fetchComicDataAction,
       fetchUserProfile: fetchUserProfileData,
-      deleteLastChapter
+      deleteLastChapter,
+      showDeleteModal: (deleteFunction) => 
+            dispatch({
+                type: SHOW_DELETE_MODAL,
+                payload: {
+                    message: "Last Chapter",
+                    delete: deleteFunction
+                }
+            })
     },
     dispatch
   );

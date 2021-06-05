@@ -264,3 +264,39 @@ a i.material-icons {
 .desktop_screen_search_bar{
     width: 100%;
 }
+
+.delete_modal_buttons_container{
+    width: 100%;
+    text-align: end;
+    padding: 10px
+}
+
+#delete_modal_text{
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: rgb(250, 94, 94);
+    padding-top: 1rem;
+    padding-left: 0.3rem;
+}
+
+.edit_details_icon_container{
+    background-color: white;
+    position: relative;
+}
+
+.edit_details_icon{
+    position: absolute;
+    bottom: 120px;
+    left: 51vw;
+    background-color: #3096ff;
+    width: 50px;
+    height: 50px;
+    padding-top: 8px;
+    padding-left: 3px;
+    border-radius: 25px;
+    border: solid lighten($background_color, 8) 5px;
+    
+    &:hover{
+        cursor: pointer;
+    }
+}

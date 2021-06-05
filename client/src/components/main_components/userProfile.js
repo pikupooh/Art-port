@@ -1,15 +1,35 @@
 import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Image } from "react-bootstrap";
+import { Image, Button } from "react-bootstrap";
 
 import FollowButton from "../small_components/followButton"
 import fetchUserData from "../../redux/thunk/fetchUserData";
 import UserProfileNavbar from "../small_components/userProfileComponents/userProfileNavbar";
-import UserProfileExtras from "../small_components/userProfileComponents/userProfileExtras";
 import fetchProfileData, {fetchUserProfileData} from "../../redux/thunk/fetchProfileData";
+import ProfileEditForm from "../small_components/uploadForms/profileEditForm"
 
 class UserProfile extends React.Component {
+
+    constructor(props){
+        super(props)
+        this.state = {
+            showModal: false
+        }
+    }
+
+    showEditModal = () => {
+        this.setState({
+            showModal: true
+        })
+    }
+
+    hideEditModal = () => {
+        this.setState({
+            showModal: false
+        })
+    }
+
     componentDidMount() {
 
         let lastSlash = this.props.location.pathname.lastIndexOf("/");
@@ -24,6 +44,7 @@ class UserProfile extends React.Component {
     render() {
         return (
             <div>
+                <ProfileEditForm show = {this.state.showModal} handleModalClose = {this.hideEditModal} user = {this.props.user}/>
                 <div className="text-center profile_page_header">
                     <div className="text-center profile_photo">
                         <Image
@@ -43,6 +64,13 @@ class UserProfile extends React.Component {
                     </div>
                     <div>{this.props.user.about}</div>   
                     <FollowButton userId = {this.props.id} />
+                    {this.props.id === this.props.userId && 
+                        <div className = "edit_details_icon_container" onClick = {this.showEditModal}>
+                        <i class="material-icons edit_details_icon">
+                            edit
+                        </i>
+                        </div>
+                    }
                 </div>
                 <UserProfileNavbar match={this.props.match} />
                 
