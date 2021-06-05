@@ -34,19 +34,20 @@ class ProfileEditForm extends React.Component {
           
 
             let imageFormData = new FormData();
-            imageFormData.append(
-                "image",
-                this.fileInput.current.files[0],
-                this.fileInput.current.files[0].name
-            );
+            if(this.fileInput.current.files.length !== 0){
+                imageFormData.append(
+                    "image",
+                    this.fileInput.current.files[0],
+                    this.fileInput.current.files[0].name
+                );
+            }
+            
 
-            imageFormData.append("firstName", this.state.input.firstName);
-            imageFormData.append("lastName", this.state.input.lastName);
-            imageFormData.append("about", this.state.input.about);
+            let postFormData = Object.assign({}, this.state.input);
             
             this.props.handleModalClose();
-            // document.getElementById("profile_edit_form").reset();
-            this.props.editProfile(imageFormData, this.props.user.userId);
+            this.props.editProfile(postFormData, imageFormData, this.props.user.userId);
+            document.getElementById("profile_edit_form").reset();
         }
     }
 
@@ -63,11 +64,6 @@ class ProfileEditForm extends React.Component {
         if (!input["lastName"]) {
             isValid = false;
             errors["lastName"] = "Please enter your last name.";
-        }
-        
-        if (this.fileInput.current.files.length === 0) {
-            isValid = false;
-            errors["files"] = "Please upload a profile picture.";
         }
 
         if (!input["about"]) {
