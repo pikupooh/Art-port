@@ -1,7 +1,8 @@
 import { fetchUserDataAction } from "../actions/fetchUserDataAction";
-
+import { setLoadingAction } from "../actions/loadingActions";
 function fetchUserData(userId) {
     return (dispatch) => {
+        dispatch(setLoadingAction(true, "Loading..."));
         fetch(`/api/auth/users/${userId}`, {})
             .then(
                 (res) => {
@@ -20,6 +21,7 @@ function fetchUserData(userId) {
             )
             .then((res) => res.json())
             .then((res) => {
+                dispatch(setLoadingAction(false, "Loading..."));
                 dispatch(fetchUserDataAction(res));
 
                 return res;

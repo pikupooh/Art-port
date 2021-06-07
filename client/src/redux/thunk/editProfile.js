@@ -31,7 +31,10 @@ export default function registerUser(postFormData, imageFormData, userId) {
                                 .then(
                                     (response) => {
                                         console.log(response);
-                                        if (response.ok) return response.json();
+                                        if (response.ok){
+                                            dispatch(setLoadingAction(false, "Loading..."));
+                                            dispatch(fetchUserData(userId))
+                                        }
                                         else {
                                             var error = new Error(
                                                 "Error " +
@@ -51,6 +54,10 @@ export default function registerUser(postFormData, imageFormData, userId) {
                                 .catch((error) => {
                                     console.log(error.message);
                                 });
+                        }
+                        else {
+                            dispatch(setLoadingAction(false, "Loading..."));
+                            dispatch(fetchUserData(userId))
                         }     
                     } else {
                         var error = new Error(
@@ -64,11 +71,7 @@ export default function registerUser(postFormData, imageFormData, userId) {
                     throw error;
                 }
             )
-            .then((res) => {
-                dispatch(fetchUserData(userId))
-            })
 
             .catch((error) => console.log(error));
-            dispatch(setLoadingAction(false, "Loading..."));
     };
 }
