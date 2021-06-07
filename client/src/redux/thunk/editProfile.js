@@ -1,4 +1,5 @@
 import { setLoadingAction } from "../actions/loadingActions";
+import { UPDATE_PROFILE_PHOTO } from "../actions/actionTypes";
 import fetchUserData from "./fetchUserData";
 import { customfetch } from "./customFetch";
 
@@ -28,27 +29,19 @@ export default function registerUser(postFormData, imageFormData, userId) {
                                     Authorization: token,
                                 },
                             })
+                                .then((res) => res.json())
                                 .then(
                                     (response) => {
                                         console.log(response);
-                                        if (response.ok){
                                             dispatch(setLoadingAction(false, "Loading..."));
+                                            let user = response;
+                                            localStorage.setItem("profilePhoto", user.profilePhoto.link);
+                                            dispatch({
+                                                type: UPDATE_PROFILE_PHOTO,
+                                                profilePhoto: user.profilePhoto.link
+                                            })
                                             dispatch(fetchUserData(userId))
-                                        }
-                                        else {
-                                            var error = new Error(
-                                                "Error " +
-                                                    response.status +
-                                                    ": " +
-                                                    response.statusText
-                                            );
-                                            error.response = response;
-                                            throw error;
-                                        }
-                                    },
-                                    (error) => {
-                                        var errmess = new Error(error.message);
-                                        throw errmess;
+                                            return response
                                     }
                                 )
                                 .catch((error) => {

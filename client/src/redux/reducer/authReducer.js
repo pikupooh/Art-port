@@ -88,7 +88,12 @@ export const authReducer = (state = initState, action) => {
                     }
                 }
             }
+        case ActionTypes.UPDATE_PROFILE_PHOTO:
 
+            return {
+                ...state,
+                profilePhoto: action.profilePhoto
+            }
         default:
             return state;
     }
