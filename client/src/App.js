@@ -33,7 +33,9 @@ import SearchedPosts from "./components/small_components/searchComponents/search
 import SearchedMangas from "./components/small_components/searchComponents/searchedMangas";
 import SearchedComics from "./components/small_components/searchComponents/searchedComics";
 import SearchedBlogs from "./components/small_components/searchComponents/searchedBlogs";
-import SearchBar from "./components/small_components/search_bar"
+import SearchBar from "./components/small_components/search_bar";
+import ResetPasswordFailurePage from "./components/small_components/resetPasswordFailurePage"
+import ResetPasswordSuccessPage from "./components/small_components/resetPasswordSuccessPage";
 
 import { fetchUserProfileData } from './redux/thunk/fetchProfileData'
 import DeleteModal from "./components/small_components/deleteModal";
@@ -107,6 +109,14 @@ class App extends React.Component {
                                     <Route
                                         path="/searchedposts/"
                                         component = {SearchedPosts} 
+                                    />
+                                    <Route
+                                        path="/reset-success"
+                                        component={ResetPasswordSuccessPage}
+                                    />
+                                    <Route
+                                        path="/reset-failure"
+                                        component={ResetPasswordFailurePage}
                                     />
                                     <Route
                                         path="/searchedmangas/"

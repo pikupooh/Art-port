@@ -16,7 +16,7 @@ class ProfileCircle extends React.Component {
     };
 
     showModal = () => {
-        if(this.props.location.pathname === "/forgotPassword"){
+        if(this.props.location.pathname === "/forgotPassword" || this.props.location.pathname === "/reset-success" || this.props.location.pathname === "/reset-failure"){
             this.props.history.replace("/")
         }
         this.props.showSignInModal();
