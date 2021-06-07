@@ -19,8 +19,6 @@ export default function registerUser(postFormData, imageFormData, userId) {
             .then(
                 (res) => {
                     if (res.ok) {
-                        console.log(res);
-
                         if(imageFormData.has("files")){
                             fetch(`/api/users/${userId}/upload`, {
                                 method: "POST",
@@ -32,7 +30,6 @@ export default function registerUser(postFormData, imageFormData, userId) {
                                 .then((res) => res.json())
                                 .then(
                                     (response) => {
-                                        console.log(response);
                                             dispatch(setLoadingAction(false, "Loading..."));
                                             let user = response;
                                             localStorage.setItem("profilePhoto", user.profilePhoto.link);

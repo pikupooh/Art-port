@@ -7,6 +7,7 @@ const initState = {
     profilePhoto: localStorage.getItem("profilePhoto"),
     profile: {},
     errmess: "",
+    resetPasswordState: "",
 };
 
 export const authReducer = (state = initState, action) => {
@@ -94,6 +95,28 @@ export const authReducer = (state = initState, action) => {
                 ...state,
                 profilePhoto: action.profilePhoto
             }
+
+        case ActionTypes.RESET_PASSWORD_SUCCESS:
+
+            return {
+                ...state,
+                resetPasswordState: "success"
+            }
+    
+        case ActionTypes.RESET_PASSWORD_FAILED:
+
+            return {
+                ...state,
+                resetPasswordState: "failed"
+            }
+        
+        case ActionTypes.RESET_PASSWORD_STATE: {
+            return{
+                ...state,
+                resetPasswordState: ""
+            }
+        }
+
         default:
             return state;
     }

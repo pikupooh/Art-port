@@ -6,7 +6,6 @@ import { setLoadingAction } from "../actions/loadingActions";
 export default function signInUser(user, pass, pathname = "") {
 
     pathname = pathname.substring(1, 5)
-  
 
     var creds = {
         username: user,

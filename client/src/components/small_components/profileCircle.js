@@ -4,6 +4,7 @@ import { Button, Image, NavDropdown } from "react-bootstrap";
 import { bindActionCreators } from "redux";
 import { logoutUser } from "../../redux/thunk/loging";
 import { altImage } from "../../shared/categories";
+import { withRouter } from "react-router-dom";
 
 class ProfileCircle extends React.Component {
     componentDidMount() {
@@ -15,6 +16,9 @@ class ProfileCircle extends React.Component {
     };
 
     showModal = () => {
+        if(this.props.location.pathname === "/forgotPassword"){
+            this.props.history.replace("/")
+        }
         this.props.showSignInModal();
     };
 
@@ -67,4 +71,4 @@ const mapDispatchToProps = (dispatch) =>
         dispatch
     );
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProfileCircle);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ProfileCircle));
