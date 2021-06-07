@@ -171,16 +171,20 @@ public class AuthController {
 
         if(existingUser == null)
             return new ResponseEntity<>("Email invalid", HttpStatus.NOT_FOUND);
+        System.out.println(user.getPassword());
+        System.out.println(existingUser.getPassword());
 
         VerificationToken verificationToken = new VerificationToken(existingUser);
+        verificationToken.setPassword(passwordEncoder.encode(user.getPassword()));
+        System.out.println(verificationToken.getPassword());
         verificationTokenRepository.save(verificationToken);
 
-        String appUrl = "http://" + servletRequest.getServerName() + ":" + servletRequest.getServerPort() + servletRequest.getContextPath();
+        String appUrl = "http://" + servletRequest.getServerName() + servletRequest.getContextPath();
         SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setTo(existingUser.getEmail());
         mailMessage.setSubject("Complete Password Reset!");
         mailMessage.setText("To complete the password reset process, please click here: "
-                + appUrl + "api/auth/confirm-reset?token="+verificationToken.getToken());
+                + appUrl + "/api/auth/confirm-reset?token="+verificationToken.getToken());
 
         emailService.sendEmail(mailMessage);
 
@@ -188,17 +192,32 @@ public class AuthController {
     }
 
     @GetMapping("/confirm-reset")
-    public RedirectView validateToken(@RequestParam("token") String token){
+    public RedirectView validateToken(HttpServletRequest servletRequest, @RequestParam("token") String token){
 
         VerificationToken verificationToken = verificationTokenRepository.findByToken(token);
-
-        /*if(verificationToken == null)
-            return "Invalid Token";
-        */
-        //User user = userRepository.findByEmailIgnoreCase(verificationToken.getUser().getEmail());
-
+        String appUrl = "http://" + servletRequest.getServerName() + servletRequest.getContextPath();
+        
+        Calendar calendar = Calendar.getInstance();
+        
+        if(verificationToken == null || (verificationToken.getExpiryDate().getTime() - calendar.getTime().getTime()) <= 0) {
+        	 RedirectView redirectView = new RedirectView();
+             redirectView.setUrl(appUrl + "/reset-failure");
+             return redirectView;
+        }
+        
+        User user = userRepository.findByEmailIgnoreCase(verificationToken.getUser().getEmail());
+        System.out.println(user.getPassword());
+        user.setPassword(verificationToken.getPassword());
+        System.out.println(verificationToken.getPassword());
+        System.out.println(user.getPassword());
+        userRepository.save(user);
+        
+        System.out.println("Password reset:"+user);
+        
+        verificationTokenRepository.delete(verificationToken);
+        
         RedirectView redirectView = new RedirectView();
-        redirectView.setUrl("http://localhost:3000/");
+        redirectView.setUrl(appUrl + "/reset-success");
         return redirectView;
 
     }

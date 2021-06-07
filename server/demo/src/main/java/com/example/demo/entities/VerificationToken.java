@@ -19,6 +19,7 @@ public class VerificationToken {
     @DBRef
     private User user;
     private Date expiryDate;
+    String password;
 
     private Date calculateExpiryDate(int expiryTimeInMinutes) {
         Calendar calendar = Calendar.getInstance();
@@ -67,4 +68,12 @@ public class VerificationToken {
     public void setExpiryDate(Date expiryDate) {
         this.expiryDate = expiryDate;
     }
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
 }
