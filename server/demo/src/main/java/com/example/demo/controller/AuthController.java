@@ -201,7 +201,7 @@ public class AuthController {
         
         if(verificationToken == null || (verificationToken.getExpiryDate().getTime() - calendar.getTime().getTime()) <= 0) {
         	 RedirectView redirectView = new RedirectView();
-             redirectView.setUrl(appUrl + "/reset-failure");
+             redirectView.setUrl(appUrl + "/resetfailure");
              return redirectView;
         }
         
@@ -217,7 +217,7 @@ public class AuthController {
         verificationTokenRepository.delete(verificationToken);
         
         RedirectView redirectView = new RedirectView();
-        redirectView.setUrl(appUrl + "/reset-success");
+        redirectView.setUrl(appUrl + "/resetsuccess");
         return redirectView;
 
     }

@@ -111,11 +111,11 @@ class App extends React.Component {
                                         component = {SearchedPosts} 
                                     />
                                     <Route
-                                        path="/reset-success"
+                                        path="/resetsuccess"
                                         component={ResetPasswordSuccessPage}
                                     />
                                     <Route
-                                        path="/reset-failure"
+                                        path="/resetfailure"
                                         component={ResetPasswordFailurePage}
                                     />
                                     <Route
