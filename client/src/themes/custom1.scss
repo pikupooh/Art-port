@@ -3,12 +3,19 @@ a{
     text-decoration: none !important
 }
 h1{
-    color: #e67e22;
+    color: #d7ebff;
+    font-size: 3.1rem !important;
+    font-family: "Work Sans", sans-serif;
+}
+p{
+    color: #d7ebff;
+    font-family: "Work Sans", sans-serif;
 }
 
 h2{
-    font-style: bold;
-    color: #e67e22;
+    color: #d7ebff;
+    font-style: bold !important;
+    font-family: "Work Sans", sans-serif;
 }
 
 #copy_contain_button{
@@ -47,7 +54,7 @@ h2{
     border-color: #e84d4d !important;
     &:hover 
     {
-        background-color: lighten($color: #e84d4d, $amount: 5)  !important;
+        background-color: lighten($color: #e84d4d, $amount: 10)  !important;
     }
 }
 
@@ -108,7 +115,9 @@ h2{
     margin:auto;
     height: 100%;
 }
-
+.label{
+    color: #e67e22;
+}
 .heading{
     text-align: center;
     color: #e67e22;
@@ -132,6 +141,7 @@ h2{
     font-weight: 800 ;
     line-height: 1.2;
     font-size: 2rem;
+    
 }
 .about_headings{
    margin-top: 0.5rem;
@@ -148,7 +158,7 @@ h2{
     margin-left :10px;
 }
 .front_end{
-    padding-left :46%;
+    padding-left :46.5%;
     padding-top: 20px;
     padding-bottom: 20px;
 }
@@ -281,9 +291,9 @@ h2{
     }
 }
 
-
 .reset_password_failed_success{
-    // background-color: red;
     text-align: center;
     margin-top: 10%;
 }
+
+

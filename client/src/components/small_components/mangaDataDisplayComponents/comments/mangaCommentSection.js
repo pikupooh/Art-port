@@ -27,8 +27,8 @@ class MangaCommentSection extends React.Component{
             this.props.showSignInModal()
             return;
         }
-
         if(this.state.message !== ''){
+            
             this.props.postMangaComment(this.props.mangaId, this.state.message)
             this.setState({
                 message: ''

@@ -3,7 +3,6 @@ import { customfetch } from "../customFetch";
 
 function postMangaComment(mangaId, message) {
     const token = localStorage.getItem("token");
-
     return (dispatch) => {
         customfetch(`/api/manga/${mangaId}/comment`, {
             method: "POST",
@@ -16,6 +15,7 @@ function postMangaComment(mangaId, message) {
             },
         })
             .then((response) => {
+                console.log(response)
                 if (response.ok) {
                     return response.json();
                 }

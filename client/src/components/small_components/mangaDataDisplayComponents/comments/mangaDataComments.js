@@ -7,8 +7,7 @@ class MangaDataComments extends Component{
 
     
     render(){
-        
-        if(this.props.comments.length === 0){
+         if(this.props.comments.length === 0){
         return(
              <div>
                  <CommentsTag length = {this.props.comments.length} />
@@ -16,7 +15,7 @@ class MangaDataComments extends Component{
                <p style ={{paddingTop:"5px",paddingLeft:"5px"}}>Be the first to comment</p> 
              </div>
              <div>
-                <MangaCommentSection blogId = {this.props.blogId}/>
+                <MangaCommentSection mangaId = {this.props.mangaId}/>
                 </div>
             </div>
         )
