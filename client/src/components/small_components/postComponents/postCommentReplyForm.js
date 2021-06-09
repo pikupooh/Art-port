@@ -21,6 +21,13 @@ class PostCommentReplyForm extends Component{
     }
 
     reply = () => {
+        const token = localStorage.getItem('token')
+
+        if(token === null){
+            this.props.showSignInModal()
+            return;
+        }
+
         if(this.state.message !== ''){
             this.props.postPostReply(this.props.parentCommentId, this.state.message, this.props.replyToUser)
             this.setState({
@@ -73,7 +80,8 @@ class PostCommentReplyForm extends Component{
 }
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-    postPostReply
+    postPostReply,
+    showSignInModal: () => dispatch({type: 'SHOW_MODAL'}),
 }, dispatch)
 
 export default connect(null, mapDispatchToProps)(PostCommentReplyForm)

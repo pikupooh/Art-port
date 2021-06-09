@@ -21,6 +21,13 @@ class MangaCommentReplyForm extends Component{
     }
 
     reply = () => {
+        const token = localStorage.getItem('token')
+
+        if(token === null){
+            this.props.showSignInModal()
+            return;
+        }
+
         if(this.state.message !== ''){
             this.props.postMangaReply(this.props.parentCommentId, this.state.message, this.props.replyToUser)
             this.setState({
@@ -73,7 +80,9 @@ class MangaCommentReplyForm extends Component{
 }
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-    postMangaReply
+    postMangaReply,
+    showSignInModal: () => dispatch({type: 'SHOW_MODAL'}),
+
 }, dispatch)
 
 export default connect(null, mapDispatchToProps)(MangaCommentReplyForm)

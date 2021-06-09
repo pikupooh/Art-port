@@ -62,38 +62,38 @@ class About extends React.Component
           <Row>
           <Col md={2.4}>
             <Image src = {shaurya} className= "display_pic" fluid ></Image>
-            <p className="text-center">
+            <p className="text-center about_text">
               Shaurya Shah
             </p>
           </Col>
           <Col md={2.4}>
             <Image src = {zakaria} className= "display_pic" fluid ></Image>
-            <p className="text-center">
+            <p className="text-center about_text">
               Zakaria Arzoo
             </p>
           </Col>
           <Col md={2.4}>
             <Image src = {rohit} className= "display_pic" fluid ></Image>
-            <p className="text-center">
-              Rohti Debnath
+            <p className="text-center about_text">
+              Rohit Debnath
             </p>
           </Col>
           <Col md={2.4}>
             <Image src = {pratik} className= "display_pic" fluid ></Image>
-            <p className="text-center">
+            <p className="text-center about_text">
               Pratik Tamang
             </p>
           </Col>
           <Col md={2.4}>
             <Image src = {krishanu} className= "display_pic" fluid ></Image>
-            <p className="text-center">
+            <p className="text-center about_text">
               Krishanu Sarkar
             </p>
           </Col>
           </Row>
         </Container>
         <Container>
-          <p className="mt-5">
+          <p className="mt-5 about_text">
           ArtPort provides you with a simple, yet powerful way to show your portfolio and be seen by the right people. It's super fast and sleek. Add your work and production experience.
 
           Blogs enable you to share your work in progress and be seen. 
