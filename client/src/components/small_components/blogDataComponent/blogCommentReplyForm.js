@@ -21,7 +21,15 @@ class BlogCommentReplyForm extends Component{
     }
 
     reply = () => {
-        if(this.state.message !== ''){
+        const token = localStorage.getItem('token')
+
+        if(token === null){
+            this.props.showSignInModal()
+            return;
+        }
+
+        if(this.state.message !== '')
+        {
             this.props.postBlogReply(this.props.parentCommentId, this.state.message, this.props.replyToUser)
             this.setState({
                 message: ''
@@ -76,7 +84,9 @@ class BlogCommentReplyForm extends Component{
 }
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-    postBlogReply: postBlogReply
+    postBlogReply: postBlogReply,
+    showSignInModal: () => dispatch({type: 'SHOW_MODAL'}),
+
 }, dispatch)
 
 export default connect(null, mapDispatchToProps)(BlogCommentReplyForm)

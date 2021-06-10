@@ -21,6 +21,13 @@ class ComicCommentReplyForm extends Component{
     }
 
     reply = () => {
+        const token = localStorage.getItem('token')
+
+        if(token === null){
+            this.props.showSignInModal()
+            return;
+        }
+
         if(this.state.message !== ''){
             this.props.postComicReply(this.props.parentCommentId, this.state.message, this.props.replyToUser)
             this.setState({
@@ -76,7 +83,9 @@ class ComicCommentReplyForm extends Component{
 }
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-    postComicReply
+    postComicReply,
+    showSignInModal: () => dispatch({type: 'SHOW_MODAL'}),
+
 }, dispatch)
 
 export default connect(null, mapDispatchToProps)(ComicCommentReplyForm)

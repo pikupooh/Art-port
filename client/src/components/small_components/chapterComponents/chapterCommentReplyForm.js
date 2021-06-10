@@ -21,6 +21,13 @@ class ChapterCommentReplyForm extends Component{
     }
 
     reply = () => {
+        const token = localStorage.getItem('token')
+
+        if(token === null){
+            this.props.showSignInModal()
+            return;
+        }
+ 
         if(this.state.message !== ''){
             this.props.postChapterReply(this.props.parentCommentId, this.state.message, this.props.replyToUser)
             this.setState({
@@ -77,6 +84,7 @@ class ChapterCommentReplyForm extends Component{
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
     postChapterReply,
+    showSignInModal: () => dispatch({type: 'SHOW_MODAL'}),
 }, dispatch)
 
 export default connect(null, mapDispatchToProps)(ChapterCommentReplyForm)

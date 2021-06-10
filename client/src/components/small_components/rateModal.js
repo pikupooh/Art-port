@@ -64,7 +64,7 @@ class RateModal extends React.Component{
                                                         }} centered = {true}>
                 <Modal.Body>
                     <h4 className = "mb-3">
-                        Rate the manga
+                        Rate
                     </h4>
                     <Row>
                         <Col xs = {12} sm = {9}>
