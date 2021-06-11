@@ -60,6 +60,9 @@ class UserProfile extends React.Component {
                         </div>
                     </div>
                     <div className="profile_page_email">
+                        <div>{this.props.user.username}</div>
+                    </div>
+                    <div className="profile_page_email">
                         <div>Contact: {this.props.user.email}</div>
                     </div>
                     <div>{this.props.user.about}</div>   

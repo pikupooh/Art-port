@@ -4,6 +4,7 @@ import { createBlog } from "../../../redux/thunk/fetchBlogData";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import ChipInput from "material-ui-chip-input"
+import {extensions} from "./../../../shared/categories"
 
 class BlogModal extends React.Component {
     constructor(props) {
@@ -58,8 +59,9 @@ class BlogModal extends React.Component {
 
         if (this.validate()) {
             let imageFormData = new FormData();
-
+            
             for (let i = 0; i < this.fileInput.current.files.length; i++) {
+                
                 imageFormData.append(
                     "files",
                     this.fileInput.current.files[i],
@@ -114,7 +116,26 @@ class BlogModal extends React.Component {
         if (this.fileInput.current.files.length === 0) {
             isValid = false;
             errors["files"] = "Please upload some images.";
+
         }
+        else
+        {
+            
+            let allImg= true
+            for (let i = 0; i < this.fileInput.current.files.length; i++) {
+                let name=this.fileInput.current.files[i].name
+                let extension =name.split(".")
+                if(extension.length === 1 || extension.length === 0 || !extensions.has(extension[extension.length-1])){
+                    allImg = false
+                    break
+                }
+            }
+            if(allImg === false)  {
+                isValid = false;
+                errors["files"] = "Please upload images only.";
+            }      
+        }
+
         if (!input["content"]) {
             isValid = false;
             errors["content"] = "Please add a content.";

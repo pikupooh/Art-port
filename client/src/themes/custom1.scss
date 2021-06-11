@@ -7,6 +7,11 @@ h1{
     font-size: 3.1rem !important;
     font-family: "Work Sans", sans-serif;
 }
+
+h3{
+    color: #d7ebff;
+    font-family: "Work Sans", sans-serif;
+}
 .about_text{
     color: #d7ebff;
     font-family: "Work Sans", sans-serif;
@@ -158,10 +163,16 @@ h2{
     margin-left :10px;
 }
 .front_end{
-    padding-left :46.5%;
+    padding-left :42%;
     padding-top: 20px;
     padding-bottom: 20px;
 }
+
+.name
+{
+    padding-left :42%;
+}
+
 .carousel_message{
  font-weight:600;
 }

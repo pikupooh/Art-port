@@ -3,6 +3,7 @@ import { Modal, Form, Button } from "react-bootstrap";
 import { createChapter } from "../../../redux/thunk/fetchMangaChapter";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import {extensions} from "./../../../shared/categories"
 
 class ChapterModal extends React.Component {
     constructor(props) {
@@ -72,6 +73,23 @@ class ChapterModal extends React.Component {
             isValid = false;
             errors["files"] = "Please upload some images.";
         }
+        else
+        {
+            let allImg= true
+            for (let i = 0; i < this.fileInput.current.files.length; i++) {
+            let name=this.fileInput.current.files[i].name
+            let extension =name.split(".")
+            if(extension.length === 1 || extension.length === 0 || !extensions.has(extension[extension.length-1])){
+                allImg = false
+                break
+            }
+        }
+
+        if(allImg === false)  {
+            isValid = false;
+            errors["files"] = "Please upload images only.";
+        }      
+    }
         this.setState({
             errors: errors,
         });

@@ -1,6 +1,6 @@
 import React from "react";
 import { Form, Button, Modal } from "react-bootstrap";
-
+import {extensions} from "./../../../shared/categories"
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import editProfile from "../../../redux/thunk/editProfile";
@@ -74,6 +74,21 @@ class ProfileEditForm extends React.Component {
         if (input["about"].length > 150) {
             isValid = false;
             errors["about"] = "Please enter a short description.";
+        }
+        if (this.fileInput.current.files.length !== 0) {
+            let allImg= true
+            for (let i = 0; i < this.fileInput.current.files.length; i++) {
+                let name=this.fileInput.current.files[i].name
+                let extension =name.split(".")
+                if(extension.length === 1 || extension.length === 0 || !extensions.has(extension[extension.length-1])){
+                    allImg = false
+                    break
+                }
+            }
+            if(allImg === false)  {
+                isValid = false;
+                errors["files"] = "Please upload images only.";
+            }      
         }
 
         this.setState({

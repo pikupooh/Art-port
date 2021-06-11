@@ -4,6 +4,7 @@ import { createManga } from "../../../redux/thunk/fetchMangaData";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import ChipInput from "material-ui-chip-input"
+import {extensions} from "./../../../shared/categories"
 
 class MangaModal extends React.Component {
     constructor(props) {
@@ -111,6 +112,23 @@ class MangaModal extends React.Component {
         if (this.fileInput.current.files.length === 0) {
             isValid = false;
             errors["files"] = "Please upload some images.";
+        }
+        else
+        {
+            
+            let allImg= true
+            for (let i = 0; i < this.fileInput.current.files.length; i++) {
+                let name=this.fileInput.current.files[i].name
+                let extension =name.split(".")
+                if(extension.length === 1 || extension.length === 0 || !extensions.has(extension[extension.length-1])){
+                    allImg = false
+                    break
+                }
+            }
+            if(allImg === false)  {
+                isValid = false;
+                errors["files"] = "Please upload images only.";
+            }      
         }
         this.setState({
             errors: errors,

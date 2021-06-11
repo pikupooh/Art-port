@@ -9,7 +9,6 @@ import zakaria from  "./profile_components/zakaria.jpg"
 
 class About extends React.Component 
 {
-
   componentDidMount(){
     window.scrollTo(0, 0);
   }
@@ -56,49 +55,61 @@ class About extends React.Component
             </Carousel.Caption>
           </Carousel.Item>
         </Carousel>
-      
-        <h2 className = "front_end">TEAM</h2>
+
         <Container>
-          <Row>
+          <h1 className = "ml-1 front_end">TEAM</h1>
+        </Container>
+        
+        <Container className="name">
+          <Row >
           <Col md={2.4}>
             <Image src = {shaurya} className= "display_pic" fluid ></Image>
-            <p className="text-center about_text">
+            <p className=" text-center about_text">
               Shaurya Shah
             </p>
           </Col>
           <Col md={2.4}>
             <Image src = {zakaria} className= "display_pic" fluid ></Image>
-            <p className="text-center about_text">
+            <p className=" text-center about_text">
               Zakaria Arzoo
             </p>
           </Col>
-          <Col md={2.4}>
+          <Col md={2.4} >
             <Image src = {rohit} className= "display_pic" fluid ></Image>
-            <p className="text-center about_text">
+            <p className=" text-center about_text">
               Rohit Debnath
             </p>
           </Col>
           <Col md={2.4}>
             <Image src = {pratik} className= "display_pic" fluid ></Image>
-            <p className="text-center about_text">
+            <p className=" text-center about_text">
               Pratik Tamang
             </p>
           </Col>
           <Col md={2.4}>
             <Image src = {krishanu} className= "display_pic" fluid ></Image>
-            <p className="text-center about_text">
+            <p className=" text-center about_text">
               Krishanu Sarkar
             </p>
           </Col>
           </Row>
         </Container>
+
         <Container>
-          <p className="mt-5 about_text">
+          <h3 className="mt-5 text-center">
+            PROJECT
+          </h3>
+
+          <p className="about_text">
           ArtPort provides you with a simple, yet powerful way to show your portfolio and be seen by the right people. It's super fast and sleek. Add your work and production experience.
 
           Blogs enable you to share your work in progress and be seen. 
 
           You can also share comics and mangas.
+          </p>
+
+          <p className="mt-3 text-center about_text">
+            This project is done for the Web Tech Lab 2. We thank the teachers for giving us the opportunity to make this project.
           </p>
 
         </Container>

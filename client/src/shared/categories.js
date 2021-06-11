@@ -1,3 +1,11 @@
+export const extensions = new Set()
+
+extensions.add("jpeg")
+extensions.add("tiff")
+extensions.add("jpg")
+extensions.add("eps")
+extensions.add("png")
+
 export const categories = [
     "Illustration",
     "Game Art",

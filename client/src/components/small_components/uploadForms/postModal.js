@@ -5,6 +5,7 @@ import { createPost } from "../../../redux/thunk/fetchPostData";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import ChipInput from "material-ui-chip-input"
+import {extensions} from "./../../../shared/categories"
 
 class PostModal extends React.Component {
     constructor(props) {
@@ -80,12 +81,12 @@ class PostModal extends React.Component {
             this.props.handleModalClose();
             document.getElementById("post-form").reset();
 
-            this.props.createPost(
+            /*this.props.createPost(
                 this.props.userId,
                 postFormData,
                 imageFormData,
                 this.props.profileId
-            );
+            );*/
         }
     }
 
@@ -98,11 +99,12 @@ class PostModal extends React.Component {
             isValid = false;
             errors["title"] = "Please enter a title to your post.";
         }
-
-        if (input["title"].length > 30) {
+        
+        else if (input["title"].length > 30) {
             isValid = false;
             errors["title"] = "Title of blog should be within 30 characters.";
-        } else if (!input["description"]) {
+        }
+         else if (!input["description"]) {
             isValid = false;
             errors["description"] = "Please add a description.";
         } else if (input["description"].length > 100) {
@@ -117,6 +119,23 @@ class PostModal extends React.Component {
         if (this.fileInput.current.files.length === 0) {
             isValid = false;
             errors["files"] = "Please upload some images.";
+        }
+        else
+        {
+            
+            let allImg= true
+            for (let i = 0; i < this.fileInput.current.files.length; i++) {
+                let name=this.fileInput.current.files[i].name
+                let extension =name.split(".")
+                if(extension.length === 1 || extension.length === 0 || !extensions.has(extension[extension.length-1])){
+                    allImg = false
+                    break
+                }
+            }
+            if(allImg === false)  {
+                isValid = false;
+                errors["files"] = "Please upload images only.";
+            }      
         }
         this.setState({
             errors: errors,
