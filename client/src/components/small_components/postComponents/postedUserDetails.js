@@ -1,7 +1,6 @@
-
-import React from 'react'
-import { Image, Row, Col } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import React from "react";
+import { Image, Row, Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 import PostComments from "./postComments";
 import PostLikesModal from "../postLikesModal";
@@ -33,9 +32,6 @@ class PostedUserDetails extends React.Component {
     };
 
     render() {
-        {
-            console.log(this.props.info.user.userId);
-        }
         return (
             <div>
                 <PostLikesModal
