@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 import StarComponent from "../starComponent";
 
 function MangaListMangaData(props) {
+    {
+        console.log(props);
+    }
     return (
         <Container>
             <div className="manga_list_manga_data_title">
