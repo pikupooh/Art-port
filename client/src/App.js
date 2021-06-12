@@ -94,10 +94,13 @@ class App extends React.Component {
                                         path="/chapter/:chapters_id"
                                         component={MangaIndividualChapter}
                                     />
-                                    <Route
-                                        path="/registration"
-                                        component={RegistrationForm}
-                                    />
+                                    <Route path="/registration">
+                                    {this.props.isAuthenticated ? (
+                                        <Redirect to="/" />
+                                    ) : (
+                                        <RegistrationForm />
+                                    )}
+                                </Route>
                                     <Route
                                         path="/forgotPassword"
                                         component={ForgotPassword}

@@ -20,17 +20,7 @@ class RegistrationForm extends React.Component {
         this.fileInput = React.createRef();
     }
 
-    componentDidMount(){
-        if(this.props.userId !== ""){
-            this.props.history.replace("/");
-        }
-    }
-
     componentDidUpdate() {
-
-        if(this.props.userId !== ""){
-            this.props.history.replace("/");
-        }
 
         if (
             this.props.isSignedUp &&
