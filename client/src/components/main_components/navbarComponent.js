@@ -10,7 +10,7 @@ const NavbarComponent = () => {
     
     return(
             <Navbar bg="dark" expand="sm" fixed = "top" variant = "dark" >
-                <Navbar.Brand href="/"><strong>Art</strong> Port</Navbar.Brand>
+                <Navbar.Brand href="/"><strong>Art</strong> <strong>Port</strong></Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" data-toggle="collapse" data-target="#basic-navbar-nav"/>
                 <Navbar.Collapse id="basic-navbar-nav">
                 <div className = "desktop_screen_search_bar">
@@ -29,7 +29,7 @@ const NavbarComponent = () => {
                         <NavItem>
                             <NavLink to = "/about" className = "nav-link" activeClassName = "active_nav_item">About</NavLink>
                         </NavItem>
-                        <NavItem className = "ml-1">
+                        <NavItem className = "ml-2">
                             <ProfileCircle />
                         </NavItem>
                     </Nav>
