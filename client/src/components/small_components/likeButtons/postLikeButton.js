@@ -25,10 +25,7 @@ class PostLikeButton extends React.Component {
         };
 
         temp.id = temp.userId;
-        delete temp.about;
         delete temp.userId;
-        delete temp.email;
-        delete temp.dob;
 
         return temp;
     };
@@ -37,8 +34,6 @@ class PostLikeButton extends React.Component {
         var foundUser = this.props.likes.filter(
             (user) => user.id === this.props.userId
         );
-
-        console.log(this.props.likes);
 
         if (foundUser.length !== 0) {
             return true;

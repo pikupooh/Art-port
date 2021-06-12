@@ -15,7 +15,6 @@ function postMangaComment(mangaId, message) {
             },
         })
             .then((response) => {
-                console.log(response)
                 if (response.ok) {
                     return response.json();
                 }

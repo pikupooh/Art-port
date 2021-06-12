@@ -6,7 +6,6 @@ import { bindActionCreators } from "redux";
 import deleteBlogLike from "../../../redux/thunk/delete/deleteBlogLike";
 import fetchUserData from "../../../redux/thunk/fetchUserData";
 import postBlogLike from "../../../redux/thunk/post/postBlogLike";
-import trimUser from "../../helpers/trimUser";
 
 class BlogLikeButton extends React.Component {
     constructor(props) {
@@ -19,15 +18,23 @@ class BlogLikeButton extends React.Component {
     componentDidMount() {
         if(this.props.isAuthenticated)
             this.props.fetchUserData(this.props.userId)
-        setTimeout(() => {
-            this.updateButtonState();
-        }, 2000);
     }
+
+    trimUser = () => {
+        var temp = {
+            ...this.props.user,
+        };
+
+        temp.id = temp.userId;
+        delete temp.userId;
+
+        return temp;
+    };
 
     updateButtonState = () => {
         
         var foundUser = this.props.likes.filter(
-            (user) => user.userId === this.props.userId
+            (user) => user.id === this.props.userId
         );
 
         
@@ -51,7 +58,7 @@ class BlogLikeButton extends React.Component {
             liked: true,
         });
 
-        this.props.postBlogLike(trimUser(this.props.user), this.props.blogId);
+        this.props.postBlogLike( this.trimUser(), this.props.blogId);
     };
 
     removeLiked = () => {
@@ -65,13 +72,23 @@ class BlogLikeButton extends React.Component {
         if (this.updateButtonState()=== false) {
             return (
                 <Button className="mt-3" onClick={this.blogLiked}>
-                    Like
+                    <div className="like_button">
+                        Like
+                        <div className="material-icons ml-1">
+                            thumb_up_off_alt
+                        </div>
+                    </div>
                 </Button>
             );
         } else {
             return (
                 <Button className="mt-3" onClick={this.removeLiked}>
-                    Unlike
+                    <div className="like_button">
+                        Unlike
+                        <div className="material-icons ml-1">
+                            thumb_down_off_alt
+                        </div>
+                    </div>
                 </Button>
             );
         }

@@ -3,8 +3,9 @@ import { customfetch } from "../customFetch";
 import fetchUserData from "../fetchUserData";
 import { setLoadingAction } from "../../actions/loadingActions";
 
-function addFollower(userId, logInId) {
+function addFollower(userId, logInId, pathname = "") {
     const token = localStorage.getItem("token");
+    pathname = pathname.substr(1, 4)
     
     return (dispatch) => {
         customfetch(`/api/users/${logInId}/follower/${userId}`, {
@@ -26,7 +27,7 @@ function addFollower(userId, logInId) {
                     payload: response,
                 });
 
-                dispatch(setLoadingAction(true, "Loading..."));
+                
                 fetch(`/api/auth/users/${logInId}`, {})
                     .then(
                         (res) => {
@@ -45,13 +46,20 @@ function addFollower(userId, logInId) {
                     )
                     .then((res) => res.json())
                     .then((res) => {
-                        dispatch(setLoadingAction(false, "Loading..."));
-                        dispatch({
-                            type: ADD_FOLLOWER,
-                            payload: res
-                        });
+                        
+                        if(pathname === "user"){
+                            dispatch(setLoadingAction(true, "Loading..."));
+                            
+                            dispatch({
+                                type: ADD_FOLLOWER,
+                                payload: res
+                            });
+                        }
+                        
                         return res;
-                    })
+                }).then(() => {
+                    dispatch(setLoadingAction(false, "Loading..."));
+                })
                     .catch((error) => {
                         
                     });

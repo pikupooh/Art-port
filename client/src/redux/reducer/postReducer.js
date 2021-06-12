@@ -44,7 +44,6 @@ export const postReducer = (state = initState, action) => {
             var newLikes = state.likes.filter(
                 (user) => user.id !== action.payload.userId
             );
-            console.log(newLikes);
             return {
                 ...state,
                 likes: newLikes,
