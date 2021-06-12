@@ -12,8 +12,8 @@ const initState = {
     },
     categories: [],
     comments: [],
-    title: '',
-    description: ''
+    title: "",
+    description: "",
 };
 
 export const postReducer = (state = initState, action) => {
@@ -42,8 +42,9 @@ export const postReducer = (state = initState, action) => {
 
         case ActionTypes.UNLIKE_POST:
             var newLikes = state.likes.filter(
-                (user) => user.userId !== action.payload.userId
+                (user) => user.id !== action.payload.userId
             );
+            console.log(newLikes);
             return {
                 ...state,
                 likes: newLikes,
@@ -52,47 +53,43 @@ export const postReducer = (state = initState, action) => {
         case ActionTypes.POST_POST_COMMENT:
             return {
                 ...state,
-                comments: [
-                    ...state.comments,
-                    action.payload
-                ]
+                comments: [...state.comments, action.payload],
             };
 
         case ActionTypes.DELETE_POST_COMMENT:
-            var newComments = []
-            var tempComment
+            var newComments = [];
+            var tempComment;
             newComments = state.comments.filter(
                 (comment) => comment.id !== action.payload.commentId
             );
             return {
                 ...state,
-                comments: newComments
+                comments: newComments,
             };
 
-        case ActionTypes.EDIT_POST_COMMENT: 
-            newComments = []
+        case ActionTypes.EDIT_POST_COMMENT:
+            newComments = [];
             state.comments.map((comment) => {
-                if(comment.id !== action.payload.response.id){
-                    newComments.push(comment)
-                }
-                else{
-                    tempComment = Object.assign(comment)
+                if (comment.id !== action.payload.response.id) {
+                    newComments.push(comment);
+                } else {
+                    tempComment = Object.assign(comment);
                     tempComment = {
                         ...tempComment,
                         content: action.payload.response.content,
-                        createdDate: action.payload.response.createdDate
-                    }
-                    newComments.push(tempComment)
+                        createdDate: action.payload.response.createdDate,
+                    };
+                    newComments.push(tempComment);
                 }
                 return comment;
-            })
+            });
             return {
                 ...state,
-                comments: newComments
-            }
+                comments: newComments,
+            };
 
         case ActionTypes.POST_POST_REPLY:
-            newComments = []
+            newComments = [];
 
             var newReply = {
                 comment: action.payload.response.comment.id,
@@ -100,28 +97,27 @@ export const postReducer = (state = initState, action) => {
                 user: action.payload.response.user,
                 content: action.payload.response.content,
                 createdDate: action.payload.response.createdDate,
-                replyTo: action.payload.response.replyTo
-            }
+                replyTo: action.payload.response.replyTo,
+            };
 
             state.comments.map((comment) => {
-                if(comment.id !== action.payload.parentCommentId){
-                    newComments.push(comment)
-                }
-                else{
+                if (comment.id !== action.payload.parentCommentId) {
+                    newComments.push(comment);
+                } else {
                     tempComment = Object.assign({}, comment);
-                    tempComment.replies.push(newReply)
-                    newComments.push(tempComment)
+                    tempComment.replies.push(newReply);
+                    newComments.push(tempComment);
                 }
                 return comment;
-            })
+            });
 
             return {
                 ...state,
-                comments: newComments
-            }
+                comments: newComments,
+            };
 
         case ActionTypes.EDIT_POST_REPLY:
-            newComments = []
+            newComments = [];
 
             newReply = {
                 comment: action.payload.response.comment.id,
@@ -129,64 +125,59 @@ export const postReducer = (state = initState, action) => {
                 user: action.payload.response.user,
                 content: action.payload.response.content,
                 createdDate: action.payload.response.createdDate,
-                replyTo: action.payload.response.replyTo
-            }
+                replyTo: action.payload.response.replyTo,
+            };
 
             state.comments.map((comment) => {
-                if(comment.id !== newReply.comment){
-                    newComments.push(comment)
-                }
-                else{
+                if (comment.id !== newReply.comment) {
+                    newComments.push(comment);
+                } else {
                     tempComment = Object.assign({}, comment);
-                    tempComment.replies = []
+                    tempComment.replies = [];
                     comment.replies.map((reply) => {
-                        if(reply.id === newReply.id){
-                            tempComment.replies.push(newReply)
-                        }
-                        else{
-                            tempComment.replies.push(reply)
+                        if (reply.id === newReply.id) {
+                            tempComment.replies.push(newReply);
+                        } else {
+                            tempComment.replies.push(reply);
                         }
                         return reply;
-                    })
-                    newComments.push(tempComment)
+                    });
+                    newComments.push(tempComment);
                 }
                 return comment;
-            })
-        
+            });
+
             return {
                 ...state,
-                comments: newComments
-            }
-        
+                comments: newComments,
+            };
+
         case ActionTypes.DELETE_POST_REPLY:
-            newComments = []
+            newComments = [];
 
             state.comments.map((comment) => {
-                if(comment.id !== action.payload.commentId){
-                    newComments.push(comment)
-                }
-                else{
+                if (comment.id !== action.payload.commentId) {
+                    newComments.push(comment);
+                } else {
                     tempComment = Object.assign({}, comment);
-                    tempComment.replies = []
+                    tempComment.replies = [];
                     comment.replies.map((reply) => {
-                        if(reply.id !== action.payload.replyId){
-                            tempComment.replies.push(reply)
+                        if (reply.id !== action.payload.replyId) {
+                            tempComment.replies.push(reply);
                         }
                         return reply;
-                    })
-                    newComments.push(tempComment)
+                    });
+                    newComments.push(tempComment);
                 }
                 return comment;
-            })
-        
+            });
+
             return {
                 ...state,
-                comments: newComments
-            }
+                comments: newComments,
+            };
 
         default:
             return state;
-
-            
     }
 };
