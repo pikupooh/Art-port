@@ -100,7 +100,7 @@ public class ChapterController {
         String name = principal.getName();
         User user = userService.getUserByName(name);
         Query query = new Query(Criteria.where("id").is(mangaId));
-        query.fields().include("UserDTO", "chapters");
+        query.fields().include("user", "chapters");
         
         Manga m = mongoTemplate.findOne(query, Manga.class);
         if (user == null)
