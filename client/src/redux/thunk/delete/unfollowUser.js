@@ -1,4 +1,4 @@
-import { REMOVE_FOLLOWING } from "../../actions/actionTypes";
+import { REMOVE_FOLLOWING , REMOVE_FOLLOWER } from "../../actions/actionTypes";
 import { customfetch } from "../customFetch";
 function unfollowUser(userId, logInId) {
     const token = localStorage.getItem("token");
@@ -21,6 +21,13 @@ function unfollowUser(userId, logInId) {
                             userId,
                         },
                     });
+
+                    dispatch({
+                        type: REMOVE_FOLLOWER,
+                        payload: {
+                            logInId
+                        }
+                    })
                 }
             })
             .catch((error) => console.log(error));

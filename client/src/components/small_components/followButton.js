@@ -26,6 +26,17 @@ class FollowButton extends React.Component {
         }
     };
 
+    trimUser = () => {
+        var temp = {
+            ...this.props.user,
+        };
+
+        temp.id = temp.userId;
+        delete temp.userId;
+
+        return temp;
+    };
+
     followUser = () => {
 
         if (this.props.logInId === null) {
@@ -33,7 +44,7 @@ class FollowButton extends React.Component {
             return;
         }
 
-        this.props.addFollower(this.props.userId, this.props.logInId);
+        this.props.addFollower(this.props.userId, this.props.logInId, this.trimUser());
     }
 
 
@@ -73,6 +84,7 @@ const mapStateToProps = (state) => {
     return {
         logInId: state.auth.userId,
         profile: state.auth.profile,
+        user: state.user
     };
 };
 
