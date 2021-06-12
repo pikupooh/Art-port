@@ -60,7 +60,7 @@ class About extends React.Component
           <h1 className = "ml-1 front_end text-center">TEAM</h1>
         </Container>
         
-        <Container className="name">
+        <div className="name">
           <Row >
           <Col md={2.4}>
             <Image src = {shaurya} className= "display_pic" fluid ></Image>
@@ -93,7 +93,7 @@ class About extends React.Component
             </p>
           </Col>
           </Row>
-        </Container>
+        </div>
 
         <Container>
           <h3 className="mt-10 text-center">
