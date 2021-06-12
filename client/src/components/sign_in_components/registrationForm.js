@@ -125,8 +125,7 @@ class RegistrationForm extends React.Component {
             errors["dob"] = "Please enter your date of birth.";
         } else {
             let age = this.calculateAge(input["dob"]);
-            if (age < 0) errors["dob"] = "Please enter a valid date of birth.";
-            else if (age < 16)
+            if (age < 16)
                 errors["dob"] = "You must be atleast 16 years of age.";
         }
         if (!input["password"]) {
@@ -163,8 +162,7 @@ class RegistrationForm extends React.Component {
             isValid = false;
             errors["about"] = "Please enter a short description.";
         }
-
-        if (input["about"].length > 150) {
+        else if (input["about"].length > 150) {
             isValid = false;
             errors["about"] = "Please enter a short description.";
         }

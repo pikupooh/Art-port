@@ -4,7 +4,6 @@ import fetchUserData from "./fetchUserData";
 import { customfetch } from "./customFetch";
 
 export default function registerUser(postFormData, imageFormData, userId) {
-
     const token = localStorage.getItem("token");
     return (dispatch) => {
         dispatch(setLoadingAction(true, "Loading..."));
@@ -19,7 +18,7 @@ export default function registerUser(postFormData, imageFormData, userId) {
             .then(
                 (res) => {
                     if (res.ok) {
-                        if(imageFormData.has("files")){
+                        if (imageFormData.has("files")) {
                             fetch(`/api/users/${userId}/upload`, {
                                 method: "POST",
                                 body: imageFormData,
@@ -28,27 +27,30 @@ export default function registerUser(postFormData, imageFormData, userId) {
                                 },
                             })
                                 .then((res) => res.json())
-                                .then(
-                                    (response) => {
-                                            dispatch(setLoadingAction(false, "Loading..."));
-                                            let user = response;
-                                            localStorage.setItem("profilePhoto", user.profilePhoto.link);
-                                            dispatch({
-                                                type: UPDATE_PROFILE_PHOTO,
-                                                profilePhoto: user.profilePhoto.link
-                                            })
-                                            dispatch(fetchUserData(userId))
-                                            return response
-                                    }
-                                )
+                                .then((response) => {
+                                    dispatch(
+                                        setLoadingAction(false, "Loading...")
+                                    );
+                                    let user = response;
+                                    localStorage.setItem(
+                                        "profilePhoto",
+                                        user.profilePhoto.link
+                                    );
+                                    dispatch({
+                                        type: UPDATE_PROFILE_PHOTO,
+                                        profilePhoto: user.profilePhoto.link,
+                                    });
+                                    dispatch(fetchUserData(userId));
+                                    console.log(response);
+                                    return response;
+                                })
                                 .catch((error) => {
                                     console.log(error.message);
                                 });
-                        }
-                        else {
+                        } else {
                             dispatch(setLoadingAction(false, "Loading..."));
-                            dispatch(fetchUserData(userId))
-                        }     
+                            dispatch(fetchUserData(userId));
+                        }
                     } else {
                         var error = new Error(
                             "Error " + res.status + ": " + res.statusText

@@ -26,6 +26,7 @@ public class User {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateOfBirth;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private boolean isEnabled = false;
 
     public User() {

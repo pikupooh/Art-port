@@ -4,8 +4,8 @@ import { categories } from "../../../shared/categories";
 import { createPost } from "../../../redux/thunk/fetchPostData";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import ChipInput from "material-ui-chip-input"
-import {extensions} from "./../../../shared/categories"
+import ChipInput from "material-ui-chip-input";
+import { extensions } from "./../../../shared/categories";
 
 class PostModal extends React.Component {
     constructor(props) {
@@ -26,8 +26,8 @@ class PostModal extends React.Component {
         newTags.splice(i, 1);
         this.setState({
             ...this.state,
-            tags: newTags
-         });
+            tags: newTags,
+        });
     };
 
     addTag = (val) => {
@@ -53,7 +53,7 @@ class PostModal extends React.Component {
         for (let i = 0; i < selectedOption.length; i++) {
             selected.push(selectedOption.item(i).value);
         }
-        
+
         this.setState({ categories: selected });
     }
 
@@ -70,23 +70,22 @@ class PostModal extends React.Component {
                     this.fileInput.current.files[i].name
                 );
             }
-          
+
             let postFormData = Object.assign({}, this.state.input);
             postFormData["tags"] = this.state.tags;
             postFormData["category"] = this.state.categories;
-            
 
             this.setState({ tags: [], input: {}, errors: {}, categories: [] });
 
             this.props.handleModalClose();
             document.getElementById("post-form").reset();
 
-            /*this.props.createPost(
+            this.props.createPost(
                 this.props.userId,
                 postFormData,
                 imageFormData,
                 this.props.profileId
-            );*/
+            );
         }
     }
 
@@ -98,18 +97,16 @@ class PostModal extends React.Component {
         if (!input["title"]) {
             isValid = false;
             errors["title"] = "Please enter a title to your post.";
-        }
-        
-        else if (input["title"].length > 30) {
+        } else if (input["title"].length > 30) {
             isValid = false;
             errors["title"] = "Title of blog should be within 30 characters.";
-        }
-         else if (!input["description"]) {
+        } else if (!input["description"]) {
             isValid = false;
             errors["description"] = "Please add a description.";
         } else if (input["description"].length > 100) {
             isValid = false;
-            errors["description"] = "Length of description should be within 100 characters.";
+            errors["description"] =
+                "Length of description should be within 100 characters.";
         }
 
         if (!this.state.categories.length) {
@@ -119,23 +116,24 @@ class PostModal extends React.Component {
         if (this.fileInput.current.files.length === 0) {
             isValid = false;
             errors["files"] = "Please upload some images.";
-        }
-        else
-        {
-            
-            let allImg= true
+        } else {
+            let allImg = true;
             for (let i = 0; i < this.fileInput.current.files.length; i++) {
-                let name=this.fileInput.current.files[i].name
-                let extension =name.split(".")
-                if(extension.length === 1 || extension.length === 0 || !extensions.has(extension[extension.length-1])){
-                    allImg = false
-                    break
+                let name = this.fileInput.current.files[i].name;
+                let extension = name.split(".");
+                if (
+                    extension.length === 1 ||
+                    extension.length === 0 ||
+                    !extensions.has(extension[extension.length - 1])
+                ) {
+                    allImg = false;
+                    break;
                 }
             }
-            if(allImg === false)  {
+            if (allImg === false) {
                 isValid = false;
                 errors["files"] = "Please upload images only.";
-            }      
+            }
         }
         this.setState({
             errors: errors,
@@ -146,15 +144,22 @@ class PostModal extends React.Component {
 
     render() {
         return (
-            <Modal show={this.props.show} onHide={this.props.handleModalClose} centered = {true}>
+            <Modal
+                show={this.props.show}
+                onHide={this.props.handleModalClose}
+                centered={true}
+            >
                 <Modal.Body>
-                    <h3 className = "text-center"> Create your post</h3>
-                    <Form id="post-form" onSubmit={(e) => this.handleSubmit(e)} onKeyDown={(e) => {
-                        if(e.key==="Enter"){
-                          
-                            e.preventDefault();
-                        }
-                    }}>
+                    <h3 className="text-center"> Create your post</h3>
+                    <Form
+                        id="post-form"
+                        onSubmit={(e) => this.handleSubmit(e)}
+                        onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                                e.preventDefault();
+                            }
+                        }}
+                    >
                         <Form.Group>
                             <Form.Label>Title</Form.Label>
                             <Form.Control
@@ -214,11 +219,18 @@ class PostModal extends React.Component {
                         </Form.Group>
                         <Form.Group>
                             <p className="mr-2">Tags </p>
-                            <ChipInput className="text-white-color label-alpha-white upload_modal_tags_input" classes={{label:"label-alpha-white", input:"text-white-color"}}
+                            <ChipInput
+                                className="text-white-color label-alpha-white upload_modal_tags_input"
+                                classes={{
+                                    label: "label-alpha-white",
+                                    input: "text-white-color",
+                                }}
                                 value={this.state.tags}
                                 onAdd={(chip) => this.addTag(chip)}
-                                onDelete={(chip, index) => this.removeTag(chip, index)}
-                                placeholder = "Enter tags for post here"
+                                onDelete={(chip, index) =>
+                                    this.removeTag(chip, index)
+                                }
+                                placeholder="Enter tags for post here"
                             />
                         </Form.Group>
                         <Form.Group>
@@ -232,7 +244,11 @@ class PostModal extends React.Component {
                                 {this.state.errors.files}
                             </div>
                         </Form.Group>
-                        <Button variant="primary" type="submit" id = "upload_button">
+                        <Button
+                            variant="primary"
+                            type="submit"
+                            id="upload_button"
+                        >
                             Upload
                         </Button>
                     </Form>

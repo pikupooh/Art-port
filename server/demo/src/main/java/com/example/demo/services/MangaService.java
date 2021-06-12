@@ -58,11 +58,10 @@ public class MangaService {
 
     public Manga createManga(Manga manga, User user){
 
-        UserDTO userDTO = new UserDTO(user.getId(), user.getUsername(), user.getFirstName(), user.getLastName(), user.getProfilePhoto());
 
         manga.setType(manga.getType());
         manga.setUploadDate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")));
-        manga.setUserDTO(userDTO);
+        manga.setUser(user);
         mangaRepository.save(manga);
         return manga;
     }

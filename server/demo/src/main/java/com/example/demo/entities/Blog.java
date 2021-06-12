@@ -22,7 +22,8 @@ public class Blog {
 	private String id;
 	private Date uploadDate;
 
-	private UserDTO user;
+	@DBRef
+	private User user;
 	private String title;
 	private String description;
 	@DBRef
@@ -30,7 +31,9 @@ public class Blog {
 	private String content;
 	@DBRef
 	private List<Comment> comments = Collections.emptyList();
-	private List<UserDTO> likes = Collections.emptyList();
+
+	@DBRef
+	private List<User> likes = Collections.emptyList();
     private List<String> category = Collections.emptyList();
 
 	public Blog(){
@@ -42,7 +45,7 @@ public class Blog {
 		this.title = title;
 		this.description = description;
 		this.content = content;
-		this.user = new UserDTO(user.getId(), user.getUsername(), user.getFirstName(), user.getLastName(), user.getProfilePhoto());
+		this.user = user;
 	}
 	public String getId() {
 		return id;
@@ -51,10 +54,10 @@ public class Blog {
 		this.id = id;
 	}
 
-	public UserDTO getUser() {
+	public User getUser() {
 		return user;
 	}
-	public void setUser(UserDTO user) {
+	public void setUser(User user) {
 		this.user = user;
 	}
 	public Image getImg() {
@@ -144,22 +147,22 @@ public class Blog {
 	}
 
 
-	public List<UserDTO> getLikes() {
+	public List<User> getLikes() {
 		return likes;
 	}
 
 
-	public void setLikes(List<UserDTO> likes) {
+	public void setLikes(List<User> likes) {
 		this.likes = likes;
 	}
-	public void addLike(UserDTO userDTO){
+	public void addLike(User user){
 
-        this.likes.add(userDTO);
+        this.likes.add(user);
     }
 
-    public void removeLike(UserDTO userDTO){
+    public void removeLike(User user){
 
-        this.likes.remove(userDTO);
+        this.likes.remove(user);
     }
 }
 

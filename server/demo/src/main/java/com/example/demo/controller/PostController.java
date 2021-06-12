@@ -98,9 +98,7 @@ public class PostController {
 
         User user = userService.getUserByName(principal.getName());
 
-        UserDTO userDTO = new UserDTO(user.getId(), user.getUsername(), user.getFirstName(), user.getLastName(), user.getProfilePhoto());
-
-        Post post = postService.addLike(postId, userDTO);
+        Post post = postService.addLike(postId, user);
 
         if(post== null)
             return new ResponseEntity<String>("Post not found", HttpStatus.NOT_FOUND);
@@ -114,7 +112,7 @@ public class PostController {
 
         User user = userService.getUserByName(principal.getName());
 
-        Post post = postService.removeLike(postId, new UserDTO(user.getId(), user.getUsername(), user.getFirstName(), user.getLastName(), user.getProfilePhoto()));
+        Post post = postService.removeLike(postId, user);
 
         if(post== null)
             return new ResponseEntity<String>("Post not found", HttpStatus.NOT_FOUND);
