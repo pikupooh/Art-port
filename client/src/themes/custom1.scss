@@ -163,14 +163,13 @@ h2{
     margin-left :10px;
 }
 .front_end{
-    padding-left :42%;
     padding-top: 20px;
     padding-bottom: 20px;
 }
 
 .name
 {
-    padding-left :42%;
+    margin-left: 50%;
 }
 
 .carousel_message{
@@ -225,7 +224,7 @@ h2{
     padding-left:10px;
     padding-right :10px;
     padding-bottom :5px;
-     padding-top :5px;
+    padding-top :5px;
     margin-left:5px;
     margin-right :5px;
     background-color : lighten($color: $background-color, $amount: 1);
