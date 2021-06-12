@@ -4,9 +4,10 @@ import {
     Route,
     Switch,
     withRouter,
+    Redirect,
 } from "react-router-dom";
 import { connect } from "react-redux";
-import { bindActionCreators } from 'redux'
+import { bindActionCreators } from "redux";
 
 import NavbarComponent from "./components/main_components/navbarComponent";
 import Home from "./components/main_components/home";
@@ -28,40 +29,39 @@ import ForgotPassword from "./components/small_components/forgotPassword";
 import ResetPassword from "./components/small_components/resetPassword";
 import SearchResults from "./components/main_components/searchResults";
 
-import Overlay from "./components/small_components/Overlay"
+import Overlay from "./components/small_components/Overlay";
 import SearchedPosts from "./components/small_components/searchComponents/searchedPosts";
 import SearchedMangas from "./components/small_components/searchComponents/searchedMangas";
 import SearchedComics from "./components/small_components/searchComponents/searchedComics";
 import SearchedBlogs from "./components/small_components/searchComponents/searchedBlogs";
 import SearchBar from "./components/small_components/search_bar";
-import ResetPasswordFailurePage from "./components/small_components/resetPasswordFailurePage"
+import ResetPasswordFailurePage from "./components/small_components/resetPasswordFailurePage";
 import ResetPasswordSuccessPage from "./components/small_components/resetPasswordSuccessPage";
 
-import { fetchUserProfileData } from './redux/thunk/fetchProfileData'
+import { fetchUserProfileData } from "./redux/thunk/fetchProfileData";
 import DeleteModal from "./components/small_components/deleteModal";
 
 const NavbarwithRouter = withRouter(NavbarComponent);
-const SearchBarWithRouter = withRouter(SearchBar)
+const SearchBarWithRouter = withRouter(SearchBar);
 
 class App extends React.Component {
-
-    componentDidMount(){
+    componentDidMount() {
         // if(this.props.isAuthenticated)
-            this.props.fetchUserProfileData()
+        this.props.fetchUserProfileData();
     }
 
     render() {
         return (
-            <div className = "main_wrapper">
-                <Overlay className="display-overlay"/>
-                <div className = "content_wrapper">
+            <div className="main_wrapper">
+                <Overlay className="display-overlay" />
+                <div className="content_wrapper">
                     <div className="space_for_navbar"></div>
                     <BrowserRouter>
                         <Switch>
                             <>
                                 <div>
                                     <NavbarwithRouter />
-                                    <div className = "mobile_screen_search_bar">
+                                    <div className="mobile_screen_search_bar">
                                         <SearchBarWithRouter />
                                     </div>
                                     <Route exact path="/" component={Home} />
@@ -74,10 +74,14 @@ class App extends React.Component {
                                         component={UserProfile}
                                     />
                                     <Route
-                                        exact path="/search/"
+                                        exact
+                                        path="/search/"
                                         component={SearchResults}
                                     />
-                                    <Route path="/post/:post_id" component={Post} />
+                                    <Route
+                                        path="/post/:post_id"
+                                        component={Post}
+                                    />
                                     <Route
                                         path="/blog/:blog_id"
                                         component={blogData}
@@ -95,12 +99,12 @@ class App extends React.Component {
                                         component={MangaIndividualChapter}
                                     />
                                     <Route path="/registration">
-                                    {this.props.isAuthenticated ? (
-                                        <Redirect to="/" />
-                                    ) : (
-                                        <RegistrationForm />
-                                    )}
-                                </Route>
+                                        {this.props.isAuthenticated ? (
+                                            <Redirect to="/" />
+                                        ) : (
+                                            <RegistrationForm />
+                                        )}
+                                    </Route>
                                     <Route
                                         path="/forgotPassword"
                                         component={ForgotPassword}
@@ -111,7 +115,7 @@ class App extends React.Component {
                                     />
                                     <Route
                                         path="/searchedposts/"
-                                        component = {SearchedPosts} 
+                                        component={SearchedPosts}
                                     />
                                     <Route
                                         path="/resetsuccess"
@@ -123,28 +127,27 @@ class App extends React.Component {
                                     />
                                     <Route
                                         path="/searchedmangas/"
-                                        component = {SearchedMangas} 
+                                        component={SearchedMangas}
                                     />
                                     <Route
                                         path="/searchedblogs/"
-                                        component = {SearchedBlogs} 
+                                        component={SearchedBlogs}
                                     />
                                     <Route
                                         path="/searchedcomics/"
-                                        component = {SearchedComics} 
+                                        component={SearchedComics}
                                     />
-                                        
 
                                     <SignInModal />
                                     <DeleteModal />
-                                    <div className = "footer_head"></div>
+                                    <div className="footer_head"></div>
                                 </div>
                             </>
                         </Switch>
                     </BrowserRouter>
                 </div>
                 {this.props.isAuthenticated ? <UploadComponent /> : null}
-                <FooterComponent /> 
+                <FooterComponent />
             </div>
         );
     }
@@ -159,7 +162,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
-            fetchUserProfileData
+            fetchUserProfileData,
         },
         dispatch
     );
