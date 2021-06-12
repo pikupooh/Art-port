@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import registerUser from "../../redux/thunk/registerUser";
 import { TextCenter } from "react-bootstrap-icons";
+import { extensions } from "../../shared/categories"
 
 class RegistrationForm extends React.Component {
     constructor(props) {
@@ -19,7 +20,18 @@ class RegistrationForm extends React.Component {
         this.fileInput = React.createRef();
     }
 
+    componentDidMount(){
+        if(this.props.userId !== ""){
+            this.props.history.replace("/");
+        }
+    }
+
     componentDidUpdate() {
+
+        if(this.props.userId !== ""){
+            this.props.history.replace("/");
+        }
+
         if (
             this.props.isSignedUp &&
             (Object.keys(this.state.errors).length ||
@@ -156,6 +168,22 @@ class RegistrationForm extends React.Component {
         if (this.fileInput.current.files.length === 0) {
             isValid = false;
             errors["files"] = "Please upload a profile picture.";
+        }else
+        {
+            
+            let allImg= true
+            for (let i = 0; i < this.fileInput.current.files.length; i++) {
+                let name=this.fileInput.current.files[i].name
+                let extension =name.split(".")
+                if(extension.length === 1 || extension.length === 0 || !extensions.has(extension[extension.length-1])){
+                    allImg = false
+                    break
+                }
+            }
+            if(allImg === false)  {
+                isValid = false;
+                errors["files"] = "Please upload images only.";
+            }      
         }
 
         if (!input["about"]) {
@@ -323,7 +351,7 @@ class RegistrationForm extends React.Component {
                         <Form.Label className="label">
                             Upload Profile Picture
                         </Form.Label>
-                        <Form.File name="files" ref={this.fileInput} />
+                        <Form.File name="files" ref={this.fileInput} accept = "image/*"/>
                         <div className="text-danger">
                             {this.state.errors.files}
                         </div>
@@ -346,6 +374,7 @@ const mapStateToProps = (state) => {
     return {
         isSignedUp: state.register.isSignedUp,
         errmess: state.register.errmess,
+        userId: state.auth.userId
     };
 };
 

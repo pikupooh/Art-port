@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { Image, Row, Container, Col } from "react-bootstrap";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";

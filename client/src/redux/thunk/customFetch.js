@@ -1,5 +1,3 @@
-import { logoutUser } from "./loging";
-
 export const customfetch = (url, options) => {
     const request = (resolve) => {
         options.headers["Authorization"] = localStorage.getItem("token");

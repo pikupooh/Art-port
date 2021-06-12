@@ -1,8 +1,7 @@
 import React from 'react'
 import { connect } from  'react-redux';
-import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
-import { Row,Col,Container,Image,Button } from 'react-bootstrap';
+import { Row,Col,Container,Image } from 'react-bootstrap';
 
 class SearchedComics extends React.Component{
     
@@ -49,7 +48,7 @@ function ComicRating(props){
         rating = props.rating/ props.ratingCount
     }
     return(
-        <span>{props.rating}</span>
+        <span>{rating}</span>
     )
 }
 const mapStateToProps = (state) => {

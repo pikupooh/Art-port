@@ -238,6 +238,7 @@ class PostModal extends React.Component {
                                 label="Images"
                                 multiple
                                 ref={this.fileInput}
+                                accept = "image/*"
                             />
 
                             <div className="text-danger">

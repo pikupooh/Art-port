@@ -213,6 +213,7 @@ class BlogModal extends React.Component {
                             <Form.File
                                 label="Images"
                                 ref={this.fileInput}
+                                accept = "image/*"
                             />
 
                             <div className="text-danger">

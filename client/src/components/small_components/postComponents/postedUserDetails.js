@@ -1,6 +1,7 @@
-import React from "react";
-import { Image, Row, Col, Button, Badge } from "react-bootstrap";
-import { Link } from "react-router-dom";
+
+import React from 'react'
+import { Image, Row, Col } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 import PostComments from "./postComments";
 import PostLikesModal from "../postLikesModal";
