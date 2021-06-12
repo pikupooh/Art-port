@@ -42,7 +42,7 @@ class PostedUserDetails extends React.Component {
                 <div className="post_page_uploader_info">
                     <Row>
                         <Col xs={2} md={1} xl={3}>
-                            <Link to={"/user/" + this.props.info.user.userId}>
+                            <Link to={"/user/" + this.props.info.user.id}>
                                 <Image
                                     className="post_profile_photo"
                                     src={this.props.info.user.profilePhoto.link}
@@ -51,7 +51,7 @@ class PostedUserDetails extends React.Component {
                             </Link>
                         </Col>
                         <Col className="text-left ml-1 my-auto">
-                            <Link to={"/user/" + this.props.info.user.userId}>
+                            <Link to={"/user/" + this.props.info.user.id}>
                                 <span className="username">
                                     {this.props.info.user.username}
                                 </span>
@@ -63,9 +63,7 @@ class PostedUserDetails extends React.Component {
                             <PostLikeButton postId={this.props.info.id} />
                         </Col>
                         <Col>
-                            <FollowButton
-                                userId={this.props.info.user.userId}
-                            />
+                            <FollowButton userId={this.props.info.user.id} />
                         </Col>
                     </Row>
                     <p
