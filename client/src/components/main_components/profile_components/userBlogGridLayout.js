@@ -21,7 +21,8 @@ class UserBlogGridLayout extends React.Component{
                     link: "https://via.placeholder.com/300/09f/fff.png"
                 }
         }
-        return(    
+        console.log(this.props) 
+        return(  
             <Link to = {'/blog/' + this.props.blog.id}>
                 <div className = "home_grid_posts">
                     <div className = "home_grid_posts_image_container">
@@ -31,7 +32,7 @@ class UserBlogGridLayout extends React.Component{
                         <Row className = "home_grid_posts_details_container">
                             <Col className = "home_grid_posts_details_container_username ml-2 my-auto">
                                 <Link to = {'/user/' + this.props.blog.user.userId + '/blogs'} >
-                                    <DeleteButton id = {this.props.blog.user.userId}
+                                    <DeleteButton id = {this.props.blog.user.id}
                                                         userId = {this.props.userId}
                                                         deleteBlog = {this.deleteBlog}
                                                         showDeleteModal = {this.props.showDeleteModal}

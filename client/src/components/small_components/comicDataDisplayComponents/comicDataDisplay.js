@@ -49,7 +49,7 @@ function ComicDataDisplay (props) {
                             <Row >
                                 Author:
                             </Row>
-                            <Link to = {'/user/' + props.author.userId} className = "manga_data_authors" > 
+                            <Link to = {'/user/' + props.author.id} className = "manga_data_authors" > 
                             
                                 {props.author.firstName} {props.author.lastName + ' '}
                             

@@ -1,6 +1,5 @@
 import { ADD_FOLLOWING, ADD_FOLLOWER } from "../../actions/actionTypes";
 import { customfetch } from "../customFetch";
-import fetchUserData from "../fetchUserData";
 import { setLoadingAction } from "../../actions/loadingActions";
 
 function addFollower(userId, logInId, pathname = "") {

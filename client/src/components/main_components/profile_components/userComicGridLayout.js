@@ -42,7 +42,7 @@ class UserComicGridLayout extends React.Component {
                                     }
                                 >
                                     <DeleteButton
-                                        id={this.props.comic.user.userId}
+                                        id={this.props.comic.user.id}
                                         userId={this.props.userId}
                                         deleteComic={this.deleteComic}
                                         showDeleteModal={

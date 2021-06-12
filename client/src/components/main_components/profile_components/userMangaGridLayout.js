@@ -42,7 +42,7 @@ class UserMangaGridLayout extends React.Component {
                                     }
                                 >
                                     <DeleteButton
-                                        id={this.props.manga.user.userId}
+                                        id={this.props.manga.user.id}
                                         userId={this.props.userId}
                                         deleteManga={this.deleteManga}
                                         showDeleteModal={
