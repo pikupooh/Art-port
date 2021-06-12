@@ -81,12 +81,12 @@ class PostModal extends React.Component {
             this.props.handleModalClose();
             document.getElementById("post-form").reset();
 
-            /*this.props.createPost(
+            this.props.createPost(
                 this.props.userId,
                 postFormData,
                 imageFormData,
                 this.props.profileId
-            );*/
+            );
         }
     }
 
@@ -226,6 +226,7 @@ class PostModal extends React.Component {
                                 label="Images"
                                 multiple
                                 ref={this.fileInput}
+                                accept = "image/*"
                             />
 
                             <div className="text-danger">

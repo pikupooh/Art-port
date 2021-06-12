@@ -1,4 +1,3 @@
-import { faLess } from "@fortawesome/free-brands-svg-icons";
 import * as ActionTypes from "../actions/actionTypes";
 
 const initState = {

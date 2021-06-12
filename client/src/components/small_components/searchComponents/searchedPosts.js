@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from  'react-redux';
 import { Link } from 'react-router-dom';
-import { Row,Col,Container,Image,Button } from 'react-bootstrap';
+import { Row,Col,Container,Image } from 'react-bootstrap';
 
 class SearchedPosts extends React.Component{
     

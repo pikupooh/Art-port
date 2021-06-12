@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Image, Button } from "react-bootstrap";
+import { Image } from "react-bootstrap";
 
 import FollowButton from "../small_components/followButton"
 import fetchUserData from "../../redux/thunk/fetchUserData";

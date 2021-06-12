@@ -1,5 +1,5 @@
 import React from 'react'
-import { Image, Row, Col, Button, Badge } from 'react-bootstrap'
+import { Image, Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 import PostComments from './postComments'

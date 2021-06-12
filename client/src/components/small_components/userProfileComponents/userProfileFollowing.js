@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from  'react-redux';
 import { Row, Col, Image } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
 
 class UserProfileFollowing extends React.Component {
     render(){

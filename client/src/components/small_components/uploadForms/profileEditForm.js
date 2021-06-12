@@ -174,7 +174,7 @@ class ProfileEditForm extends React.Component {
                         <Form.Label className="label">
                             Upload Profile Picture
                         </Form.Label>
-                        <Form.File name="files" ref={this.fileInput} />
+                        <Form.File name="files" ref={this.fileInput} accept = "image/*" />
                         <div className="text-danger">
                             {this.state.errors.files}
                         </div>

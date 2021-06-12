@@ -1,6 +1,5 @@
 import { ADD_FOLLOWING } from "../../actions/actionTypes";
 import { customfetch } from "../customFetch";
-import { logoutUser } from "../loging";
 
 function addFollower(userId, logInId) {
     const token = localStorage.getItem("token");

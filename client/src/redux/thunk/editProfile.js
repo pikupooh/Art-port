@@ -3,7 +3,7 @@ import { UPDATE_PROFILE_PHOTO } from "../actions/actionTypes";
 import fetchUserData from "./fetchUserData";
 import { customfetch } from "./customFetch";
 
-export default function registerUser(postFormData, imageFormData, userId) {
+export default function editProfile(postFormData, imageFormData, userId) {
 
     const token = localStorage.getItem("token");
     return (dispatch) => {
