@@ -4,8 +4,9 @@ import {Col,Row} from 'react-bootstrap'
 import UserBlogGridLayout from './userBlogGridLayout'
 
 class BlogGrid extends React.Component{
+    
     render(){
-
+        console.log('c')
         if(this.props.blogList.length === 0){
             return(
                 <div className = "no_user_post_text">
