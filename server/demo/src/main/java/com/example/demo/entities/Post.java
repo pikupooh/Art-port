@@ -23,8 +23,10 @@ public class Post {
     private List<Image> images = Collections.emptyList();
     @DBRef
     private List<Comment> comments = Collections.emptyList();
-    private UserDTO user;
-    private Set<UserDTO> likes = new HashSet<>();
+    @DBRef
+    private User user;
+    @DBRef
+    private Set<User> likes = new HashSet<>();
     private List<String> tags = Collections.emptyList();
     private List<String> category = Collections.emptyList();
     @NotBlank
@@ -66,14 +68,14 @@ public class Post {
         this.comments.remove(comment);
     }
 
-    public void addLike(UserDTO userDTO){
+    public void addLike(User user){
 
-        this.likes.add(userDTO);
+        this.likes.add(user);
     }
 
-    public void removeLike(UserDTO userDTO){
+    public void removeLike(User user){
 
-        this.likes.remove(userDTO);
+        this.likes.remove(user);
     }
 
     public void removeAllImages(Image image){
@@ -105,19 +107,19 @@ public class Post {
         this.images = images;
     }
 
-    public UserDTO getUser() {
+    public User getUser() {
         return user;
     }
 
-    public void setUser(UserDTO user) {
+    public void setUser(User user) {
         this.user = user;
     }
 
-    public Set<UserDTO> getLikes() {
+    public Set<User> getLikes() {
         return likes;
     }
 
-    public void setLikes(Set<UserDTO> likes) {
+    public void setLikes(Set<User> likes) {
         this.likes = likes;
     }
 

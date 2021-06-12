@@ -25,7 +25,8 @@ public class Manga {
     private List<Chapter> chapters = Collections.emptyList();
     @DBRef
     private List<Comment> comments = Collections.emptyList();
-    private UserDTO userDTO;
+    @DBRef
+    private User user;
     @NotBlank
     private String title;
     @NotBlank
@@ -39,22 +40,22 @@ public class Manga {
     	
     }
     
-	public Manga(String id, String uploadDate, UserDTO userDTO) {
+	public Manga(String id, String uploadDate, User user) {
 		super();
 		this.id = id;
 		this.uploadDate = uploadDate;
-		this.userDTO = userDTO;
+		this.user = user;
 	}
 
 	public Manga(String id, String uploadDate, Image coverPhoto, List<Chapter> chapters, List<Comment> comments,
-			UserDTO userDTO, @NotBlank String title, @NotBlank String about, List<String> category, double rating, int ratingCount, Type type) {
+			User user, @NotBlank String title, @NotBlank String about, List<String> category, double rating, int ratingCount, Type type) {
 		super();
 		this.id = id;
 		this.uploadDate = uploadDate;
 		this.coverPhoto = coverPhoto;
 		this.chapters = chapters;
 		this.comments = comments;
-		this.userDTO = userDTO;
+		this.user = user;
 		this.title = title;
 		this.about = about;
 		this.category = category;
@@ -94,11 +95,13 @@ public class Manga {
 	public void setComments(List<Comment> comments) {
 		this.comments = comments;
 	}
-	public UserDTO getUserDTO() {
-		return userDTO;
+	public User getUser() {
+		return user;
 	}
-	public void setUserDTO(UserDTO userDTO) {
-		this.userDTO = userDTO;
+
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 	public String getTitle() {
 		return title;
@@ -162,22 +165,6 @@ public class Manga {
     }
 
 	@Override
-	public String toString() {
-		return "Manga{" +
-				"id='" + id + '\'' +
-				", uploadDate='" + uploadDate + '\'' +
-				", coverPhoto=" + coverPhoto +
-				", userDTO=" + userDTO +
-				", title='" + title + '\'' +
-				", about='" + about + '\'' +
-				", category=" + category +
-				", rating=" + rating +
-				", ratingCount=" + ratingCount +
-				", type=" + type +
-				'}';
-	}
-
-	@Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -189,4 +176,23 @@ public class Manga {
     public int hashCode() {
         return Objects.hash(id);
     }
+
+
+	@Override
+	public String toString() {
+		return "Manga{" +
+				"id='" + id + '\'' +
+				", uploadDate='" + uploadDate + '\'' +
+				", coverPhoto=" + coverPhoto +
+				", chapters=" + chapters +
+				", comments=" + comments +
+				", user=" + user +
+				", title='" + title + '\'' +
+				", about='" + about + '\'' +
+				", category=" + category +
+				", rating=" + rating +
+				", ratingCount=" + ratingCount +
+				", type=" + type +
+				'}';
+	}
 }

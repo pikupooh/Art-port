@@ -48,10 +48,9 @@ public class PostService {
 
     public Post createPost(Post post, User user){
 
-        UserDTO userDTO = new UserDTO(user.getId(), user.getUsername(), user.getFirstName(), user.getLastName(), user.getProfilePhoto());
         System.out.println(post);
         post.setUploadDate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")));
-        post.setUser(userDTO);
+        post.setUser(user);
         postRepository.save(post);
         return post;
     }
@@ -110,14 +109,14 @@ public class PostService {
     	return postRepository.findPostByTags(tags);
     }
 
-    public Post addLike(String postId, UserDTO userDTO){
+    public Post addLike(String postId, User user){
 
         Post post = postRepository.findLikesById(postId);
 
         if(post == null)
             return null;
 
-        post.addLike(userDTO);
+        post.addLike(user);
 
         Query query = Query.query(Criteria.where("id").is(postId));
         Update update = new Update();
@@ -129,13 +128,13 @@ public class PostService {
         return post;
     }
 
-    public Post removeLike(String postId, UserDTO userDTO){
+    public Post removeLike(String postId, User user){
 
         Post post = postRepository.findLikesById(postId);
 
         if(post == null)
             return null;
-        post.removeLike(userDTO);
+        post.removeLike(user);
 
         Query query = Query.query(Criteria.where("id").is(postId));
         Update update = new Update();

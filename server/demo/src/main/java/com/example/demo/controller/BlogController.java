@@ -104,11 +104,10 @@ public class BlogController {
 
         User user = userService.getUserByName(principal.getName());
 
-        UserDTO userDTO = new UserDTO(user.getId(), user.getUsername(), user.getFirstName(), user.getLastName(), user.getProfilePhoto());
-        if(blog.getLikes().contains(userDTO))
+        if(blog.getLikes().contains(user))
             return new ResponseEntity<String>("Already liked", HttpStatus.BAD_REQUEST);
 
-        blog.addLike(userDTO);
+        blog.addLike(user);
         blogService.save(blog);
 
         return ResponseEntity.ok("Like added.");
@@ -125,7 +124,7 @@ public class BlogController {
 
         User user = userService.getUserByName(principal.getName());
 
-        blog.removeLike(new UserDTO(user.getId(), user.getUsername(), user.getFirstName(), user.getLastName(), user.getProfilePhoto()));
+        blog.removeLike(user);
         blogService.save(blog);
 
         return ResponseEntity.ok("Like removed.");

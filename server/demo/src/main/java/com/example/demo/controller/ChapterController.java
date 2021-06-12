@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/api")
@@ -65,7 +66,7 @@ public class ChapterController {
         if (manga == null)
             return new ResponseEntity<String>("Manga not present.", HttpStatus.NOT_FOUND);
         
-        if (!user.getId().equals(manga.getUserDTO().getUserId()))
+        if (!user.getId().equals(manga.getUser().getId()))
             return new ResponseEntity<String>("Owner Invalid", HttpStatus.BAD_REQUEST);
         
         chapter.setMangaId(mangaId);
@@ -104,7 +105,7 @@ public class ChapterController {
         Manga m = mongoTemplate.findOne(query, Manga.class);
         if (user == null)
             return new ResponseEntity<String>("User not present.", HttpStatus.NOT_FOUND);
-        if (!user.getId().equals(m.getUserDTO().getUserId()))
+        if (!user.getId().equals(m.getUser().getId()))
             return new ResponseEntity<String>("User invalid.", HttpStatus.BAD_REQUEST);
         
         Chapter chap = null;
@@ -156,7 +157,7 @@ public class ChapterController {
     	Manga manga = mangaService.getManga(chapter.getMangaId());
     	if(manga == null)
     		return false;
-    	if(manga.getUserDTO().getUsername() == user.getUsername())
+    	if(Objects.equals(manga.getUser().getUsername(), user.getUsername()))
     		return true;
     	return false;
     }

@@ -22,7 +22,8 @@ public class Comment {
     private String createdDate;
     private String content;
     private Type type;
-    private UserDTO user;
+    @DBRef
+    private User user;
     private String typeId;
     @DBRef
     private List<Reply> replies;
@@ -66,11 +67,11 @@ public class Comment {
         this.type = type;
     }
 
-    public UserDTO getUser() {
+    public User getUser() {
         return user;
     }
 
-    public void setUser(UserDTO user) {
+    public void setUser(User user) {
         this.user = user;
     }
 
