@@ -40,7 +40,7 @@ export const blogDataReducer = (state = initState, action) => {
 
         case ActionTypes.UNLIKE_BLOG:
             var newLikes = state.likes.filter(
-                (user) => user.userId !== action.payload.userId
+                (user) => user.id !== action.payload.userId
             );
             return {
                 ...state,

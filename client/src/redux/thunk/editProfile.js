@@ -42,7 +42,6 @@ export default function editProfile(postFormData, imageFormData, userId) {
                                         profilePhoto: user.profilePhoto.link,
                                     });
                                     dispatch(fetchUserData(userId));
-                                    console.log(response);
                                     return response;
                                 })
                                 .catch((error) => {

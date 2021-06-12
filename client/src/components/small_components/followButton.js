@@ -5,6 +5,7 @@ import { Button } from "react-bootstrap";
 import { fetchUserProfileData } from "../../redux/thunk/fetchProfileData";
 import addFollower from "../../redux/thunk/post/addFollower";
 import unfollowUser from "../../redux/thunk/delete/unfollowUser";
+import { withRouter } from "react-router-dom";
 
 class FollowButton extends React.Component {
     componentDidMount() {}
@@ -26,25 +27,14 @@ class FollowButton extends React.Component {
         }
     };
 
-    trimUser = () => {
-        var temp = {
-            ...this.props.user,
-        };
-
-        temp.id = temp.userId;
-        delete temp.userId;
-
-        return temp;
-    };
-
     followUser = () => {
 
         if (this.props.logInId === null) {
             this.props.showSignInModal();
             return;
         }
-
-        this.props.addFollower(this.props.userId, this.props.logInId, this.trimUser());
+        
+        this.props.addFollower(this.props.userId, this.props.logInId, this.props.location.pathname);
     }
 
 
@@ -96,4 +86,4 @@ const mapDipatchToProps = (dispatch) => bindActionCreators({
     },dispatch
 )
 
-export default connect(mapStateToProps, mapDipatchToProps)(FollowButton);
+export default withRouter(connect(mapStateToProps, mapDipatchToProps)(FollowButton));

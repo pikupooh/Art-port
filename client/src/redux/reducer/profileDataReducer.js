@@ -92,7 +92,6 @@ export const profileDataReducer = (state = initState, action) => {
             let newFollowers = state.followers.filter(
                 (user) => user.id !== action.payload.logInId
             );
-            console.log(newFollowers)
             return{
                 ...state,
                 followers: newFollowers
