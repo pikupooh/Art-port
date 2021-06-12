@@ -96,7 +96,7 @@ class About extends React.Component
         </Container>
 
         <Container>
-          <h3 className="mt-5 text-center">
+          <h3 className="mt-10 text-center">
             PROJECT
           </h3>
 
