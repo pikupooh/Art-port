@@ -78,6 +78,26 @@ export const profileDataReducer = (state = initState, action) => {
                 ...state,
                 userBlogs: updatedBlogs,
             };
+
+        case ActionTypes.ADD_FOLLOWER:
+            return{
+                ...state,
+                followers: [
+                    ...state.followers,
+                    action.payload
+                ]
+            }
+
+        case ActionTypes.REMOVE_FOLLOWER:
+            let newFollowers = state.followers.filter(
+                (user) => user.id !== action.payload.logInId
+            );
+            console.log(newFollowers)
+            return{
+                ...state,
+                followers: newFollowers
+            }
+
         default:
             return state;
     }

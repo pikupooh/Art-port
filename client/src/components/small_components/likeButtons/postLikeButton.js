@@ -5,7 +5,7 @@ import { bindActionCreators } from "redux";
 
 import deletePostLike from "../../../redux/thunk/delete/deletePostLike";
 import postPostLike from "../../../redux/thunk/post/postPostLike";
-import fetchUserData from "../../../redux/thunk/fetchUserData"
+import fetchUserData from "../../../redux/thunk/fetchUserData";
 class PostLikeButton extends React.Component {
     constructor(props) {
         super(props);
@@ -15,8 +15,8 @@ class PostLikeButton extends React.Component {
     }
 
     componentDidMount() {
-        if(this.props.isAuthenticated)
-            this.props.fetchUserData(this.props.userId)
+        if (this.props.isAuthenticated)
+            this.props.fetchUserData(this.props.userId);
     }
 
     trimUser = () => {
@@ -24,7 +24,9 @@ class PostLikeButton extends React.Component {
             ...this.props.user,
         };
 
+        temp.id = temp.userId;
         delete temp.about;
+        delete temp.userId;
         delete temp.email;
         delete temp.dob;
 
@@ -33,13 +35,15 @@ class PostLikeButton extends React.Component {
 
     updateButtonState = () => {
         var foundUser = this.props.likes.filter(
-            (user) => user.userId === this.props.userId
+            (user) => user.id === this.props.userId
         );
 
+        console.log(this.props.likes);
+
         if (foundUser.length !== 0) {
-            return true
+            return true;
         } else {
-            return false
+            return false;
         }
     };
 
@@ -67,7 +71,7 @@ class PostLikeButton extends React.Component {
         if (this.updateButtonState() === false) {
             return (
                 <Button onClick={this.postLiked}>
-                        <div className = "like_button">
+                    <div className="like_button">
                         Like
                         <div className="material-icons ml-1">
                             thumb_up_off_alt
@@ -78,7 +82,7 @@ class PostLikeButton extends React.Component {
         } else {
             return (
                 <Button onClick={this.removeLiked}>
-                    <div className = "like_button">
+                    <div className="like_button">
                         Unlike
                         <div className="material-icons ml-1">
                             thumb_down_off_alt
@@ -96,7 +100,7 @@ const mapDispatchToProps = (dispatch) =>
             showSignInModal: () => dispatch({ type: "SHOW_MODAL" }),
             deletePostLike: deletePostLike,
             postPostLike: postPostLike,
-            fetchUserData: fetchUserData
+            fetchUserData: fetchUserData,
         },
         dispatch
     );
