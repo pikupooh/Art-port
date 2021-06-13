@@ -1,6 +1,8 @@
 # Art-port
 A website for web tech lab assignment
 
+Visit art-port.herokuapp.com
+
 # Installation
 ## Client
 
