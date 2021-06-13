@@ -5,6 +5,8 @@ extensions.add("tiff")
 extensions.add("jpg")
 extensions.add("eps")
 extensions.add("png")
+extensions.add("gif")
+extensions.add("webp")
 
 export const categories = [
     "Illustration",
