@@ -42,7 +42,7 @@ function ComicDataDisplay (props) {
                                     {"Chapters " + props.chaptersLength}
                                 </div>
                                 <div className = "ml-auto mr-3" >
-                                    {(props.author.userId === props.userId) && (<Button id = "add_chapter_button" onClick = {props.handleFormModalShow}>+ Add Chapter</Button>)}
+                                    {(props.author.id === props.userId) && (<Button id = "add_chapter_button" onClick = {props.handleFormModalShow}>+ Add Chapter</Button>)}
                                 </div>
                         </Row>
                         <div className = "manga_data_author_container">
